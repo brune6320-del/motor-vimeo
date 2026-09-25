@@ -4,10 +4,11 @@
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
 - **Última actualización:** 25 de septiembre de 2026 (v1.2, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v1.2`
+- **Versión:** `v1.3`
 - **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
 - **Fase B:** `BLOQUEADA`
-- **Último hito documentado (v1.2):** la persona usuaria deja de fiscalizar (DEC‑018‑P): cuaderno A‑E(−1) **v1.2 «un clic»** (O3/O4 inequívocos, confirmación del auditor IA ligada a la luminancia de los 18 parches, semillas exhaustivas, `PENDING_EXTERNAL_AUDIT`, modo sin navegador) verificado con 68 + 39 comprobaciones, píxeles y arnés de punta a punta con SAM simulado; herramienta de auditoría IA de ZIPs; protocolo de diálogo Claude↔ChatGPT con doble llave (DEC‑019‑P) y carta 001; evaluación de Colab MCP/CLI
+- **Último hito documentado (v1.3):** **primera corrida GPU real** de A‑E(−1) v1.2 (L4, bf16, SAM 2 `2b90b9f5`, checkpoint `2647878d…`), auditada a ciegas con protocolo congelado antes de mirar: `INCONCLUSIVE_SELECTED_OUTPUT_FAILED` (0/12 candidatas pasan; mejor intento `box+corrections:s1`), pendiente de segunda llave de ChatGPT; reproduce la corrida v4; DEC‑013‑Q adoptada por matriz prerregistrada; sweep A‑E1 prerregistrado y verificado contra el commit exacto; ontología v0.2 con los cambios R4 de ChatGPT
+- **Hito v1.2:** la persona usuaria deja de fiscalizar (DEC‑018‑P): cuaderno A‑E(−1) **v1.2 «un clic»** (O3/O4 inequívocos, confirmación del auditor IA ligada a la luminancia de los 18 parches, semillas exhaustivas, `PENDING_EXTERNAL_AUDIT`, modo sin navegador) verificado con 68 + 39 comprobaciones, píxeles y arnés de punta a punta con SAM simulado; herramienta de auditoría IA de ZIPs; protocolo de diálogo Claude↔ChatGPT con doble llave (DEC‑019‑P) y carta 001; evaluación de Colab MCP/CLI
 - **Hito v1.1:** preflight de coordenadas de A‑E(−1) con la foto real (3 de 18 puntos mal ubicados) → cuaderno **v1.1** verificado (68 Codex + 19 propias + píxeles + arnés CPU; GPU `NOT_RUN`); kit A‑E0/A‑E1 (`pragma_ae`) con 22 tests; borrador de inventario de 52 objetos; ontología propuesta sin ratificar; proyecto versionado en `brune6320-del/motor-vimeo` bajo `pragma/`
 - **Hito anterior (v1.0):** port a un cuaderno independiente A‑E(−1), con 68/68 verificaciones estáticas y experimento GPU todavía `NOT_RUN`
 - **Propósito:** fuente de verdad operativa para continuar PRAGMA en ChatGPT 6 Sol, otra IA o una nueva sesión sin depender de la conversación original.
@@ -56,6 +57,8 @@ El artefacto ejecutable más reciente es un diagnóstico intermedio A‑E(−1):
 Resultado final esperado del producto: una arquitectura modular que proponga, reconozca, seleccione, refine y exporte instancias individuales como PNG transparentes, sin soldar modelos concretos a la interfaz.
 
 **Actualización v1.1.** Antes de gastar la corrida GPU se auditaron las 18 coordenadas de A‑E(−1) contra la foto real: `P‑3` y `O2` caían sobre la pared y `P‑2` en el borde pared/moño, justo en la zona donde v4 falló. Se generó el cuaderno **v1.1** (v1.0 intacto) y se verificó sin GPU. Además se construyó el kit A‑E (`pragma_ae`): contrato y validador de `scene_inventory.json` con congelado por hash, lámina numerada, hoja de contactos y métricas A‑E1. Las métricas demostraron un hueco del contrato §9: una máscara con el defecto de v4 obtiene IoU 0,94 y pasaría el umbral de 0,70; se propone medir la fusión normalizada por el área invadida (DEC‑013‑P). Nada de esto cambia los veredictos: v4 `INCONCLUSIVE`, Fase B `BLOQUEADA`, SAM 2 no rechazable.
+
+**Actualización v1.3.** La persona usuaria ejecutó v1.2 en Colab (L4) y adjuntó el ZIP. Se verificó el freeze (mismo commit y checkpoint que v4) y se publicó el protocolo de auditoría antes de mirar ninguna máscara. Después se juzgaron a ciegas las 12 candidatas, con etiquetas A–L y el mapeo sellado, y se publicaron los juicios crudos antes de desciegar. **Ninguna candidata separa a la chica completa sin la persona posterior.** Las correcciones negativas sacan el pelo y las mangas oscuras de la chica junto con la persona posterior; sin ellas, lo oscuro entra con el moño. `point#1` reproduce exactamente la candidata aceptada en v4 (scores 0,906/0,002/0,006; área 15,56 %). La respuesta 001 de ChatGPT aportó DEC‑013‑Q, que ganó una matriz sintética prerregistrada (Q 26/26, P 22/26), el sweep A‑E1 (prerregistrado; parámetros verificados en el commit exacto) y tres cambios de ontología aceptados.
 
 **Actualización v1.2.** La persona usuaria pidió no fiscalizar en Colab lo que una IA puede verificar, y trabajar en ping‑pong con ChatGPT: Claude audita y guía, ChatGPT desafía y contraaudita. Se construyó el cuaderno **v1.2**: basta arrastrar la foto, pulsar «Ejecutar todas» y adjuntar el ZIP. La configuración llega confirmada por el auditor IA y el propio cuaderno comprueba que los píxeles son los auditados. Las seis correcciones se ejecutan sin elegir semillas, y la selección y la revisión visual las hace la auditoría IA externa (`pragma_ae.aem1_audit`) con evidencia y hashes, sin poder confundir nunca una corrida simulada con evidencia. El Colab MCP solo funciona en local; el Colab CLI funcionaría desde la sesión en la nube si se abre la red a `colab.research.google.com` y se autoriza una vez.
 
@@ -182,6 +185,15 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
 - **Hallazgo de contrato:** con IoU como único criterio, el defecto de v4 pasa (IoU 0,94). Propuesta DEC‑013‑P.
 - **Certeza:** `✅` estático, píxeles y arnés CPU; `❌` GPU; `❌` ratificación humana.
 
+## Hito 11 — Primera corrida GPU real de A‑E(−1) y auditoría ciega (v1.3)
+
+- **Corrida:** `20260925T062504Z_256dba9f` · ZIP `e6bb7a46…1976` · `REAL_GPU` (NVIDIA L4, bf16) · 12 candidatas.
+- **Orden probado en git:** protocolo congelado (`2a9e264`) → juicios ciegos crudos (`84530ff`) → desciegue y veredicto.
+- **Veredicto (primera llave):** `INCONCLUSIVE_SELECTED_OUTPUT_FAILED`; mejor intento `box+corrections:s1#0` (persona posterior y fondo fuera; sin el pelo de la chica y con las mangas perforadas); las `box` sin corrección arrastran el moño.
+- **Sonda de contacto:** semillas `box` = `CONFLICT` (IoU mínimo 0,135); semillas `point` = `NOT_EVALUABLE`; point↔box = `CONFLICT`.
+- **ChatGPT 001:** DEC‑013‑Q adoptada (matriz prerregistrada; Q 26/26, P 22/26); sweep A‑E1 prerregistrado (`ae1/SWEEP_PRERREGISTRO_A-E1.json`), verificado contra `2b90b9f5`; ontología v0.2 (R4).
+- **Certeza:** `✅` corrida GPU, integridad y auditoría ciega de primera llave; `❌` segunda llave (carta 002 enviada); `❌` A‑E0.
+
 ## Hito 10 — La persona usuaria deja de fiscalizar; ping‑pong con ChatGPT (v1.2)
 
 - **Solicitud:** "no me delegues fiscalizar lo que la IA puede hacer"; mandar los avances a ChatGPT en retroalimentación constante; traspasar no es delegar; usar Colab MCP/CLI si es posible.
@@ -211,7 +223,7 @@ Estado resumido:
 
 ```text
 Fase A dirigida por clic       INCONCLUSIVE
-A‑E(−1) diagnóstico chica     v1.2 «UN CLIC» · STATIC/PÍXELES/E2E SIMULADO PASS; GPU NOT_RUN
+A‑E(−1) diagnóstico chica     v1.2 EJECUTADO EN GPU · 1ª LLAVE: INCONCLUSIVE_SELECTED_OUTPUT_FAILED (0/12) · 2ª LLAVE PENDIENTE
 A‑E0 inventario humano        KIT LISTO · BORRADOR 52 OBJETOS · ONTOLOGÍA SIN RATIFICAR
 A‑E1 SAM2 AMG                 MÉTRICAS IMPLEMENTADAS · SIN CORRIDA
 Revisión                      AUDITOR IA + CONTRAAUDITORÍA CHATGPT · VETO DE LA PERSONA USUARIA
@@ -299,7 +311,16 @@ Extensión                     ZIP v1.2.0 VERIFICADO / NO MODIFICADA
 
 ## 5.13 Diálogo Claude ↔ ChatGPT
 
-**Estado:** `🟡` protocolo y carta 001 escritos; respuesta de ChatGPT pendiente.
+**Estado:** `✅` cartas 001 (ida y vuelta) y 002 enviada; segunda llave pendiente.
+
+## 5.14 Corrida GPU real A‑E(−1) y auditoría ciega
+
+**Estado:** `✅ EJECUTADO GPU` + `✅ AUDITORÍA CIEGA (1ª llave)` · `❌ 2ª llave`
+**Resultado:** 0/12 candidatas pasan los cuatro criterios. Informe: `auditoria/aem1_20260925T062504Z_256dba9f/INFORME.md`. Veredicto: `aem1_audit_verdict.json` (token `6efc1850…a935`).
+
+## 5.15 DEC‑013‑Q y matriz prerregistrada
+
+**Estado:** `✅ VERIFICADO ESTÁTICO` · `tests/test_fusion_matrix.py` a 4000×2248: Q acierta las 26 etiquetas prerregistradas y P falla 4 (bandas y víctimas delgadas) → `GateParams.fusion_rule = "Q"`, δ = 5 px.
 
 ---
 
@@ -426,7 +447,13 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 | `PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_2.ipynb` | `pragma/outputs/` | Experimento A‑E(−1) **vigente**, un clic | 🟡 GPU NOT_RUN | 23 celdas, 0 outputs, 81 581 bytes, hash `06315e…f0da` |
 | `PRAGMA_A-E-menos-1_v1_2_verificacion.json` | `pragma/outputs/` | 68 + 39 + píxeles + E2E simulado + auditoría | ✅ estático/simulado | hash `08f50b…0e83` (los bytes varían entre corridas: incluye el tamaño del ZIP simulado) |
 | `build_pragma_ae1_v1_2.py` / `verify_pragma_ae1_v1_2.py` / `harness_aem1.py` | `pragma/work/` | construir, verificar y probar v1.2 de punta a punta | ✅ ejecutados | `bae166…568e` / `f54b46…c63a` / `fa8923…b7bd` |
-| `aem1_audit.py` | `pragma/pragma_ae/` | auditoría IA de ZIPs | ✅ tests + ZIP del arnés | `900bd3…0802` |
+| `aem1_audit.py` | `pragma/pragma_ae/` | auditoría IA de ZIPs | ✅ tests + ZIP del arnés + corrida real | ver manifiesto |
+| `PROTOCOLO_AUDITORIA_AEM1_v1.md` | `pragma/auditoria/` | protocolo congelado antes de mirar | ✅ | `436937…0810` (commit `2a9e264`) |
+| `juicios_crudos.json` · `aem1_tabla_desciegada.json` · `aem1_audit_verdict.json` · `INFORME.md` | `pragma/auditoria/aem1_20260925T062504Z_256dba9f/` | auditoría ciega de la corrida real | ✅ 1ª llave | `e8286d…2673` · `e767de…01f0` · `dae172…3fc3` · `ce8671…5be4` |
+| `blind_audit_aem1.py` | `pragma/work/` | preparar láminas ciegas y desciegar | ✅ ejecutado | `88d3d3…2521` |
+| `SWEEP_PRERREGISTRO_A-E1.json` | `pragma/ae1/` | sweep A‑E1 prerregistrado | 🟡 pendiente de ChatGPT | `25a61a…5a38` |
+| `test_fusion_matrix.py` | `pragma/tests/` | matriz que decidió DEC‑013‑Q | ✅ | `2626b7…c2ae` |
+| ZIP de la corrida `…062504Z_256dba9f` | local (no versionado: recortes de la foto) | evidencia GPU | ✅ | `e6bb7a46…1976` |
 | `PREFLIGHT_A-E-menos-1_v1_2.md` | `pragma/preflight/` | confirmación 18/18 del auditor IA | ✅ | `0df931…f800` |
 | `GUIA_COLAB_A-E-menos-1_v1_2.md` | `pragma/` | pasos vigentes | ✅ | `e67c0e…7e69` |
 | `dialogo/001_claude_a_chatgpt.md` | `pragma/dialogo/` | carta 001 | 🟡 enviada para pegar | `b1313f…b901` |
@@ -630,6 +657,17 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 **Propuesta:** ninguna configuración de puntos se confirma sin hoja de contactos a resolución nativa.  
 **Motivación:** BUG‑008.  
 **Estado:** `🟡` implementada en v1.1; requiere ratificación como regla general.
+
+### DEC-013-Q — Fusión = fracción de la víctima + invasión interior
+
+**Decisión:** FUSION si `|P ∩ G|/|G| ≥ 0,10` **y** `|P ∩ erode(G, 5)|/|erode(G, 5)| ≥ 0,10`; NOT_EVALUABLE si hay solape y la erosión borra la víctima; G es modal (visible).
+**Origen:** ChatGPT 001 R1. **Cómo se decidió:** matriz sintética prerregistrada con una regla de decisión previa (Q 26/26, P 22/26).
+**Estado:** `🟡` adoptada en el código; ratificación de la persona usuaria pendiente. Reemplaza a DEC‑013‑P como regla por defecto (P se sigue reportando).
+
+### DEC-020 — Auditoría ciega con protocolo congelado antes de mirar
+
+**Decisión:** toda corrida real se audita con un protocolo publicado antes de ver resultados, etiquetas anónimas, mapeo sellado y juicios crudos publicados antes de desciegar.
+**Estado:** vigente (primera aplicación en la corrida `20260925T062504Z_256dba9f`).
 
 ### DEC-018-P — La persona usuaria no fiscaliza: auditoría IA con evidencia
 
@@ -941,7 +979,11 @@ La regla histórica exige probar cualquier modificación mediante Chrome con `--
 | Checks propios v1.2 | diff, coordenadas, confirmación ligada, AST de correcciones, E2E, auditoría | 39/39 | 39/39 | ✅ estático + simulado |
 | E2E con SAM simulado | celdas 03–11 del v1.2 con la foto real | un clic sin decisiones | 8 propuestas, 12 candidatas, `PENDING_EXTERNAL_AUDIT`, ZIP 4,7 MB | ✅ simulado (no mide calidad) |
 | Auditoría IA sobre ZIP del arnés | `aem1_audit` | leer formato real, detectar simulado | integridad OK, `SIMULATED`, `SIMULATED_RUN_NOT_EVIDENCE` | ✅ |
-| Kit completo | 27 tests | 27/27 | 27/27 | ✅ |
+| Kit completo | 29 tests | 29/29 | 29/29 | ✅ |
+| **Corrida GPU A‑E(−1) v1.2** | SAM 2.1 Large en L4 | 4 protocolos, 12 candidatas | 12 candidatas, integridad 24/24, freeze = v4 | ✅ ejecución |
+| Auditoría ciega (1ª llave) | 12 candidatas | alguna separa a la chica completa | 0/12; mejor intento `box+corrections:s1` | ❌ aceptación · ✅ auditoría |
+| Reproducción v4 | `point#1` | mismos scores y área | 0,906/0,002/0,006 · 15,56 % | ✅ reproducida |
+| Matriz DEC‑013 | 26 casos prerregistrados | la regla que acierte todos | Q 26/26 · P 22/26 | ✅ decide Q |
 
 Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y cero outputs. No presentar sus suites estáticas como evidencia de inferencia real.
 
@@ -1078,14 +1120,14 @@ Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y ce
 
 ## P0 — Crítico / siguiente paso obligatorio
 
-### P0-1 — Ejecutar A‑E(−1) v1.2
+### P0-1 — (HECHO) Ejecutar A‑E(−1) v1.2
 
 - **Acción:** ejecutar `PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_2.ipynb` con GPU: modo un clic (la persona arrastra la foto, pulsa «Ejecutar todas» y adjunta el ZIP) o delegado (Colab CLI desde la sesión de Claude).
 - **Motivo:** el artefacto actual solo tiene verificación estática.
 - **Dependencia:** Colab con GPU y la foto.
 - **Criterio de finalización:** notebook ejecutado + ZIP íntegro + revisión visual independiente.
 
-### P0-2 — Auditar el resultado A‑E(−1)
+### P0-2 — (HECHO, 1ª llave) Auditar el resultado A‑E(−1)
 
 - **Acción:** `python3 -m pragma_ae audit-aem1 <ZIP>`; revisar las 12 candidatas a resolución completa; registrar el veredicto con `write_verdict`; carta a ChatGPT para la contraauditoría (doble llave).
 - **Motivo:** evitar otro PASS basado solo en checkboxes.
@@ -1122,7 +1164,15 @@ Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y ce
 - **Acción:** pinnear commit SAM2 y documentar versiones tras corrida válida.
 - **Criterio:** segunda corrida reproduce resultados dentro de tolerancia declarada.
 
-### P0-5 — Cerrar la carta 001 con ChatGPT
+### P0-6 — Segunda llave de ChatGPT sobre la corrida real
+
+- **Acción:** la persona usuaria pega la carta 002 y adjunta `PRAGMA_AEM1_contraauditoria_ciega.zip` (privado); ChatGPT juzga A–L a ciegas; Claude compara y registra.
+
+### P0-7 — Prerregistrar A‑E(−1) v1.3
+
+- **Acción:** prompts positivos sobre el pelo y las mangas de la chica (coordenadas nuevas con preflight), prompt recíproco a la persona posterior y perturbación ±15 px; mismo protocolo ciego. Solo después de la crítica de ChatGPT.
+
+### P0-5 — (HECHO) Cerrar la carta 001 con ChatGPT
 
 - **Acción:** la persona usuaria pega `dialogo/001_claude_a_chatgpt.md` en ChatGPT y trae la respuesta; Claude la guarda como `001_chatgpt_a_claude.md`, la audita y responde.
 
@@ -1351,27 +1401,19 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-El cuaderno A‑E(−1) **v1.2** está verificado sin GPU de punta a punta con SAM simulado. La persona usuaria no tiene que decidir nada en Colab: la configuración viene confirmada con evidencia y la revisión la hace la auditoría IA. Falta la corrida GPU real. La carta 001 a ChatGPT está lista para pegar.
+La primera corrida GPU real de A‑E(−1) v1.2 está auditada a ciegas por Claude (primera llave): `INCONCLUSIVE_SELECTED_OUTPUT_FAILED`, con 0/12 candidatas que pasen. El diagnóstico: el conflicto chica↔persona posterior es de textura oscura, y los negativos sacan también el pelo y las mangas de la chica. Falta la segunda llave de ChatGPT sobre las mismas láminas ciegas. DEC‑013‑Q está adoptada y el sweep A‑E1 prerregistrado.
 
 ## Próxima acción
 
-Ejecutar `pragma/outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_2.ipynb` con GPU, en uno de dos modos (`GUIA_COLAB_A-E-menos-1_v1_2.md`):
-
-- **Un clic:** subir el cuaderno a Colab, GPU L4, arrastrar `P1070614.JPG` al panel Archivos, «Ejecutar todas» y adjuntar el ZIP en el chat.
-- **Delegado:** permitir `colab.research.google.com` en *Network access* del entorno, escribir "red lista" y pegar el código OAuth que muestre Google. Claude ejecuta todo con Colab CLI.
+La persona usuaria pega `dialogo/002_claude_a_chatgpt.md` en ChatGPT, le adjunta en privado `PRAGMA_AEM1_contraauditoria_ciega.zip` y trae la respuesta completa.
 
 ## Resultado esperado
 
-`PRAGMA_AEM1_<run>_PENDING_EXTERNAL_AUDIT.zip` de una corrida `REAL_GPU` → `audit-aem1` → veredicto (`SEPARATION_DEMONSTRATED_UNDER_FIXED_AEM1_PROTOCOL` o `INCONCLUSIVE_SELECTED_OUTPUT_FAILED`) → carta a ChatGPT para la contraauditoría.
-
-## Si falla
-
-- Error en Colab: celda, texto completo del error y captura. No degradar a Small.
-- `PENDING_CONFIG` por desviación de luma: la foto o su decodificación no es la auditada. Se revisa antes de seguir.
+Juicios ciegos de ChatGPT por etiqueta A–L. Si coinciden con los de Claude, el veredicto pasa a doble llave. Si no, se documenta la discrepancia y decide la persona usuaria. Después, crítica y prerregistro de A‑E(−1) v1.3.
 
 ## En paralelo
 
-Pegar la carta 001 en ChatGPT y traer su respuesta. Ratificar `ae0/ONTOLOGIA_PROPUESTA.md`.
+Ratificar la ontología v0.2 (`ae0/ONTOLOGIA_PROPUESTA.md`) y hacer la pasada ciega del inventario (`ae0/PROTOCOLO_A-E0.md` §1).
 
 ---
 
@@ -1424,6 +1466,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v1.3 | 2026‑09‑25 | primera corrida GPU real de A‑E(−1) v1.2 auditada a ciegas con protocolo congelado antes de mirar (`INCONCLUSIVE_SELECTED_OUTPUT_FAILED`, 0/12); reproducción de v4; respuesta 001 de ChatGPT archivada; DEC‑013‑Q adoptada por matriz prerregistrada; sweep A‑E1 prerregistrado y verificado en el commit exacto; ontología v0.2; DEC‑020; carta 002 |
 | v1.2 | 2026‑09‑25 | la persona usuaria deja de fiscalizar: cuaderno A‑E(−1) v1.2 «un clic» (O3/O4 inequívocos, confirmación del auditor IA ligada a la luma, semillas exhaustivas, `PENDING_EXTERNAL_AUDIT`, modo sin navegador), verificador con arnés E2E de SAM simulado, auditoría IA de ZIPs, protocolo de diálogo con ChatGPT y carta 001, evaluación de Colab MCP/CLI, DEC‑018‑P/019‑P |
 | v1.1 | 2026‑09‑25 | (addendum) guía de Colab paso a paso y `CLAUDE.md` con la regla de cerrar siempre con los pasos del usuario. Continuación en Claude Code: proyecto versionado en `pragma/`; preflight de coordenadas (BUG‑008) → A‑E(−1) v1.1 verificado sin GPU; kit `pragma_ae` con 22 tests; hueco del §9 (BUG‑009) y DEC‑013‑P…017; borrador de inventario de 52 objetos; ontología propuesta; nuevo punto de reanudación |
 

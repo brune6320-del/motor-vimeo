@@ -1,0 +1,422 @@
+{
+  "mapping_sha256": "f3e45f06bf46cc8c03dec36ba98390e3220bc569699997e19614adbd94b31325",
+  "candidates": [
+    {
+      "label": "A",
+      "key": "box+corrections:s1",
+      "candidate_index": 0,
+      "packed_mask_sha256": "8ae7900637c5cde7d03b215ff3d29bf34f780b4a5a65c284877c6aecea11592d",
+      "raw": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": true,
+        "body_and_edges_complete": false,
+        "other_person_excluded": true,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "pelo de la chica excluido alrededor de toda la cabeza (solo entra la cara)",
+        "mangas oscuras de ambos brazos perforadas con numerosos agujeros de ≥1000 px",
+        "pequeñas faltas a lo largo del borde inferior de la foto"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K5"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "B",
+      "key": "point",
+      "candidate_index": 0,
+      "packed_mask_sha256": "2cb424a207262e9ceeababd3c5f23afa3509562368f3f8782a58e2ecad889972",
+      "raw": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": false,
+        "body_and_edges_complete": false,
+        "other_person_excluded": true,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "fragmento diminuto: solo un botón del overol junto al punto de prompt"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K1",
+          "K2",
+          "K3",
+          "K4",
+          "K5",
+          "K6",
+          "K7"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "C",
+      "key": "box+corrections:s2",
+      "candidate_index": 0,
+      "packed_mask_sha256": "7dc75cb30c37f1ce3fc792ac9f0b4c5ca894fab1b7a364b6065938d4f42084df",
+      "raw": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": false,
+        "body_and_edges_complete": false,
+        "other_person_excluded": true,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "solo el overol, las rayas blancas y zonas claras de la mano que cuelga: una prenda, no la persona",
+        "faltan cara, pelo, mano en V y todas las zonas oscuras"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K1",
+          "K2",
+          "K3",
+          "K4",
+          "K5",
+          "K6"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "D",
+      "key": "point+corrections:s0",
+      "candidate_index": 0,
+      "packed_mask_sha256": "020cb1d3e54c60d619c52427a29f7a645add824b964e16d6c4298cc9803ba03a",
+      "raw": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": false,
+        "body_and_edges_complete": false,
+        "other_person_excluded": true,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "fragmento diminuto: solo un botón del overol, idéntico en apariencia a B"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K1",
+          "K2",
+          "K3",
+          "K4",
+          "K5",
+          "K6",
+          "K7"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "E",
+      "key": "box+corrections:s0",
+      "candidate_index": 0,
+      "packed_mask_sha256": "29ad728d537c3a62c717a468f365a5582a3bf09e080fc40000ca1c825e5a620b",
+      "raw": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": false,
+        "body_and_edges_complete": false,
+        "other_person_excluded": true,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "solo el overol y las rayas blancas (prenda), como C",
+        "faltan cara, pelo, mano en V y zonas oscuras"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K1",
+          "K2",
+          "K3",
+          "K4",
+          "K5",
+          "K6"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "F",
+      "key": "box",
+      "candidate_index": 1,
+      "packed_mask_sha256": "9aa2c41783b0593ca8d702104b1d8756b9c0c08450c1bf9b0e9afdff2ac624e8",
+      "raw": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "UNSURE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": true,
+        "body_and_edges_complete": false,
+        "other_person_excluded": false,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "incluye el pelo recogido (moño) de la persona posterior: el borde lo rodea por encima de la cabeza",
+        "agujeros pequeños dispersos en overol, cara/dedos y junto a la mano que cuelga; no puedo asegurar que ninguno supere 1000 px"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [],
+        "leaked_other_person": [
+          "O2",
+          "O3"
+        ],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "G",
+      "key": "box",
+      "candidate_index": 0,
+      "packed_mask_sha256": "2e3cc1c8ef21fa99919506b1e2fbb4d8e24e38ac93fce7e31e272fb2e05590aa",
+      "raw": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": false,
+        "body_and_edges_complete": false,
+        "other_person_excluded": false,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "fusión: pelo, rayas y mangas de la chica junto con blusa floral, hombro oscuro y moño de la persona posterior",
+        "excluye la mano en V y el overol; agujeros en la cara"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K4",
+          "K7"
+        ],
+        "leaked_other_person": [
+          "O2",
+          "O3"
+        ],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "H",
+      "key": "point+corrections:s2",
+      "candidate_index": 0,
+      "packed_mask_sha256": "4c58cfd9b2f878af4ff4f3cff9e804377dc460c0bb340b9b76d03e216432d3fc",
+      "raw": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": false,
+        "body_and_edges_complete": false,
+        "other_person_excluded": true,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "solo la parte inferior del overol"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K1",
+          "K2",
+          "K3",
+          "K4",
+          "K5",
+          "K6"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "I",
+      "key": "box",
+      "candidate_index": 2,
+      "packed_mask_sha256": "7fa08b3ddb75b6e585811caea4d65ffab19f38a621af64cdf2ade28cce011466",
+      "raw": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": true,
+        "body_and_edges_complete": false,
+        "other_person_excluded": false,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "incluye el moño de la persona posterior",
+        "overol excluido",
+        "mano en V acribillada por agujeros en cuadrícula (artefacto de baja resolución)"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K4",
+          "K7"
+        ],
+        "leaked_other_person": [
+          "O2",
+          "O3"
+        ],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "J",
+      "key": "point",
+      "candidate_index": 2,
+      "packed_mask_sha256": "eed5e58e37125863f8412d69ba685c66b4efb38d05e567d924ed6f54bf66c33c",
+      "raw": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": false,
+        "body_and_edges_complete": false,
+        "other_person_excluded": true,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "solo el overol inferior y un tirante"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K1",
+          "K2",
+          "K3",
+          "K4",
+          "K5",
+          "K6"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "K",
+      "key": "point",
+      "candidate_index": 1,
+      "packed_mask_sha256": "c3c44fd38281b0ee5aaa085b630df97ed05b51f2292ddaf96ddcb98562af07bc",
+      "raw": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": true,
+        "body_and_edges_complete": false,
+        "other_person_excluded": false,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "fragmentos del moño de la persona posterior incluidos",
+        "pelo de la chica deshilachado con muchos agujeros",
+        "mangas oscuras perforadas"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K5"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    },
+    {
+      "label": "L",
+      "key": "point+corrections:s1",
+      "candidate_index": 0,
+      "packed_mask_sha256": "c5ccae5a5ec06d1e4fad8348987203d91390a6ae97494d7ad669cc0392151006",
+      "raw": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "final": {
+        "correct_subject": true,
+        "body_and_edges_complete": false,
+        "other_person_excluded": true,
+        "background_excluded": true
+      },
+      "passes": false,
+      "defects": [
+        "cara perforada",
+        "mano en V perforada en cuadrícula",
+        "pelo de la chica excluido",
+        "mangas oscuras excluidas",
+        "mano que cuelga fragmentada"
+      ],
+      "reconciliation": [],
+      "sentinels": {
+        "missed_keep": [
+          "K1",
+          "K5",
+          "K6"
+        ],
+        "leaked_other_person": [],
+        "leaked_background": []
+      }
+    }
+  ]
+}

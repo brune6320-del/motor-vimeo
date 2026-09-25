@@ -55,7 +55,7 @@ class FusionLoophole(unittest.TestCase):
         half_back[back_rows[len(back_rows) // 2]:, :] = False   # mitad superior visible: cabello + hombro
         contaminated_girl = gt["ae0_002"] | half_back
         proposals = [gt["ae0_001"], contaminated_girl, gt["ae0_003"], clock_proposal()]
-        report = evaluate(objects, gt, proposals, GateParams(contact_band_px=3))
+        report = evaluate(objects, gt, proposals, GateParams(contact_band_px=3, fusion_erosion_px=1))  # escala 1/10
 
         girl = report["per_object"]["ae0_002"]
         self.assertGreater(girl["best_mask_iou"], 0.90)            # el IoU casi no se mueve…
@@ -71,7 +71,7 @@ class FusionLoophole(unittest.TestCase):
     def test_clean_proposals_meet_gates(self):
         objects, gt = scene()
         proposals = [gt["ae0_001"], gt["ae0_002"], gt["ae0_003"], clock_proposal()]
-        report = evaluate(objects, gt, proposals, GateParams(contact_band_px=3))
+        report = evaluate(objects, gt, proposals, GateParams(contact_band_px=3, fusion_erosion_px=1))  # escala 1/10
         self.assertEqual(report["gates"]["section9_operational"], "GATE_MET")
         self.assertEqual(report["gates"]["proposed_v1_1"], "GATE_MET")
         self.assertEqual(report["per_object"]["ae0_002"]["fragments_needed"], 1)

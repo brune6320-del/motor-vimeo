@@ -31,8 +31,11 @@ class GateParams:
     tier_b_box_iou: float = 0.50
     tier_b_recall: float = 0.90
     report_iou_levels: tuple = (0.50, 0.75)
-    # DEC-013-P (propuestos en v1.1, pendientes de ratificación)
+    # DEC-013 (fusión): P = solo fracción de la víctima; Q = fracción + invasión interior (ChatGPT 001, R1).
     fusion_leak_max: float = 0.10
+    fusion_rule: str = "Q"
+    fusion_erosion_px: int = 5          # igual a la tolerancia de borde ambiguo del protocolo de auditoría
+    # DEC-014-P (reporte, no gate, hasta calibrar con GT de A-E0)
     contact_band_px: int = 24
     contact_leak_max: float = 0.20
     # diagnósticos
@@ -68,6 +71,50 @@ def _fragmentation(gt, gt_area, proposals, boxes, areas, params):
         if iou >= params.tier_a_mask_iou:
             return count
     return None
+
+
+def fusion_status(proposal, victim, rule="Q", tau=0.10, erosion_px=5) -> dict:
+    """¿La propuesta de una instancia absorbió a otra (la víctima, máscara GT modal)?
+
+    - Regla P (DEC-013-P): FUSION si |P ∩ G| / |G| ≥ τ.
+    - Regla Q (DEC-013-Q, ChatGPT): además exige invasión interior: |P ∩ G°| / |G°| ≥ τ, con
+      G° = erosión de G con cuadrado de radio δ. Una banda de borde ≤ δ px no cuenta como fusión.
+      Si hay solape pero la erosión borra la víctima (demasiado delgada u ocluida), NOT_EVALUABLE.
+
+    La erosión se calcula en la caja de la víctima con margen; en el borde de la imagen no se erosiona,
+    porque ese borde no es una frontera real del objeto.
+    """
+    victim = as_bool(victim)
+    box = mask_bbox(victim)
+    if box is None:
+        return {"status": "NOT_EVALUABLE", "reason": "víctima vacía"}
+    h, w = victim.shape
+    margin = erosion_px + 1
+    x1, y1 = max(0, box[0] - margin), max(0, box[1] - margin)
+    x2, y2 = min(w, box[2] + margin), min(h, box[3] + margin)
+    v = victim[y1:y2, x1:x2]
+    p = as_bool(proposal)[y1:y2, x1:x2]
+    victim_px = int(v.sum())
+    overlap_px = int(np.logical_and(p, v).sum())
+    r_victim = overlap_px / victim_px
+    row = {"rule": rule, "victim_px": victim_px, "overlap_px": overlap_px, "r_victim": round(r_victim, 6)}
+    if rule == "P":
+        row["status"] = "FUSION" if r_victim >= tau else "NO_FUSION"
+        return row
+    if overlap_px == 0:
+        row["status"] = "NO_FUSION"
+        return row
+    core = ~dilate_square(~v, erosion_px) if erosion_px > 0 else v
+    core_px = int(core.sum())
+    row["core_px"] = core_px
+    if core_px == 0:
+        row["status"] = "NOT_EVALUABLE"
+        row["reason"] = "la erosión borra la víctima: demasiado delgada u ocluida para evaluar fusión"
+        return row
+    r_deep = int(np.logical_and(p, core).sum()) / core_px
+    row["r_deep"] = round(r_deep, 6)
+    row["status"] = "FUSION" if (r_victim >= tau and r_deep >= tau) else "NO_FUSION"
+    return row
 
 
 def evaluate(objects: list[dict], gt_masks: dict, proposals: list, params: GateParams = GateParams()) -> dict:
@@ -120,12 +167,15 @@ def evaluate(objects: list[dict], gt_masks: dict, proposals: list, params: GateP
             if other == oid or other in excluded:
                 continue
             other_mask = as_bool(gt_masks[other])
-            other_area = area(other_mask)
-            if not other_area:
+            if not area(other_mask):
                 continue
-            leak = intersection_area(prop, other_mask, prop_box, None) / other_area
-            fusion.append({"object": oid, "invaded": other, "proposal": best, "leak": round(leak, 6),
-                           "flag": leak >= params.fusion_leak_max})
+            by_rule = {rule: fusion_status(prop, other_mask, rule, params.fusion_leak_max, params.fusion_erosion_px)
+                       for rule in ("P", "Q")}
+            chosen = by_rule[params.fusion_rule]
+            fusion.append({"object": oid, "invaded": other, "proposal": best, "leak": chosen["r_victim"],
+                           "r_deep": by_rule["Q"].get("r_deep"), "status_P": by_rule["P"]["status"],
+                           "status_Q": by_rule["Q"]["status"], "rule": params.fusion_rule,
+                           "flag": chosen["status"] == "FUSION", "not_evaluable": chosen["status"] == "NOT_EVALUABLE"})
         neighbours = set(by_id[oid].get("occluded_by", [])) | {
             o["id"] for o in objects if oid in o.get("occluded_by", [])
         }
@@ -150,6 +200,7 @@ def evaluate(objects: list[dict], gt_masks: dict, proposals: list, params: GateP
     # fallo evidente del proponente aunque aún no existan todas las máscaras GT (etapa 1 del protocolo A-E0).
     box_screen_failures = [oid for oid in tier_a if per_object[oid]["best_box_iou"] < params.tier_b_box_iou]
     fused = [f for f in fusion if f["flag"]]
+    not_evaluable = [f for f in fusion if f["not_evaluable"]]
     contact_flags = [c for c in contact if c["flag"]]
 
     def verdict(extra_failures):
@@ -163,7 +214,10 @@ def evaluate(objects: list[dict], gt_masks: dict, proposals: list, params: GateP
         if fused:
             failures.append("tier_a_fusion")
         failures += extra_failures
-        return "GATE_MET" if not failures else "GATE_NOT_MET:" + ",".join(failures)
+        if failures:
+            return "GATE_NOT_MET:" + ",".join(failures)
+        # Una fusión que no se puede evaluar nunca da PASS (DEC-013-Q).
+        return "INCONCLUSIVE_FUSION_NOT_EVALUABLE" if not_evaluable else "GATE_MET"
 
     return {
         "params": asdict(params),

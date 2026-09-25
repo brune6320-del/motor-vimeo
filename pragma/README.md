@@ -5,7 +5,7 @@ trabajo (extensión Chrome con motor por color e ISNet). El problema abierto es 
 **segmentación por instancia**: en una foto con varias personas y objetos, elegir exactamente
 qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
-> **Fuente de verdad:** [`PROJECT_STATE.md`](PROJECT_STATE.md) (v1.2). Léelo antes de cambiar nada.
+> **Fuente de verdad:** [`PROJECT_STATE.md`](PROJECT_STATE.md) (v1.3). Léelo antes de cambiar nada.
 > Este directorio convive con un proyecto no relacionado (el backend `motor-vimeo` en la raíz
 > del repositorio); no lo toca.
 
@@ -13,9 +13,9 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
-A‑E(−1) diagnóstico chica       v1.2 «un clic»: 68 Codex + 39 propias + píxeles + arnés E2E con SAM simulado; GPU NOT_RUN
+A‑E(−1) diagnóstico chica       v1.2 EJECUTADO en GPU (L4) · auditoría ciega 1ª llave: INCONCLUSIVE (0/12) · 2ª llave pendiente
 A‑E0 inventario humano          kit listo; borrador de 52 objetos DRAFT_UNVERIFIED; ontología PROPUESTA sin ratificar
-A‑E1 SAM2 AMG                   métricas y gates implementados y probados con datos sintéticos; sin corrida
+A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
 Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · extensión NO modificada
 ```
@@ -24,7 +24,9 @@ Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · ext
 
 | Ruta | Qué es |
 |---|---|
-| `PROJECT_STATE.md` | Estado operativo v1.1: decisiones, pruebas, riesgos, backlog y punto de reanudación |
+| `PROJECT_STATE.md` | Estado operativo v1.3: decisiones, pruebas, riesgos, backlog y punto de reanudación |
+| `auditoria/` | Protocolo de auditoría ciega congelado y la auditoría de cada corrida real |
+| `ae1/` | Sweep A‑E1 prerregistrado |
 | `GUIA_COLAB_A-E-menos-1_v1_2.md` | **Pasos vigentes**: modo un clic o modo delegado (Colab CLI); qué adjuntar |
 | `dialogo/` | Ping‑pong Claude ↔ ChatGPT: protocolo y cartas numeradas |
 | `GUIA_COLAB_A-E-menos-1_v1_1.md` | Guía anterior (v1.1, con decisiones humanas); histórica |
@@ -34,7 +36,7 @@ Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · ext
 | `pragma_ae/` | Kit A‑E en Python (NumPy + Pillow): contrato de inventario, métricas, lámina, preflight, auditoría IA de ZIPs, CLI |
 | `ae0/` | Ontología propuesta, protocolo humano y `scene_inventory.draft.json` |
 | `preflight/` | Preflight de coordenadas: v1.0 (3 puntos mal ubicados) y v1.2 (confirmación 18/18 del auditor IA) |
-| `tests/` | 27 tests (`python3 -m unittest discover -s tests`) |
+| `tests/` | 29 tests (`python3 -m unittest discover -s tests`) |
 | `inputs/` | **No versionado**: la foto y la extensión se colocan aquí y se verifican por SHA‑256 |
 | `history/handoff_v1.0/` | Paquete de traspaso v1.0 intacto (verificable con su manifiesto original) |
 
@@ -53,7 +55,7 @@ pip install -r requirements.txt
 
 # Integridad
 (cd inputs && sha256sum -c INPUTS_SHA256.txt)                 # con la foto y la extensión en su sitio
-sha256sum -c MANIFEST_SHA256.txt                                # árbol versionado v1.1
+sha256sum -c MANIFEST_SHA256.txt                                # árbol versionado
 (cd history/handoff_v1.0 && sha256sum -c HANDOFF_MANIFEST_SHA256.txt)
 
 # Verificación
@@ -73,8 +75,6 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Ejecutar **`outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_2.ipynb`** en Colab con GPU. Hay dos modos: **un clic** (la persona
-arrastra la foto, pulsa «Ejecutar todas» y adjunta el ZIP) o **delegado** (Colab CLI desde la sesión
-de Claude, tras abrir la red y autorizar una vez). Paso a paso en
-[`GUIA_COLAB_A-E-menos-1_v1_2.md`](GUIA_COLAB_A-E-menos-1_v1_2.md). En paralelo: carta 001 a ChatGPT
-([`dialogo/001_claude_a_chatgpt.md`](dialogo/001_claude_a_chatgpt.md)).
+Segunda llave de la primera corrida GPU: pegar [`dialogo/002_claude_a_chatgpt.md`](dialogo/002_claude_a_chatgpt.md)
+en ChatGPT, adjuntarle en privado el paquete de contraauditoría ciega (12 láminas A–L) y traer su
+respuesta. Resultado de la primera llave: [`auditoria/aem1_20260925T062504Z_256dba9f/INFORME.md`](auditoria/aem1_20260925T062504Z_256dba9f/INFORME.md).

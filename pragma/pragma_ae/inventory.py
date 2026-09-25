@@ -193,7 +193,10 @@ def validate(inventory: dict, inventory_dir=None, image_sha256: str | None = Non
             report.error(f"{oid}: tier IGNORE exige ignore_reason")
         if tier != "IGNORE" and obj["ignore_reason"]:
             report.warn(f"{oid}: ignore_reason presente pero tier={tier}")
-        if tier in ("A", "B") and short_side < min_side:
+        contact_critical = obj.get("contact_critical", False)   # ChatGPT 001 R4: excepción de tamaño
+        if not isinstance(contact_critical, bool):
+            report.error(f"{oid}: contact_critical debe ser booleano")
+        if tier in ("A", "B") and short_side < min_side and not contact_critical:
             report.warn(f"{oid}: lado corto {short_side}px < mínimo {min_side}px; ¿IGNORE below_min_size?")
         if tier == "A" and short_side < tier_a_side and obj["concept_en"] != "person":
             report.warn(f"{oid}: Tier A con lado corto {short_side}px < {tier_a_side}px; ¿Tier B?")

@@ -32,10 +32,24 @@ La regla es explícita para que dos personas distintas lleguen al mismo tier sin
 
 | Tier | Regla | Cuenta para `PASS_PROPOSALS` |
 |---|---|---|
-| **A** | Instancia identificable por alguien sin contexto, **fracción visible ≥ 50 %** y **lado corto de caja ≥ 64 px**. **Toda persona es A**, siempre, con máscara GT obligatoria, aunque esté casi oculta. | Sí: IoU de máscara ≥ 0,70 y sin fusión (§4) |
-| **B** | Instancia identificable con visible < 50 % **o** lado corto entre 32 y 63 px. | Sí: ≥ 90 % con IoU de caja ≥ 0,50 |
-| **C** | Partes (`kind=part`, con `parent_id`), regiones `stuff` (pared, suelo), texto. | No: se reportan, no bloquean |
-| **IGNORE** | Lado corto < 32 px, sombras, reflejos, brillos. Siempre con `ignore_reason`. | No |
+| **A** | Instancia identificable por alguien sin contexto, con **oclusión `none`/`low`/`medium`** y **lado corto de caja ≥ 64 px**. **Toda persona es A**, siempre, con máscara GT obligatoria, aunque esté casi oculta. | Sí: IoU de máscara ≥ 0,70 y sin fusión (§4, DEC‑013‑Q) |
+| **B** | Instancia identificable con oclusión `high`/`extreme` **o** lado corto entre 32 y 63 px. | Sí: ≥ 90 % con IoU de caja ≥ 0,50 |
+| **C** | Subtipo obligatorio por `kind`: **C_PART** (`kind=part`, con `parent_id` = relación *part_of*), **C_STUFF** (`kind=stuff`: pared, suelo), **C_TEXT** (`kind=text`). | No: se reportan, no bloquean |
+| **IGNORE** | Lado corto < 32 px (salvo `contact_critical`), sombras, reflejos, brillos. Siempre con `ignore_reason`. | No |
+
+**v0.2 · cambios aceptados de ChatGPT (carta 001, R4):**
+
+1. La oclusión es un **atributo categórico** estimado por una persona. Ya no es una fracción
+   visible que finge conocer el objeto oculto: la regla usa el nivel, no un porcentaje.
+2. El subtipo de C ya existía en el esquema como `kind`, y `parent_id` es la relación *part_of*
+   que excluye los pares parte/entero de la fusión. Ahora queda nombrado explícitamente.
+3. **Medida del mínimo:** lado corto de la caja semiabierta, en píxeles de la **imagen canónica**
+   (4000 × 2248 tras aplicar EXIF, sin ningún redimensionado); el manifiesto registra esa resolución.
+   **Excepción:** `contact_critical: true` para una instancia pequeña que forma parte de una frontera
+   que se evalúa.
+
+Además, las máscaras GT de A‑E0 son **modales (solo lo visible)**. Por eso el denominador de la
+fusión, `|Gⱼ|`, mide "la fracción de la evidencia visible de la víctima que se absorbió".
 
 **Por qué 32 px de mínimo.** Es lo que conserva la llave colgada (≈ 42 px), el objeto más pequeño
 que una persona querría recortar en esta foto. **No** se eligió por la cuadrícula del

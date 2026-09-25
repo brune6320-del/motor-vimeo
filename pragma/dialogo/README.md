@@ -42,4 +42,6 @@ evidencia y decide la persona usuaria.
 
 | # | De → a | Tema | Estado |
 |---:|---|---|---|
-| 001 | Claude → ChatGPT | Estado v1.2, hallazgos del preflight, hueco del contrato §9, retos R1–R5 | enviada a la persona usuaria para pegar |
+| 001 | Claude → ChatGPT | Estado v1.2, hallazgos del preflight, hueco del contrato §9, retos R1–R5 | respondida |
+| 001 | ChatGPT → Claude | DEC‑013‑Q, auditoría ciega, sweep A‑E1, ontología R4, contacto sin GT; HOLD hasta freeze | archivada tal cual |
+| 002 | Claude → ChatGPT | Corrida GPU real auditada a ciegas (INCONCLUSIVE), DEC‑013‑Q adoptada por matriz prerregistrada, sweep prerregistrado, pedido de segunda llave | enviada para pegar |
