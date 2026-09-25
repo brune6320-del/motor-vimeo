@@ -1,0 +1,782 @@
+{
+  "schema": "pragma.aem1_double_key",
+  "schema_version": "0.1.0",
+  "run_id": "20260925T062504Z_256dba9f",
+  "zip_sha256": "e6bb7a46dacced63f2735154fc2ac6f549a4aa25e0741f28a54d5723fc7d1976",
+  "protocol_sha256": "436937d45b86d8e236eb625274a29e42653285437af644f5d3845968c0240810",
+  "first_key": {
+    "by": "Claude Code",
+    "file": "auditoria/aem1_20260925T062504Z_256dba9f/juicios_crudos.json",
+    "sha256": "e8286d21e54846346ea1e070cb5675ed04af28a80730b49ea6f418ea4b842673",
+    "blindness": "AUTO_CEGADO (mismo agente que escribió el código)"
+  },
+  "second_key": {
+    "by": "ChatGPT",
+    "file": "auditoria/aem1_20260925T062504Z_256dba9f/segunda_llave_chatgpt.json",
+    "sha256": "9881d89c1d986b98904220a57c8a93b5d62197600941cb247c78e0e7dfec9746",
+    "source": "dialogo/002_chatgpt_a_claude.md",
+    "source_sha256": "b6d51d6b1ea9339275f9d11909b89a5a83e1be66b9e18db32d524d0d19b9046c",
+    "blindness": "PARCIAL",
+    "package_sha256": "32015a4f7dd1f28caf574543a7d129b2e2be41d4c8d4e1ac5c1d6a578f9dc165",
+    "package_sha256_echoed": null
+  },
+  "unblinded_table_sha256": "e767deb46542c8280de02bda7491890a50c111f57ececa99fc33d9b631d801f0",
+  "first_key_verdict_sha256": "dae17249191b22a319d85216daa36ec11aa4ad283e7aecea81bdecab713b3fc3",
+  "cells": {
+    "A": {
+      "S": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "B": {
+      "S": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "C": {
+      "S": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "D": {
+      "S": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "E": {
+      "S": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "F": {
+      "S": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "B": {
+        "claude": "UNSURE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "O": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "G": {
+      "S": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "H": {
+      "S": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "I": {
+      "S": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "J": {
+      "S": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "K": {
+      "S": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "L": {
+      "S": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "B": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "O": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "G": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    }
+  },
+  "agreement": {
+    "per_criterion": {
+      "S": {
+        "agree": 7,
+        "total": 12,
+        "kappa": 0.25
+      },
+      "B": {
+        "agree": 11,
+        "total": 12,
+        "kappa": 0.478
+      },
+      "O": {
+        "agree": 12,
+        "total": 12,
+        "kappa": 1.0
+      },
+      "G": {
+        "agree": 12,
+        "total": 12,
+        "kappa": null
+      }
+    },
+    "cells_agree": 42,
+    "cells_total": 48
+  },
+  "fail_sets": {
+    "A": {
+      "claude": [
+        "B"
+      ],
+      "chatgpt": [
+        "B"
+      ]
+    },
+    "B": {
+      "claude": [
+        "S",
+        "B"
+      ],
+      "chatgpt": [
+        "S",
+        "B"
+      ]
+    },
+    "C": {
+      "claude": [
+        "S",
+        "B"
+      ],
+      "chatgpt": [
+        "B"
+      ]
+    },
+    "D": {
+      "claude": [
+        "S",
+        "B"
+      ],
+      "chatgpt": [
+        "S",
+        "B"
+      ]
+    },
+    "E": {
+      "claude": [
+        "S",
+        "B"
+      ],
+      "chatgpt": [
+        "B"
+      ]
+    },
+    "F": {
+      "claude": [
+        "B",
+        "O"
+      ],
+      "chatgpt": [
+        "O"
+      ]
+    },
+    "G": {
+      "claude": [
+        "S",
+        "B",
+        "O"
+      ],
+      "chatgpt": [
+        "B",
+        "O"
+      ]
+    },
+    "H": {
+      "claude": [
+        "S",
+        "B"
+      ],
+      "chatgpt": [
+        "B"
+      ]
+    },
+    "I": {
+      "claude": [
+        "B",
+        "O"
+      ],
+      "chatgpt": [
+        "B",
+        "O"
+      ]
+    },
+    "J": {
+      "claude": [
+        "S",
+        "B"
+      ],
+      "chatgpt": [
+        "B"
+      ]
+    },
+    "K": {
+      "claude": [
+        "B",
+        "O"
+      ],
+      "chatgpt": [
+        "B",
+        "O"
+      ]
+    },
+    "L": {
+      "claude": [
+        "B"
+      ],
+      "chatgpt": [
+        "B"
+      ]
+    }
+  },
+  "passing": {
+    "claude": [],
+    "chatgpt": []
+  },
+  "verdict_agree": true,
+  "disagreements": [
+    {
+      "label": "C",
+      "criterion": "correct_subject",
+      "claude": "FALSE",
+      "chatgpt": "TRUE",
+      "verdict_relevant": false
+    },
+    {
+      "label": "E",
+      "criterion": "correct_subject",
+      "claude": "FALSE",
+      "chatgpt": "TRUE",
+      "verdict_relevant": false
+    },
+    {
+      "label": "F",
+      "criterion": "body_and_edges_complete",
+      "claude": "UNSURE",
+      "chatgpt": "TRUE",
+      "verdict_relevant": false
+    },
+    {
+      "label": "G",
+      "criterion": "correct_subject",
+      "claude": "FALSE",
+      "chatgpt": "TRUE",
+      "verdict_relevant": false
+    },
+    {
+      "label": "H",
+      "criterion": "correct_subject",
+      "claude": "FALSE",
+      "chatgpt": "TRUE",
+      "verdict_relevant": false
+    },
+    {
+      "label": "J",
+      "criterion": "correct_subject",
+      "claude": "FALSE",
+      "chatgpt": "TRUE",
+      "verdict_relevant": false
+    }
+  ],
+  "best_attempt": {
+    "claude": {
+      "label": "A",
+      "false_count": 1,
+      "tied": [
+        "A",
+        "L"
+      ]
+    },
+    "chatgpt": {
+      "label": "A",
+      "false_count": 1,
+      "tied": [
+        "A",
+        "C",
+        "E",
+        "F",
+        "H",
+        "J",
+        "L"
+      ]
+    }
+  },
+  "shared_structure": {
+    "groups": {
+      "fragmento_diminuto": [
+        "B",
+        "D"
+      ],
+      "solo_prenda": [
+        "C",
+        "E",
+        "H",
+        "J"
+      ],
+      "incluye_persona_posterior": [
+        "F",
+        "G",
+        "I",
+        "K"
+      ],
+      "resto": [
+        "A",
+        "L"
+      ]
+    },
+    "note": "La carta 002 reveló CUÁNTAS candidatas había de cada tipo, no CUÁLES. Reproducir esta partición por azar conociendo solo los recuentos tiene probabilidad 1/N.",
+    "N": 207900
+  },
+  "measurements_post_unblinding": {
+    "zip_sha256": "e6bb7a46dacced63f2735154fc2ac6f549a4aa25e0741f28a54d5723fc7d1976",
+    "G_area_share": {
+      "question": "¿La componente principal de G es la chica? (protocolo v1 §4, correct_subject)",
+      "proxy": "A = box+corrections:s1#0, juzgada por ambas llaves sin persona posterior ni fondo: A ⊂ chica (salvo bordes ≤ 5 px)",
+      "G_area_px": 874762,
+      "G_inside_A_px": 541548,
+      "share_inside_A": 0.619,
+      "G_inside_F_px": 812342,
+      "share_inside_F": 0.929,
+      "reading": "cota inferior de la fracción de G sobre la chica = fracción dentro de A"
+    },
+    "F_enclosed_holes": {
+      "question": "¿F tiene agujeros ≥ 1000 px? (protocolo v1 §4, body_and_edges_complete)",
+      "min_area_px": 1000,
+      "holes": [
+        {
+          "area_px": 2540,
+          "bbox_xyxy": [
+            2960,
+            913,
+            3024,
+            998
+          ]
+        },
+        {
+          "area_px": 1885,
+          "bbox_xyxy": [
+            2858,
+            1464,
+            2932,
+            1519
+          ]
+        }
+      ]
+    }
+  },
+  "adjudication_post_unblinding": {
+    "note": "Posterior al desciegue. No reemplaza los juicios crudos de ninguna llave.",
+    "resolutions": [
+      {
+        "label": "C",
+        "criterion": "correct_subject",
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "adjudicated": "TRUE",
+        "kind": "definicion",
+        "reason": "El texto congelado solo excluye a la persona posterior, al señor y el fondo; una prenda de la chica no es nada de eso. Mi FALSE añadió una condición no escrita («la persona entera»). Tiene razón ChatGPT."
+      },
+      {
+        "label": "E",
+        "criterion": "correct_subject",
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "adjudicated": "TRUE",
+        "kind": "definicion",
+        "reason": "Igual que C."
+      },
+      {
+        "label": "F",
+        "criterion": "body_and_edges_complete",
+        "claude": "UNSURE",
+        "chatgpt": "TRUE",
+        "adjudicated": "FALSE",
+        "kind": "medicion",
+        "reason": "F tiene 2 agujeros cerrados ≥ 1000 px (2540 y 1885 px). Inspeccionados en local, los dos están sobre material continuo con el cuerpo incluido: el pelo de la chica entre la cara y el dedo índice, y el tirante blanco del overol. Son defectos, no huecos de fondo. Mi UNSURE pasa a FALSE y el TRUE de ChatGPT queda refutado."
+      },
+      {
+        "label": "G",
+        "criterion": "correct_subject",
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "adjudicated": "TRUE",
+        "kind": "medicion",
+        "reason": "Al menos el 61,9 % del área de G cae dentro de A, que ambas llaves juzgaron sin persona posterior ni fondo: la componente principal es la chica. La fusión ya la castiga other_person_excluded. Tiene razón ChatGPT."
+      },
+      {
+        "label": "H",
+        "criterion": "correct_subject",
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "adjudicated": "TRUE",
+        "kind": "definicion",
+        "reason": "Igual que C."
+      },
+      {
+        "label": "J",
+        "criterion": "correct_subject",
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "adjudicated": "TRUE",
+        "kind": "definicion",
+        "reason": "Igual que C."
+      }
+    ],
+    "concessions_to_chatgpt": 5,
+    "concessions_to_claude": 0,
+    "refuted_by_measurement": [
+      {
+        "cell": "F.B",
+        "refuted": [
+          "chatgpt"
+        ],
+        "unsure_resolved": [
+          "claude"
+        ]
+      },
+      {
+        "cell": "G.S",
+        "refuted": [
+          "claude"
+        ],
+        "unsure_resolved": []
+      }
+    ],
+    "shared_definition_gap": {
+      "labels": [
+        "B",
+        "D"
+      ],
+      "criterion": "correct_subject",
+      "both_keys": "FALSE",
+      "literal_reading": "TRUE",
+      "note": "Con el texto literal, un botón del overol también es «de la chica». Las dos llaves aplicamos un umbral de extensión no escrito, con cortes distintos: yo en «persona entera» y ChatGPT entre «prenda» y «fragmento». El protocolo v2 separa la identidad (¿de quién es la mayoría del área?) de la extensión (body_and_edges_complete)."
+    },
+    "table": {
+      "A": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "TRUE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "B": {
+        "criteria": {
+          "correct_subject": "FALSE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "TRUE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "C": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "TRUE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "D": {
+        "criteria": {
+          "correct_subject": "FALSE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "TRUE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "E": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "TRUE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "F": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "FALSE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "G": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "FALSE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "H": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "TRUE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "I": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "FALSE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "J": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "TRUE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "K": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "FALSE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      },
+      "L": {
+        "criteria": {
+          "correct_subject": "TRUE",
+          "body_and_edges_complete": "FALSE",
+          "other_person_excluded": "TRUE",
+          "background_excluded": "TRUE"
+        },
+        "passes": false
+      }
+    },
+    "passing": []
+  },
+  "status": {
+    "double_key": "CONCORDANTE_EN_VEREDICTO",
+    "case_status": "INCONCLUSIVE_SELECTED_OUTPUT_FAILED",
+    "case_status_level": "ACEPTADO (doble llave; segunda llave parcialmente contaminada)",
+    "selected_best_attempt": "box+corrections:s1#0",
+    "project_status": "INCONCLUSIVE_A_E0_REQUIRED",
+    "phase_b_blocked": true,
+    "sam2_rejectable": false,
+    "limitations": [
+      "La primera llave es un auto-cegado del agente que escribió el código.",
+      "La segunda llave conocía, por la carta 002, el resultado agregado y los patrones por familia.",
+      "La segunda llave no devolvió el SHA-256 del paquete que juzgó; la identidad se sostiene por la cadena de custodia.",
+      "Las láminas de la segunda llave eran JPEG de las mismas láminas PNG de la primera."
+    ],
+    "user_veto": "la persona usuaria puede vetar este veredicto en cualquier momento"
+  }
+}

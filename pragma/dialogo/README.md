@@ -23,6 +23,11 @@ evidencia y decide la persona usuaria.
    cada sentido). Claude guarda también en el repositorio las respuestas de ChatGPT, tal cual.
 3. El repositorio es **público**: las cartas nunca llevan la foto, recortes, máscaras ni datos
    personales; solo hashes, cifras y conclusiones. La evidencia visual se comparte en privado.
+4. **Doble ciego temporal** (desde la carta 003, a pedido de ChatGPT):
+   - el paquete ciego de una corrida viaja **solo**, con su `LEEME`, antes de cualquier carta
+     con resultados;
+   - quien juzga devuelve el SHA‑256 del paquete que juzgó;
+   - Claude publica sus juicios después; hasta entonces, en git solo figura su hash.
 
 ## Reglas de cada carta
 
@@ -44,4 +49,6 @@ evidencia y decide la persona usuaria.
 |---:|---|---|---|
 | 001 | Claude → ChatGPT | Estado v1.2, hallazgos del preflight, hueco del contrato §9, retos R1–R5 | respondida |
 | 001 | ChatGPT → Claude | DEC‑013‑Q, auditoría ciega, sweep A‑E1, ontología R4, contacto sin GT; HOLD hasta freeze | archivada tal cual |
-| 002 | Claude → ChatGPT | Corrida GPU real auditada a ciegas (INCONCLUSIVE), DEC‑013‑Q adoptada por matriz prerregistrada, sweep prerregistrado, pedido de segunda llave | enviada para pegar |
+| 002 | Claude → ChatGPT | Corrida GPU real auditada a ciegas (INCONCLUSIVE), DEC‑013‑Q adoptada por matriz prerregistrada, sweep prerregistrado, pedido de segunda llave | respondida |
+| 002 | ChatGPT → Claude | Segunda llave A–L (`NO_PASS_CANDIDATE`, parcialmente contaminada), crítica de v1.3, cambio de protocolo (paquete ciego antes que resultados) | archivada tal cual |
+| 003 | Claude → ChatGPT | Comparación A–L de las dos llaves (5 concesiones, 1 refutación medida), especificación v1.3 cerrada y prerregistrada, protocolo ciego v2, prerregistro A‑E1 para inspección | enviada para pegar |

@@ -11,12 +11,20 @@
   `dialogo/NNN_claude_a_chatgpt.md` según `dialogo/README.md` y entrégala lista para pegar. Guarda las
   respuestas de ChatGPT tal cual como `dialogo/NNN_chatgpt_a_claude.md`, audítalas y respóndelas.
   Traspasar no es delegar: Claude audita y guía; ChatGPT desafía y contraaudita (doble llave).
-- **Auditoría ciega con reglas previas.** Antes de mirar resultados de una corrida real: congelar y
-  publicar el protocolo (criterios, reglas de decisión); juzgar con etiquetas anónimas; publicar los
-  juicios crudos antes de desciegar (`work/blind_audit_aem1.py`). Toda regla métrica nueva se decide
-  con una prueba prerregistrada antes de ver datos reales.
+- **Auditoría ciega con reglas previas** (protocolo vigente: `auditoria/PROTOCOLO_AUDITORIA_AEM1_v2.md`).
+  - Antes de la corrida, congelar y publicar el protocolo y el prerregistro.
+  - Juzgar con etiquetas anónimas.
+  - **El paquete ciego va a ChatGPT antes que cualquier resultado:** ninguna carta previa dice si
+    algo pasó, cuántas fallan, qué familia hizo qué ni cuál fue la mejor.
+  - Los juicios crudos de Claude se comprometen en git **solo por SHA‑256**. El JSON se publica
+    después de archivar la segunda llave; después se desciega (`work/blind_audit_aem1.py`,
+    `work/double_key_aem1.py`).
+  - Toda regla métrica nueva se decide con una prueba prerregistrada antes de ver datos reales.
 - Para Colab, la guía vigente es `GUIA_COLAB_A-E-menos-1_v1_2.md` (modo un clic o modo delegado con
-  Colab CLI). Mantenla al día.
+  Colab CLI). Mantenla al día. El siguiente experimento (A‑E(−1) v1.3) está prerregistrado en
+  `aem1/`; su cuaderno se construye cuando ChatGPT haya inspeccionado el prerregistro.
+- Nomenclatura de la persona usuaria: «Crear cuaderno Colab para SAM 2» es el hilo de **Codex** de
+  PRAGMA/SAM 2. Las cartas para Claude se pegan en su sesión de Claude Code.
 - El repositorio es público: nunca versionar `inputs/*`, `local/`, `ae0/gt/` ni nada derivado de la
   foto (DEC‑017). Lo que el usuario adjunte en el chat se audita en local; al repo solo van hashes y
   conclusiones.

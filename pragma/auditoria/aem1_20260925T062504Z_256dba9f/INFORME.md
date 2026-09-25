@@ -1,8 +1,9 @@
 # Auditoría A‑E(−1) · corrida `20260925T062504Z_256dba9f`
 
-> **Veredicto (primera llave, Claude):** `INCONCLUSIVE_SELECTED_OUTPUT_FAILED`: **ninguna de las 12
-> candidatas separa a la chica completa sin la persona posterior**. El mejor intento es
-> `box+corrections:s1#0`. **Pendiente de contraauditoría ciega de ChatGPT (segunda llave).**
+> **Veredicto:** `INCONCLUSIVE_SELECTED_OUTPUT_FAILED` · **ACEPTADO por doble llave** (Claude +
+> ChatGPT; la segunda llave estuvo parcialmente contaminada, ver abajo). **Ninguna de las 12
+> candidatas separa a la chica completa sin la persona posterior.** El mejor intento, con las dos
+> llaves y con la adjudicación, es `box+corrections:s1#0` (A).
 > Proyecto: `INCONCLUSIVE_A_E0_REQUIRED` · Fase B bloqueada · SAM 2 **no** rechazable.
 
 ## Orden de los hechos (verificable en git)
@@ -11,7 +12,8 @@
 |---|---|---|
 | 1. Protocolo congelado antes de mirar | `2a9e264` | criterios, reglas y sonda; `PROTOCOLO_AUDITORIA_AEM1_v1.md` = `436937d4…0810` |
 | 2. Juicios ciegos crudos antes de desciegar | `84530ff` | `juicios_crudos.json` = `e8286d21…2673`; mapeo sellado `f3e45f06…1325` |
-| 3. Desciegue y veredicto | este commit | `aem1_tabla_desciegada.json`, `aem1_audit_verdict.json` |
+| 3. Desciegue y veredicto de la 1ª llave | `23dbeab` | `aem1_tabla_desciegada.json`, `aem1_audit_verdict.json` |
+| 4. Segunda llave (ChatGPT) y comparación | v1.4 | `segunda_llave_chatgpt.json`, `doble_llave.json` (`work/double_key_aem1.py`) |
 
 ## Evidencia de la corrida
 
@@ -86,9 +88,44 @@ Dentro de A‑E(−1), sin tocar A‑E1:
 Criterio de éxito que se fija antes de correr: el mismo protocolo §6 con los mismos cuatro
 criterios, en auditoría ciega.
 
-## Doble llave
+## Doble llave (resultado)
 
-- Material para ChatGPT: las 12 láminas ciegas A–L, sin mapeo ni juicios, compartidas en privado
-  por la persona usuaria.
-- Si ChatGPT marca como `TRUE` los cuatro criterios de alguna candidata que yo marqué `✗`, se revisa
-  juntos y decide la persona usuaria.
+Reproducible con `python3 work/double_key_aem1.py --zip <ZIP>`; el resultado queda en
+[`doble_llave.json`](doble_llave.json). La llave de ChatGPT está transcrita en
+[`segunda_llave_chatgpt.json`](segunda_llave_chatgpt.json), y su carta original, tal cual, en
+[`dialogo/002_chatgpt_a_claude.md`](../../dialogo/002_chatgpt_a_claude.md).
+
+**Veredicto concordante:** ninguna candidata pasa en ninguna de las dos llaves (12/12 candidatas
+con el mismo resultado). Coinciden 42 de 48 celdas:
+
+| Criterio | Acuerdo | κ de Cohen | Lectura |
+|---|---:|---:|---|
+| `other_person_excluded` | 12/12 | 1,00 | las dos llaves señalan las mismas 4 (F, G, I, K) |
+| `background_excluded` | 12/12 | — (sin varianza) | todas TRUE en las dos llaves |
+| `body_and_edges_complete` | 11/12 | 0,48 | F: UNSURE (Claude) frente a TRUE (ChatGPT) |
+| `correct_subject` | 7/12 | 0,25 | C, E, H, J, G: FALSE (Claude) frente a TRUE (ChatGPT) |
+
+**Adjudicación tras desciegar** (no reemplaza los juicios crudos):
+
+| Celda | Claude | ChatGPT | Adjudicado | Por qué |
+|---|:-:|:-:|:-:|---|
+| C, E, H, J · S | ✗ | ✓ | ✓ | El texto congelado solo excluye a la persona posterior, al señor y el fondo. Una prenda de la chica no es nada de eso: mi ✗ añadía una condición no escrita |
+| G · S | ✗ | ✓ | ✓ | **Medido:** al menos el 61,9 % del área de G cae dentro de A, que ambas llaves juzgaron sin persona posterior ni fondo |
+| F · B | ? | ✓ | ✗ | **Medido:** 2 agujeros cerrados ≥ 1000 px (2540 y 1885 px), sobre el pelo de la chica junto al índice y sobre el tirante blanco del overol. Son defectos, no huecos de fondo |
+
+- **Concedo 5 de 6 celdas a ChatGPT**; en la sexta, la medición refuta su TRUE y resuelve mi UNSURE.
+- **Hueco del protocolo que compartimos:** B y D (un botón) son FALSE en las dos llaves, pero con el
+  texto literal también serían «de la chica». Cada llave aplicó un umbral de extensión no escrito,
+  y en sitios distintos. El protocolo v2 separa identidad (mayoría del área) y extensión.
+- **Contaminación, acotada.** La carta 002 reveló cuántas candidatas había de cada tipo, no cuáles.
+  - Las dos llaves reparten las etiquetas en los mismos cuatro grupos: fragmento {B, D}, solo prenda
+    {C, E, H, J}, incluye a la persona posterior {F, G, I, K} y resto {A, L}.
+  - Acertar esa partición por azar, conociendo solo los recuentos, tiene probabilidad 1/207 900.
+  - El acuerdo por etiqueta es, por tanto, evidencia visual. Lo que la carta pudo sesgar son las
+    expectativas de cuántas fallan.
+- **Límites:**
+  - la primera llave es un auto‑cegado;
+  - la segunda no devolvió el SHA‑256 del paquete: la identidad se sostiene por la cadena de
+    custodia y porque sus 12 descripciones corresponden a las 12 láminas;
+  - la segunda llave juzgó JPEG de las mismas láminas PNG, con la misma geometría y una diferencia
+    media de 1–3 niveles.

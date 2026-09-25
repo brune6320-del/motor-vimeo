@@ -1,0 +1,148 @@
+{
+  "schema": "pragma.aem1_blind_judgments",
+  "schema_version": "0.1.0",
+  "key": "segunda",
+  "auditor": "ChatGPT (contraauditoría visual independiente)",
+  "source": "dialogo/002_chatgpt_a_claude.md",
+  "source_sha256": "b6d51d6b1ea9339275f9d11909b89a5a83e1be66b9e18db32d524d0d19b9046c",
+  "transcription_note": "Transcripción literal de la tabla de ChatGPT; solo cambia el formato (tabla → JSON). Claude no alteró ningún valor ni nota.",
+  "protocol": "auditoria/PROTOCOLO_AUDITORIA_AEM1_v1.md",
+  "protocol_sha256": "436937d45b86d8e236eb625274a29e42653285437af644f5d3845968c0240810",
+  "material_declared": "LEEME.md y las 12 láminas A–L de PRAGMA_AEM1_contraauditoria_ciega.zip",
+  "material_package_sha256_expected": "32015a4f7dd1f28caf574543a7d129b2e2be41d4c8d4e1ac5c1d6a578f9dc165",
+  "material_package_files_sha256": {
+    "LEEME.md": "5eebb3ed65be9910fb3a9e5eb971651eac53867cc113a063da8881f1b1fec54d",
+    "candidata_A.jpg": "7e30c6bd5e9ebdff52beb10cb11b2254278f7f72f0eae7f9b85ff9dc12dda4f7",
+    "candidata_B.jpg": "b97856fd635d35b84a8b0dffa43074bb08e62375557acc7e338f176a170fd4af",
+    "candidata_C.jpg": "a763a8f1f17d70b364b8ead3235672f275a18a2d9bb2713c7c22e21b17fe781d",
+    "candidata_D.jpg": "37d0113ae8252ed1dba062e9a8f507463855744e75d1170563e9b52864ff71ef",
+    "candidata_E.jpg": "53ad91dbb19b320e2c65a391e840ea4e7679fd34872e4d0289fddb1ea2b07fe3",
+    "candidata_F.jpg": "919d6b09ddf54e8a5e9b5e3fa98f394a88585870422fb0b61b491add4af931d8",
+    "candidata_G.jpg": "bfb9f402cb4e739aa77fc5bbcbb29a73666ec4d808ff742d1f4fd4bf0477db67",
+    "candidata_H.jpg": "15fea6abaa3530fb6bd95327a28c3e0926e57674d7ebcc12f3243ec828df1bfd",
+    "candidata_I.jpg": "7c72095a12e17c5e602a23ac29705e1194b73be795cca56be0aa88a72cfdc201",
+    "candidata_J.jpg": "035f6fb94b4297273cc25147fb33d5c03fa6b63fe5b3a2e752149b7dfcf9974e",
+    "candidata_K.jpg": "d600c5db97a1495cf03a7ac48ac39c0c3bc5534e7a1ffb11b3a7598120a4b381",
+    "candidata_L.jpg": "57d3bf6f63374e3a1b49c0aaa5651ec2f67678fd3a030776d59629c14a0ffb33"
+  },
+  "material_package_note": "Las láminas compartidas son JPEG de las mismas láminas PNG que juzgó la primera llave (hashes PNG en juicios_crudos.json); misma geometría 1786×1642 y diferencia media de 1–3 niveles por canal, verificado por Claude.",
+  "material_package_sha256_echoed_by_auditor": null,
+  "blindness": "PARCIAL",
+  "blindness_note": "Declarado por ChatGPT: la carta 002 le reveló, antes de abrir las láminas, que ninguna candidata pasaba y los patrones por familia. No vio juicios_crudos.json, el mapeo ni la tabla desciegada.",
+  "not_seen_before_judging": [
+    "juicios_crudos.json",
+    "sealed_mapping",
+    "aem1_tabla_desciegada.json"
+  ],
+  "result": "NO_PASS_CANDIDATE",
+  "candidates": {
+    "A": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "note": "La chica es el sujeto correcto y la persona posterior queda fuera, pero falta una cantidad importante del pelo y las zonas oscuras de las mangas quedan erosionadas/perforadas."
+    },
+    "B": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "note": "La máscara efectiva es una isla diminuta/elemento puntual; no constituye una segmentación de la chica."
+    },
+    "C": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "note": "Predomina ropa/torso de la chica; cabeza, mano levantada y otras regiones corporales quedan fuera o muy incompletas."
+    },
+    "D": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "note": "Igual que B: respuesta degenerada a una región minúscula, no a la persona objetivo."
+    },
+    "E": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "note": "Principalmente overol/torso y fragmentos; faltan regiones corporales esenciales."
+    },
+    "F": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "TRUE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "note": "Es la que visualmente preserva mejor la chica completa, incluido pelo, manos, mangas y torso, pero absorbe claramente pelo/moño de la persona posterior en la zona de contacto."
+    },
+    "G": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "note": "La máscara pertenece principalmente a la chica, pero hay grandes perforaciones y además invade de manera sustancial a la persona posterior."
+    },
+    "H": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "note": "Segmenta esencialmente el overol/torso; sujeto correcto pero extremadamente incompleto."
+    },
+    "I": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "note": "Incluye gran parte de la chica, pero la mano/cuerpo están severamente perforados y aparece invasión de la persona posterior."
+    },
+    "J": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "note": "De nuevo domina el overol/torso; insuficiente como máscara de persona completa."
+    },
+    "K": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "note": "Cercana a persona completa, pero pelo y regiones oscuras presentan huecos claros; además hay contaminación en el contacto posterior."
+    },
+    "L": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "note": "El sujeto sigue siendo la chica, pero cara/mano y otras zonas tienen perforaciones grandes; no satisface completitud."
+    }
+  }
+}

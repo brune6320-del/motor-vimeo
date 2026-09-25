@@ -91,6 +91,61 @@ def dilate_square(mask, radius: int) -> np.ndarray:
     return total > 0
 
 
+def components(mask) -> list:
+    """Componentes 4-conexas por corridas (sin SciPy), de mayor a menor área.
+
+    Cada una es ``{"area", "touches_border", "bbox"}`` con la caja semiabierta.
+    """
+    m = as_bool(mask)
+    h, w = m.shape
+    parent, size, border, bbox = [], [], [], []
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    previous = []   # [(índice, inicio, fin)] de la fila anterior, ordenadas por inicio
+    for y in range(h):
+        row = np.concatenate(([False], m[y], [False]))
+        change = np.flatnonzero(row[1:] != row[:-1])
+        current = []
+        pointer = 0
+        for start, end in zip(change[0::2].tolist(), change[1::2].tolist()):
+            index = len(parent)
+            parent.append(index)
+            size.append(end - start)
+            border.append(y == 0 or y == h - 1 or start == 0 or end == w)
+            bbox.append([start, y, end, y + 1])
+            while pointer < len(previous) and previous[pointer][2] <= start:
+                pointer += 1
+            scan = pointer
+            while scan < len(previous) and previous[scan][1] < end:
+                a, b = find(index), find(previous[scan][0])
+                if a != b:
+                    parent[b] = a
+                    size[a] += size[b]
+                    border[a] = border[a] or border[b]
+                    bbox[a] = [min(bbox[a][0], bbox[b][0]), min(bbox[a][1], bbox[b][1]),
+                               max(bbox[a][2], bbox[b][2]), max(bbox[a][3], bbox[b][3])]
+                scan += 1
+            current.append((index, start, end))
+        previous = current
+    roots = {find(i) for i in range(len(parent))}
+    found = [{"area": int(size[r]), "touches_border": bool(border[r]), "bbox": tuple(bbox[r])} for r in roots]
+    return sorted(found, key=lambda c: (-c["area"], c["bbox"]))
+
+
+def enclosed_holes(mask, min_area: int = 1) -> list:
+    """Agujeros cerrados: componentes del complemento que no tocan el borde de la imagen.
+
+    Un agujero puede ser un defecto (falta cuerpo) o un hueco legítimo (se ve el fondo entre un
+    brazo y el torso): la función solo los mide; clasificarlos es trabajo del auditor.
+    """
+    return [c for c in components(~as_bool(mask)) if not c["touches_border"] and c["area"] >= min_area]
+
+
 def rle_encode(mask) -> dict:
     m = as_bool(mask)
     h, w = m.shape
