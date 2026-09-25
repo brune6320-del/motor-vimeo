@@ -3,11 +3,12 @@
 - **Proyecto:** PRAGMA · Motor de Transparencia / Inventario exhaustivo de escena
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
-- **Última actualización:** 25 de septiembre de 2026 (v1.4, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v1.4`
+- **Última actualización:** 25 de septiembre de 2026 (v1.5, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
+- **Versión:** `v1.5`
 - **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
 - **Fase B:** `BLOQUEADA`
-- **Último hito documentado (v1.4):** la corrida 1 queda **aceptada por doble llave** (`INCONCLUSIVE_SELECTED_OUTPUT_FAILED`; veredicto concordante 12/12 con ChatGPT, 42/48 celdas, 5 concesiones de Claude y 1 refutación por medición; segunda llave parcialmente contaminada, contaminación acotada). **A‑E(−1) v1.3 cerrado y prerregistrado**: ramas independientes, prompts nuevos por regla reproducible en región segura, perturbaciones deterministas con `INVALID_PERTURBATION`, recíproco sin reparación. **Protocolo ciego v2**: paquete antes que resultados, compromiso por hash, `correct_subject` = identidad, agujeros medidos. Sin cuaderno v1.3 ni corrida nueva
+- **Último hito documentado (v1.5):** ChatGPT contraauditó el paquete 003 (integridad PASS, diseño PASS, decisiones a–d aceptadas) y pidió dos cambios de contrato, aplicados **antes de cualquier corrida**: `BASE_V2_REFERENCE` (una máscara idéntica no hereda un juicio emitido con otro protocolo) y adjudicación técnica de discrepancias (la persona usuaria no arbitra píxeles). Con eso `AEM1_v1.3 = GO_TO_BUILD`: prerregistro `PREREGISTERED` con plan de 178 llamadas y el código de análisis congelado por hash; cuaderno v1.3 generado desde el prerregistro y verificado 26/26 con SAM simulado; contrato de análisis A‑E1 en borrador. GPU v1.3 `NOT_RUN`
+- **Hito v1.4:** la corrida 1 queda **aceptada por doble llave** (`INCONCLUSIVE_SELECTED_OUTPUT_FAILED`; veredicto concordante 12/12 con ChatGPT, 42/48 celdas, 5 concesiones de Claude y 1 refutación por medición; segunda llave parcialmente contaminada, contaminación acotada). **A‑E(−1) v1.3 cerrado y prerregistrado**: ramas independientes, prompts nuevos por regla reproducible en región segura, perturbaciones deterministas con `INVALID_PERTURBATION`, recíproco sin reparación. **Protocolo ciego v2**: paquete antes que resultados, compromiso por hash, `correct_subject` = identidad, agujeros medidos. Sin cuaderno v1.3 ni corrida nueva
 - **Hito v1.3:** **primera corrida GPU real** de A‑E(−1) v1.2 (L4, bf16, SAM 2 `2b90b9f5`, checkpoint `2647878d…`), auditada a ciegas con protocolo congelado antes de mirar: `INCONCLUSIVE_SELECTED_OUTPUT_FAILED` (0/12 candidatas pasan; mejor intento `box+corrections:s1`), pendiente de segunda llave de ChatGPT; reproduce la corrida v4; DEC‑013‑Q adoptada por matriz prerregistrada; sweep A‑E1 prerregistrado y verificado contra el commit exacto; ontología v0.2 con los cambios R4 de ChatGPT
 - **Hito v1.2:** la persona usuaria deja de fiscalizar (DEC‑018‑P): cuaderno A‑E(−1) **v1.2 «un clic»** (O3/O4 inequívocos, confirmación del auditor IA ligada a la luminancia de los 18 parches, semillas exhaustivas, `PENDING_EXTERNAL_AUDIT`, modo sin navegador) verificado con 68 + 39 comprobaciones, píxeles y arnés de punta a punta con SAM simulado; herramienta de auditoría IA de ZIPs; protocolo de diálogo Claude↔ChatGPT con doble llave (DEC‑019‑P) y carta 001; evaluación de Colab MCP/CLI
 - **Hito v1.1:** preflight de coordenadas de A‑E(−1) con la foto real (3 de 18 puntos mal ubicados) → cuaderno **v1.1** verificado (68 Codex + 19 propias + píxeles + arnés CPU; GPU `NOT_RUN`); kit A‑E0/A‑E1 (`pragma_ae`) con 22 tests; borrador de inventario de 52 objetos; ontología propuesta sin ratificar; proyecto versionado en `brune6320-del/motor-vimeo` bajo `pragma/`
@@ -58,6 +59,24 @@ El artefacto ejecutable más reciente es un diagnóstico intermedio A‑E(−1):
 Resultado final esperado del producto: una arquitectura modular que proponga, reconozca, seleccione, refine y exporte instancias individuales como PNG transparentes, sin soldar modelos concretos a la interfaz.
 
 **Actualización v1.1.** Antes de gastar la corrida GPU se auditaron las 18 coordenadas de A‑E(−1) contra la foto real: `P‑3` y `O2` caían sobre la pared y `P‑2` en el borde pared/moño, justo en la zona donde v4 falló. Se generó el cuaderno **v1.1** (v1.0 intacto) y se verificó sin GPU. Además se construyó el kit A‑E (`pragma_ae`): contrato y validador de `scene_inventory.json` con congelado por hash, lámina numerada, hoja de contactos y métricas A‑E1. Las métricas demostraron un hueco del contrato §9: una máscara con el defecto de v4 obtiene IoU 0,94 y pasaría el umbral de 0,70; se propone medir la fusión normalizada por el área invadida (DEC‑013‑P). Nada de esto cambia los veredictos: v4 `INCONCLUSIVE`, Fase B `BLOQUEADA`, SAM 2 no rechazable.
+
+**Actualización v1.5.** ChatGPT inspeccionó el paquete 003 completo y verificó:
+
+- el SHA‑256 del ZIP;
+- 10/10 archivos;
+- el `content_sha256` del prerregistro;
+- la transcripción de su llave;
+- el propietario de H1, S1 y sus 24 perturbaciones.
+
+Aceptó (a)–(d) y objetó dos cosas, que se corrigieron antes de correr:
+
+- **BASE bit a bit** ya no «hereda la doble llave»: usa una referencia normalizada. B y D pasan a
+  `correct_subject = TRUE`, medido: el 100 % de su área está dentro de A.
+- **Discrepancias entre llaves:** van a adjudicación técnica (medición → tercera revisión ciega →
+  adjudicación conjunta conservadora), no a la persona usuaria.
+
+Se registraron sus hipótesis H‑G1–G4. El cuaderno v1.3 ejecuta exactamente el plan prerregistrado,
+no muestra resultados y deja la auditoría ciega fuera de Colab. Falta la corrida en GPU.
 
 **Actualización v1.4.** ChatGPT devolvió la segunda llave sobre las mismas 12 láminas.
 
@@ -237,6 +256,32 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
   - `✅ VERIFICADO ESTÁTICO` diseño y métricas v1.3;
   - `❌` cuaderno v1.3, corrida v1.3 e inspección del prerregistro por ChatGPT.
 
+## Hito 13 — Contraauditoría previa y cuaderno v1.3 (v1.5)
+
+- **ChatGPT 003** (tal cual, `dcc637…484e`):
+  - `ZIP_INTEGRITY = PASS` (`0453d7d2…e8ff`, 10/10) y `DESIGN_PROMPTS_SECOND_KEY = PASS`;
+  - (a) `ACCEPT`, (b) `ACCEPT_WITH_NAMING_CLARIFICATION`, (c) `ACCEPT_WITH_CONTINUOUS_DIAGNOSTICS`
+    y (d) `ACCEPT_AS_DIAGNOSTIC`;
+  - (e) `CHANGE_REQUIRED` y protocolo v2 `ACCEPT_AFTER_TECHNICAL_ADJUDICATION_CHANGE`;
+  - A‑E1: sweep `PREREGISTERED` y análisis completo `CONDITIONAL`.
+- **Aplicado antes de correr:**
+  - `auditoria/aem1_20260925T062504Z_256dba9f/BASE_V2_REFERENCE.json` (`c1f01d…0b66`);
+  - protocolo v2 rev. 1 (`b5b11c…7a71`);
+  - L∞ y euclídea; cobertura O* continua; razones de propiedad direccionales;
+  - nueva descripción de P+1; H‑G1–G4;
+  - `ae1/CONTRATO_ANALISIS_A-E1.json` (`498ee9…e156`, `DRAFT_FREEZES_WITH_A_E0`).
+- **Prerregistro v1.3** (`9953ed…9fb8`, `content_sha256` `5800f2bf…2a8c`):
+  - `call_plan` con las 178 llamadas;
+  - `analysis_implementation_sha256` de `aem1_v13.py`, `aem1_v13_audit.py` y `masks.py`.
+- **Cuaderno v1.3:** `outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_3.ipynb` (`b477f3…e62e`),
+  generado por `work/build_pragma_aem1_v1_3.py`.
+- **Verificación:** `work/verify_pragma_aem1_v1_3.py`, 26/26.
+- **Guía:** `GUIA_COLAB_A-E-menos-1_v1_3.md`. **Carta:** 004, sin resultados.
+- **Certeza:**
+  - `✅ VERIFICADO ESTÁTICO + SIMULADO` cuaderno y análisis;
+  - `❌` GPU v1.3;
+  - `❌` confirmación de ChatGPT sobre las interpretaciones de H‑G1 y H‑G3 (no bloquea).
+
 ## Hito 10 — La persona usuaria deja de fiscalizar; ping‑pong con ChatGPT (v1.2)
 
 - **Solicitud:** "no me delegues fiscalizar lo que la IA puede hacer"; mandar los avances a ChatGPT en retroalimentación constante; traspasar no es delegar; usar Colab MCP/CLI si es posible.
@@ -249,13 +294,16 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
 
 # 4. Estado Actual del Proyecto
 
-- **Último componente trabajado (v1.4):** doble llave de la corrida 1, diseño y prerregistro A‑E(−1) v1.3, protocolo ciego v2 y carta 003.
+- **Último componente trabajado (v1.5):** correcciones de ChatGPT 003, cuaderno v1.3, verificador E2E, análisis v1.3 y contrato A‑E1.
+- **Componente anterior (v1.4):** doble llave de la corrida 1, diseño y prerregistro A‑E(−1) v1.3, protocolo ciego v2 y carta 003.
 - **Último artefacto de implementación vigente:** `outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_2.ipynb` (`06315e…f0da`). v1.1 (`ddf784…00dc`) y v1.0 (`5941be…b706`) quedan como antecedentes inmutables.
-- **Último documento modificado:** `PROJECT_STATE.md` v1.4.
-- **Últimos comandos de verificación ejecutados (v1.4):** `python3 work/double_key_aem1.py --zip <ZIP real>`, `python3 work/design_aem1_v1_3.py --check` (byte a byte: True) y `python3 -m unittest discover -s tests` (47/47).
+- **Último documento modificado:** `PROJECT_STATE.md` v1.5.
+- **Últimos comandos de verificación ejecutados (v1.5):** `python3 work/verify_pragma_aem1_v1_3.py` (26/26), `python3 work/design_aem1_v1_3.py --check`, `python3 work/ae1_analysis_contract.py --check` y `python3 -m unittest discover -s tests` (67/67).
+- **Comandos v1.4:** `python3 work/double_key_aem1.py --zip <ZIP real>`, `python3 work/design_aem1_v1_3.py --check` (byte a byte: True) y `python3 -m unittest discover -s tests` (47/47).
 - **Último resultado observado:** v1.2 = 68/68 Codex + 39/39 propias, píxeles `PASS`; el arnés E2E con SAM simulado ejecutó las celdas 03–11 con la foto real en tres escenarios. Con navegador: 8 propuestas, 12 candidatas, `PENDING_EXTERNAL_AUDIT`, ZIP de 4,7 MB y una descarga. Sin navegador: igual, sin descarga. Sin foto: error claro, sin selector. La auditoría IA leyó ese ZIP, detectó `SIMULATED` y devolvió `SIMULATED_RUN_NOT_EVIDENCE`. 27/27 tests; experimento `NOT_RUN`.
 - **Último error material de ejecución:** ninguno nuevo en GPU (no hubo corrida). En el arnés CPU, la celda 06 requiere `pipeline` de la celda 05: se sustituyó por un objeto mínimo documentado.
-- **Última decisión (v1.4):** adoptar el cambio de protocolo de ChatGPT (doble ciego temporal y compromiso por hash); cerrar v1.3 con su diseño; no construir el cuaderno v1.3 hasta que ChatGPT inspeccione el prerregistro («nada de Colab todavía»); Fase B bloqueada.
+- **Última decisión (v1.5):** aplicar los dos cambios de contrato de ChatGPT antes de correr; construir el cuaderno v1.3 (`GO_TO_BUILD`); tras la corrida, ChatGPT recibe solo el paquete ciego.
+- **Decisión v1.4:** adoptar el cambio de protocolo de ChatGPT (doble ciego temporal y compromiso por hash); cerrar v1.3 con su diseño; no construir el cuaderno v1.3 hasta que ChatGPT inspeccione el prerregistro («nada de Colab todavía»); Fase B bloqueada.
 - **Último elemento confirmado como funcional:** celda de configuración v1.1 con la foto real (overlay, hoja de contactos, `config_digest`), kit `pragma_ae`.
 - **Escrito pero no probado en GPU:** los cuatro protocolos y el flujo de exportación A‑E(−1) (idénticos en v1.0 y v1.1 salvo configuración y lista blanca).
 - **Evidencia histórica faltante:** la carpeta `/Users/usuario/Desktop/PRAGMA_Fase_A_v4_20260811T001154Z_6e6a9ae1_PASS/` ya no existe en el filesystem actual. Sus resultados sobreviven solo en documentos de estado.
@@ -267,9 +315,9 @@ Estado resumido:
 ```text
 Fase A dirigida por clic       INCONCLUSIVE
 A‑E(−1) diagnóstico chica     CORRIDA 1 (v1.2, GPU): INCONCLUSIVE_SELECTED_OUTPUT_FAILED (0/12) · ACEPTADO POR DOBLE LLAVE
-A‑E(−1) v1.3                  ESPECIFICACIÓN CERRADA Y PRERREGISTRADA · SIN CUADERNO · SIN CORRIDA
+A‑E(−1) v1.3                  PRERREGISTRADO Y CONTRAAUDITADO · CUADERNO LISTO (26/26 SIMULADO) · GPU NOT_RUN
 A‑E0 inventario humano        KIT LISTO · BORRADOR 52 OBJETOS · ONTOLOGÍA SIN RATIFICAR
-A‑E1 SAM2 AMG                 SWEEP PRERREGISTRADO (INSPECCIÓN DE CHATGPT PENDIENTE) · SIN CORRIDA
+A‑E1 SAM2 AMG                 SWEEP PREREGISTERED (ChatGPT 003) · ANÁLISIS CONDICIONADO A A‑E0 · SIN CORRIDA
 Revisión                      AUDITOR IA + CONTRAAUDITORÍA CHATGPT · VETO DE LA PERSONA USUARIA
 Fase B                        BLOQUEADA
 SAM 2                         NO RECHAZABLE TODAVÍA
@@ -385,6 +433,28 @@ Extensión                     ZIP v1.2.0 VERIFICADO / NO MODIFICADA
 - **Hipótesis:** H‑C1 (pelo sí, moño también), H‑C2 (P+1 junto a un botón → `point` inestable) y
   H‑G* (pendientes de ChatGPT).
 
+## 5.18 A‑E(−1) v1.3 listo para correr
+
+**Estado:** `✅ VERIFICADO ESTÁTICO + SIMULADO` · `❌ GPU`.
+
+- El cuaderno embebe el prerregistro byte a byte y bloquea si no coinciden el commit `2b90b9f5`,
+  el checkpoint `2647878d…`, la foto o la luma de los 44 puntos (tolerancia 3,0).
+- Con SAM simulado:
+  - hace las 178 llamadas exactas del plan (puntos, etiquetas, cajas, multimask y semillas);
+  - produce 210 máscaras y no muestra ninguna.
+- Sobre su ZIP:
+  - la integridad da `SIMULATED_RUN_NOT_EVIDENCE`;
+  - manipular una máscara o el plan da `INVALID_BUNDLE`;
+  - el paquete ciego (láminas `C01…`, agujeros numerados, plantilla) y el análisis funcionan.
+
+## 5.19 Contrato de análisis A‑E1
+
+**Estado:** `🟡 DRAFT_FREEZES_WITH_A_E0`.
+
+- Liga el sweep inspeccionado (`25a61a…5a38`, sin tocar) al SHA‑256 de `metrics.py`, `masks.py` e
+  `inventory.py` y a todos los umbrales de `GateParams`.
+- `A_E0_FROZEN = REQUIRED`.
+
 ## 5.15 DEC‑013‑Q y matriz prerregistrada
 
 **Estado:** `✅ VERIFICADO ESTÁTICO` · `tests/test_fusion_matrix.py` a 4000×2248: Q acierta las 26 etiquetas prerregistradas y P falla 4 (bandas y víctimas delgadas) → `GateParams.fusion_rule = "Q"`, δ = 5 px.
@@ -452,12 +522,12 @@ Imagen verificada
 
 # 7. Estructura de Directorios
 
-`TREE DEL REPOSITORIO v1.4` (`brune6320-del/motor-vimeo`, carpeta `pragma/`; la raíz contiene además un backend Node no relacionado que no se toca)
+`TREE DEL REPOSITORIO v1.5` (`brune6320-del/motor-vimeo`, carpeta `pragma/`; la raíz contiene además un backend Node no relacionado que no se toca)
 
 ```text
 pragma/
 ├── README.md
-├── PROJECT_STATE.md                 # este archivo, v1.4
+├── PROJECT_STATE.md                 # este archivo, v1.5
 ├── MANIFEST_SHA256.txt              # hashes del árbol versionado
 ├── requirements.txt                 # numpy, pillow (+ matplotlib para el arnés)
 ├── .gitignore                       # inputs/*, local/, runs/, ae0/gt/
@@ -473,6 +543,8 @@ pragma/
 │   ├── PRAGMA_A-E-menos-1_v1_1_verificacion.json
 │   ├── PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_2.ipynb    # vigente («un clic»)
 │   ├── PRAGMA_A-E-menos-1_v1_2_verificacion.json
+│   ├── PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_3.ipynb    # vigente (prerregistrado, a ciegas)
+│   ├── PRAGMA_A-E-menos-1_v1_3_verificacion.json
 │   ├── PRAGMA-ESTADO-FASE-A-E-INVENTARIO-ESCENA.md
 │   ├── PRAGMA-ESTADO-TRASPASO-CLAUDE-A-CODEX.md
 │   ├── PRAGMA_Fase_A_SAM2_v4_ligero.ipynb
@@ -489,21 +561,24 @@ pragma/
 │   ├── harness_aem1.py              # arnés E2E con SAM simulado
 │   ├── blind_audit_aem1.py          # láminas ciegas, mapeo sellado, desciegue
 │   ├── double_key_aem1.py           # comparación de las dos llaves (corrida 1)
-│   └── design_aem1_v1_3.py          # diseño v1.3 → prerregistro determinista
+│   ├── design_aem1_v1_3.py          # diseño v1.3 → prerregistro determinista
+│   ├── build_pragma_aem1_v1_3.py    # prerregistro → cuaderno v1.3
+│   ├── verify_pragma_aem1_v1_3.py   # estático + E2E simulado + auditoría
+│   └── ae1_analysis_contract.py     # contrato de análisis A‑E1
 ├── pragma_ae/                       # kit A‑E (python3 -m pragma_ae …)
-│   ├── inventory.py  metrics.py  masks.py  preflight.py  sheet.py  imageio.py  aem1_audit.py  aem1_v13.py  __main__.py
+│   ├── inventory.py  metrics.py  masks.py  preflight.py  sheet.py  imageio.py  aem1_audit.py  aem1_v13.py  aem1_v13_audit.py  __main__.py
 ├── ae0/
 │   ├── ONTOLOGIA_PROPUESTA.md
 │   ├── PROTOCOLO_A-E0.md
 │   └── scene_inventory.draft.json
-├── ae1/SWEEP_PRERREGISTRO_A-E1.json
+├── ae1/SWEEP_PRERREGISTRO_A-E1.json, CONTRATO_ANALISIS_A-E1.json
 ├── aem1/                            # A‑E(−1) v1.3: ESPECIFICACION_… .md + PRERREGISTRO_… .json
 ├── auditoria/                       # PROTOCOLO_AUDITORIA_AEM1_v1.md (congelado), v2 (para v1.3), corrida 1 con doble llave
 ├── preflight/PREFLIGHT_A-E-menos-1_v1_0.md, PREFLIGHT_A-E-menos-1_v1_2.md
 ├── dialogo/                         # ping‑pong Claude ↔ ChatGPT (README + cartas)
-├── GUIA_COLAB_A-E-menos-1_v1_2.md   # guía vigente (un clic / delegado)
+├── GUIA_COLAB_A-E-menos-1_v1_3.md   # guía vigente (un clic, a ciegas); v1_2 = modo delegado
 ├── CLAUDE.md                        # reglas para agentes
-├── tests/                           # 47 tests
+├── tests/                           # 67 tests
 ├── history/handoff_v1.0/            # PROJECT_STATE v1.0, START_HERE, manifiesto original (+ enlaces)
 └── local/                           # NO versionado: overlays, hojas de contactos, láminas, arnés
 ```
@@ -516,9 +591,11 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 
 | Archivo | Ruta | Función | Estado | Última información conocida |
 |---|---|---|---|---|
-| `PROJECT_STATE.md` | `pragma/` | Fuente de verdad portable | ✅ | **v1.4, 2026‑09‑25**; v1.0 en `history/handoff_v1.0/` |
-| `PRERREGISTRO_A-E-menos-1_v1_3.json` · `ESPECIFICACION_A-E-menos-1_v1_3.md` | `pragma/aem1/` | v1.3 cerrado | 🟡 pendiente de ChatGPT | `918ffd…efd2` (content `20d1f9f5…bf1d`) · `fb750e…1553` |
-| `PROTOCOLO_AUDITORIA_AEM1_v2.md` | `pragma/auditoria/` | auditoría ciega v2 (DEC‑021) | ✅ escrito antes de la corrida v1.3 | `bc7e58…2591` |
+| `PROJECT_STATE.md` | `pragma/` | Fuente de verdad portable | ✅ | **v1.5, 2026‑09‑25**; v1.0 en `history/handoff_v1.0/` |
+| `PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_3.ipynb` | `pragma/outputs/` | Experimento A‑E(−1) **vigente** | 🟡 GPU NOT_RUN | `b477f3…e62e`; 26/26 simulado |
+| `aem1_v13_audit.py` · `BASE_V2_REFERENCE.json` · `CONTRATO_ANALISIS_A-E1.json` | `pragma_ae/` · `auditoria/…256dba9f/` · `ae1/` | análisis v1.3 · referencia BASE · contrato A‑E1 | ✅ · ✅ · 🟡 borrador | `820af0…c13a` · `c1f01d…0b66` · `498ee9…e156` |
+| `PRERREGISTRO_A-E-menos-1_v1_3.json` · `ESPECIFICACION_A-E-menos-1_v1_3.md` | `pragma/aem1/` | v1.3 cerrado | ✅ `PREREGISTERED` (contraauditado, ChatGPT 003) | `9953ed…9fb8` (content `5800f2bf…2a8c`; v1.4 era `918ffd…efd2`) · `5c5ddf…bafa` |
+| `PROTOCOLO_AUDITORIA_AEM1_v2.md` | `pragma/auditoria/` | auditoría ciega v2 (DEC‑021), rev. 1 (DEC‑022/023) | ✅ escrito antes de la corrida v1.3 | `b5b11c…7a71` (v2 original `bc7e58…2591`) |
 | `segunda_llave_chatgpt.json` · `doble_llave.json` | `pragma/auditoria/aem1_20260925T062504Z_256dba9f/` | segunda llave y comparación | ✅ | `9881d8…9746` · `1c50da…add8` |
 | `aem1_v13.py` · `design_aem1_v1_3.py` · `double_key_aem1.py` · `test_aem1_v13.py` | `pragma_ae/`, `work/`, `tests/` | métricas v1.3, diseño, doble llave, tests | ✅ | `88a73f…be75` · `368502…b119` · `030645…92f7` · `05c4a6…9279` |
 | `002_chatgpt_a_claude.md` · `003_claude_a_chatgpt.md` | `pragma/dialogo/` | segunda llave de ChatGPT; carta 003 | ✅ archivada · 🟡 para pegar | `b6d51d…046c` · ver manifiesto |
@@ -763,6 +840,29 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 **Origen:** ChatGPT 002 (cambio de protocolo) y comparación A–L (κ = 0,25 en `correct_subject`; F).
 **Estado:** vigente desde v1.4 para corridas nuevas (`auditoria/PROTOCOLO_AUDITORIA_AEM1_v2.md`); la
 corrida 1 queda juzgada con v1.
+
+### DEC-022 — Adjudicación técnica de discrepancias (protocolo v2 rev. 1 §5.2)
+
+**Decisión:**
+
+- si las dos llaves discrepan, se resuelve primero por evidencia objetiva (agujeros, sentinelas,
+  área dentro de una referencia, borde de ≤ 5 px);
+- si no hay medición que decida, por una tercera revisión ciega: otra IA con solo la lámina y su
+  `LEEME`, y decide la mayoría de tres;
+- si tampoco, por adjudicación conjunta documentada, con regla conservadora (`UNRESOLVED` = no pasa).
+
+**Origen:** ChatGPT 003, coherente con DEC‑018‑P. Sustituye la cláusula «decide la persona usuaria»
+de DEC‑019‑P para cuestiones técnicas. La persona usuaria conserva el veto y decide lo semántico
+irreducible.
+**Estado:** vigente desde v1.5.
+
+### DEC-023 — Referencia normalizada para BASE (`BASE_V2_REFERENCE`)
+
+**Decisión:** una candidata BASE que reproduce bit a bit la corrida 1 no hereda una doble llave v2.
+Su referencia es la adjudicación archivada, normalizada a las definiciones v2 con medición (B y D →
+`correct_subject = TRUE`, 100 % dentro de A).
+**Origen:** ChatGPT 003 (e): `BIT_EXACT_MASK ≠ BIT_EXACT_JUDGMENT_UNDER_NEW_PROTOCOL`.
+**Estado:** vigente.
 
 ### DEC-018-P — La persona usuaria no fiscaliza: auditoría IA con evidencia
 
@@ -1085,6 +1185,11 @@ La regla histórica exige probar cualquier modificación mediante Chrome con `--
 | Diseño v1.3 | prerregistro | reproducible byte a byte | `--check` True | ✅ con foto |
 | Métricas v1.3 + doble llave | `tests/test_aem1_v13.py` | 18 | 18/18 | ✅ sintético + archivos |
 | Kit completo (v1.4) | 47 tests | 47/47 | 47/47 | ✅ |
+| Contraauditoría previa (ChatGPT 003) | paquete 003 | integridad, diseño, decisiones | ZIP y 10/10 archivos OK; diseño PASS; (e) y §5.2 corregidos | ✅ |
+| Cuaderno v1.3 | estático + E2E con SAM simulado + auditoría | 26 comprobaciones | 26/26 | ✅ simulado (no mide calidad) |
+| Plan de llamadas | 178 llamadas registradas frente al plan | idénticas | 178/178 | ✅ simulado |
+| Kit completo (v1.5) | 67 tests | 67/67 | 67/67 | ✅ |
+| **Corrida GPU v1.3** | SAM 2.1 Large | 210 máscaras y auditoría ciega v2 | no ejecutada | ❌ |
 
 Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y cero outputs. No presentar sus suites estáticas como evidencia de inferencia real.
 
@@ -1273,7 +1378,7 @@ Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y ce
 
 - **Acción:** prompts positivos sobre el pelo y las mangas de la chica (coordenadas nuevas con preflight), prompt recíproco a la persona posterior y perturbación ±15 px; mismo protocolo ciego. Solo después de la crítica de ChatGPT.
 
-### P0-8 — Contraauditoría del prerregistro v1.3 y del A‑E1
+### P0-8 — (HECHO) Contraauditoría del prerregistro v1.3 y del A‑E1
 
 - **Acción:** la persona usuaria pega la carta 003 y adjunta `PRAGMA_carta003_diseno_v1_3.zip`.
   ChatGPT verifica el propietario de H1, S1 y sus perturbaciones en la lámina privada, registra sus
@@ -1281,12 +1386,22 @@ Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y ce
 - **Criterio:** respuesta archivada tal cual y prerregistro marcado `PREREGISTERED` (o nueva versión
   si cambia algo, antes de cualquier corrida).
 
-### P0-9 — Construir y ejecutar el cuaderno v1.3
+### P0-9 — (CONSTRUIDO; falta la GPU) Construir y ejecutar el cuaderno v1.3
 
 - **Dependencia:** P0-8.
 - **Acción:** construir el cuaderno según el prerregistro, con gates de congelado y luma de todos los
   prompts, verificarlo con el arnés, y que la persona usuaria lo ejecute con un clic.
 - **Después:** auditoría ciega v2, con el paquete a ChatGPT antes que cualquier resultado.
+
+### P0-10 — Auditoría ciega v2 de la corrida v1.3
+
+- **Acción:** ejecutar en orden, sin saltar pasos:
+  1. `aem1_v13_audit.integrity`, sin datos de resultado;
+  2. `blind_package`: el paquete va solo a ChatGPT;
+  3. juicio ciego de Claude, del que a git va solo el hash;
+  4. segunda llave archivada tal cual;
+  5. `analyze`, adjudicación técnica si hace falta, veredicto e hipótesis.
+- **Criterio:** veredicto con doble llave o `UNRESOLVED` documentado; `PROJECT_STATE` actualizado.
 
 ### P0-5 — (HECHO) Cerrar la carta 001 con ChatGPT
 
@@ -1517,29 +1632,24 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-La corrida 1 está aceptada por doble llave: `INCONCLUSIVE_SELECTED_OUTPUT_FAILED`, 0/12. v1.3 está
-cerrado y prerregistrado con el diseño de ChatGPT, pero sin cuaderno ni corrida. El protocolo ciego
-v2 queda adoptado: el paquete va a ChatGPT antes que cualquier resultado.
+El prerregistro v1.3 está contraauditado por ChatGPT, con sus dos cambios de contrato aplicados
+antes de correr. El cuaderno v1.3 está construido desde el prerregistro y verificado con SAM
+simulado (26/26). Falta la corrida en GPU.
 
 ## Próxima acción
 
-La persona usuaria pega `dialogo/003_claude_a_chatgpt.md` en ChatGPT, le adjunta en privado
-`PRAGMA_carta003_diseno_v1_3.zip` y trae la respuesta completa. Nada de Colab todavía.
+La persona usuaria ejecuta el cuaderno v1.3 en Colab (`GUIA_COLAB_A-E-menos-1_v1_3.md`) y adjunta
+el ZIP **solo a Claude**. En paralelo, sin bloquear nada, pega la carta 004 en ChatGPT.
 
 ## Resultado esperado
 
-ChatGPT confirma u objeta:
-
-- el propietario de H1, S1 y sus 16 perturbaciones;
-- las decisiones (a)–(e);
-- el sweep A‑E1.
-
-También registra sus predicciones H‑G*. Después, Claude construye el cuaderno v1.3.
+Un ZIP `PRAGMA_AEM1v13_…_PENDING_EXTERNAL_AUDIT.zip`. Claude verifica su integridad sin mirar
+resultados, prepara el paquete ciego `C01…` y la persona usuaria se lo manda **solo** a ChatGPT.
 
 ## En paralelo
 
-Ratificar la ontología v0.2 (`ae0/ONTOLOGIA_PROPUESTA.md`) y hacer la pasada ciega del inventario
-(`ae0/PROTOCOLO_A-E0.md` §1).
+- Respuesta de ChatGPT a la carta 004: interpretaciones de H‑G1 y H‑G3, Codex como tercera revisión.
+- Ratificar la ontología v0.2 y hacer la pasada ciega del inventario A‑E0.
 
 ---
 
@@ -1548,13 +1658,14 @@ Ratificar la ontología v0.2 (`ae0/ONTOLOGIA_PROPUESTA.md`) y hacer la pasada ci
 ```text
 Continúo el proyecto PRAGMA. Repositorio: brune6320-del/motor-vimeo, carpeta pragma/.
 
-Lee completo pragma/PROJECT_STATE.md (v1.4) y pragma/dialogo/README.md antes de proponer cambios.
+Lee completo pragma/PROJECT_STATE.md (v1.5) y pragma/dialogo/README.md antes de proponer cambios.
 Verifica pragma/MANIFEST_SHA256.txt y, si tienes la foto y la extensión, pragma/inputs/INPUTS_SHA256.txt.
 
 No confundas: diseño, código escrito, verificación estática, ejecución simulada, ejecución GPU y
 aceptación (doble llave Claude + ChatGPT). Estado de partida: v4 = INCONCLUSIVE; A-E(−1) corrida 1
 (v1.2, GPU) = INCONCLUSIVE_SELECTED_OUTPUT_FAILED aceptado por doble llave; v1.3 = prerregistrado,
-sin cuaderno; auditoría ciega v2 (paquete antes que resultados); A-E0 = borrador
+contraauditado, cuaderno listo (26/26 con SAM simulado), GPU NOT_RUN; auditoría ciega v2 rev. 1
+(paquete antes que resultados, adjudicación técnica); A-E0 = borrador
 DRAFT_UNVERIFIED y ontología sin ratificar; Fase B = BLOQUEADA; SAM 2 todavía no es rechazable.
 La persona usuaria no fiscaliza: la verificación es de la IA; ella decide y veta.
 No modifiques pragma-extension.zip. No integres FastAPI, localhost, YOLO-seg ni BiRefNet. No subas la
@@ -1593,6 +1704,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v1.5 | 2026‑09‑25 | contraauditoría previa de ChatGPT 003 archivada; `BASE_V2_REFERENCE` (DEC‑023) y protocolo v2 rev. 1 con adjudicación técnica (DEC‑022); L∞/euclídea, cobertura O* continua y razones direccionales; H‑G1–G4; prerregistro `PREREGISTERED` con `call_plan` (178) y código de análisis congelado; cuaderno v1.3 construido y verificado 26/26 con SAM simulado; `aem1_v13_audit` (integridad, paquete ciego, análisis); contrato A‑E1 en borrador; guía v1.3; carta 004 |
 | v1.4 | 2026‑09‑25 | segunda llave de ChatGPT archivada y comparada (`doble_llave.json`: veredicto concordante, 42/48, 5 concesiones y 1 refutación medida, contaminación acotada 1/207 900) → corrida 1 aceptada por doble llave; A‑E(−1) v1.3 cerrado y prerregistrado (ramas, región segura H1/S1, perturbaciones deterministas, recíproco sin reparación; `aem1_v13` + 18 tests); protocolo ciego v2 y DEC‑021; carta 003 |
 | v1.3 | 2026‑09‑25 | primera corrida GPU real de A‑E(−1) v1.2 auditada a ciegas con protocolo congelado antes de mirar (`INCONCLUSIVE_SELECTED_OUTPUT_FAILED`, 0/12); reproducción de v4; respuesta 001 de ChatGPT archivada; DEC‑013‑Q adoptada por matriz prerregistrada; sweep A‑E1 prerregistrado y verificado en el commit exacto; ontología v0.2; DEC‑020; carta 002 |
 | v1.2 | 2026‑09‑25 | la persona usuaria deja de fiscalizar: cuaderno A‑E(−1) v1.2 «un clic» (O3/O4 inequívocos, confirmación del auditor IA ligada a la luma, semillas exhaustivas, `PENDING_EXTERNAL_AUDIT`, modo sin navegador), verificador con arnés E2E de SAM simulado, auditoría IA de ZIPs, protocolo de diálogo con ChatGPT y carta 001, evaluación de Colab MCP/CLI, DEC‑018‑P/019‑P |

@@ -20,9 +20,15 @@
     después de archivar la segunda llave; después se desciega (`work/blind_audit_aem1.py`,
     `work/double_key_aem1.py`).
   - Toda regla métrica nueva se decide con una prueba prerregistrada antes de ver datos reales.
-- Para Colab, la guía vigente es `GUIA_COLAB_A-E-menos-1_v1_2.md` (modo un clic o modo delegado con
-  Colab CLI). Mantenla al día. El siguiente experimento (A‑E(−1) v1.3) está prerregistrado en
-  `aem1/`; su cuaderno se construye cuando ChatGPT haya inspeccionado el prerregistro.
+- Para Colab, la guía vigente es `GUIA_COLAB_A-E-menos-1_v1_3.md` (un clic, a ciegas). Mantenla al
+  día. El cuaderno v1.3 se genera desde el prerregistro con `work/build_pragma_aem1_v1_3.py`. Nunca
+  se edita a mano, y se verifica con `work/verify_pragma_aem1_v1_3.py`.
+- **Discrepancias entre llaves → adjudicación técnica** (protocolo v2 rev. 1 §5.2): primero la
+  medición; si no basta, una tercera revisión ciega; si tampoco, adjudicación conjunta con regla
+  conservadora. Nunca se pide a la persona usuaria arbitrar píxeles.
+- Tras una corrida v1.3: `aem1_v13_audit.integrity` sin mirar resultados → paquete ciego (va
+  **solo** a ChatGPT) → juicio ciego propio, del que a git va solo el hash → desciegue cuando
+  llegue la segunda llave.
 - Nomenclatura de la persona usuaria: «Crear cuaderno Colab para SAM 2» es el hilo de **Codex** de
   PRAGMA/SAM 2. Las cartas para Claude se pegan en su sesión de Claude Code.
 - El repositorio es público: nunca versionar `inputs/*`, `local/`, `ae0/gt/` ni nada derivado de la

@@ -34,6 +34,11 @@ NOTEBOOK_V12 = ROOT / "outputs" / "PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_
 NOTEBOOK_V12_SHA256 = "06315e0fe15b84b446570903d7a6c5c219df5ea2ecf4577429cf107cdcdef0da"
 RUN1_CONFIG_DIGEST = "fd29b18bbe50cf8236f41057567265e6083d13465511e4882cd8e533af58aa71"
 PROTOCOL_V2 = ROOT / "auditoria" / "PROTOCOLO_AUDITORIA_AEM1_v2.md"
+BASE_REFERENCE = ROOT / "auditoria" / "aem1_20260925T062504Z_256dba9f" / "BASE_V2_REFERENCE.json"
+CROSS_AUDIT = ROOT / "dialogo" / "003_chatgpt_a_claude.md"
+ANALYSIS_CODE = ["pragma_ae/aem1_v13.py", "pragma_ae/aem1_v13_audit.py", "pragma_ae/masks.py"]
+# Corrección documental de ChatGPT 003: P+1 está materialmente sobre el botón/overol (coordenadas sin cambio).
+DESCRIPTION_CORRECTIONS = {"P+1": "botón/overol en el torso de la chica"}
 OUT_JSON = ROOT / "aem1" / "PRERREGISTRO_A-E-menos-1_v1_3.json"
 OUT_LOCAL = ROOT / "local" / "aem1_v1_3_diseno"
 
@@ -71,7 +76,10 @@ def build(image, gray, dark):
     specs, box = specs_from_notebook(json.loads(NOTEBOOK_V12.read_text(encoding="utf-8")))
     by_group = {}
     for sid, xy, group, desc in specs:
-        by_group.setdefault(group, []).append({"id": sid, "xy": list(xy), "description": desc})
+        entry = {"id": sid, "xy": list(xy), "description": DESCRIPTION_CORRECTIONS.get(sid, desc), **v.patch_stats(gray, xy)}
+        if sid in DESCRIPTION_CORRECTIONS:
+            entry["description_v1_2"] = desc
+        by_group.setdefault(group, []).append(entry)
     holdouts = {s["id"]: s["xy"] for g in ("keep_subject", "drop_other_person", "drop_background") for s in by_group[g]}
     prompts = {s["id"]: s["xy"] for g in ("prompt_positive", "prompt_negative_other_person") for s in by_group[g]}
     size = EXPECTED_IMAGE_SIZE
@@ -104,7 +112,7 @@ def build(image, gray, dark):
             **v.patch_stats(gray, xy),
             "image_sha256": EXPECTED_IMAGE_SHA256,
             "owner_verified_by": "auditor IA Claude en la lámina privada de diseño",
-            "owner_second_key": "PENDIENTE (ChatGPT, misma lámina)",
+            "owner_second_key": "PASS (ChatGPT 003: el punto y sus 8 perturbaciones sobre la chica)",
         }
 
     def point_block(base_id, base_xy, use_dark):
@@ -150,8 +158,12 @@ def build(image, gray, dark):
             },
             "reproduction_check": {
                 "rule": "packed_mask_sha256 de cada candidata BASE frente a la corrida 1",
-                "labels": {"BIT_EXACT": "12/12 idénticas: sus juicios de doble llave se heredan y no vuelven al paquete ciego",
+                "labels": {"BIT_EXACT": ("máscara idéntica: su referencia es BASE_V2_REFERENCE (adjudicación de la corrida 1 "
+                                         "normalizada a las definiciones v2), NO una doble llave v2 heredada; no vuelve al paquete ciego"),
                            "NOT_BIT_EXACT": "las que difieran entran al paquete ciego con etiquetas nuevas"},
+                "reference": {"file": BASE_REFERENCE.relative_to(ROOT).as_posix(), "sha256": sha(BASE_REFERENCE),
+                              "kind": "REFERENCIA_NORMALIZADA_ADJUDICADA",
+                              "why": "ChatGPT 003 (e): BIT_EXACT_MASK ≠ BIT_EXACT_JUDGMENT_UNDER_NEW_PROTOCOL"},
                 "run1_packed_mask_sha256": run1_packed_hashes(),
             },
         },
@@ -181,7 +193,9 @@ def build(image, gray, dark):
         "never": "no se usa para reparar la máscara de la chica (nada de objetivo − posterior)",
     }
     branches["PERTURB_POINT"] = {"offsets_px": [list(o) for o in v.POINT_OFFSETS],
-                                 "neighbourhood": "anillo L∞ de radio 15: 4 axiales y 4 diagonales, deterministas",
+                                 "neighbourhood": ("anillo L∞ de radio 15 px, determinista: 4 axiales (euclídea 15 px) y "
+                                                   "4 diagonales (euclídea 15·√2 ≈ 21,21 px); no son desplazamientos equivalentes"),
+                                 "linf_radius_px": v.STEP, "euclidean_px": {"axial": float(v.STEP), "diagonal": round(v.STEP * 2 ** 0.5, 2)},
                                  "one_at_a_time": True, "targets": perturb_point}
     branches["PERTURB_BOX"] = perturb_box
 
@@ -193,15 +207,40 @@ def build(image, gray, dark):
         "PERTURB_BOX": perturb_box["valid_count"] * 6,
         "valid_point_perturbations": n_valid_p,
     }
-    counts["total_masks"] = sum(val for k, val in counts.items() if k != "valid_point_perturbations")
+    counts["total_masks"] = sum(val for k, val in counts.items() if k not in ("valid_point_perturbations", "calls"))
+    base_xy = {q["id"]: q["xy"] for q in by_group["prompt_positive"] + by_group["prompt_negative_other_person"]}
+    call_plan = v.build_call_plan(base_xy, {k: n["xy"] for k, n in new.items()}, list(box),
+                                  {k: t["perturbations"] for k, t in perturb_point.items()}, box_rows)
+    if sum(len(c["candidates"]) for c in call_plan) != counts["total_masks"]:
+        raise SystemExit("el plan de llamadas no produce el número de máscaras declarado")
+    counts["calls"] = len(call_plan)
 
     payload = {
         "schema": "pragma.aem1_preregistration",
         "schema_version": "0.1.0",
         "experiment": "A-E(−1) v1.3 · caso chica",
-        "status": "PREREGISTERED_PENDING_CROSS_AUDIT",
+        "status": "PREREGISTERED",
         "frozen_on": "2026-09-25",
-        "responds_to": ["dialogo/002_chatgpt_a_claude.md"],
+        "responds_to": ["dialogo/002_chatgpt_a_claude.md", "dialogo/003_chatgpt_a_claude.md"],
+        "cross_audit": {
+            "by": "ChatGPT", "letter": CROSS_AUDIT.relative_to(ROOT).as_posix(), "letter_sha256": sha(CROSS_AUDIT),
+            "inspected_package_sha256": "0453d7d271f260e5db4faef7b9a769dfd63386d6afdabca45d290aeb0737e8ff",
+            "inspected_prereg_content_sha256": "20d1f9f534ab941e0a278d6c218149c910c4abedfedb0fe25e17d3ba02c2bf1d",
+            "verdicts": {"ZIP_INTEGRITY": "PASS", "DESIGN_PROMPTS_SECOND_KEY": "PASS", "H1/S1/P+1_PERTURBATIONS": "PASS",
+                         "DECISION_A": "ACCEPT", "DECISION_B": "ACCEPT_WITH_NAMING_CLARIFICATION",
+                         "DECISION_C": "ACCEPT_WITH_CONTINUOUS_DIAGNOSTICS", "DECISION_D": "ACCEPT_AS_DIAGNOSTIC",
+                         "DECISION_E": "CHANGE_REQUIRED", "BLIND_PROTOCOL_V2": "ACCEPT_AFTER_TECHNICAL_ADJUDICATION_CHANGE"},
+            "changes_applied_before_any_run": [
+                "(e) BASE bit a bit → BASE_V2_REFERENCE (referencia normalizada y adjudicada), no doble llave heredada",
+                "protocolo v2 rev. 1 §5.2: discrepancia → adjudicación técnica; la persona usuaria conserva el veto",
+                "(b) perturbaciones con radio L∞ y distancia euclídea explícitos",
+                "(c) cobertura continua de O* y distancia al umbral en cada CONFLICT",
+                "(d) razones de propiedad |T∩R|/|T| y |T∩R|/|R| además de la de min()",
+                "descripción de P+1: botón/overol en el torso de la chica (sin cambiar coordenadas)",
+                "hipótesis H-G1…H-G4 de ChatGPT registradas",
+            ],
+            "result": "AEM1_v1.3 = GO_TO_BUILD tras aplicar los cambios (ChatGPT 003)",
+        },
         "generated_by": "work/design_aem1_v1_3.py",
         "image": {"sha256": EXPECTED_IMAGE_SHA256, "size": list(size), "orientation": "EXIF aplicado; sin redimensionar"},
         "sam2_freeze": {
@@ -242,6 +281,14 @@ def build(image, gray, dark):
         "branches": branches,
         "combination": "NINGUNA en v1.3 (ChatGPT 002: solo si se prerregistra; no se prerregistra)",
         "candidate_counts": counts,
+        "call_plan": call_plan,
+        "call_plan_semantics": ("cada llamada es SAM2ImagePredictor.predict(point_coords=points o None, point_labels=labels o None, "
+                                "box=box o None, mask_input=low_res_logits[index][None] de mask_input_from o None, "
+                                "multimask_output, return_logits=True); máscara = logits > 0; mismas conversiones que v1.2 "
+                                "(float32 para puntos y caja, int32 para etiquetas)"),
+        "analysis_implementation_sha256": {path: sha(ROOT / path) for path in ANALYSIS_CODE},
+        "consensus": ("valor de consenso de una celda = el de las dos llaves si coinciden; si no, el de la adjudicación técnica "
+                      "(protocolo v2 rev. 1 §5.2); mientras falte, la candidata no pasa"),
         "blind_audit": {
             "protocol": PROTOCOL_V2.relative_to(ROOT).as_posix(),
             "protocol_sha256": sha(PROTOCOL_V2),
@@ -261,8 +308,12 @@ def build(image, gray, dark):
                 },
                 "family_summary": "la peor etiqueta evaluable (CONFLICT > UNSTABLE > STABLE)",
                 "secondary": "IoU mínimo dentro de CONTACT_BOX (None si las dos están vacías en la caja)",
+                "continuous": "cobertura de cada O* (base y cada perturbación) y, en cada cruce, su distancia al umbral 0,20 (ChatGPT 003 c)",
+                "base_of_each_family": {"P+1": "BASE (point y point+corrections)", "H1 y S1": "+POS_HAIR+SLEEVE",
+                                        "caja": "BASE (box y box+corrections)"},
             },
             "reciprocal_stability": {
+                "function": "pragma_ae.aem1_v13.reciprocal_stability",
                 "unit": "las 3 semillas R-corrections, IoU por pares dentro de CONTACT_BOX",
                 "labels": {"NOT_EVALUABLE": "alguna vacía en la caja",
                            "CONFLICT": "el cribado K* (la chica filtrada dentro de R) cambia entre semillas",
@@ -271,10 +322,11 @@ def build(image, gray, dark):
             "ownership": {
                 "function": "pragma_ae.aem1_v13.ownership",
                 "unit": "cada candidata de la chica (BASE y +POS) frente a R_ref, dentro de CONTACT_BOX",
-                "ratio": "|T∩R| / min(|T|, |R|) en la caja",
+                "ratio": "|T∩R| / min(|T|, |R|) en la caja; se reportan siempre también |T∩R|/|T| y |T∩R|/|R|",
+                "role": "diagnóstico, nunca criterio de aceptación (ChatGPT 003 d)",
                 "labels": {"NOT_EVALUABLE": "T o R vacía en la caja", "DISJOINT": "≤ 0,02",
                            "MARGINAL": "entre 0,02 y 0,10", "SHARED": "≥ 0,10"},
-                "also_reported": ["|T∩R|/|R|", "T filtra O2/O3", "R cubre O2 y O3"],
+                "also_reported": ["T filtra O2 u O3 (> 0,20)", "R_ref cubre O2 y O3 (≥ 0,80)"],
             },
             "interpretation": {
                 "function": "pragma_ae.aem1_v13.interpret_reciprocal",
@@ -289,22 +341,46 @@ def build(image, gray, dark):
             },
         },
         "hypotheses": [
-            {"id": "H-C1", "by": "Claude (carta 002)",
+            {"id": "H-C1", "by": "Claude (carta 002)", "function": "pragma_ae.aem1_v13.hypothesis_h_c1",
              "statement": "+POS_HAIR recupera el pelo de la chica pero vuelve a arrastrar el moño",
              "unit": "las 6 candidatas de +POS_HAIR",
              "holds_if": "≥ 4 con target_hair_included TRUE en ambas llaves y (other_person_excluded FALSE en ambas llaves u O2/O3 filtrado)",
              "refuted_if": "≥ 4 con target_hair_included TRUE en ambas llaves, other_person_excluded TRUE en ambas y sin O2/O3 filtrado",
              "otherwise": "INDETERMINATE",
              "inference_limit": "aunque se cumpla, solo muestra que esta familia de prompts no resuelve la ambigüedad (ChatGPT 002)"},
-            {"id": "H-C2", "by": "Claude (carta 003)",
+            {"id": "H-C2", "by": "Claude (carta 003)", "function": "pragma_ae.aem1_v13.hypothesis_h_c2",
              "statement": "PERTURB_POINT sobre P+1 no es STABLE en el protocolo point",
              "reason": "P+1 (2588, 1785) está en la fila superior de la caja del botón que devolvió point#0 en la corrida 1 (2555–2604 × 1785–1824)",
              "holds_if": "alguna de las 3 salidas de point es UNSTABLE o CONFLICT",
              "refuted_if": "las 3 salidas de point son STABLE"},
-            {"id": "H-G*", "by": "ChatGPT", "statement": "PENDIENTE: ChatGPT registra sus predicciones antes de la corrida"},
+            {"id": "H-G1", "by": "ChatGPT (carta 003)", "function": "pragma_ae.aem1_v13.hypothesis_h_g1",
+             "statement": "S1 tendrá un efecto predominantemente local sobre la recuperación de mangas y no sobre la propiedad del moño",
+             "unit": "las 6 candidatas de +POS_SLEEVE, cada una frente a su BASE emparejada (mismo protocolo y semilla)",
+             "holds_if": "≥ 4/6 con target_dark_sleeves_included TRUE en ambas llaves y ≤ 2/6 empeoran other_person_excluded frente a su BASE",
+             "refuted_if": "≥ 4 no recuperan mangas (no TRUE en ambas llaves) o ≥ 4 introducen una fuga nueva de la persona posterior",
+             "otherwise": "INDETERMINATE",
+             "operationalization_by_claude": ("«empeora» = BASE emparejada con other_person_excluded TRUE (referencia si es bit a bit; "
+                                              "si no, su consenso ciego) y +POS_SLEEVE con consenso FALSE")},
+            {"id": "H-G2", "by": "ChatGPT (carta 003)", "function": "pragma_ae.aem1_v13.hypothesis_h_g2",
+             "statement": "las correcciones recíprocas no cambiarán de propietario grueso entre semillas",
+             "holds_if": "reciprocal_stability ∈ {STABLE, UNSTABLE}", "refuted_if": "reciprocal_stability = CONFLICT",
+             "otherwise": "NOT_EVALUABLE no confirma ni refuta (INDETERMINATE)",
+             "reason": "tres anclas positivas sobre la posterior y negativos explícitos sobre la chica deberían estabilizar qué persona se elige antes que su frontera"},
+            {"id": "H-G3", "by": "ChatGPT (carta 003)", "function": "pragma_ae.aem1_v13.hypothesis_h_g3",
+             "statement": "al menos una T que arrastre O2/O3 será SHARED con R_ref mientras R también cubre O2/O3",
+             "unit": "candidatas de la chica de BASE y +POS",
+             "holds_if": "existe T con fuga O2/O3, R_ref cubre O2/O3 y la propiedad es SHARED",
+             "refuted_if": "R_ref cubre O2/O3 y todas las T con fuga O2/O3 son DISJOINT (y hay al menos una)",
+             "otherwise": "INDETERMINATE (también si R no es evaluable)",
+             "operationalization_by_claude": "«fuga O2/O3» = cobertura de O2 u O3 > 0,20; «R cubre O2/O3» = O2 y O3 ≥ 0,80 en R_ref"},
+            {"id": "H-G4", "by": "ChatGPT (carta 003)", "function": "pragma_ae.aem1_v13.hypothesis_h_g4",
+             "statement": "+POS_HAIR+SLEEVE conseguirá al menos una candidata que recupere a la vez pelo y mangas",
+             "holds_if": "≥ 1/6 con target_hair_included y target_dark_sleeves_included TRUE en ambas llaves", "refuted_if": "0/6",
+             "note": "no predice que eso baste para un PASS de separación"},
         ],
         "decision": {
-            "acceptance": "solo por el protocolo de auditoría v2 §5 (doble llave); ninguna métrica de este archivo acepta ni rechaza",
+            "acceptance": "solo por el protocolo de auditoría v2 rev. 1 §5 (doble llave y adjudicación técnica); ninguna métrica de este archivo acepta ni rechaza",
+            "user_veto": True,
             "sam2_rejectable": False,
             "project_status": "INCONCLUSIVE_A_E0_REQUIRED",
             "phase_b": "BLOQUEADA",
@@ -319,9 +395,11 @@ def build(image, gray, dark):
         ],
         "outputs": {
             "zip": "PRAGMA_AEM1v13_<run_id>_PENDING_EXTERNAL_AUDIT.zip",
-            "contents": ["aem1_config.json (con el SHA-256 de este prerregistro)", "aem1_manifest.json",
-                         "aem1_report.json", "alpha PNG de BASE, +POS y RECIPROCAL (36)",
-                         "aem1_perturbaciones.npz (packbits por máscara, con SHA-256 por máscara en el manifiesto)"],
+            "contents": ["aem1v13_config.json (prerregistro embebido, entorno, compuertas y luma)",
+                         "aem1v13_calls.json (las llamadas ejecutadas, en orden)", "aem1v13_manifest.json (bytes y SHA-256)",
+                         "aem1v13_report.json", "masks/<candidata>.png para BASE, +POS y RECIPROCAL (36)",
+                         "aem1v13_perturbaciones.npz (174 máscaras en packbits, con SHA-256 por máscara en el manifiesto)"],
+            "not_shown_in_colab": "el cuaderno no muestra máscaras, áreas, scores ni sentinelas: solo progreso e integridad",
         },
     }
     payload["content_sha256"] = canonical_hash(payload)

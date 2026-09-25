@@ -1,0 +1,191 @@
+{
+  "schema": "pragma.aem1_base_v2_reference",
+  "schema_version": "0.1.0",
+  "kind": "REFERENCIA_NORMALIZADA_ADJUDICADA",
+  "not": "no es una doble llave v2 heredada: los juicios se emitieron con el protocolo v1",
+  "origin": "ChatGPT 003, objeción (e): BIT_EXACT_MASK ≠ BIT_EXACT_JUDGMENT_UNDER_NEW_PROTOCOL",
+  "run_id": "20260925T062504Z_256dba9f",
+  "zip_sha256": "e6bb7a46dacced63f2735154fc2ac6f549a4aa25e0741f28a54d5723fc7d1976",
+  "sources": {
+    "doble_llave.json": "1c50da8748dc8127f9e32d6c701c67fbbda3c0621f9cf86bf2da912a027eadd8",
+    "aem1_tabla_desciegada.json": "e767deb46542c8280de02bda7491890a50c111f57ececa99fc33d9b631d801f0"
+  },
+  "use": "si BASE v1.3 reproduce bit a bit una candidata de la corrida 1, esta tabla es su referencia para la comparación causal (+POS frente a BASE emparejada); lo que no se reproduzca vuelve al paquete ciego",
+  "normalizations": [
+    {
+      "label": "B",
+      "criterion": "correct_subject",
+      "v1_adjudicated": "FALSE",
+      "v2": "TRUE",
+      "share_inside_A": 1.0,
+      "rule": "v2 §4: más de la mitad del área sobre la chica (A = cota inferior, juzgada sin persona posterior ni fondo)"
+    },
+    {
+      "label": "D",
+      "criterion": "correct_subject",
+      "v1_adjudicated": "FALSE",
+      "v2": "TRUE",
+      "share_inside_A": 1.0,
+      "rule": "v2 §4: más de la mitad del área sobre la chica (A = cota inferior, juzgada sin persona posterior ni fondo)"
+    }
+  ],
+  "candidates": {
+    "BASE|box+corrections|s0": {
+      "run1_label": "E",
+      "packed_mask_sha256": "29ad728d537c3a62c717a468f365a5582a3bf09e080fc40000ca1c825e5a620b",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|box+corrections|s1": {
+      "run1_label": "A",
+      "packed_mask_sha256": "8ae7900637c5cde7d03b215ff3d29bf34f780b4a5a65c284877c6aecea11592d",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|box+corrections|s2": {
+      "run1_label": "C",
+      "packed_mask_sha256": "7dc75cb30c37f1ce3fc792ac9f0b4c5ca894fab1b7a364b6065938d4f42084df",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|box|0": {
+      "run1_label": "G",
+      "packed_mask_sha256": "2e3cc1c8ef21fa99919506b1e2fbb4d8e24e38ac93fce7e31e272fb2e05590aa",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|box|1": {
+      "run1_label": "F",
+      "packed_mask_sha256": "9aa2c41783b0593ca8d702104b1d8756b9c0c08450c1bf9b0e9afdff2ac624e8",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|box|2": {
+      "run1_label": "I",
+      "packed_mask_sha256": "7fa08b3ddb75b6e585811caea4d65ffab19f38a621af64cdf2ade28cce011466",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|point+corrections|s0": {
+      "run1_label": "D",
+      "packed_mask_sha256": "020cb1d3e54c60d619c52427a29f7a645add824b964e16d6c4298cc9803ba03a",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|point+corrections|s1": {
+      "run1_label": "L",
+      "packed_mask_sha256": "c5ccae5a5ec06d1e4fad8348987203d91390a6ae97494d7ad669cc0392151006",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|point+corrections|s2": {
+      "run1_label": "H",
+      "packed_mask_sha256": "4c58cfd9b2f878af4ff4f3cff9e804377dc460c0bb340b9b76d03e216432d3fc",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|point|0": {
+      "run1_label": "B",
+      "packed_mask_sha256": "2cb424a207262e9ceeababd3c5f23afa3509562368f3f8782a58e2ecad889972",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|point|1": {
+      "run1_label": "K",
+      "packed_mask_sha256": "c3c44fd38281b0ee5aaa085b630df97ed05b51f2292ddaf96ddcb98562af07bc",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    },
+    "BASE|point|2": {
+      "run1_label": "J",
+      "packed_mask_sha256": "eed5e58e37125863f8412d69ba685c66b4efb38d05e567d924ed6f54bf66c33c",
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "target_hair_included": "NO_JUZGADO_V1",
+      "target_dark_sleeves_included": "NO_JUZGADO_V1",
+      "passes": false
+    }
+  },
+  "passing": []
+}

@@ -13,8 +13,16 @@ una la revisa la otra, y lo mejor de las dos queda en el repositorio.
 | **ChatGPT** | Codiseña, desafía decisiones y propone alternativas falsables; contraauditoría independiente sobre las mismas evidencias (segunda llave) | Revertir decisiones cerradas sin evidencia técnica nueva |
 
 **Doble llave (DEC‑019‑P):** un resultado solo pasa a *aceptado* con la auditoría de Claude y la
-contraauditoría de ChatGPT sobre los mismos hashes. Si discrepan, se escribe la discrepancia con
-evidencia y decide la persona usuaria.
+contraauditoría de ChatGPT sobre los mismos hashes.
+
+**Si discrepan, hay adjudicación técnica** (desde ChatGPT 003; protocolo de auditoría v2 rev. 1 §5.2):
+
+1. evidencia objetiva, si el criterio es medible;
+2. si no la hay, una tercera revisión independiente y ciega;
+3. si tampoco decide, adjudicación conjunta documentada, con regla conservadora.
+
+La persona usuaria **no** arbitra píxeles: conserva el veto y decide solo cuestiones semánticas
+irreducibles.
 
 ## Canal
 
@@ -51,4 +59,6 @@ evidencia y decide la persona usuaria.
 | 001 | ChatGPT → Claude | DEC‑013‑Q, auditoría ciega, sweep A‑E1, ontología R4, contacto sin GT; HOLD hasta freeze | archivada tal cual |
 | 002 | Claude → ChatGPT | Corrida GPU real auditada a ciegas (INCONCLUSIVE), DEC‑013‑Q adoptada por matriz prerregistrada, sweep prerregistrado, pedido de segunda llave | respondida |
 | 002 | ChatGPT → Claude | Segunda llave A–L (`NO_PASS_CANDIDATE`, parcialmente contaminada), crítica de v1.3, cambio de protocolo (paquete ciego antes que resultados) | archivada tal cual |
-| 003 | Claude → ChatGPT | Comparación A–L de las dos llaves (5 concesiones, 1 refutación medida), especificación v1.3 cerrada y prerregistrada, protocolo ciego v2, prerregistro A‑E1 para inspección | enviada para pegar |
+| 003 | Claude → ChatGPT | Comparación A–L de las dos llaves (5 concesiones, 1 refutación medida), especificación v1.3 cerrada y prerregistrada, protocolo ciego v2, prerregistro A‑E1 para inspección | respondida |
+| 003 | ChatGPT → Claude | Contraauditoría del paquete 003: integridad PASS, diseño PASS, (a)–(d) aceptadas, (e) cambio requerido, adjudicación técnica, H‑G1…G4, A‑E1 sweep `PREREGISTERED` | archivada tal cual |
+| 004 | Claude → ChatGPT | Correcciones aplicadas antes de correr (`BASE_V2_REFERENCE`, protocolo v2 rev. 1, contrato A‑E1), cuaderno v1.3 construido; **sin resultados** | enviada para pegar |

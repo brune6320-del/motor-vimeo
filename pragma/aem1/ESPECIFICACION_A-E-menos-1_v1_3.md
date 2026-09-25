@@ -1,8 +1,13 @@
 # A‑E(−1) v1.3 · especificación cerrada
 
-> **Estado:** `PREREGISTERED_PENDING_CROSS_AUDIT`. Especificación cerrada y prerregistrada, con las
-> métricas `VERIFICADO ESTÁTICO` (tests). **No hay cuaderno ni corrida todavía.** El cuaderno se
-> construye cuando ChatGPT haya inspeccionado el prerregistro.
+> **Estado:** `PREREGISTERED`: contraauditado por ChatGPT (carta 003), con sus cambios aplicados
+> antes de correr.
+> - **Cuaderno:** `outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_3.ipynb`, generado desde
+>   el prerregistro y verificado 26/26 con SAM **simulado**.
+> - **GPU:** todavía `NOT_RUN`.
+> - **Cambios de ChatGPT 003:** BASE usa `BASE_V2_REFERENCE` (§4); las discrepancias van a
+>   adjudicación técnica (§7); hay métricas continuas y razones direccionales (§6); se añaden
+>   H‑G1–G4 (§8) y la descripción de P+1 pasa a ser «botón/overol en el torso de la chica».
 > **Fuente de verdad:** [`PRERREGISTRO_A-E-menos-1_v1_3.json`](PRERREGISTRO_A-E-menos-1_v1_3.json),
 > generado y comprobable con `python3 work/design_aem1_v1_3.py [--check]` (necesita la foto).
 > Métricas: `pragma_ae/aem1_v13.py`. Tests: `tests/test_aem1_v13.py`.
@@ -75,7 +80,9 @@ de BASE, que se declaran explícitamente.
   negativos. Las semillas son las de BASE, así que la **única** diferencia frente a BASE es el
   positivo añadido.
 - **Reproducción de BASE:** se comparan los `packed_mask_sha256` con los de la corrida 1.
-  - `BIT_EXACT`: las 12 heredan los juicios de doble llave.
+  - `BIT_EXACT`: su referencia es `auditoria/aem1_20260925T062504Z_256dba9f/BASE_V2_REFERENCE.json`.
+    Es la adjudicación de la corrida 1 normalizada a las definiciones v2; **no** es una doble llave
+    v2 heredada (ChatGPT 003 e).
   - `NOT_BIT_EXACT`: las que difieran vuelven al paquete ciego.
 
 ## 5. Perturbaciones (definición exacta; ChatGPT 002 §3)
@@ -161,7 +168,10 @@ Tres familias separadas:
 |---|---|---|---|---|
 | H‑C1 | Claude (carta 002) | +POS_HAIR recupera el pelo pero vuelve a arrastrar el moño | ≥ 4 de 6 con pelo incluido (ambas llaves) y moño dentro | ≥ 4 de 6 con pelo incluido, `other_person_excluded` TRUE en ambas y sin O2/O3 |
 | H‑C2 | Claude (carta 003) | P+1 perturbado **no** es `STABLE` en `point` | alguna de las 3 salidas es `UNSTABLE` o `CONFLICT` | las 3 son `STABLE` |
-| H‑G* | ChatGPT | pendiente: ChatGPT registra las suyas **antes** de la corrida | — | — |
+| H‑G1 | ChatGPT (003) | S1 recupera mangas de forma local, sin tocar la propiedad del moño | ≥ 4/6 con mangas (ambas llaves) y ≤ 2/6 empeoran O frente a su BASE | ≥ 4 sin mangas o ≥ 4 con fuga nueva |
+| H‑G2 | ChatGPT (003) | el recíproco no cambia de propietario grueso entre semillas | `STABLE` o `UNSTABLE` | `CONFLICT` (`NOT_EVALUABLE`: indeterminada) |
+| H‑G3 | ChatGPT (003) | el moño se reclama desde las dos consultas | alguna T con fuga O2/O3, R cubre O2/O3 y `SHARED` | R cubre O2/O3 y todas las T con fuga son `DISJOINT` |
+| H‑G4 | ChatGPT (003) | +POS_HAIR+SLEEVE recupera pelo y mangas a la vez en ≥ 1 | ≥ 1/6 (ambas llaves) | 0/6 |
 
 Límite (ChatGPT 002): aunque H‑C1 se cumpla, solo muestra que esta familia de prompts no resuelve
 la ambigüedad. No distingue entre prompting, representación de SAM 2, ambigüedad de la imagen o

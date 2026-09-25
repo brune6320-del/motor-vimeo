@@ -5,7 +5,7 @@ trabajo (extensión Chrome con motor por color e ISNet). El problema abierto es 
 **segmentación por instancia**: en una foto con varias personas y objetos, elegir exactamente
 qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
-> **Fuente de verdad:** [`PROJECT_STATE.md`](PROJECT_STATE.md) (v1.4). Léelo antes de cambiar nada.
+> **Fuente de verdad:** [`PROJECT_STATE.md`](PROJECT_STATE.md) (v1.5). Léelo antes de cambiar nada.
 > Este directorio convive con un proyecto no relacionado (el backend `motor-vimeo` en la raíz
 > del repositorio); no lo toca.
 
@@ -13,7 +13,7 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
-A‑E(−1) diagnóstico chica       corrida 1 (v1.2, L4): INCONCLUSIVE (0/12) ACEPTADO por doble llave · v1.3 PRERREGISTRADO (sin cuaderno)
+A‑E(−1) diagnóstico chica       corrida 1 (v1.2, L4): INCONCLUSIVE (0/12) ACEPTADO por doble llave · v1.3 PRERREGISTRADO y contraauditado; cuaderno listo (sin GPU aún)
 A‑E0 inventario humano          kit listo; borrador de 52 objetos DRAFT_UNVERIFIED; ontología PROPUESTA sin ratificar
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
@@ -28,7 +28,8 @@ Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · ext
 | `auditoria/` | Protocolos de auditoría ciega (v1 congelado; v2 para v1.3) y la auditoría de cada corrida real, con su doble llave |
 | `aem1/` | A‑E(−1) v1.3: especificación cerrada y prerregistro (`python3 work/design_aem1_v1_3.py --check`) |
 | `ae1/` | Sweep A‑E1 prerregistrado |
-| `GUIA_COLAB_A-E-menos-1_v1_2.md` | **Pasos vigentes**: modo un clic o modo delegado (Colab CLI); qué adjuntar |
+| `GUIA_COLAB_A-E-menos-1_v1_3.md` | **Pasos vigentes** para la corrida v1.3: un clic, a ciegas; qué adjuntar y a quién |
+| `GUIA_COLAB_A-E-menos-1_v1_2.md` | Guía v1.2 (modo delegado con Colab CLI, que sigue valiendo) |
 | `dialogo/` | Ping‑pong Claude ↔ ChatGPT: protocolo y cartas numeradas |
 | `GUIA_COLAB_A-E-menos-1_v1_1.md` | Guía anterior (v1.1, con decisiones humanas); histórica |
 | `CLAUDE.md` | Reglas para agentes (incluye: cerrar siempre con los pasos del usuario) |
@@ -37,7 +38,7 @@ Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · ext
 | `pragma_ae/` | Kit A‑E en Python (NumPy + Pillow): contrato de inventario, métricas, lámina, preflight, auditoría IA de ZIPs, CLI |
 | `ae0/` | Ontología propuesta, protocolo humano y `scene_inventory.draft.json` |
 | `preflight/` | Preflight de coordenadas: v1.0 (3 puntos mal ubicados) y v1.2 (confirmación 18/18 del auditor IA) |
-| `tests/` | 47 tests (`python3 -m unittest discover -s tests`) |
+| `tests/` | 67 tests (`python3 -m unittest discover -s tests`) |
 | `inputs/` | **No versionado**: la foto y la extensión se colocan aquí y se verifican por SHA‑256 |
 | `history/handoff_v1.0/` | Paquete de traspaso v1.0 intacto (verificable con su manifiesto original) |
 
@@ -67,6 +68,9 @@ python3 work/verify_pragma_ae1_v1_2.py         # v1.2: 68 + 39 + píxeles + E2E 
 python3 -m pragma_ae audit-aem1 <ZIP de Colab>  # auditoría IA automática de una corrida real
 python3 work/double_key_aem1.py --zip <ZIP>     # comparación de las dos llaves (corrida 1)
 python3 work/design_aem1_v1_3.py --check       # el prerregistro v1.3 se reproduce byte a byte (necesita la foto)
+python3 work/build_pragma_aem1_v1_3.py         # genera el cuaderno v1.3 desde el prerregistro
+python3 work/verify_pragma_aem1_v1_3.py        # v1.3: estático + E2E con SAM simulado + auditoría (necesita la foto)
+python3 work/ae1_analysis_contract.py --check  # contrato de análisis A‑E1 (borrador; se congela con A‑E0)
 
 # A‑E0 (ver ae0/PROTOCOLO_A-E0.md)
 python3 -m pragma_ae validate ae0/scene_inventory.draft.json
@@ -78,9 +82,7 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Pegar [`dialogo/003_claude_a_chatgpt.md`](dialogo/003_claude_a_chatgpt.md) en ChatGPT, adjuntarle en
-privado `PRAGMA_carta003_diseno_v1_3.zip` y traer su respuesta. En esa respuesta ChatGPT inspecciona
-el prerregistro v1.3 y el de A‑E1 y registra sus predicciones. **Nada de Colab todavía:** el
-cuaderno v1.3 se construye después.
-Resultado de la corrida 1 con las dos llaves:
-[`auditoria/aem1_20260925T062504Z_256dba9f/INFORME.md`](auditoria/aem1_20260925T062504Z_256dba9f/INFORME.md).
+Ejecutar el cuaderno **v1.3** en Colab siguiendo
+[`GUIA_COLAB_A-E-menos-1_v1_3.md`](GUIA_COLAB_A-E-menos-1_v1_3.md) y adjuntar el ZIP **solo a
+Claude**. En paralelo, pegar [`dialogo/004_claude_a_chatgpt.md`](dialogo/004_claude_a_chatgpt.md)
+en ChatGPT; no contiene resultados.

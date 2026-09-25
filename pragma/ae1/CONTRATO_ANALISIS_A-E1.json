@@ -1,0 +1,54 @@
+{
+  "schema": "pragma.ae1_analysis_contract",
+  "schema_version": "0.1.0",
+  "status": "DRAFT_FREEZES_WITH_A_E0",
+  "sweep": {
+    "file": "ae1/SWEEP_PRERREGISTRO_A-E1.json",
+    "sha256": "25a61aa98ec7db261d837ba4129474905f41bfedb28cc76e599ef920172d5a38",
+    "status": "PREREGISTERED",
+    "cross_audit": "ChatGPT 003: las cuatro configuraciones, aceptadas sin cambios"
+  },
+  "full_experiment": "NOT_YET_FULLY_PREREGISTERED",
+  "gates": {
+    "A_E0_FROZEN": "REQUIRED: el inventario se congela por hash antes de mirar ninguna salida A-E1",
+    "METRICS_CONTRACT_FROZEN": "REQUIRED: este archivo pasa a FROZEN en el mismo commit que A-E0",
+    "SAM2_FREEZE": "el del sweep (commit, checkpoint, imagen)"
+  },
+  "metrics_implementation_sha256": {
+    "pragma_ae/metrics.py": "48b3ff9af53cd320adcb89eca82e95be4acb18272c5bfa958247e0075fb95e96",
+    "pragma_ae/masks.py": "412d1ead02fb92891ca989c5c6ac7a5b2dcd5b6bcdbb57551ec1ce12db712ac9",
+    "pragma_ae/inventory.py": "b8e6ba7fe21ccc38f3749c4e199dd5a216418492e6b2bd7bdc760463fe49a7ad"
+  },
+  "entrypoint": "pragma_ae.metrics.evaluate(objects, gt_masks, proposals, GateParams())",
+  "gate_params": {
+    "tier_a_mask_iou": 0.7,
+    "tier_b_box_iou": 0.5,
+    "tier_b_recall": 0.9,
+    "report_iou_levels": [
+      0.5,
+      0.75
+    ],
+    "fusion_leak_max": 0.1,
+    "fusion_rule": "Q",
+    "fusion_erosion_px": 5,
+    "contact_band_px": 24,
+    "contact_leak_max": 0.2,
+    "duplicate_iou": 0.7,
+    "fragment_purity": 0.8
+  },
+  "verdict_order": [
+    "INCONCLUSIVE_GT_INCOMPLETE",
+    "GATE_NOT_MET:…",
+    "INCONCLUSIVE_FUSION_NOT_EVALUABLE",
+    "GATE_MET"
+  ],
+  "reported_not_gating": [
+    "contact_leak (DEC-014-P)",
+    "fusión según P (DEC-013-P, junto a Q)",
+    "tier_a_box_screen_failures",
+    "duplicados",
+    "fragmentación"
+  ],
+  "rule": "si cambia un SHA-256 o un umbral de este contrato después de congelarlo, el análisis A-E1 es otra versión y se declara",
+  "content_sha256": "6b1e975600c224a2de3814146c6597a55bde9dc2699c7cfcd07ef8e0634c02e1"
+}

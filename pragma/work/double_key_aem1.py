@@ -223,10 +223,78 @@ def adjudicate(first: dict, second: dict, measurements) -> dict:
     }
 
 
+def v13_id(key: str, index: int) -> str:
+    """Nombre v1.3 de una candidata de la corrida 1: point#0 → BASE|point|0; box+corrections:s1#0 → BASE|box+corrections|s1."""
+    if ":" in key:
+        protocol, seed = key.split(":")
+        return f"BASE|{protocol}|{seed}"
+    return f"BASE|{key}|{index}"
+
+
+def base_v2_reference(record: dict, table: dict, zip_path: Path) -> dict:
+    """BASE_V2_REFERENCE (ChatGPT 003, objeción e): la corrida 1 normalizada a las definiciones del protocolo v2.
+
+    No es una doble llave v2 heredada: es la adjudicación ya archivada más una sola normalización.
+    En v2, ``correct_subject`` es la identidad por mayoría del área. Donde las dos llaves dijeron
+    FALSE por extensión (B y D, un botón), se mide la fracción del área que cae dentro de A y se
+    aplica la definición v2.
+    """
+    import numpy as np
+    from PIL import Image
+
+    adjudicated = record["adjudication_post_unblinding"]["table"]
+    with zipfile.ZipFile(zip_path) as z:
+        names = z.namelist()
+
+        def mask_of(key, index):
+            stem = key.replace("+", "_").replace(":", "_")
+            pattern = re.compile(rf"^aem1_{re.escape(stem)}_[0-9a-f]{{8}}_c{index}_alpha\.png$")
+            (hit,) = [n for n in names if pattern.match(n)]
+            with Image.open(io.BytesIO(z.read(hit))) as handle:
+                return np.asarray(handle.convert("L")) > 127
+
+        rows = {r["label"]: r for r in table["candidates"]}
+        girl_proxy = mask_of(rows["A"]["key"], rows["A"]["candidate_index"])
+        candidates, normalizations = {}, []
+        for label in sorted(rows):
+            row = rows[label]
+            criteria = dict(adjudicated[label]["criteria"])
+            if criteria["correct_subject"] != "TRUE":
+                mask = mask_of(row["key"], row["candidate_index"])
+                share = float((mask & girl_proxy).sum()) / max(int(mask.sum()), 1)
+                v2 = "TRUE" if share > 0.5 else "FALSE"
+                normalizations.append({"label": label, "criterion": "correct_subject", "v1_adjudicated": criteria["correct_subject"],
+                                       "v2": v2, "share_inside_A": round(share, 4),
+                                       "rule": "v2 §4: más de la mitad del área sobre la chica (A = cota inferior, juzgada sin persona posterior ni fondo)"})
+                criteria["correct_subject"] = v2
+            candidates[v13_id(row["key"], row["candidate_index"])] = {
+                "run1_label": label, "packed_mask_sha256": row["packed_mask_sha256"], "criteria": criteria,
+                "target_hair_included": "NO_JUZGADO_V1", "target_dark_sleeves_included": "NO_JUZGADO_V1",
+                "passes": all(v == "TRUE" for v in criteria.values()),
+            }
+    out = {
+        "schema": "pragma.aem1_base_v2_reference",
+        "schema_version": "0.1.0",
+        "kind": "REFERENCIA_NORMALIZADA_ADJUDICADA",
+        "not": "no es una doble llave v2 heredada: los juicios se emitieron con el protocolo v1",
+        "origin": "ChatGPT 003, objeción (e): BIT_EXACT_MASK ≠ BIT_EXACT_JUDGMENT_UNDER_NEW_PROTOCOL",
+        "run_id": record["run_id"], "zip_sha256": record["zip_sha256"],
+        "sources": {"doble_llave.json": sha(RUN / "doble_llave.json"), "aem1_tabla_desciegada.json": sha(RUN / "aem1_tabla_desciegada.json")},
+        "use": ("si BASE v1.3 reproduce bit a bit una candidata de la corrida 1, esta tabla es su referencia para la "
+                "comparación causal (+POS frente a BASE emparejada); lo que no se reproduzca vuelve al paquete ciego"),
+        "normalizations": normalizations,
+        "candidates": dict(sorted(candidates.items())),
+        "passing": sorted(k for k, v in candidates.items() if v["passes"]),
+    }
+    return out
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--zip", type=Path, help="ZIP real de la corrida (para las mediciones)")
     parser.add_argument("--out", type=Path, default=RUN / "doble_llave.json")
+    parser.add_argument("--base-reference", type=Path,
+                        help="además escribe BASE_V2_REFERENCE.json (requiere --zip)")
     args = parser.parse_args(argv)
 
     first_path, first = load("juicios_crudos.json")
@@ -292,6 +360,12 @@ def main(argv=None):
         "user_veto": "la persona usuaria puede vetar este veredicto en cualquier momento",
     }
     args.out.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if args.base_reference:
+        if not args.zip:
+            raise SystemExit("--base-reference requiere --zip")
+        reference = base_v2_reference(out, table, args.zip)
+        args.base_reference.write_text(json.dumps(reference, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        print("BASE_V2_REFERENCE:", reference["normalizations"], "· pasan:", reference["passing"])
     agreement = result["agreement"]
     print(f"celdas en acuerdo: {agreement['cells_agree']}/{agreement['cells_total']}")
     for k, v in agreement["per_criterion"].items():

@@ -65,8 +65,10 @@ def distance(a, b) -> float:
 
 
 def point_perturbations(xy, offsets=POINT_OFFSETS):
+    """Radio L∞ = 15 px. En euclídea, las axiales mueven 15 px y las diagonales 15·√2 ≈ 21,21 px (ChatGPT 003 b)."""
     x, y = (int(round(float(v))) for v in xy)
-    return [{"id": f"d{dx:+d}{dy:+d}", "dx": dx, "dy": dy, "xy": [x + dx, y + dy]} for dx, dy in offsets]
+    return [{"id": f"d{dx:+d}{dy:+d}", "dx": dx, "dy": dy, "xy": [x + dx, y + dy],
+             "linf_px": max(abs(dx), abs(dy)), "euclidean_px": round(math.hypot(dx, dy), 2)} for dx, dy in offsets]
 
 
 def box_perturbations(box, image_size, step=STEP):
@@ -249,7 +251,7 @@ def ownership(target, reciprocal, box=CONTACT_BOX) -> dict:
     shared = int(np.logical_and(t, r).sum())
     if t_px == 0 or r_px == 0:
         return {"label": "NOT_EVALUABLE", "target_px": t_px, "reciprocal_px": r_px, "shared_px": shared,
-                "shared_over_min": None, "shared_over_reciprocal": None}
+                "shared_over_min": None, "shared_over_target": None, "shared_over_reciprocal": None}
     ratio = shared / min(t_px, r_px)
     if ratio <= OWNERSHIP_DISJOINT_MAX:
         label = "DISJOINT"
@@ -257,8 +259,11 @@ def ownership(target, reciprocal, box=CONTACT_BOX) -> dict:
         label = "SHARED"
     else:
         label = "MARGINAL"
+    # Las dos razones direccionales evitan sobreinterpretar min(): una máscara pequeña casi
+    # contenida en una enorme da una razón alta sin que la grande «reclame» la zona (ChatGPT 003 d).
     return {"label": label, "target_px": t_px, "reciprocal_px": r_px, "shared_px": shared,
-            "shared_over_min": round(ratio, 4), "shared_over_reciprocal": round(shared / r_px, 4)}
+            "shared_over_min": round(ratio, 4), "shared_over_target": round(shared / t_px, 4),
+            "shared_over_reciprocal": round(shared / r_px, 4)}
 
 
 def perturbation_stability(base, perturbed: list, drop_points=(), box=CONTACT_BOX) -> dict:
@@ -271,20 +276,36 @@ def perturbation_stability(base, perturbed: list, drop_points=(), box=CONTACT_BO
     - ``STABLE``: en otro caso.
     """
     if not perturbed:
-        return {"label": "NOT_EVALUABLE", "n": 0, "min_iou": None, "min_iou_contact": None, "o_flip": []}
-    base_leak = bool(leaked(base, drop_points))
-    ious, ious_box, flips = [], [], []
+        return {"label": "NOT_EVALUABLE", "n": 0, "min_iou": None, "min_iou_contact": None, "o_flip": [],
+                "o_coverage": {}, "o_flip_detail": []}
+    def coverages(mask):
+        return {sid: round(patch_coverage(mask, xy), 4) for sid, xy in drop_points}
+
+    base_cov = coverages(base)
+    base_leak = any(v > SENTINEL_DROP_MAX for v in base_cov.values())
+    ious, ious_box, flips, detail = [], [], [], []
+    per_perturbation = {}
     for pid, mask in perturbed:
         ious.append(mask_iou(base, mask) if (as_bool(base).any() or as_bool(mask).any()) else 1.0)
         b, m = _crop(base, box), _crop(mask, box)
         ious_box.append(mask_iou(b, m) if (b.any() or m.any()) else None)
-        if bool(leaked(mask, drop_points)) != base_leak:
+        cov = coverages(mask)
+        per_perturbation[pid] = cov
+        if any(v > SENTINEL_DROP_MAX for v in cov.values()) != base_leak:
             flips.append(pid)
+            # Valor continuo y distancia al umbral: distingue un cruce 0,199→0,201 de un cambio masivo.
+            for sid in cov:
+                if (cov[sid] > SENTINEL_DROP_MAX) != (base_cov[sid] > SENTINEL_DROP_MAX):
+                    detail.append({"perturbation": pid, "sentinel": sid, "base": base_cov[sid], "perturbed": cov[sid],
+                                   "distance_to_threshold": round(min(abs(base_cov[sid] - SENTINEL_DROP_MAX),
+                                                                      abs(cov[sid] - SENTINEL_DROP_MAX)), 4)})
     min_iou = min(ious)
     boxed = [v for v in ious_box if v is not None]
     label = "CONFLICT" if flips else ("UNSTABLE" if min_iou < STABLE_IOU else "STABLE")
     return {"label": label, "n": len(perturbed), "min_iou": round(min_iou, 4),
-            "min_iou_contact": round(min(boxed), 4) if boxed else None, "o_flip": flips}
+            "min_iou_contact": round(min(boxed), 4) if boxed else None, "o_flip": flips,
+            "o_threshold": SENTINEL_DROP_MAX, "o_coverage": {"base": base_cov, "perturbed": per_perturbation},
+            "o_flip_detail": detail}
 
 
 PRIORITY = ("CONFLICT", "UNSTABLE", "STABLE", "NOT_EVALUABLE")
@@ -313,3 +334,192 @@ def interpret_reciprocal(target_leaks_bun: bool, reciprocal_stability: str, owne
     if ownership_label == "DISJOINT":
         return "SEPARATION_CONSISTENT_BOTH_WAYS"
     return "MIXED"
+
+
+def reciprocal_stability(seed_masks: list, girl_points=(), box=CONTACT_BOX) -> dict:
+    """Las 3 semillas R-corrections: IoU por pares dentro de la caja de contacto.
+
+    Orden de etiquetas: ``NOT_EVALUABLE`` (alguna vacía en la caja) > ``CONFLICT`` (el cribado K*,
+    la chica dentro de R, cambia entre semillas) > ``UNSTABLE`` (IoU mínimo < 0,90) > ``STABLE``.
+    """
+    crops = [_crop(m, box) for _, m in seed_masks]
+    if any(not c.any() for c in crops):
+        return {"label": "NOT_EVALUABLE", "pairs": {}, "min_iou": None, "k_leak": {}}
+    pairs = {}
+    for i in range(len(seed_masks)):
+        for j in range(i + 1, len(seed_masks)):
+            pairs[f"{seed_masks[i][0]} ↔ {seed_masks[j][0]}"] = round(mask_iou(crops[i], crops[j]), 4)
+    k_leak = {sid: bool(leaked(m, girl_points)) for sid, m in seed_masks}
+    min_iou = min(pairs.values()) if pairs else 1.0
+    if len(set(k_leak.values())) > 1:
+        label = "CONFLICT"
+    elif min_iou < STABLE_IOU:
+        label = "UNSTABLE"
+    else:
+        label = "STABLE"
+    return {"label": label, "pairs": pairs, "min_iou": min_iou, "k_leak": k_leak}
+
+
+def reference_mask(seed_masks: list, posterior_points=()) -> str:
+    """R_ref: la semilla con más sentinelas O* cubiertos (≥ 0,80); empate → la primera en orden."""
+    def covered(mask):
+        return sum(patch_coverage(mask, xy) >= SENTINEL_KEEP_MIN for _, xy in posterior_points)
+    best = max(range(len(seed_masks)), key=lambda i: (covered(seed_masks[i][1]), -i))
+    return seed_masks[best][0]
+
+
+# ─── plan de llamadas (contrato ejecutable del prerregistro) ──────────────────────────────────
+
+def build_call_plan(base_prompts: dict, new_prompts: dict, box, perturb_point: dict, perturb_box: list) -> list:
+    """Todas las llamadas a ``SAM2ImagePredictor.predict`` de v1.3, en orden de ejecución.
+
+    ``mask_input_from`` apunta a una llamada anterior: se usa ``low_res_logits[index][None]`` de esa
+    llamada, con ``multimask_output=False``, exactamente como v1.2.
+    """
+    P = dict(base_prompts)
+    P.update(new_prompts)
+    negatives = ["P-1", "P-2", "P-3"]
+    calls = []
+
+    def add(call_id, branch, protocol, point_ids, labels, use_box=None, seed=None, multimask=False, xy=None, **extra):
+        points = [list(xy.get(pid, P.get(pid))) if xy else list(P[pid]) for pid in point_ids]
+        n = 3 if multimask else 1
+        suffix = [str(i) for i in range(n)] if multimask else [call_id.rsplit("|", 1)[1]]
+        base_id = call_id if multimask else call_id.rsplit("|", 1)[0]
+        calls.append({"call_id": call_id, "branch": branch, "protocol": protocol, **extra,
+                      "point_ids": list(point_ids), "points": points, "labels": list(labels),
+                      "box": list(use_box) if use_box is not None else None,
+                      "mask_input_from": seed, "multimask_output": multimask,
+                      "candidates": [f"{base_id}|{k}" for k in suffix]})
+
+    def corrections(prefix, branch, extra_pos, seed_prefix, use_box=None, xy=None, **extra):
+        protocol = "box+corrections" if use_box is not None else "point+corrections"
+        ids = ["P+1"] + list(extra_pos) + negatives
+        labels = [1] * (1 + len(extra_pos)) + [0] * len(negatives)
+        for k in range(3):
+            add(f"{prefix}|{protocol}|s{k}", branch, protocol, ids, labels, use_box=use_box,
+                seed={"call_id": seed_prefix, "index": k}, xy=xy, **extra)
+
+    # BASE: réplica exacta de v1.2
+    add("BASE|point", "BASE", "point", ["P+1"], [1], multimask=True)
+    add("BASE|box", "BASE", "box", [], [], use_box=box, multimask=True)
+    corrections("BASE", "BASE", [], "BASE|point")
+    corrections("BASE", "BASE", [], "BASE|box", use_box=box)
+    # +POS: solo cambia la llamada de corrección; semillas de BASE
+    for branch, extra_pos in (("+POS_HAIR", ["H1"]), ("+POS_SLEEVE", ["S1"]), ("+POS_HAIR+SLEEVE", ["H1", "S1"])):
+        corrections(branch, branch, extra_pos, "BASE|point")
+        corrections(branch, branch, extra_pos, "BASE|box", use_box=box)
+    # RECIPROCAL_POSTERIOR
+    add("RECIPROCAL|R-point", "RECIPROCAL_POSTERIOR", "R-point", ["P-1"], [1], multimask=True)
+    for k in range(3):
+        add(f"RECIPROCAL|R-corrections|s{k}", "RECIPROCAL_POSTERIOR", "R-corrections",
+            ["P-1", "P-2", "P-3", "P+1", "H1", "S1"], [1, 1, 1, 0, 0, 0],
+            seed={"call_id": "RECIPROCAL|R-point", "index": k})
+    # PERTURB_POINT: P+1 en toda la cadena point; H1 o S1 en +POS_HAIR+SLEEVE (uno cada vez)
+    for row in perturb_point["P+1"]:
+        if not row["valid"]:
+            continue
+        prefix = f"PERTURB_POINT|P+1|{row['id']}"
+        xy = {"P+1": row["xy"]}
+        add(f"{prefix}|point", "PERTURB_POINT", "point", ["P+1"], [1], multimask=True, xy=xy,
+            target="P+1", perturbation=row["id"])
+        corrections(prefix, "PERTURB_POINT", [], f"{prefix}|point", xy=xy, target="P+1", perturbation=row["id"])
+    for target in ("H1", "S1"):
+        for row in perturb_point[target]:
+            if not row["valid"]:
+                continue
+            prefix = f"PERTURB_POINT|{target}|{row['id']}"
+            xy = {target: row["xy"]}
+            corrections(prefix, "PERTURB_POINT", ["H1", "S1"], "BASE|point", xy=xy, target=target, perturbation=row["id"])
+            corrections(prefix, "PERTURB_POINT", ["H1", "S1"], "BASE|box", use_box=box, xy=xy,
+                        target=target, perturbation=row["id"])
+    # PERTURB_BOX: la caja perturbada en toda la cadena box
+    for row in perturb_box:
+        if not row["valid"]:
+            continue
+        prefix = f"PERTURB_BOX|{row['id']}"
+        add(f"{prefix}|box", "PERTURB_BOX", "box", [], [], use_box=row["box"], multimask=True,
+            family=row["family"], perturbation=row["id"])
+        corrections(prefix, "PERTURB_BOX", [], f"{prefix}|box", use_box=row["box"],
+                    family=row["family"], perturbation=row["id"])
+    ids = [c["call_id"] for c in calls]
+    assert len(ids) == len(set(ids)), "call_id repetido"
+    seen = set()
+    for c in calls:
+        if c["mask_input_from"] is not None:
+            assert c["mask_input_from"]["call_id"] in seen, f"semilla posterior a su uso: {c['call_id']}"
+        seen.add(c["call_id"])
+    return calls
+
+
+# ─── hipótesis prerregistradas (se evalúan después del desciegue) ─────────────────────────────
+
+def _both(judgments, cid, field):
+    return all(judgments[key][cid].get(field) == "TRUE" for key in judgments)
+
+
+def _both_false(judgments, cid, field):
+    return all(judgments[key][cid].get(field) == "FALSE" for key in judgments)
+
+
+def _pos(branch):
+    return [f"{branch}|{p}|s{k}" for p in ("point+corrections", "box+corrections") for k in range(3)]
+
+
+def hypothesis_h_c1(judgments, leaks_bun) -> str:
+    """H-C1 (Claude): +POS_HAIR recupera el pelo pero arrastra el moño."""
+    cands = _pos("+POS_HAIR")
+    hair = [c for c in cands if _both(judgments, c, "target_hair_included")]
+    drags = [c for c in hair if _both_false(judgments, c, "other_person_excluded") or leaks_bun[c]]
+    clean = [c for c in hair if _both(judgments, c, "other_person_excluded") and not leaks_bun[c]]
+    if len(drags) >= 4:
+        return "HOLDS"
+    if len(clean) >= 4:
+        return "REFUTED"
+    return "INDETERMINATE"
+
+
+def hypothesis_h_c2(stability_labels: list) -> str:
+    """H-C2 (Claude): P+1 perturbado no es STABLE en point (3 salidas)."""
+    if any(label in ("UNSTABLE", "CONFLICT") for label in stability_labels):
+        return "HOLDS"
+    if stability_labels and all(label == "STABLE" for label in stability_labels):
+        return "REFUTED"
+    return "INDETERMINATE"
+
+
+def hypothesis_h_g1(judgments, consensus, base_reference) -> str:
+    """H-G1 (ChatGPT): S1 recupera mangas sin empeorar la exclusión de la persona posterior."""
+    cands = _pos("+POS_SLEEVE")
+    sleeves = sum(_both(judgments, c, "target_dark_sleeves_included") for c in cands)
+    worse = sum(base_reference[c.replace("+POS_SLEEVE", "BASE", 1)]["other_person_excluded"] == "TRUE"
+                and consensus[c]["other_person_excluded"] == "FALSE" for c in cands)
+    if sleeves >= 4 and worse <= 2:
+        return "HOLDS"
+    if len(cands) - sleeves >= 4 or worse >= 4:
+        return "REFUTED"
+    return "INDETERMINATE"
+
+
+def hypothesis_h_g2(reciprocal_label: str) -> str:
+    """H-G2 (ChatGPT): el recíproco no cambia de propietario grueso entre semillas."""
+    return {"STABLE": "HOLDS", "UNSTABLE": "HOLDS", "CONFLICT": "REFUTED"}.get(reciprocal_label, "INDETERMINATE")
+
+
+def hypothesis_h_g3(reciprocal_label: str, reciprocal_covers_bun: bool, leaks_bun: dict, ownership_labels: dict) -> str:
+    """H-G3 (ChatGPT): la región del moño se reclama desde las dos consultas."""
+    if reciprocal_label == "NOT_EVALUABLE":
+        return "INDETERMINATE"
+    leaking = [c for c, v in leaks_bun.items() if v]
+    if reciprocal_covers_bun and any(ownership_labels[c] == "SHARED" for c in leaking):
+        return "HOLDS"
+    if reciprocal_covers_bun and leaking and all(ownership_labels[c] == "DISJOINT" for c in leaking):
+        return "REFUTED"
+    return "INDETERMINATE"
+
+
+def hypothesis_h_g4(judgments) -> str:
+    """H-G4 (ChatGPT): +POS_HAIR+SLEEVE recupera a la vez pelo y mangas en al menos una candidata."""
+    hits = sum(_both(judgments, c, "target_hair_included") and _both(judgments, c, "target_dark_sleeves_included")
+               for c in _pos("+POS_HAIR+SLEEVE"))
+    return "HOLDS" if hits >= 1 else "REFUTED"

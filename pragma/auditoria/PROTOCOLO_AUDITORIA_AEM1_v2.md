@@ -1,6 +1,10 @@
 # Protocolo de auditoría ciega · A‑E(−1) · v2 (para la corrida v1.3)
 
 > **Escrito y congelado antes de la corrida v1.3** (2026‑09‑25), sin datos de esa corrida.
+> **Revisión 1** (2026‑09‑25, también antes de cualquier corrida v1.3), tras la contraauditoría de
+> ChatGPT 003 (`dialogo/003_chatgpt_a_claude.md`):
+> - las discrepancias van a **adjudicación técnica**, no a la persona usuaria (§5.2);
+> - BASE usa una **referencia normalizada**, no una doble llave heredada (§5.7).
 > Sustituye a v1 solo para corridas nuevas; la corrida `20260925T062504Z_256dba9f` sigue juzgada
 > con v1. Responde a ChatGPT 002 (cambio de protocolo, crítica de v1.3) y a la comparación A–L de
 > la carta 003. Diseño del experimento: [`aem1/PRERREGISTRO_A-E-menos-1_v1_3.json`](../aem1/PRERREGISTRO_A-E-menos-1_v1_3.json).
@@ -15,6 +19,8 @@
 | `correct_subject` = **identidad** (¿de quién es la mayoría del área?); la **extensión** va solo en `body_and_edges_complete` | Comparación A–L: κ = 0,25 en este criterio porque cada llave ponía un umbral de extensión no escrito |
 | Los agujeros cerrados ≥ 1000 px se **miden** y se muestran numerados; el auditor clasifica cada uno | F: un UNSURE mío y un TRUE de ChatGPT que la medición refutó (2 agujeros de 2540 y 1885 px) |
 | Mejor intento: desempate por sentinelas KEEP antes que por etiqueta | Con v1 empataban A y seis candidatas «solo prenda» |
+| **(rev. 1)** Discrepancia → adjudicación técnica; la persona usuaria conserva el veto | ChatGPT 003: la persona usuaria no fiscaliza lo que una IA puede verificar (DEC‑018‑P) |
+| **(rev. 1)** BASE bit a bit → `BASE_V2_REFERENCE`, no «doble llave heredada» | ChatGPT 003: una máscara idéntica no equivale a un juicio emitido con el protocolo nuevo |
 
 ## 2. Orden de los hechos (cada paso deja huella en git antes del siguiente)
 
@@ -77,8 +83,22 @@ Toda corrección queda anotada.
 
 1. Una candidata **pasa** si el ZIP es íntegro, la corrida es `REAL_GPU` y **las dos llaves** marcan
    los cuatro criterios `TRUE` tras la conciliación.
-2. Si una llave la da por aprobada y la otra no, queda en `DISCREPANCY`: se documenta con evidencia
-   y decide la persona usuaria (DEC‑019‑P). Mientras tanto no pasa.
+2. **Discrepancia → adjudicación técnica** (rev. 1). Si las llaves difieren en un criterio de una
+   candidata, se sigue este orden y se documenta cada paso:
+   1. **Evidencia objetiva**, cuando el criterio es medible: agujeros numerados, sentinelas, área
+      dentro de una referencia juzgada por ambas llaves, borde de ≤ 5 px. Si la medición decide,
+      se aplica.
+   2. **Tercera revisión independiente**, si no hay medición que decida. Otra IA sin contexto
+      recibe solo la lámina y su `LEEME`, sin cartas ni juicios; por ejemplo, el hilo de Codex o
+      una sesión nueva. Decide la mayoría de las tres.
+   3. **Adjudicación conjunta documentada** Claude + ChatGPT, si la tercera revisión no es posible
+      o responde `UNSURE`. Si siguen sin acuerdo, se aplica la regla conservadora: la celda cuenta
+      como no `TRUE`, la candidata no pasa y queda `UNRESOLVED` con ambas posiciones escritas.
+
+   Mientras la adjudicación no termina, la candidata no pasa. La persona usuaria conserva
+   **siempre el veto** (`USER_VETO = TRUE`). Solo se le consultan cuestiones **semánticas
+   irreducibles** (por ejemplo, qué cuenta como parte de la chica), nunca píxeles ni bordes, salvo
+   que ella quiera.
 3. **Si al menos una pasa:** `SEPARATION_DEMONSTRATED_UNDER_FIXED_AEM1_PROTOCOL`, con la rama, el
    protocolo y la semilla de cada una.
    - Si su rama tiene perturbación medida, se añade el calificativo de estabilidad del prerregistro.
@@ -90,12 +110,29 @@ Toda corrección queda anotada.
 5. **Nunca se usa el score.** Ninguna máscara compuesta, como `objetivo − posterior`, se evalúa.
 6. Pase lo que pase, `sam2_rejectable = false` en v1.3. El resultado habla de **esta familia de
    prompts** (ChatGPT 002). El proyecto sigue en `INCONCLUSIVE_A_E0_REQUIRED` y la Fase B, bloqueada.
+7. **BASE y la corrida 1** (rev. 1):
+   - Si una candidata BASE de v1.3 reproduce **bit a bit** su máscara de la corrida 1, su
+     referencia es
+     [`BASE_V2_REFERENCE.json`](aem1_20260925T062504Z_256dba9f/BASE_V2_REFERENCE.json).
+   - Esa tabla es la adjudicación ya archivada, normalizada a las definiciones de §4: B y D pasan
+     a `correct_subject = TRUE` porque el 100 % de su área cae dentro de A.
+   - Se llama **referencia normalizada y adjudicada**, no doble llave v2.
+   - Las preguntas auxiliares quedan `NO_JUZGADO_V1`.
+   - Lo que no se reproduzca bit a bit vuelve al paquete ciego.
 
 ## 6. Perturbación y prompt recíproco
 
 Solo informan y no pasan por las láminas ciegas. Sus métricas y etiquetas están en el prerregistro
 (`STABLE`, `UNSTABLE`, `CONFLICT`, `NOT_EVALUABLE`; `DISJOINT`, `MARGINAL`, `SHARED`). **Se leen
 después del desciegue** (paso 7), porque leerlas antes revelaría resultados.
+
+Con cada etiqueta se archiva siempre el valor continuo (rev. 1):
+
+- la cobertura de cada O* y su distancia al umbral 0,20, para distinguir un cruce marginal de un
+  cambio masivo;
+- las razones de propiedad `|T∩R|/|T|`, `|T∩R|/|R|` y `|T∩R|/min`;
+- en las perturbaciones, el radio L∞ (15 px) y la distancia euclídea (15 px en las axiales y
+  21,21 px en las diagonales).
 
 ## 7. Qué se archiva
 
