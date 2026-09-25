@@ -1274,6 +1274,8 @@ El proyecto vive en `brune6320-del/motor-vimeo` → `pragma/`. El cuaderno A‑E
 
 Abrir `pragma/outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_1.ipynb` en Google Colab con GPU **L4 o A100**, ejecutar hasta la sección 5, subir `P1070614.JPG` y revisar **la hoja de contactos** ID por ID. Si los 18 puntos caen donde dicen (decidir el propietario de O3 y O4), marcar `AEM1_CONFIG_CONFIRMADA=True` y continuar los pasos 6–12 de `outputs/PRAGMA-ESTADO-TRASPASO-CLAUDE-A-CODEX.md` §7.
 
+Guía para quien ejecuta, con qué adjuntar de vuelta: `GUIA_COLAB_A-E-menos-1_v1_1.md`.
+
 ## Resultado esperado
 
 `.ipynb` ejecutado + ZIP de A‑E(−1) (incluye `aem1_config_contact_sheet.png`) + estado `SEPARATION_DEMONSTRATED_UNDER_FIXED_AEM1_PROTOCOL` o `INCONCLUSIVE_SELECTED_OUTPUT_FAILED`, que luego se audita (P0‑2) contra alpha, damero y primeros planos.
@@ -1342,7 +1344,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
-| v1.1 | 2026‑09‑25 | continuación en Claude Code: proyecto versionado en `pragma/`; preflight de coordenadas (BUG‑008) → A‑E(−1) v1.1 verificado sin GPU; kit `pragma_ae` con 22 tests; hueco del §9 (BUG‑009) y DEC‑013‑P…017; borrador de inventario de 52 objetos; ontología propuesta; nuevo punto de reanudación |
+| v1.1 | 2026‑09‑25 | (addendum) guía de Colab paso a paso y `CLAUDE.md` con la regla de cerrar siempre con los pasos del usuario. Continuación en Claude Code: proyecto versionado en `pragma/`; preflight de coordenadas (BUG‑008) → A‑E(−1) v1.1 verificado sin GPU; kit `pragma_ae` con 22 tests; hueco del §9 (BUG‑009) y DEC‑013‑P…017; borrador de inventario de 52 objetos; ontología propuesta; nuevo punto de reanudación |
 
 ---
 

@@ -2,8 +2,10 @@
 # Generado: 2026-09-25. Verificar desde pragma/: sha256sum -c MANIFEST_SHA256.txt  (macOS: shasum -a 256 -c)
 # Excluye este archivo y los enlaces simbólicos de history/handoff_v1.0/. Entradas binarias: inputs/INPUTS_SHA256.txt
 777522474768f7fecb57c30a3dab9179ccd43656692034ac25d8aeb8e54325b1  .gitignore
-7ea6c442cba231b2bf88e5fe87adba9ffe7f26cdef2a2321952a3fdb4cb5fa4a  PROJECT_STATE.md
-d43606b9c8e762ffd1cc5251d6dc963b4a970282c8678716a39b98d1ad067540  README.md
+5535e25e87a8794c4bd3abe9adf45d8fbae5ef7236669fd1496b4ea88eac8da6  CLAUDE.md
+26c0a64e5955c14786c943856ea6b51c3e691bc2b2b0e669c3206e94b893541c  GUIA_COLAB_A-E-menos-1_v1_1.md
+74f9441277455dc519c261894371cba5e93ff461a1fdb693345d2c33eaedfd71  PROJECT_STATE.md
+e12d6c7b457b809328f843a54828cb45e2a50c0a371b33d2375d93d8b0494042  README.md
 0dae0412d84e37b0aa9d02b3531fd3c0e79662977732555525e4516690e6dcdd  ae0/ONTOLOGIA_PROPUESTA.md
 c93cdb842cdf2b8f28fcda7cdea6cd51f452e7ac1296c0166519d219ba038152  ae0/PROTOCOLO_A-E0.md
 aa011f506d3caa9bb4b1ea57960b78c5c3bf9d34068c7881833c362cc7327741  ae0/scene_inventory.draft.json

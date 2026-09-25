@@ -24,6 +24,8 @@ Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · ext
 | Ruta | Qué es |
 |---|---|
 | `PROJECT_STATE.md` | Estado operativo v1.1: decisiones, pruebas, riesgos, backlog y punto de reanudación |
+| `GUIA_COLAB_A-E-menos-1_v1_1.md` | **Pasos para ejecutar v1.1 en Colab** y qué adjuntar de vuelta |
+| `CLAUDE.md` | Reglas para agentes (incluye: cerrar siempre con los pasos del usuario) |
 | `outputs/` | Artefactos Codex/Claude originales (byte a byte) + cuaderno A‑E(−1) **v1.1** y su verificación |
 | `work/` | Constructores y verificadores (`*_codex.py` originales; `*_v1_1.py` nuevos) |
 | `pragma_ae/` | Kit A‑E en Python (NumPy + Pillow): contrato de inventario, métricas, lámina, preflight, CLI |
@@ -67,5 +69,5 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 ## Próxima acción única
 
 Ejecutar **`outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_1.ipynb`** en Colab (GPU L4/A100),
-confirmando la configuración **en la hoja de contactos**, ID por ID. Detalle en
-`PROJECT_STATE.md` §27. En paralelo, sin GPU: ratificar `ae0/ONTOLOGIA_PROPUESTA.md`.
+confirmando la configuración **en la hoja de contactos**, ID por ID. Paso a paso en
+[`GUIA_COLAB_A-E-menos-1_v1_1.md`](GUIA_COLAB_A-E-menos-1_v1_1.md). En paralelo, sin GPU: ratificar `ae0/ONTOLOGIA_PROPUESTA.md`.
