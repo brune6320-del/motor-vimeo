@@ -1,0 +1,230 @@
+{
+  "artifact": "PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_2.ipynb",
+  "artifact_bytes": 81581,
+  "artifact_sha256": "06315e0fe15b84b446570903d7a6c5c219df5ea2ecf4577429cf107cdcdef0da",
+  "source_artifact_sha256": "ddf784956de6eb8555bb9eb1f30d7af1dcabba06121568a0d4bc62be60c500dc",
+  "verification_status": "STATIC_AND_SIMULATED_E2E_PASS",
+  "experiment_status": "NOT_RUN",
+  "codex_checks_passed": 68,
+  "v1_2_checks_passed": 39,
+  "checks": [
+    {
+      "name": "codex_verifier_hash",
+      "pass": true
+    },
+    {
+      "name": "codex_68_checks_on_v1_2",
+      "pass": true,
+      "detail": "68 checks"
+    },
+    {
+      "name": "v1_1_source_hash",
+      "pass": true
+    },
+    {
+      "name": "same_cell_order",
+      "pass": true
+    },
+    {
+      "name": "only_expected_cells_changed",
+      "pass": true
+    },
+    {
+      "name": "sentinel_ids_preserved",
+      "pass": true
+    },
+    {
+      "name": "moved:O3",
+      "pass": true
+    },
+    {
+      "name": "moved:O4",
+      "pass": true
+    },
+    {
+      "name": "other_16_coordinates_unchanged",
+      "pass": true
+    },
+    {
+      "name": "no_pending_ownership_flags",
+      "pass": true
+    },
+    {
+      "name": "min_prompt_holdout_distance",
+      "pass": true,
+      "detail": "70px P-1↔O4"
+    },
+    {
+      "name": "expected_luma_covers_all_sentinels",
+      "pass": true
+    },
+    {
+      "name": "confirmation_default_true_and_attributed",
+      "pass": true
+    },
+    {
+      "name": "ready_bound_to_preflight_match",
+      "pass": true,
+      "detail": "AEM1_CONFIG_READY = bool(AEM1_CONFIG_CONFIRMADA) and AEM1_PREFLIGHT_MATCH"
+    },
+    {
+      "name": "contact_sheet_function_identical_to_kit",
+      "pass": true
+    },
+    {
+      "name": "corrections_single_mask_ast",
+      "pass": true
+    },
+    {
+      "name": "exhaustive_seeds_default",
+      "pass": true
+    },
+    {
+      "name": "external_audit_state",
+      "pass": true
+    },
+    {
+      "name": "headless_flag",
+      "pass": true
+    },
+    {
+      "name": "photo_found_by_hash_any_name",
+      "pass": true
+    },
+    {
+      "name": "e2e_browser_no_error",
+      "pass": true,
+      "detail": "None"
+    },
+    {
+      "name": "e2e_browser_status",
+      "pass": true,
+      "detail": "PENDING_EXTERNAL_AUDIT"
+    },
+    {
+      "name": "e2e_browser_keys",
+      "pass": true,
+      "detail": "['box', 'box+corrections:s0', 'box+corrections:s1', 'box+corrections:s2', 'point', 'point+corrections:s0', 'point+corrections:s1', 'point+corrections:s2']"
+    },
+    {
+      "name": "e2e_config_ready_by_evidence",
+      "pass": true
+    },
+    {
+      "name": "e2e_download_once",
+      "pass": true,
+      "detail": "1 descarga(s) del ZIP de la corrida"
+    },
+    {
+      "name": "e2e_report_fields",
+      "pass": true
+    },
+    {
+      "name": "e2e_zip_matches_manifest",
+      "pass": true
+    },
+    {
+      "name": "e2e_all_candidate_alphas",
+      "pass": true,
+      "detail": "12"
+    },
+    {
+      "name": "e2e_zip_attachable",
+      "pass": true,
+      "detail": "4665348"
+    },
+    {
+      "name": "e2e_headless_no_error",
+      "pass": true,
+      "detail": "None"
+    },
+    {
+      "name": "e2e_headless_status",
+      "pass": true
+    },
+    {
+      "name": "e2e_headless_no_download",
+      "pass": true,
+      "detail": "0 descarga(s)"
+    },
+    {
+      "name": "e2e_headless_missing_photo_clear_error",
+      "pass": true,
+      "detail": "FileNotFoundError('Modo sin navegador: sube antes la foto a /content (por ejemplo con colab upload).')"
+    },
+    {
+      "name": "audit_integrity_on_notebook_zip",
+      "pass": true
+    },
+    {
+      "name": "audit_detects_simulated_run",
+      "pass": true,
+      "detail": "SIMULATED"
+    },
+    {
+      "name": "audit_reads_all_candidates",
+      "pass": true,
+      "detail": "12"
+    },
+    {
+      "name": "audit_sentinels_match_notebook",
+      "pass": true
+    },
+    {
+      "name": "audit_renders_closeups",
+      "pass": true,
+      "detail": "13"
+    },
+    {
+      "name": "audit_simulated_never_evidence",
+      "pass": true,
+      "detail": "SIMULATED_RUN_NOT_EVIDENCE"
+    }
+  ],
+  "grounded_checks": {
+    "status": "PASS",
+    "max_deviation": 0.0,
+    "rows": {
+      "expected_luma_matches_kit": true,
+      "moved_O3_dark_hair": true,
+      "moved_O4_not_plain_wall": true
+    },
+    "measured": {
+      "O3": 57.1,
+      "O4": 185.1
+    }
+  },
+  "e2e_simulated_sam": {
+    "status": "PASS",
+    "results": {
+      "browser": {
+        "status": "PENDING_EXTERNAL_AUDIT",
+        "proposals": 8,
+        "zip_bytes": 4665348,
+        "zip_entries": 25,
+        "downloads": 1
+      },
+      "headless": {
+        "status": "PENDING_EXTERNAL_AUDIT",
+        "proposals": 8,
+        "downloads": 0
+      },
+      "headless_no_photo": {
+        "error": "FileNotFoundError"
+      }
+    },
+    "sample_zip_for_audit_tests": "local/aem1_v1_2_harness/browser/pragma_run/runs/20260925T061634Z_dfd03a66/PRAGMA_AEM1_20260925T061634Z_dfd03a66_PENDING_EXTERNAL_AUDIT.zip",
+    "scope": "SAM, torch y google.colab simulados; prueba flujo, estados y empaquetado, no calidad de segmentación"
+  },
+  "audit_tool_on_notebook_zip": {
+    "status": "PASS",
+    "run_kind": "SIMULATED",
+    "candidates": 12,
+    "integrity": true,
+    "verdict_on_simulated": "SIMULATED_RUN_NOT_EVIDENCE"
+  },
+  "limitations": [
+    "SAM 2 no se ejecutó: las máscaras del arnés son geométricas y simuladas.",
+    "La confirmación de la configuración es del auditor IA; queda ligada a la luminancia de los 18 parches."
+  ]
+}

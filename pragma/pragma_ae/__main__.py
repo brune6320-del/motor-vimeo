@@ -60,6 +60,26 @@ def cmd_preflight(args):
     print(json.dumps({"out_dir": str(out_dir), "sentinels": len(stats), "box_xyxy": box}, indent=2))
 
 
+def cmd_audit_aem1(args):
+    from .aem1_audit import audit_zip
+    from .imageio import load_rgb, locate_image
+    try:
+        photo = load_rgb(locate_image(args.image))
+    except FileNotFoundError as exc:
+        print(f"AVISO: sin foto ({exc}); solo se verifica integridad.", file=sys.stderr)
+        photo = None
+    out_dir = Path(args.out_dir or Path("local") / "audit" / Path(args.zip).stem)
+    result = audit_zip(args.zip, photo=photo, out_dir=out_dir)
+    summary = {
+        "out_dir": str(out_dir), "run_kind": result["run_kind"], "integrity": result["integrity"],
+        "candidates": len(result["candidates"]),
+        "sentinel_screen_pass": [f"{c['key']}#{c['candidate_index']}" for c in result["candidates"] if c["sentinel_screen_pass"]],
+        "inspection_order": result["inspection_order"],
+    }
+    print(json.dumps(summary, indent=2, ensure_ascii=False))
+    return 0 if result["integrity"]["pass"] else 2
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="pragma_ae")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -85,6 +105,11 @@ def main(argv=None):
     p.add_argument("--image")
     p.add_argument("--out-dir", default="local/preflight")
     p.set_defaults(func=cmd_preflight)
+    p = sub.add_parser("audit-aem1", help="auditoría IA automática del ZIP de A-E(−1)")
+    p.add_argument("zip")
+    p.add_argument("--image")
+    p.add_argument("--out-dir")
+    p.set_defaults(func=cmd_audit_aem1)
     args = parser.parse_args(argv)
     Path("local").mkdir(exist_ok=True) if args.command in ("sheet", "preflight") else None
     return args.func(args) or 0
