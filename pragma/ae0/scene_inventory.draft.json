@@ -1,0 +1,1388 @@
+{
+  "schema": "pragma.scene_inventory",
+  "schema_version": "0.1.0",
+  "status": "DRAFT_UNVERIFIED",
+  "image": {
+    "sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+    "width": 4000,
+    "height": 2248,
+    "filename_hint": "P1070614.JPG"
+  },
+  "ontology": {
+    "version": "0.1.0-propuesta",
+    "ratified": false,
+    "document": "ONTOLOGIA_PROPUESTA.md",
+    "min_short_side_px": 32,
+    "tier_a_min_short_side_px": 64,
+    "tier_a_min_visible_fraction": 0.5
+  },
+  "provenance": {
+    "method": "estimación visual sobre vistas reducidas y recortes de la foto; sin modelo de segmentación",
+    "author": "Claude Code (borrador asistido), 2026-09-25",
+    "warning": "BORRADOR: cajas aproximadas, tiers según la regla propuesta sin ratificar y posibles omisiones. No es GT.",
+    "bbox_convention": "XYXY en píxeles de la foto a resolución completa, semiabierta [x1, x2) × [y1, y2)"
+  },
+  "objects": [
+    {
+      "id": "ae0_001",
+      "canonical_name": "persona izquierda",
+      "synonyms": [],
+      "concept_en": "person",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        255,
+        280,
+        1200,
+        2248
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "low",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": true,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": "Brazos levantados sobre la cabeza; piernas cortadas por el borde inferior."
+    },
+    {
+      "id": "ae0_002",
+      "canonical_name": "persona frente",
+      "synonyms": [],
+      "concept_en": "person",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2120,
+        430,
+        3430,
+        2248
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": true,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": "Sujeto del caso A-E(−1). Mano en V sobreexpuesta, casi del valor de la pared."
+    },
+    {
+      "id": "ae0_003",
+      "canonical_name": "persona posterior",
+      "synonyms": [],
+      "concept_en": "person",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2230,
+        310,
+        2790,
+        1180
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "high",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_002"
+      ],
+      "gt_required": true,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox",
+        "occlusion"
+      ],
+      "notes": "Visible: cabello recogido, franja de cabello y hombro con blusa floral. Contacto dudoso con 002 en O3/O4 de A-E(−1)."
+    },
+    {
+      "id": "ae0_004",
+      "canonical_name": "mesa redonda central",
+      "synonyms": [],
+      "concept_en": "table",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1240,
+        1385,
+        3715,
+        2248
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "low",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_002"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity",
+        "bbox"
+      ],
+      "notes": "Mantel floral. Posiblemente una sola mesa ocluida por 002: confirmar si la parte derecha (vasitos) es la misma."
+    },
+    {
+      "id": "ae0_005",
+      "canonical_name": "mesa auxiliar posterior",
+      "synonyms": [],
+      "concept_en": "table",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1415,
+        1200,
+        2240,
+        1490
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_004"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "tier",
+        "bbox"
+      ],
+      "notes": "Mantel floral; la tapan los objetos que sostiene y la mesa central."
+    },
+    {
+      "id": "ae0_006",
+      "canonical_name": "mesa izquierda",
+      "synonyms": [],
+      "concept_en": "table",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        0,
+        1270,
+        540,
+        2248
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "tier",
+        "bbox"
+      ],
+      "notes": "Mantel de encaje; cortada por los bordes izquierdo e inferior."
+    },
+    {
+      "id": "ae0_007",
+      "canonical_name": "silla derecha",
+      "synonyms": [],
+      "concept_en": "chair",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3390,
+        1180,
+        4000,
+        2248
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_004"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": "Respaldo oscuro con hueco claro; cortada por el borde derecho."
+    },
+    {
+      "id": "ae0_008",
+      "canonical_name": "banqueta tapizada",
+      "synonyms": [],
+      "concept_en": "stool",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1090,
+        1773,
+        1315,
+        2059
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_004"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "Asiento con tapiz floral junto a la mesa central."
+    },
+    {
+      "id": "ae0_009",
+      "canonical_name": "bolso negro",
+      "synonyms": [],
+      "concept_en": "bag",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        3665,
+        1555,
+        4000,
+        2248
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity",
+        "bbox"
+      ],
+      "notes": "Sobre la silla derecha; asas visibles."
+    },
+    {
+      "id": "ae0_010",
+      "canonical_name": "cuadro con texto",
+      "synonyms": [],
+      "concept_en": "picture frame",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2276,
+        162,
+        2482,
+        363
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": ""
+    },
+    {
+      "id": "ae0_011",
+      "canonical_name": "llave colgada",
+      "synonyms": [],
+      "concept_en": "key",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2630,
+        100,
+        2672,
+        218
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "Lado corto ~42 px: Tier B por tamaño."
+    },
+    {
+      "id": "ae0_012",
+      "canonical_name": "reloj de pared",
+      "synonyms": [],
+      "concept_en": "clock",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2777,
+        81,
+        3003,
+        336
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": ""
+    },
+    {
+      "id": "ae0_013",
+      "canonical_name": "cuadro foto grupal superior",
+      "synonyms": [],
+      "concept_en": "picture frame",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3310,
+        153,
+        3548,
+        367
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": ""
+    },
+    {
+      "id": "ae0_014",
+      "canonical_name": "cuadro foto izquierda medio",
+      "synonyms": [],
+      "concept_en": "picture frame",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2062,
+        407,
+        2255,
+        598
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "Aquí cae B1 de A-E(−1)."
+    },
+    {
+      "id": "ae0_015",
+      "canonical_name": "cuadro foto centro medio",
+      "synonyms": [],
+      "concept_en": "picture frame",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2490,
+        415,
+        2612,
+        614
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_003"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "occlusion"
+      ],
+      "notes": "El cabello de 003 tapa su lado derecho."
+    },
+    {
+      "id": "ae0_016",
+      "canonical_name": "cuadro foto derecha de la cabeza",
+      "synonyms": [],
+      "concept_en": "picture frame",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3055,
+        428,
+        3276,
+        635
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_002"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "occlusion"
+      ],
+      "notes": "Las puntas de los dedos de 002 podrían tocar su esquina inferior izquierda."
+    },
+    {
+      "id": "ae0_017",
+      "canonical_name": "cuadro foto extremo derecho",
+      "synonyms": [],
+      "concept_en": "picture frame",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3435,
+        433,
+        3677,
+        646
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": ""
+    },
+    {
+      "id": "ae0_018",
+      "canonical_name": "placa de interruptor",
+      "synonyms": [],
+      "concept_en": "light switch",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1680,
+        537,
+        1730,
+        630
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "Lado corto ~50 px."
+    },
+    {
+      "id": "ae0_019",
+      "canonical_name": "cuadro oscuro pared izquierda",
+      "synonyms": [],
+      "concept_en": "picture frame",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        787,
+        69,
+        1116,
+        476
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_001"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "occlusion"
+      ],
+      "notes": "El antebrazo de 001 roza su borde inferior."
+    },
+    {
+      "id": "ae0_020",
+      "canonical_name": "panel oscuro vertical",
+      "synonyms": [],
+      "concept_en": "panel",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        394,
+        0,
+        614,
+        433
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_001"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "¿Puerta, espejo o cuadro? Identificar."
+    },
+    {
+      "id": "ae0_021",
+      "canonical_name": "lámpara colgante",
+      "synonyms": [],
+      "concept_en": "lamp",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        0,
+        0,
+        164,
+        536
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "Cortada por los bordes superior e izquierdo; ¿lámpara o farol?"
+    },
+    {
+      "id": "ae0_022",
+      "canonical_name": "copa de vidrio colgante",
+      "synonyms": [],
+      "concept_en": "wine glass",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        0,
+        519,
+        60,
+        744
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "Cortada por el borde izquierdo."
+    },
+    {
+      "id": "ae0_023",
+      "canonical_name": "plancha",
+      "synonyms": [],
+      "concept_en": "iron",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        216,
+        1047,
+        433,
+        1280
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "Con cable."
+    },
+    {
+      "id": "ae0_024",
+      "canonical_name": "caja detrás de la plancha",
+      "synonyms": [],
+      "concept_en": "box",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        138,
+        908,
+        424,
+        1047
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_023"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity",
+        "bbox"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ae0_025",
+      "canonical_name": "frasco de vidrio izquierdo",
+      "synonyms": [],
+      "concept_en": "jar",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        0,
+        1021,
+        112,
+        1349
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "Cortado por el borde izquierdo."
+    },
+    {
+      "id": "ae0_026",
+      "canonical_name": "objeto negro sobre mesa auxiliar",
+      "synonyms": [],
+      "concept_en": "telephone",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1490,
+        1152,
+        1693,
+        1260
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "¿Teléfono fijo o bolso? El concepto en inglés es provisional."
+    },
+    {
+      "id": "ae0_027",
+      "canonical_name": "portarretrato de mesa",
+      "synonyms": [],
+      "concept_en": "picture frame",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1610,
+        1031,
+        1794,
+        1212
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_026",
+        "ae0_028"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "Visto de espaldas; identificar."
+    },
+    {
+      "id": "ae0_028",
+      "canonical_name": "botella de gaseosa pequeña",
+      "synonyms": [],
+      "concept_en": "bottle",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1702,
+        995,
+        1782,
+        1230
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": ""
+    },
+    {
+      "id": "ae0_029",
+      "canonical_name": "vaso translúcido posterior",
+      "synonyms": [],
+      "concept_en": "cup",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1806,
+        1099,
+        1907,
+        1212
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ae0_030",
+      "canonical_name": "botella grande de plástico",
+      "synonyms": [],
+      "concept_en": "bottle",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2002,
+        1093,
+        2193,
+        1396
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_033"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "Transparente: su borde depende de lo que hay detrás."
+    },
+    {
+      "id": "ae0_031",
+      "canonical_name": "botella translúcida tras el brazo",
+      "synonyms": [],
+      "concept_en": "bottle",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2228,
+        1176,
+        2300,
+        1367
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "high",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_002"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity",
+        "bbox"
+      ],
+      "notes": "Casi oculta por el brazo de 002."
+    },
+    {
+      "id": "ae0_032",
+      "canonical_name": "rollo de papel toalla",
+      "synonyms": [],
+      "concept_en": "paper towel roll",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1702,
+        1293,
+        1850,
+        1617
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": ""
+    },
+    {
+      "id": "ae0_033",
+      "canonical_name": "bolsa de plástico con etiqueta",
+      "synonyms": [],
+      "concept_en": "plastic bag",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1913,
+        1367,
+        2169,
+        1533
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ae0_034",
+      "canonical_name": "botella oscura con pico",
+      "synonyms": [],
+      "concept_en": "bottle",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1836,
+        1289,
+        1937,
+        1760
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": ""
+    },
+    {
+      "id": "ae0_035",
+      "canonical_name": "flor blanca",
+      "synonyms": [],
+      "concept_en": "flower",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1452,
+        1575,
+        1569,
+        1662
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "¿Rosa artificial?"
+    },
+    {
+      "id": "ae0_036",
+      "canonical_name": "servilletas arrugadas",
+      "synonyms": [],
+      "concept_en": "napkin",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1883,
+        1694,
+        2098,
+        1849
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity",
+        "instance_count"
+      ],
+      "notes": "Puede ser más de una instancia."
+    },
+    {
+      "id": "ae0_037",
+      "canonical_name": "envoltorio oscuro pequeño",
+      "synonyms": [],
+      "concept_en": "wrapper",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1967,
+        1626,
+        2076,
+        1690
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ae0_038",
+      "canonical_name": "tapa blanca pequeña",
+      "synonyms": [],
+      "concept_en": "lid",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2074,
+        1626,
+        2143,
+        1679
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "Lado corto ~53 px."
+    },
+    {
+      "id": "ae0_039",
+      "canonical_name": "vasito con palito delante izquierda",
+      "synonyms": [],
+      "concept_en": "cup",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3179,
+        1770,
+        3315,
+        1938
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox",
+        "instance_count"
+      ],
+      "notes": "Postre con palito; el conjunto de vasitos puede tener más instancias ocultas por 002."
+    },
+    {
+      "id": "ae0_040",
+      "canonical_name": "vasito con palito delante derecha",
+      "synonyms": [],
+      "concept_en": "cup",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3321,
+        1690,
+        3452,
+        1950
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ae0_041",
+      "canonical_name": "vasito con palito detrás izquierda",
+      "synonyms": [],
+      "concept_en": "cup",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        3155,
+        1745,
+        3262,
+        1843
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_039"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ae0_042",
+      "canonical_name": "vasito con palito detrás derecha",
+      "synonyms": [],
+      "concept_en": "cup",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        3286,
+        1740,
+        3393,
+        1843
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_040"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ae0_043",
+      "canonical_name": "gorra",
+      "synonyms": [],
+      "concept_en": "cap",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        571,
+        285,
+        900,
+        458
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "low",
+      "truncation": "none",
+      "parent_id": "ae0_001",
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "Parte de 001; sus manos la cubren en parte."
+    },
+    {
+      "id": "ae0_044",
+      "canonical_name": "etiqueta con nombre de persona izquierda",
+      "synonyms": [],
+      "concept_en": "name tag",
+      "kind": "text",
+      "tier": "C",
+      "bbox": [
+        758,
+        782,
+        874,
+        860
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": "ae0_001",
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "No transcribir el nombre (privacidad)."
+    },
+    {
+      "id": "ae0_045",
+      "canonical_name": "etiqueta con nombre de persona frente",
+      "synonyms": [],
+      "concept_en": "name tag",
+      "kind": "text",
+      "tier": "C",
+      "bbox": [
+        2487,
+        1387,
+        2712,
+        1450
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": "ae0_002",
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "No transcribir el nombre (privacidad)."
+    },
+    {
+      "id": "ae0_046",
+      "canonical_name": "collar",
+      "synonyms": [],
+      "concept_en": "necklace",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2700,
+        988,
+        2900,
+        1150
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": "ae0_002",
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": ""
+    },
+    {
+      "id": "ae0_047",
+      "canonical_name": "arete",
+      "synonyms": [],
+      "concept_en": "earring",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2655,
+        875,
+        2715,
+        955
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": "ae0_002",
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ae0_048",
+      "canonical_name": "mano en V",
+      "synonyms": [],
+      "concept_en": "hand",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2725,
+        620,
+        3350,
+        1362
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": "ae0_002",
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": "Sobreexpuesta: caso de prueba para la jerarquía persona/mano."
+    },
+    {
+      "id": "ae0_049",
+      "canonical_name": "cabello recogido de persona posterior",
+      "synonyms": [],
+      "concept_en": "hair",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2636,
+        310,
+        2790,
+        560
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "none",
+      "truncation": "none",
+      "parent_id": "ae0_003",
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "bbox"
+      ],
+      "notes": "Aquí caen P-2 y O2 de A-E(−1) v1.1."
+    },
+    {
+      "id": "ae0_050",
+      "canonical_name": "teléfono móvil en la mano",
+      "synonyms": [],
+      "concept_en": "cell phone",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2215,
+        1960,
+        2305,
+        2170
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "high",
+      "truncation": "none",
+      "parent_id": null,
+      "occluded_by": [
+        "ae0_002"
+      ],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity",
+        "bbox"
+      ],
+      "notes": "Objeto oscuro sostenido por la mano que cuelga de 002; añadido en la revisión de la lámina."
+    },
+    {
+      "id": "ae0_051",
+      "canonical_name": "pared clara",
+      "synonyms": [],
+      "concept_en": "wall",
+      "kind": "stuff",
+      "tier": "C",
+      "bbox": [
+        1150,
+        0,
+        4000,
+        1500
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [],
+      "notes": "Región stuff; la caja es solo de referencia."
+    },
+    {
+      "id": "ae0_052",
+      "canonical_name": "zona oscura izquierda",
+      "synonyms": [],
+      "concept_en": "wall",
+      "kind": "stuff",
+      "tier": "C",
+      "bbox": [
+        0,
+        0,
+        1150,
+        1300
+      ],
+      "bbox_source": "draft_visual_estimate",
+      "occlusion": "medium",
+      "truncation": "medium",
+      "parent_id": null,
+      "occluded_by": [],
+      "gt_required": false,
+      "gt_mask": null,
+      "ignore_reason": null,
+      "review": [
+        "identity"
+      ],
+      "notes": "Pared en sombra o puerta; región stuff."
+    }
+  ]
+}

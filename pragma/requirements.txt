@@ -1,0 +1,4 @@
+numpy>=1.24
+pillow>=10.0
+# Solo para work/verify_pragma_ae1_v1_1.py (arnés CPU de las celdas del cuaderno):
+matplotlib>=3.7

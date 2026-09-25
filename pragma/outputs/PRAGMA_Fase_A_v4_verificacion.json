@@ -1,0 +1,270 @@
+{
+  "artifact": "/Users/usuario/Documents/Codex/2026-08-10/referenced-chatgpt-conversation-this-is-an/outputs/PRAGMA_Fase_A_SAM2_v4_autocontenido.ipynb",
+  "artifact_sha256": "148ea1bca428fed7723ec0af7bc8b00f0603f27f8de56cc046e53e532f1270db",
+  "claude_patch": "/Users/usuario/Desktop/PRAGMA_Fase_A_v4_parche.md",
+  "claude_patch_sha256": "d5c05f4c2c02026e8ef34baec11b606c28bc1d6f3ae71d643b028548845fe722",
+  "verification_scope": "JSON, AST, generated JavaScript, executable pure logic, synthetic smoke/matte/status regressions. Full SAM 2 quality still requires the Colab GPU acceptance run.",
+  "tests_passed": 15,
+  "tests_total": 15,
+  "all_passed": true,
+  "tests": [
+    {
+      "name": "notebook_json_and_syntax",
+      "passed": true,
+      "evidence": {
+        "cells": 28,
+        "code_cells": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          17,
+          18,
+          20,
+          21,
+          22,
+          24,
+          26
+        ]
+      }
+    },
+    {
+      "name": "embedded_acceptance_image",
+      "passed": true,
+      "evidence": {
+        "sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+        "size": [
+          4000,
+          2248
+        ],
+        "bytes": 4260352
+      }
+    },
+    {
+      "name": "precision_matrix",
+      "passed": true,
+      "evidence": {
+        "T4": {
+          "device": "cuda",
+          "dtype": "float16",
+          "autocast": true
+        },
+        "A100": {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "autocast": true
+        },
+        "CPU": {
+          "device": "cpu",
+          "dtype": "float32",
+          "autocast": false
+        }
+      }
+    },
+    {
+      "name": "named_generation_result_and_soft_compositor",
+      "passed": true,
+      "evidence": {
+        "generated_masks_dataclass": true,
+        "alpha_values": [
+          128
+        ]
+      }
+    },
+    {
+      "name": "logits_api_without_tuple_abi_bug",
+      "passed": true,
+      "evidence": {
+        "return_logits": true,
+        "threshold_before_fp16_storage": true,
+        "named_return": true
+      }
+    },
+    {
+      "name": "click_and_box_selector_javascript",
+      "passed": true,
+      "evidence": {
+        "node_returncode": 0,
+        "box_two_clicks": true,
+        "timeouts": true
+      }
+    },
+    {
+      "name": "content_sensitive_smoke",
+      "passed": true,
+      "evidence": {
+        "good": {
+          "status": "PASS",
+          "checks": {
+            "three_candidates": true,
+            "shapes_match": true,
+            "finite_scores_logits": true,
+            "at_least_one_nonempty": true,
+            "point_in_at_least_one_mask": true,
+            "at_least_one_plausible_area": true
+          },
+          "areas": [
+            0.04,
+            0.09,
+            0.0144
+          ],
+          "pairwise_iou": [
+            0.4444444444444444,
+            0.36,
+            0.16
+          ]
+        },
+        "away_from_point": {
+          "status": "FAIL",
+          "checks": {
+            "three_candidates": true,
+            "shapes_match": true,
+            "finite_scores_logits": true,
+            "at_least_one_nonempty": true,
+            "point_in_at_least_one_mask": false,
+            "at_least_one_plausible_area": true
+          },
+          "areas": [
+            0.0225,
+            0.0225,
+            0.0225
+          ],
+          "pairwise_iou": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "logit_feather_is_nonblocking_diagnostic",
+      "passed": true,
+      "evidence": {
+        "diagnostics": {
+          "soft_band_fraction": 0.6,
+          "transparent_fraction": 0.2,
+          "opaque_fraction": 0.2,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "binary_acceptance_separate": true
+      }
+    },
+    {
+      "name": "box_only_end_to_end_structure",
+      "passed": true,
+      "evidence": {
+        "optional_prompts": true,
+        "box_serialized": true,
+        "finalize_guarded": true,
+        "refinement_preserves_box": true
+      }
+    },
+    {
+      "name": "no_automatic_argmax",
+      "passed": true,
+      "evidence": {
+        "calls": []
+      }
+    },
+    {
+      "name": "modalities_recorded_from_proposals",
+      "passed": true,
+      "evidence": {
+        "point": true,
+        "point_corrections": true,
+        "box": true,
+        "proposal_ids_recorded": true
+      }
+    },
+    {
+      "name": "bound_pass_and_audited_fail",
+      "passed": true,
+      "evidence": {
+        "pass": {
+          "status": "PASS",
+          "modalities_tried": [
+            "point"
+          ],
+          "modalities_missing": [
+            "box",
+            "point+corrections"
+          ],
+          "bound_trial_id": "t1"
+        },
+        "stale_pass_rejected": true,
+        "complete_fail": {
+          "status": "FAIL",
+          "modalities_tried": [
+            "box",
+            "point",
+            "point+corrections"
+          ],
+          "modalities_missing": [],
+          "failure_audit": {
+            "complete": true,
+            "verified_failures": {
+              "box": "p_box",
+              "point": "p_point",
+              "point+corrections": "p_corr"
+            },
+            "missing_or_invalid": []
+          }
+        },
+        "incomplete_fail": {
+          "status": "INCONCLUSIVE",
+          "modalities_tried": [
+            "box",
+            "point",
+            "point+corrections"
+          ],
+          "modalities_missing": [],
+          "failure_audit": {
+            "complete": false,
+            "verified_failures": {
+              "point": "p_point",
+              "point+corrections": "p_corr"
+            },
+            "missing_or_invalid": [
+              {
+                "modality": "box",
+                "reason": "faltan candidatas por revisar"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "status_calculation_is_pure",
+      "passed": true,
+      "evidence": {
+        "notes_unchanged": true
+      }
+    },
+    {
+      "name": "append_only_trials_and_zip_hash_verification",
+      "passed": true,
+      "evidence": {
+        "unique_trial_filenames": true,
+        "pre_export_hash_check": true,
+        "zip_payload_hash_check": true
+      }
+    },
+    {
+      "name": "claude_memo_vs_integrated_v4",
+      "passed": true,
+      "evidence": {
+        "claude_patch_sha256": "d5c05f4c2c02026e8ef34baec11b606c28bc1d6f3ae71d643b028548845fe722",
+        "contains_todo": true,
+        "integrated_notebook_sha256": "148ea1bca428fed7723ec0af7bc8b00f0603f27f8de56cc046e53e532f1270db",
+        "integrated_box_workflow": true
+      }
+    }
+  ]
+}

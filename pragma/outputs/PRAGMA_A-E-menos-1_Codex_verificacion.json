@@ -1,0 +1,301 @@
+{
+  "artifact": "PRAGMA_A-E-menos-1_diagnostico_caso_chica_Codex.ipynb",
+  "artifact_bytes": 70970,
+  "artifact_sha256": "5941be56b22fccc3efd4e299cc8ee6a12cb7c473d2977d4c0876e4e2ea73b706",
+  "verification_status": "STATIC_VERIFICATION_PASS",
+  "experiment_status": "NOT_RUN",
+  "checks_passed": 68,
+  "checks": [
+    {
+      "name": "base_hash",
+      "pass": true,
+      "detail": "757e9722aa98a4d9420fdca4f287ef36fe78d7b09e2b9e12b3be6896e76e814a"
+    },
+    {
+      "name": "claude_aem1_archived_byte_exact",
+      "pass": true,
+      "detail": "7e832ff61d28077612b9c4cabc4274669b09884f06ab340653e4cc259ace4e91"
+    },
+    {
+      "name": "claude_patch_archived_byte_exact",
+      "pass": true,
+      "detail": "d5c05f4c2c02026e8ef34baec11b606c28bc1d6f3ae71d643b028548845fe722"
+    },
+    {
+      "name": "nbformat",
+      "pass": true
+    },
+    {
+      "name": "cell_count",
+      "pass": true,
+      "detail": "23"
+    },
+    {
+      "name": "unique_cell_ids",
+      "pass": true
+    },
+    {
+      "name": "code_cell_count",
+      "pass": true,
+      "detail": "10"
+    },
+    {
+      "name": "markdown_cell_count",
+      "pass": true,
+      "detail": "13"
+    },
+    {
+      "name": "clean_execution_counts",
+      "pass": true
+    },
+    {
+      "name": "no_saved_outputs",
+      "pass": true
+    },
+    {
+      "name": "all_code_cells_parse",
+      "pass": true,
+      "detail": "pragma-aem1-02, pragma-aem1-03, pragma-aem1-04, pragma-aem1-05, pragma-aem1-06, pragma-aem1-07, pragma-aem1-08, pragma-aem1-09, pragma-aem1-10, pragma-aem1-11"
+    },
+    {
+      "name": "forbidden_absent:<i>",
+      "pass": true
+    },
+    {
+      "name": "forbidden_absent:<la candidata elegida>",
+      "pass": true
+    },
+    {
+      "name": "forbidden_absent:BOX_CHICA = (x_min",
+      "pass": true
+    },
+    {
+      "name": "forbidden_absent:eval_js",
+      "pass": true
+    },
+    {
+      "name": "forbidden_absent:ClickSelector(",
+      "pass": true
+    },
+    {
+      "name": "forbidden_absent:np.argmax",
+      "pass": true
+    },
+    {
+      "name": "forbidden_absent:register_proposal(",
+      "pass": true
+    },
+    {
+      "name": "exact_image_hash_present",
+      "pass": true
+    },
+    {
+      "name": "dtype_dispatch_t4",
+      "pass": true
+    },
+    {
+      "name": "dtype_dispatch_ampere",
+      "pass": true
+    },
+    {
+      "name": "dtype_dispatch_cpu",
+      "pass": true
+    },
+    {
+      "name": "no_model_downgrade",
+      "pass": true
+    },
+    {
+      "name": "manual_candidate_selection",
+      "pass": true
+    },
+    {
+      "name": "iterative_mask_input",
+      "pass": true
+    },
+    {
+      "name": "corrected_single_mask",
+      "pass": true
+    },
+    {
+      "name": "four_protocols",
+      "pass": true
+    },
+    {
+      "name": "selector_module_executed",
+      "pass": true
+    },
+    {
+      "name": "selector_protocol_method_executed",
+      "pass": true
+    },
+    {
+      "name": "phase_b_always_blocked",
+      "pass": true
+    },
+    {
+      "name": "no_extension_or_phase_b_mutation",
+      "pass": true
+    },
+    {
+      "name": "whitelist_not_directory_glob",
+      "pass": true
+    },
+    {
+      "name": "zip_roundtrip_hash_verification",
+      "pass": true
+    },
+    {
+      "name": "pragma_resource_metrics",
+      "pass": true
+    },
+    {
+      "name": "aem1_namespace_distinct_from_ae1_inventory",
+      "pass": true
+    },
+    {
+      "name": "protocol_completion_gate",
+      "pass": true
+    },
+    {
+      "name": "config_digest_bound",
+      "pass": true
+    },
+    {
+      "name": "rerun_invalidation",
+      "pass": true
+    },
+    {
+      "name": "selection_referential_integrity",
+      "pass": true
+    },
+    {
+      "name": "selected_evidence_hash_rechecked",
+      "pass": true
+    },
+    {
+      "name": "human_review_bound_to_selection",
+      "pass": true
+    },
+    {
+      "name": "no_false_case_fail_status",
+      "pass": true
+    },
+    {
+      "name": "closeup_evidence",
+      "pass": true
+    },
+    {
+      "name": "preview_downsampled",
+      "pass": true
+    },
+    {
+      "name": "oom_embedding_and_prompt",
+      "pass": true
+    },
+    {
+      "name": "atomic_zip",
+      "pass": true
+    },
+    {
+      "name": "artifact_path_guard",
+      "pass": true
+    },
+    {
+      "name": "manifest_bytes_verified",
+      "pass": true
+    },
+    {
+      "name": "sentinel_spec_count",
+      "pass": true,
+      "detail": "real=18, synthetic=3"
+    },
+    {
+      "name": "sentinel_ids_unique",
+      "pass": true
+    },
+    {
+      "name": "real_sentinel_coordinates_unique",
+      "pass": true
+    },
+    {
+      "name": "prompt_holdout_disjoint",
+      "pass": true
+    },
+    {
+      "name": "drop_categories_separate",
+      "pass": true
+    },
+    {
+      "name": "rounded_bounds_guard",
+      "pass": true
+    },
+    {
+      "name": "sentinels_do_not_prove_global_cleanliness",
+      "pass": true
+    },
+    {
+      "name": "sentinel_requires_human_review",
+      "pass": true
+    },
+    {
+      "name": "truth_config_gate",
+      "pass": true
+    },
+    {
+      "name": "truth_protocol_gate",
+      "pass": true
+    },
+    {
+      "name": "truth_pending_without_review",
+      "pass": true
+    },
+    {
+      "name": "truth_review_binding",
+      "pass": true
+    },
+    {
+      "name": "truth_notes_required",
+      "pass": true
+    },
+    {
+      "name": "truth_human_false_is_inconclusive",
+      "pass": true
+    },
+    {
+      "name": "truth_sentinel_false_is_inconclusive",
+      "pass": true
+    },
+    {
+      "name": "truth_demonstration_requires_all_gates",
+      "pass": true
+    },
+    {
+      "name": "notebook_status_function_found",
+      "pass": true
+    },
+    {
+      "name": "notebook_status_matches_protocol_gate",
+      "pass": true
+    },
+    {
+      "name": "notebook_status_matches_review_binding",
+      "pass": true
+    },
+    {
+      "name": "notebook_status_never_false_case_fail",
+      "pass": true
+    }
+  ],
+  "source_hashes": {
+    "base": "757e9722aa98a4d9420fdca4f287ef36fe78d7b09e2b9e12b3be6896e76e814a",
+    "claude_aem1": "7e832ff61d28077612b9c4cabc4274669b09884f06ab340653e4cc259ace4e91",
+    "claude_patch": "d5c05f4c2c02026e8ef34baec11b606c28bc1d6f3ae71d643b028548845fe722",
+    "image": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d"
+  },
+  "limitations": [
+    "Validación local estática y lógica; no ejecuta SAM 2 ni CUDA.",
+    "La prueba real pendiente debe correrse en Google Colab con la fotografía de aceptación.",
+    "Los sentinelas son muestras locales; no reemplazan máscaras ground-truth."
+  ]
+}
