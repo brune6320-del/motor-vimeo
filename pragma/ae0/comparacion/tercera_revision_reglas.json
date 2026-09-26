@@ -1,0 +1,38 @@
+{
+  "schema": "pragma.ae0_third_review_rules",
+  "schema_version": "0.1.0",
+  "fixed_before": "enviar el paquete a Codex y antes de conocer su respuesta",
+  "reviewer": "Codex (tercera revisión procedimental, no un anotador estadísticamente independiente)",
+  "blindness": "Codex no sabe qué llave propuso u omitió cada región ni los nombres tentativos; solo ve la foto, dos regiones marcadas «a» y «b» y las reglas R2, R4 y R6",
+  "items": {
+    "a": {
+      "region_bbox": [
+        0,
+        519,
+        60,
+        744
+      ],
+      "key_ref": "C:022"
+    },
+    "b": {
+      "region_bbox": [
+        0,
+        1021,
+        112,
+        1349
+      ],
+      "key_ref": "C:025"
+    }
+  },
+  "answers_allowed": [
+    "DISTINCT_OBJECT",
+    "NOT_SEPARABLE",
+    "CANNOT_DETERMINE"
+  ],
+  "decision_rule": {
+    "DISTINCT_OBJECT": "INCLUDE: tier por R-tier; nombre neutro o el que describa Codex",
+    "NOT_SEPARABLE": "EXCLUDE: no entra al inventario (fondo, parte de otro objeto o reflejo)",
+    "CANNOT_DETERMINE": "IGNORE con ignore_reason «existencia no establecida: llaves en desacuerdo y tercera revisión sin decisión»; se lista, pero no cuenta"
+  },
+  "after": "sin cuarta vuelta: la respuesta de Codex, con esta regla, cierra la pregunta"
+}
