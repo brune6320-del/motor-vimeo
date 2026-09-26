@@ -1,5 +1,8 @@
 # A‑E0 · Hoja de ratificación de la ontología v0.2
 
+> **RATIFICADA** por la persona usuaria el 2026‑09‑26 (20:13 UTC), tal cual, R1–R11 sin cambios:
+> «Acepto la ontología v0.2». Registro: `RATIFICACION_REGISTRO_v0_2.json`.
+
 > **Para la persona usuaria.** Esta es la única decisión que A‑E0 necesita de ti antes de empezar. La
 > hoja resume en lenguaje llano lo que `ONTOLOGIA_PROPUESTA.md` (§2 y §5) propone, actualizado con
 > las decisiones posteriores (DEC‑013‑Q, DEC‑024 y DEC‑025).

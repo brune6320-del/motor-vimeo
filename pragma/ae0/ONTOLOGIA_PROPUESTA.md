@@ -1,6 +1,9 @@
 # A‑E0 · Ontología propuesta y contrato de evaluación
 
-> **Estado:** `PROPUESTA — NO RATIFICADA`. Versión `0.1.0-propuesta` · 2026‑09‑25.
+> **Estado:** **v0.2 `RATIFICADA`** por la persona usuaria el 2026‑09‑26, tal como la resume
+> `RATIFICACION_ONTOLOGIA_v0_2.md` (R1–R11; registro `RATIFICACION_REGISTRO_v0_2.json`). Este documento
+> conserva el razonamiento; donde difiera de la hoja (por ejemplo §6, el coste en horas humanas, que
+> DEC‑024 sustituyó), manda la hoja. Versión original `0.1.0-propuesta` · 2026‑09‑25.
 > **Modo GENESIS:** dirección técnica + diagnóstico. Cada punto trae una recomendación
 > explícita; **la decisión es tuya**, porque el inventario es la verdad contra la que se va a
 > juzgar todo lo demás y la firma quien lo ratifica.
