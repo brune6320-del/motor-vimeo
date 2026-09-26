@@ -14,7 +14,7 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
 A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4: H2 repara la franja; falta pelo lateral → A‑E(−1) CERRADO INCONCLUSO, confirmado por doble llave
-A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; ontología v0.2 RATIFICADA; las dos llaves de inventario comparadas; adjudicación propuesta (carta 012)
+A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; ontología v0.2 RATIFICADA; inventario adjudicado por doble llave (65 objetos); faltan 2 en Codex y las máscaras de personas
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
 Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · extensión NO modificada
@@ -90,6 +90,9 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Pegar en ChatGPT la carta [`dialogo/012_claude_a_chatgpt.md`](dialogo/012_claude_a_chatgpt.md) y
-adjuntar `PRAGMA_carta012_comparacion.zip`: comparación de las dos llaves de inventario y propuesta de
-adjudicación ([`ae0/comparacion/`](ae0/comparacion/)).
+Dos pegados en paralelo:
+
+1. En ChatGPT, la carta [`dialogo/013_claude_a_chatgpt.md`](dialogo/013_claude_a_chatgpt.md) con
+   `PRAGMA_carta013_inventario.zip`: inventario adjudicado [`ae0/scene_inventory.json`](ae0/scene_inventory.json)
+   y formato de polígonos.
+2. En Codex, el paquete ciego `PRAGMA_tercera_revision_A-E0.zip` (dos regiones dudosas).
