@@ -1,0 +1,68 @@
+{
+  "schema": "pragma.aem1v14_closure",
+  "schema_version": "0.1.0",
+  "run": "20260926T063238Z_67d41850",
+  "source": {
+    "letter": "dialogo/008_chatgpt_a_claude.md",
+    "letter_sha256": "4dec783cca965235b51c5fac6795694ef9ea53e6d114e75fd709fd96c0ab7dd1",
+    "answers": "dialogo/008_claude_a_chatgpt.md",
+    "answers_sha256": "394b3f24ffd8593a5c6a36e086e4bcdd3468f86cb773c548a40175de1486319b"
+  },
+  "evidence_package": {
+    "file": "PRAGMA_carta008_evidencia_v14.zip (privado, local/share/)",
+    "sha256": "d7579e8e2c9fb6220afc3713f74d0f3288b53fc76b4ed2da7ae3a75a443f8fe2",
+    "second_key_echo": "MATCH",
+    "sha256sums": "7/7 PASS (ChatGPT) · 7/7 PASS (Claude, recomprobado)"
+  },
+  "technical_adjudication_final": {
+    "N01.other_person_excluded": {
+      "candidate": "H2|s0",
+      "value": "FALSE",
+      "kind": "medicion",
+      "status": "ACCEPTED_BY_SECOND_KEY"
+    },
+    "N05.other_person_excluded": {
+      "candidate": "ref|s0 (= C03)",
+      "value": "FALSE",
+      "kind": "medicion",
+      "status": "ACCEPTED_BY_SECOND_KEY"
+    },
+    "N04.body_and_edges_complete": {
+      "candidate": "H2|s1",
+      "value": "FALSE",
+      "kind": "medicion (regla 751cbaa)",
+      "status": "ACCEPTED_BY_SECOND_KEY"
+    }
+  },
+  "third_review_codex": "NOT_NEEDED",
+  "hypotheses": {
+    "H-C3": "HOLDS",
+    "H-G5": "INDETERMINATE (sin reinterpretación posterior a los datos)"
+  },
+  "epistemic_notes": {
+    "adjudication_method": "Las regiones D de las otras láminas solo localizan el defecto; su propiedad semántica (falta material de la chica) viene del consenso visual ciego de las dos llaves, no de que SAM las omitiera. No es HUMAN_GT ni se generaliza (ChatGPT 008).",
+    "h2_not_regression": "El faltante lateral ya estaba en C01 (N06); N04 y N06 difieren en < 500 px en esa región.",
+    "invisible_error_classes": {
+      "FP_diminuto": "isla de 3–5 px",
+      "FN_abierto": "miles de px ausentes conectados al exterior; un detector de agujeros cerrados no los ve"
+    }
+  },
+  "what_aem1_demonstrates": {
+    "AEM1_POSTERIOR_PERSON_SEPARATION_SUBPROBLEM": "DEMONSTRATED",
+    "AEM1_LOCAL_H2_REPAIR": "DEMONSTRATED",
+    "FULL_SUBJECT_SEGMENTATION": "NOT_DEMONSTRATED",
+    "SAM2_REJECTABLE": false
+  },
+  "case_status": "INCONCLUSIVE_SELECTED_OUTPUT_FAILED",
+  "AEM1": "AEM1_CLOSED_INCONCLUSIVE = CONFIRMED (doble llave)",
+  "AEM1_v1_5": "NO (regla de parada; tampoco H3)",
+  "carried_to_ae0": [
+    "XOR obligatorio con A_ONLY y B_ONLY por par de llaves",
+    "registro por componente: area_px, bbox, touches_image_border, touches_mask_exterior, open_or_enclosed, semantic_adjudication",
+    "uncertain_mask como tercer estado (foreground/background/uncertain), nunca como borrado",
+    "separar visual_review de geometric_completeness_check: el código dice que la diferencia existe y cuánto mide; la revisión adjudica qué significa"
+  ],
+  "project_status": "INCONCLUSIVE_A_E0_REQUIRED",
+  "phase_b": "BLOQUEADA",
+  "next": "A-E0: ratificación de la ontología v0.2 por la persona usuaria"
+}

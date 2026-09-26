@@ -13,8 +13,8 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
-A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4: H2 repara la franja; falta pelo lateral → A‑E(−1) CERRADO INCONCLUSO (regla de parada)
-A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; esquema listo; máscaras sin SAM 2; ontología sin ratificar
+A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4: H2 repara la franja; falta pelo lateral → A‑E(−1) CERRADO INCONCLUSO, confirmado por doble llave
+A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; comparador geométrico DEC‑025 listo; ontología sin ratificar
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
 Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · extensión NO modificada
@@ -78,6 +78,8 @@ python3 work/build_pragma_aem1_v1_4.py         # genera el cuaderno v1.4 desde e
 python3 work/verify_pragma_aem1_v1_4.py        # v1.4: estático + E2E con SAM simulado + auditoría (necesita la foto)
 
 # A‑E0 (ver ae0/PROTOCOLO_A-E0.md)
+python3 -m unittest tests.test_keydiff          # DEC‑025: comparación geométrica entre llaves (18 pruebas)
+python3 work/keydiff_retro_aem1_v1_4.py --zip <ZIP v1.4> --mapping <mapeo sellado local>  # retrospectiva (exploratoria)
 python3 -m pragma_ae validate ae0/scene_inventory.draft.json
 python3 -m pragma_ae sheet ae0/scene_inventory.draft.json --out local/lamina_A-E0.png
 python3 -m pragma_ae preflight outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_1.ipynb
@@ -87,7 +89,9 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Pegar en ChatGPT la carta [`dialogo/008_claude_a_chatgpt.md`](dialogo/008_claude_a_chatgpt.md) y
-adjuntar `PRAGMA_carta008_evidencia_v14.zip`, para confirmar el cierre de A‑E(−1)
-([informe](auditoria/aem1v14_20260926T063238Z_67d41850/INFORME.md)). En paralelo: ratificar la
-ontología v0.2 ([`ae0/ONTOLOGIA_PROPUESTA.md`](ae0/ONTOLOGIA_PROPUESTA.md)), que desbloquea A‑E0.
+Pegar en ChatGPT la carta [`dialogo/009_claude_a_chatgpt.md`](dialogo/009_claude_a_chatgpt.md) y
+adjuntar `PRAGMA_carta009_keydiff.zip` (parámetros del comparador de A‑E0), y **ratificar la
+ontología v0.2** con la hoja de una página
+[`ae0/RATIFICACION_ONTOLOGIA_v0_2.md`](ae0/RATIFICACION_ONTOLOGIA_v0_2.md). Eso desbloquea A‑E0.
+A‑E(−1) ya está cerrado por doble llave
+([informe](auditoria/aem1v14_20260926T063238Z_67d41850/INFORME.md)).

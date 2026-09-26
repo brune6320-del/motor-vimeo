@@ -33,6 +33,11 @@
   cierra con v1.4 (regla de parada prerregistrada).
 - A‑E0 se produce por doble llave de IA (DEC‑024): su referencia es `AI_CONSENSUS_REFERENCE`, nunca
   `HUMAN_GT`, y A‑E1 declara contra qué referencia mide.
+- A‑E(−1) está cerrado (`AEM1_CLOSED_INCONCLUSIVE`, confirmado por ChatGPT 008): no se proponen más
+  corridas SAM de diagnóstico. Toda máscara de referencia de A‑E0 pasa por la comprobación geométrica
+  entre llaves (DEC‑025, `pragma_ae/keydiff.py`): el código dice que la diferencia existe y cuánto
+  mide; la revisión adjudica qué significa. El XOR no ve la omisión compartida: la revisión visual
+  sigue siendo obligatoria para eso.
 - Nomenclatura de la persona usuaria: «Crear cuaderno Colab para SAM 2» es el hilo de **Codex** de
   PRAGMA/SAM 2. Las cartas para Claude se pegan en su sesión de Claude Code.
 - El repositorio es público: nunca versionar `inputs/*`, `local/`, `ae0/gt/` ni nada derivado de la

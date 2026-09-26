@@ -72,14 +72,44 @@ de SAM 2 favorecería a SAM 2 cuando A‑E1 mida SAM 2 AMG. Por eso:
   `metric_excluding_uncertain`, junto con `uncertain_area_px` y `uncertain_fraction`. Así ninguna
   mejora aparente puede venir de esconder una zona difícil.
 
-**Orden (ChatGPT 006 §8 y 007 §8):**
+**Comprobación geométrica entre llaves (DEC‑025, ChatGPT 008).** La revisión visual y la
+comprobación geométrica de completitud van **separadas**: el código dice que la diferencia existe y
+cuánto mide, y la revisión adjudica qué significa. Ninguna máscara se acepta como completa solo
+porque dos auditores digan «se ve completa». Implementación: `pragma_ae/keydiff.py`.
 
-1. Se cierra A‑E(−1) (v1.4).
-2. La persona usuaria ratifica la ontología v0.2. Antes de eso **no se produce ni se congela** A‑E0.
+- Para cada persona se calculan, entre la máscara de Claude (A) y la de ChatGPT (B):
+  - `A_ONLY = A & ~B` y `B_ONLY = B & ~A`, porque el XOR solo dice que difieren y no quién incluyó
+    la región;
+  - la lámina `diff_sheet`: original, contorno A, contorno B, y A_ONLY (magenta), B_ONLY (cian) y
+    trazo (gris), con un zoom por componente.
+- **Tolerancia de trazo `t` = 2 px.** Un tramo en el que no cabe un cuadrado de 5 × 5 es desacuerdo de
+  trazo (`thin`) y pasa a `uncertain`.
+- **Componentes:** `THICK` es lo que sobrevive a la apertura; `ISLAND` es un trozo suelto, sin contacto
+  con el consenso, **de cualquier tamaño**. Así el FP diminuto (3–5 px) no se pierde por fino.
+- **Registro por componente:** `area_px`, `bbox`, `touches_image_border`, `touches_mask_exterior`
+  (en la silueta exterior común), `open_or_enclosed` (en la llave a la que le falta: `ENCLOSED` si un
+  detector de agujeros lo vería, `OPEN` si no, como en N04), `touches_consensus` y
+  `semantic_adjudication`.
+- **Qué se adjudica:** toda `ISLAND` y todo `THICK` ≥ 100 px, como `INCLUDE`, `EXCLUDE`,
+  `UNCERTAIN_INCLUDE` o `UNCERTAIN_EXCLUDE`. Lo demás se lista y pasa a `uncertain`. Sin todas las
+  adjudicaciones no se compone la referencia.
+- **Tres estados:** `foreground`, `background` y `uncertain`. Lo incierto guarda un valor binario de
+  mejor estimación: el de la adjudicación o, si no la hay, la línea media (a ≤ t px del consenso).
+  `metric_all_pixels` lo usa; `metric_excluding_uncertain` excluye la zona, y se reportan
+  `uncertain_area_px` y `uncertain_fraction`.
+- **Límite:** el XOR solo ve lo que las llaves hacen distinto. Lo que **las dos** omiten no aparece;
+  eso sigue siendo tarea de la revisión visual de completitud.
+
+**Orden (ChatGPT 006 §8, 007 §8 y 008):**
+
+1. Se cierra A‑E(−1) (v1.4). **Hecho:** `AEM1_CLOSED_INCONCLUSIVE`, confirmado por ChatGPT 008.
+2. La persona usuaria ratifica la ontología v0.2 (`RATIFICACION_ONTOLOGIA_v0_2.md`). Antes de eso
+   **no se produce ni se congela** A‑E0.
 3. Claude congela su llave de inventario, a partir de su borrador.
 4. ChatGPT construye la segunda desde la foto, sin abrir la primera.
 5. Se comparan y se adjudica.
-6. Se hacen las máscaras de las tres personas con derivación no‑SAM.
+6. Se hacen las máscaras de las tres personas con derivación no‑SAM, una por llave, y se comparan con
+   `keydiff` (DEC‑025).
 7. Se congela como `AI_CONSENSUS_REFERENCE`.
 8. Solo entonces se congela del todo el contrato A‑E1.
 9. Se ejecuta A‑E1 (AMG).
@@ -89,8 +119,9 @@ lo prefiere.
 
 ## 0. Ratificar la ontología
 
-Lee `ONTOLOGIA_PROPUESTA.md` y decide las 13 preguntas. Si aceptas las recomendaciones tal
-cual, basta con decirlo; si cambias alguna, se actualiza la propuesta antes de seguir. Después,
+Lee `RATIFICACION_ONTOLOGIA_v0_2.md` (una página, R1–R11; el detalle está en
+`ONTOLOGIA_PROPUESTA.md`). Si aceptas las recomendaciones tal cual, basta con decirlo; si cambias
+alguna, se actualiza la propuesta antes de seguir. Después,
 en el inventario: `"ontology": {"ratified": true, …}`.
 
 ## 1. Pasada ciega · 10 minutos · antes de mirar el borrador

@@ -2,7 +2,8 @@
 
 > **Veredicto (doble llave + adjudicación técnica ciega, protocolo v2 rev. 1):**
 > `INCONCLUSIVE_SELECTED_OUTPUT_FAILED` → **`AEM1_CLOSED_INCONCLUSIVE`** (regla de parada
-> prerregistrada). Ninguna candidata con H2 cumple los cuatro criterios.
+> prerregistrada). Ninguna candidata con H2 cumple los cuatro criterios. **Confirmado por ChatGPT
+> 008** (§7): acepta las tres adjudicaciones, sin tercera revisión.
 >
 > - **H2 hizo lo que se prerregistró.** Cierra el agujero de la franja en las **3 semillas**, sin
 >   empeorar O. Es estable a ±15 px (IoU ≥ 0,998, cerrado en las 5 perturbaciones de cada semilla) y
@@ -113,3 +114,22 @@ junto al hombro», pero no lo midió.
   hecha antes del desciegue.
 - `aem1v14_analisis.json`: el análisis prerregistrado completo.
 - `hallazgo_pelo_lateral_v14.json`: exploratorio.
+
+## 7. Cierre por doble llave (ChatGPT 008)
+
+`dialogo/008_chatgpt_a_claude.md`, registrado en `cierre_chatgpt008.json`.
+
+- **Integridad:** ChatGPT recalculó el SHA‑256 del paquete de evidencia (`d7579e8e…8fe2`) y
+  comprobó 7/7 archivos; Claude lo recomprobó (7/7).
+- **Adjudicaciones:** N01 · O, N05 · O y N04 · B = FALSE, las tres `ACCEPTED_BY_SECOND_KEY`. Tercera
+  revisión (Codex): `NOT_NEEDED`.
+- **Hipótesis:** H‑C3 `HOLDS`; H‑G5 `INDETERMINATE`, sin reinterpretarla después de ver los datos.
+- **Cierre:** `AEM1_CLOSED_INCONCLUSIVE = CONFIRMED`; ni v1.5 ni H3.
+- **Precisión de método (ChatGPT):** las regiones D de otras láminas solo sirven para *localizar* el
+  defecto. Que sea material de la chica lo dice el consenso visual ciego de las dos llaves, no el que
+  SAM lo omitiera. No es `HUMAN_GT`.
+- **Para A‑E0:**
+  - el XOR es obligatorio, separado en `A_ONLY` y `B_ONLY`, con un registro por componente;
+  - `uncertain_mask` es un tercer estado;
+  - la revisión visual y la comprobación geométrica de completitud van separadas: el código dice que
+    la diferencia existe y cuánto mide, y la revisión adjudica qué significa.
