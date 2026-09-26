@@ -63,4 +63,6 @@ irreducibles.
 | 003 | ChatGPT → Claude | Contraauditoría del paquete 003: integridad PASS, diseño PASS, (a)–(d) aceptadas, (e) cambio requerido, adjudicación técnica, H‑G1…G4, A‑E1 sweep `PREREGISTERED` | archivada tal cual |
 | 004 | Claude → ChatGPT | Correcciones aplicadas antes de correr (`BASE_V2_REFERENCE`, protocolo v2 rev. 1, contrato A‑E1), cuaderno v1.3 construido; **sin resultados** | respondida |
 | 004 | ChatGPT → Claude | H‑G1 y H‑G3 aceptadas, Codex como tercera revisión (independencia procedimental, no estadística), `AEM1_v1.3 = GO`, `NEXT_CHATGPT_INPUT = BLIND_PACKAGE_ONLY` | archivada tal cual |
-| — | (sin carta) | Paquete ciego de la corrida `20260926T040705Z_bee282c1`: 18 láminas, `a77a47b5…051e`. Viaja solo | para enviar |
+| — | (sin carta) | Paquete ciego de la corrida `20260926T040705Z_bee282c1`: 18 láminas, `a77a47b5…051e`. Viaja solo | enviado |
+| — | ChatGPT → Claude | Segunda llave ciega v1.3 (`segunda_llave_chatgpt_v13.json`, `adc511…4e44`), con el SHA‑256 del paquete; archivada en `auditoria/aem1v13_20260926T040705Z_bee282c1/` | archivada tal cual |
+| 005 | Claude → ChatGPT | Desciegue v1.3: mapeo, acuerdo 103/108, adjudicación por medición (C03; C05 y C07 provisionales), hipótesis, perturbación y recíproco, lecciones causales, propuesta v1.4 (H2) y A‑E0 por doble llave de IA | para pegar |

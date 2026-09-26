@@ -5,7 +5,7 @@ trabajo (extensión Chrome con motor por color e ISNet). El problema abierto es 
 **segmentación por instancia**: en una foto con varias personas y objetos, elegir exactamente
 qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
-> **Fuente de verdad:** [`PROJECT_STATE.md`](PROJECT_STATE.md) (v1.5). Léelo antes de cambiar nada.
+> **Fuente de verdad:** [`PROJECT_STATE.md`](PROJECT_STATE.md) (v1.6). Léelo antes de cambiar nada.
 > Este directorio convive con un proyecto no relacionado (el backend `motor-vimeo` en la raíz
 > del repositorio); no lo toca.
 
@@ -13,7 +13,7 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
-A‑E(−1) diagnóstico chica       corrida 1 (v1.2, L4): INCONCLUSIVE (0/12) ACEPTADO por doble llave · v1.3 EJECUTADO en GPU (L4), íntegro; auditoría ciega en curso
+A‑E(−1) diagnóstico chica       v1.3 (L4): INCONCLUSIVE (0/18) ACEPTADO por doble llave · separación de la persona posterior CONSEGUIDA; falta completitud (franja de pelo) → v1.4 propuesto
 A‑E0 inventario humano          kit listo; borrador de 52 objetos DRAFT_UNVERIFIED; ontología PROPUESTA sin ratificar
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
@@ -24,7 +24,7 @@ Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · ext
 
 | Ruta | Qué es |
 |---|---|
-| `PROJECT_STATE.md` | Estado operativo v1.3: decisiones, pruebas, riesgos, backlog y punto de reanudación |
+| `PROJECT_STATE.md` | Estado operativo v1.6: decisiones, pruebas, riesgos, backlog y punto de reanudación |
 | `auditoria/` | Protocolos de auditoría ciega (v1 congelado; v2 para v1.3) y la auditoría de cada corrida real, con su doble llave |
 | `aem1/` | A‑E(−1) v1.3: especificación cerrada y prerregistro (`python3 work/design_aem1_v1_3.py --check`) |
 | `ae1/` | Sweep A‑E1 prerregistrado |
@@ -34,7 +34,7 @@ Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · ext
 | `GUIA_COLAB_A-E-menos-1_v1_1.md` | Guía anterior (v1.1, con decisiones humanas); histórica |
 | `CLAUDE.md` | Reglas para agentes (incluye: cerrar siempre con los pasos del usuario) |
 | `outputs/` | Artefactos Codex/Claude originales (byte a byte) + cuadernos A‑E(−1) v1.1 y **v1.2** con sus verificaciones |
-| `work/` | Constructores y verificadores (`*_codex.py` originales; `*_v1_1.py`, `*_v1_2.py`, `harness_aem1.py`), auditoría ciega, doble llave y diseño v1.3 |
+| `work/` | Constructores y verificadores (`*_codex.py` originales; `*_v1_1.py`, `*_v1_2.py`, `harness_aem1.py`), auditoría ciega, doble llave, diseño v1.3 y desciegue v1.3 |
 | `pragma_ae/` | Kit A‑E en Python (NumPy + Pillow): contrato de inventario, métricas, lámina, preflight, auditoría IA de ZIPs, CLI |
 | `ae0/` | Ontología propuesta, protocolo humano y `scene_inventory.draft.json` |
 | `preflight/` | Preflight de coordenadas: v1.0 (3 puntos mal ubicados) y v1.2 (confirmación 18/18 del auditor IA) |
@@ -71,6 +71,7 @@ python3 work/design_aem1_v1_3.py --check       # el prerregistro v1.3 se reprodu
 python3 work/build_pragma_aem1_v1_3.py         # genera el cuaderno v1.3 desde el prerregistro
 python3 work/verify_pragma_aem1_v1_3.py        # v1.3: estático + E2E con SAM simulado + auditoría (necesita la foto)
 python3 work/ae1_analysis_contract.py --check  # contrato de análisis A‑E1 (borrador; se congela con A‑E0)
+python3 work/unblind_aem1_v1_3.py --zip <ZIP> --mapping <mapeo sellado local>  # desciegue y doble llave v1.3
 
 # A‑E0 (ver ae0/PROTOCOLO_A-E0.md)
 python3 -m pragma_ae validate ae0/scene_inventory.draft.json
@@ -82,8 +83,8 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Enviar a ChatGPT **solo** el paquete ciego `PRAGMA_AEM1v13_paquete_ciego_20260926T040705Z_bee282c1.zip`
-(SHA‑256 `a77a47b5…051e`), sin carta ni comentarios, y traer su JSON de juicios. Los juicios de Claude
-ya están comprometidos por hash
-([`auditoria/aem1v13_20260926T040705Z_bee282c1/`](auditoria/aem1v13_20260926T040705Z_bee282c1/)).
-Hasta entonces no se publica ningún resultado.
+Pegar en ChatGPT la carta [`dialogo/005_claude_a_chatgpt.md`](dialogo/005_claude_a_chatgpt.md), sin
+adjuntos, y traer su respuesta. La carta publica el desciegue de la corrida v1.3
+([`auditoria/aem1v13_20260926T040705Z_bee282c1/INFORME.md`](auditoria/aem1v13_20260926T040705Z_bee282c1/INFORME.md))
+y pide tres decisiones: confirmar C05 y C07, `GO_TO_PREREGISTRATION` de v1.4 (H2) y A‑E0 por doble
+llave de IA.
