@@ -4,7 +4,7 @@
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
 - **Última actualización:** 26 de septiembre de 2026 (v1.9, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v1.9`
+- **Versión:** `v1.9` (+ addendum 2026‑09‑26: corrida v1.4 en GPU, auditoría ciega en curso)
 - **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
 - **Fase B:** `BLOQUEADA`
 - **Último hito documentado (v1.9):** ChatGPT 007 verificó el delta (13/13; `content_sha256` `7048b9fa…0b5d` reproducido), aceptó el parche `new_d` sin abrir otro ciclo y dio **`AEM1_v1.4 = GO_TO_GPU`** (última corrida ordinaria de A‑E(−1)). Aceptó también el esquema A‑E0, fijó el refinamiento `NUMPY_MINIMAL` (OpenCV/GrabCut aplazado) y `uncertain_mask` con métricas en todos los píxeles y sin la zona incierta. GO archivado en git antes de la corrida; GPU v1.4 `NOT_RUN` hasta que la persona usuaria la ejecute
@@ -1940,36 +1940,42 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-- **A‑E(−1) v1.4** tiene el **`GO_TO_GPU`** de ChatGPT (carta 007, archivada antes de la corrida).
-  - Cuaderno aprobado: `outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_4.ipynb` (`7c29e095…c2b0`),
-    con el prerregistro `7048b9fa…0b5d`.
-  - GPU `NOT_RUN`.
-  - Es la última corrida ordinaria de A‑E(−1).
-- **A‑E0:** esquema y decisiones de derivación, refinamiento e incertidumbre cerrados por doble llave.
-  Espera la ratificación de la ontología.
+La corrida v1.4 `20260926T063238Z_67d41850` se ejecutó en GPU:
+
+- NVIDIA L4, bf16, commit `2b90b9f5`, checkpoint `2647878d…`;
+- `INTEGRITY_PASS` y `REAL_GPU`;
+- 22 llamadas y 24 máscaras idénticas al plan (ZIP `5af4c6e0…8b13`, local).
+
+Siguiendo el protocolo v2 rev. 1:
+
+- el paquete ciego (6 láminas `N01–N06`, `8f8df273…a17b`) y el mapeo sellado (`1a68b79e…1a66`)
+  están registrados en git sin resultados (`f2de121`);
+- los juicios ciegos de Claude están comprometidos solo por hash (`6febe5d6…78d0`, `0a0e19c`).
+
+**Ningún resultado está publicado:** ni la reproducción bit a bit de la referencia, ni el mapeo, ni
+métricas ni hipótesis.
 
 ## Próxima acción
 
-La persona usuaria ejecuta el cuaderno v1.4 en Colab con **GPU L4**, siguiendo
-`GUIA_COLAB_A-E-menos-1_v1_4.md`, y adjunta aquí el ZIP `PRAGMA_AEM1v14_…_PENDING_EXTERNAL_AUDIT.zip`.
-No lo envía a ChatGPT.
+La persona usuaria envía a ChatGPT **solo** el paquete ciego
+`PRAGMA_AEM1v14_paquete_ciego_20260926T063238Z_67d41850.zip`, sin carta ni comentarios, y trae su
+JSON de juicios con el SHA‑256 del paquete.
 
 ## Resultado esperado
 
-Claude, en este orden, sin publicar resultados hasta el desciegue:
+Segunda llave archivada tal cual. Después, Claude:
 
-1. `aem1_v14_audit.integrity` (sin datos de resultado);
-2. la referencia bit a bit frente a v1.3, solo por hashes;
-3. el paquete ciego `N01–N06` para ChatGPT, que viaja **solo**;
-4. sus juicios comprometidos por hash;
-5. con la segunda llave, desciegue y `aem1_v14_audit.analyze`, adjudicación técnica si hace falta, y
-   `AEM1_CLOSED_DEMONSTRATED` o `AEM1_CLOSED_INCONCLUSIVE`.
+1. publica sus juicios, que deben coincidir con el hash;
+2. desciega;
+3. corre `aem1_v14_audit.analyze` (reproducción de la referencia, adjudicación de O por medición,
+   H‑C3, H‑G5, perturbación);
+4. aplica la adjudicación técnica si hace falta;
+5. cierra A‑E(−1) por la regla de parada y escribe la carta con resultados.
 
 ## En paralelo
 
-La persona usuaria ratifica (o cambia) la ontología v0.2 (`ae0/ONTOLOGIA_PROPUESTA.md`), que es una
-decisión de producto. Con eso empieza A‑E0 por doble llave de IA. Nada de A‑E(−1) cuenta como
-evidencia A‑E1.
+La persona usuaria ratifica (o cambia) la ontología v0.2, que es una decisión de producto. Con eso
+empieza A‑E0 por doble llave de IA.
 
 ---
 
@@ -2027,6 +2033,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v1.9+ | 2026‑09‑26 | addendum: corrida v1.4 en GPU íntegra (`REAL_GPU`, L4); paquete ciego N01–N06 y compromiso por hash de los juicios de Claude; sin resultados publicados |
 | v1.9 | 2026‑09‑26 | ChatGPT 007 archivada antes de la corrida: delta PASS, `new_d` aceptado, **`AEM1_v1.4 = GO_TO_GPU`**; A‑E0: esquema aceptado, refinamiento `NUMPY_MINIMAL` (OpenCV aplazado), `uncertain_mask` con métricas en todos los píxeles y sin la zona incierta; orden de A‑E0 → A‑E1 fijado; guía v1.4 habilitada |
 | v1.8 | 2026‑09‑26 | ChatGPT 006 archivada (contraauditoría del prerregistro v1.4: H2 PASS, seis láminas, parada y DEC‑024 aceptadas; `new_d` `CHANGE_REQUIRED`); parche `new_d` = pérdida nueva fuera de H2 ≥ 1000 px con las 4 pruebas de ChatGPT; prerregistro, cuaderno y verificación regenerados (`7048b9fa…0b5d`, 30/30); `inventory.py` con modo `AI_DOUBLE_KEY_REVIEWED` (6 pruebas), contrato A‑E1 y protocolo A‑E0 actualizados; derivación de máscaras sin SAM 2; 97/97 tests; carta 007 y delta |
 | v1.7 | 2026‑09‑26 | ChatGPT 005 archivada; cierre de v1.3 (`cierre_chatgpt005.json`: C05/C07 aceptados, subproblema de separación demostrado, `CLOSED_INCONCLUSIVE`); corrección del H2 de la carta 005 (tramo alto → región D común) → **A‑E(−1) v1.4 prerregistrado** (H2 = (2994, 892), 22 llamadas, H‑C3/H‑G5, regla de PASS completa y de parada), `aem1_v14` + auditoría + 19 tests, cuaderno v1.4 verificado 30/30 simulado, guía v1.4 y paquete de revisión; **DEC‑024** (A‑E0 `AI_CONSENSUS_REFERENCE`), enmienda del protocolo A‑E0 y `REFERENCE_TYPE_DECLARED` en el contrato A‑E1; carta 006 |

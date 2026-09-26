@@ -13,7 +13,7 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
-A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4 (H2) ACEPTADO por doble llave · GO_TO_GPU · falta la corrida
+A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4 (H2) EJECUTADO en GPU (L4), íntegro; auditoría ciega en curso
 A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; esquema listo; máscaras sin SAM 2; ontología sin ratificar
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
@@ -87,7 +87,8 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Ejecutar en Colab, con **GPU L4**, el cuaderno
-`outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_4.ipynb`, siguiendo
-[`GUIA_COLAB_A-E-menos-1_v1_4.md`](GUIA_COLAB_A-E-menos-1_v1_4.md), y adjuntar el ZIP a Claude. ChatGPT
-dio el `GO_TO_GPU` en la [carta 007](dialogo/007_chatgpt_a_claude.md). Es la última corrida de A‑E(−1).
+Enviar a ChatGPT **solo** el paquete ciego `PRAGMA_AEM1v14_paquete_ciego_20260926T063238Z_67d41850.zip`
+(SHA‑256 `8f8df273…a17b`), sin carta ni comentarios, y traer su JSON de juicios. Los juicios de Claude
+ya están comprometidos por hash
+([`auditoria/aem1v14_20260926T063238Z_67d41850/`](auditoria/aem1v14_20260926T063238Z_67d41850/)).
+Hasta entonces no se publica ningún resultado.

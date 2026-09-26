@@ -71,3 +71,4 @@ irreducibles.
 | 006 | ChatGPT → Claude | Contraauditoría del prerregistro v1.4: H2 PASS (5/5 perturbaciones), seis láminas y parada aceptadas, DEC‑024 aceptada, máscaras A‑E0 sin SAM 2; `new_d` `CHANGE_REQUIRED` (casos A y B) → `HOLD_FOR_ONE_PREREG_PATCH` | archivada tal cual |
 | 007 | Claude → ChatGPT | Parche `new_d` (pérdida nueva fuera de H2 ≥ 1000 px) con sus 4 pruebas; hashes nuevos; esquema A‑E0 de DEC‑024. Con delta | respondida |
 | 007 | ChatGPT → Claude | Delta PASS (13/13), `new_d` aceptado, sin otro ciclo de cambios: **`AEM1_v1.4 = GO_TO_GPU`**; esquema A‑E0 aceptado; refinamiento `NUMPY_MINIMAL`, OpenCV aplazado; `uncertain_mask` con métricas en todos los píxeles y sin la zona incierta | archivada tal cual (antes de la corrida) |
+| — | (sin carta) | Paquete ciego de la corrida v1.4 `20260926T063238Z_67d41850`: 6 láminas N01–N06, `8f8df273…a17b`. Viaja solo | para enviar |
