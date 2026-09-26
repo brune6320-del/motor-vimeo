@@ -1,0 +1,113 @@
+{
+  "schema": "pragma.aem1v14_blind_judgments",
+  "schema_version": "0.1.0",
+  "package_sha256": "8f8df2730f64f5f94deb72c8f7af8b3653bc95bf0f5a3bb81e065b331ee4a17b",
+  "auditor": "Claude (primera llave, ciega: sin abrir el mapeo)",
+  "candidates": {
+    "N01": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D"
+      },
+      "notes": "La franja de pelo entre la cara y el índice está cubierta. Agujero 2 (2177 px, junto al mentón, a la izquierda del dedo que cruza la boca): pelo oscuro de la chica encerrado → D. Agujero 1: hueco de la mano que cuelga (objeto sostenido) → L. O FALSE: isla diminuta DENTRO de la masa del moño posterior, lejos de la corona de la chica (≈ 2618, 401); hay además puntos de 1–3 px en la banda ambigua sobre la corona, que no cuento. Fondo limpio."
+    },
+    "N02": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D"
+      },
+      "notes": "Franja entre cara e índice cubierta. Agujero 2 (10374 px, 2590–2751 × 834–1057): pelo de la chica a la izquierda del mentón, hacia el hombro, con perforaciones → D. Agujero 1: mano que cuelga → L. Moño sin islas; blusa y hombro posteriores fuera. Fondo limpio."
+    },
+    "N03": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "Agujeros 3 y 4: la franja de pelo entre la cara y el índice, tramo bajo y alto → D. Agujero 2 (10793 px): pelo junto al mentón → D. Agujero 1: mano que cuelga → L. Moño: solo puntos de 1–3 px en la banda ambigua sobre la corona; nada dentro de la masa del moño. Fondo limpio."
+    },
+    "N04": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L"
+      },
+      "notes": "Solo un agujero cerrado (mano que cuelga → L) y la franja entre cara e índice cubierta, PERO falta un bloque grande de pelo de la chica a la izquierda del mentón y hacia el hombro (≈ 2600–2700 × 850–1060): queda fuera de la máscara, abierto hacia el contacto, con solo islas sueltas dentro. Es un faltante de contorno ≥ ~1000 px → body_and_edges_complete FALSE aunque no sea un agujero cerrado. Moño limpio (un trazo de pocos px pegado a la corona). Fondo limpio. La mayor parte del pelo sigue dentro."
+    },
+    "N05": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "Agujeros 2 y 3: franja de pelo entre cara e índice (tramo bajo y alto) → D; agujero 4 (2985 px): pelo junto al mentón → D; agujero 1: mano que cuelga → L. O FALSE: isla diminuta DENTRO de la masa del moño (≈ 2618, 401) y otras marcas de pocos px en el moño cerca de la corona."
+    },
+    "N06": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D"
+      },
+      "notes": "Agujero 2 (3011 px, 2984–3025 × 842–997): tramo bajo de la franja de pelo entre la cara y el índice → D. Agujero 1: mano que cuelga → L. Moño limpio. Pelo a la izquierda del mentón con algunas perforaciones abiertas pequeñas. Fondo limpio."
+    }
+  }
+}
