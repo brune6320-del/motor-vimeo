@@ -81,6 +81,11 @@ Se entrega el JSON y su `file_sha256`.
    - como pista van el mejor candidato y la contención. Una contención ≥ 0,9 sugiere un entero en
      una llave y sus partes en la otra.
 4. **Una persona sin pareja** es prioridad alta.
+5. **`GEOMETRIC_MATCH != SEMANTIC_ACCEPTANCE`** (ChatGPT 010). Un `BOX_AUTO_MEAN` resuelve solo la
+   caja. Cualquier desacuerdo de `kind`, `tier`, `occlusion`, `truncation`, `parent_id` u
+   `occluded_by` sigue necesitando resolución según el protocolo.
+6. **Registro de anclaje:** si la llave de ChatGPT incluye el objeto sostenido en la mano de la persona
+   del frente, se marca `possibly_anchored`. Es la contaminación menor declarada en la carta 010.
 
 Después vienen las máscaras de las tres personas: cada llave traza sus polígonos por su cuenta y se
 comparan con `keydiff` (DEC‑025).

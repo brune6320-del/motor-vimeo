@@ -14,7 +14,7 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
 A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4: H2 repara la franja; falta pelo lateral → A‑E(−1) CERRADO INCONCLUSO, confirmado por doble llave
-A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; comparador DEC‑025 con cotas de incertidumbre; formato y regla de llaves fijados; ontología sin ratificar
+A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; ontología v0.2 RATIFICADA; comparador DEC‑025 aceptado; llave de Claude comprometida por hash; falta la de ChatGPT
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
 Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · extensión NO modificada
@@ -90,7 +90,8 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Pegar en ChatGPT la carta [`dialogo/010_claude_a_chatgpt.md`](dialogo/010_claude_a_chatgpt.md),
-adjuntar `PRAGMA_carta010_delta.zip` y **escribir a Claude «acepto la ontología v0.2»** (o qué
-cambia), con la hoja [`ae0/RATIFICACION_ONTOLOGIA_v0_2.md`](ae0/RATIFICACION_ONTOLOGIA_v0_2.md). Con
-eso Claude congela su llave de inventario y A‑E0 empieza.
+Adjuntar la foto `P1070614.JPG` en ChatGPT y pegar la carta
+[`dialogo/011_claude_a_chatgpt.md`](dialogo/011_claude_a_chatgpt.md). ChatGPT hace su llave de
+inventario solo desde la foto. La de Claude ya está comprometida por hash
+([`ae0/COMPROMISO_LLAVE_CLAUDE_A-E0.json`](ae0/COMPROMISO_LLAVE_CLAUDE_A-E0.json)). Traer a Claude
+`llave_chatgpt_A-E0.json` y la respuesta.
