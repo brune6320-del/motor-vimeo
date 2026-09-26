@@ -1,0 +1,1241 @@
+{
+  "schema": "pragma.ae0_adjudication_proposal",
+  "schema_version": "0.1.0",
+  "author": "claude",
+  "status": "PROPOSED: la segunda llave acepta u objeta cada punto; lo que siga en disputa va a Codex",
+  "key_a": {
+    "auditor": "claude",
+    "sha256": "84942809f608e08d6e0c1921a7ababa3750c0f70517ce0c12691e1e933939829"
+  },
+  "key_b": {
+    "auditor": "chatgpt",
+    "sha256": "a3ecb53ff0321a39d52bc84ec701498cf9d1002885e4cda39219ba62485e0a45"
+  },
+  "keymatch_v0_1": "ae0/comparacion/keymatch_v0_1.json",
+  "rules": "(declaradas, para que se puedan objetar):\n- R-box: si las dos llaves nombran el mismo objeto, la caja de referencia es la que mejor ajusta la\n  extensión visible en la lámina 1:1. Si cada una acierta en bordes distintos, se toma cada borde de\n  la que lo ajusta.\n- R-kind: la ropa y los accesorios llevados (gorra, collar, arete, mosquetón) son ``part`` de la\n  persona (R3), igual en todas las personas.\n- R-dup: dos objetos de una misma llave que son el mismo objeto físico → se excluye el duplicado.\n- R-include: un objeto que está en una sola llave se incluye si la lámina muestra un objeto distinto;\n  si no, va a tercera revisión.\n- R-tier: el tier se recalcula con la caja y la oclusión adjudicadas (R1–R4).\n- MATCH_REJECTED: un emparejamiento de keymatch v0.1 entre clases distintas (parte↔entero,\n  entero↔stuff) se rechaza y cada objeto se empareja con su correspondiente. Es un veredicto nuevo,\n  declarado después de ver los datos: corrige la adjudicación, no la regla v0.1.",
+  "counts": {
+    "MATCH_REJECTED": 2,
+    "SAME": 44,
+    "B_ONLY": 9,
+    "A_ONLY": 9,
+    "THIRD_REVIEW": 4
+  },
+  "uncovered": {
+    "a": [],
+    "b": []
+  },
+  "proposals": [
+    {
+      "type": "MATCH_REJECTED",
+      "a_id": "ae0_055",
+      "b_id": "ae0_001",
+      "basis": "chaqueta (parte) emparejada con la persona izquierda (entero): el entero se roba por IoU; la persona es C:001↔G:001 y la chaqueta C:055↔G:045",
+      "status": "PROPOSED"
+    },
+    {
+      "type": "MATCH_REJECTED",
+      "a_id": "ae0_004",
+      "b_id": "ae0_039",
+      "basis": "mesa (instancia) emparejada con el suelo (stuff): no son el mismo objeto",
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_001",
+      "b_id": "ae0_001",
+      "bbox": [
+        220,
+        265,
+        1200,
+        2248
+      ],
+      "evidence": [
+        "E1",
+        "E2"
+      ],
+      "basis": "brazos y codos desde x≈220 y manos desde y≈265; las piernas, en pantalón oscuro, siguen hasta el borde inferior pero no se distinguen del fondo: la caja llega a 2248 y la máscara marcará las piernas como incertidumbre",
+      "attributes": {
+        "occlusion": "low",
+        "truncation": "low",
+        "occluded_by": []
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_002",
+      "b_id": "ae0_002",
+      "bbox": "BOX_AUTO_MEAN",
+      "evidence": [
+        "E5",
+        "E6"
+      ],
+      "basis": "IoU 0,89: media automática",
+      "attributes": {
+        "occlusion": "none"
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_003",
+      "b_id": "ae0_003",
+      "bbox": [
+        2200,
+        305,
+        2815,
+        1195
+      ],
+      "evidence": [
+        "E5",
+        "E6"
+      ],
+      "basis": "los bordes del hombro y del moño difieren poco: media de bordes",
+      "attributes": {
+        "truncation": "none",
+        "occlusion": "high",
+        "occluded_by": [
+          "ae0_002"
+        ]
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_006",
+      "b_id": "ae0_004",
+      "bbox": [
+        0,
+        1010,
+        545,
+        2200
+      ],
+      "evidence": [
+        "E1",
+        "E2"
+      ],
+      "basis": "el tablero con la plancha empieza en y≈1010 (G); el encaje visible termina en x≈545 y en y≈2200 (C)",
+      "attributes": {
+        "occlusion": "medium",
+        "truncation": "medium",
+        "occluded_by": [
+          "ae0_001"
+        ]
+      },
+      "canonical_name": "mesa izquierda con mantel de encaje",
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_040",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": [
+        0,
+        1265,
+        545,
+        2200
+      ],
+      "evidence": [
+        "E2"
+      ],
+      "basis": "el mantel de encaje es una parte válida (C) de la mesa izquierda",
+      "attributes": {
+        "parent": "C:006"
+      },
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_007",
+      "b_id": "ae0_023",
+      "bbox": [
+        3395,
+        1175,
+        4000,
+        2248
+      ],
+      "evidence": [
+        "E4"
+      ],
+      "basis": "el respaldo oscuro empieza en x≈3390; x 3200–3390 es el brazo de la persona del frente",
+      "attributes": {
+        "truncation": "medium"
+      },
+      "canonical_name": "silla o sillón oscuro de la derecha",
+      "concept_en": "chair",
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_008",
+      "b_id": "ae0_019",
+      "bbox": [
+        1090,
+        1773,
+        1275,
+        2059
+      ],
+      "evidence": [
+        "E2"
+      ],
+      "basis": "el asiento tapizado visible ocupa x 1090–1275; el resto de la caja G es mantel",
+      "attributes": {
+        "occlusion": "medium",
+        "tier": "A"
+      },
+      "canonical_name": "asiento tapizado junto a la mesa central (silla o banqueta)",
+      "concept_en": "chair",
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_009",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E4"
+      ],
+      "basis": "bolso negro con asas visibles delante del mueble oscuro; la llave G lo absorbe en el «sofá»",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_053",
+      "b_id": "ae0_006",
+      "bbox": [
+        1145,
+        0,
+        1405,
+        1260
+      ],
+      "evidence": [
+        "E1"
+      ],
+      "basis": "la puerta es la franja negra de bordes rectos x 1145–1405; x 760–1145 es pared en sombra con el cuadro C:019",
+      "attributes": {
+        "occlusion": "low",
+        "truncation": "medium",
+        "tier": "A"
+      },
+      "canonical_name": "puerta oscura entre la persona izquierda y la pared clara",
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_010",
+      "b_id": "ae0_027",
+      "bbox": [
+        2276,
+        162,
+        2482,
+        363
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_012",
+      "b_id": "ae0_026",
+      "bbox": [
+        2777,
+        81,
+        3003,
+        336
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_013",
+      "b_id": "ae0_028",
+      "bbox": [
+        3310,
+        153,
+        3548,
+        367
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_014",
+      "b_id": "ae0_029",
+      "bbox": [
+        2062,
+        407,
+        2255,
+        598
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_017",
+      "b_id": "ae0_032",
+      "bbox": [
+        3435,
+        433,
+        3677,
+        646
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_015",
+      "b_id": "ae0_030",
+      "bbox": [
+        2490,
+        415,
+        2612,
+        614
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {
+        "occlusion": "none",
+        "occluded_by": [],
+        "tier": "A"
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_016",
+      "b_id": "ae0_031",
+      "bbox": [
+        3055,
+        428,
+        3276,
+        635
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {
+        "occluded_by": [
+          "ae0_002"
+        ]
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_011",
+      "b_id": "ae0_025",
+      "bbox": [
+        2630,
+        100,
+        2672,
+        218
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {
+        "tier": "B"
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_018",
+      "b_id": "ae0_033",
+      "bbox": [
+        1680,
+        537,
+        1730,
+        630
+      ],
+      "evidence": [
+        "E5",
+        "E3"
+      ],
+      "basis": "las cajas C ajustan el marco u objeto en la lámina 1:1; las G son más holgadas o están desplazadas",
+      "attributes": {
+        "tier": "B"
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_019",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1"
+      ],
+      "basis": "cuadro con paspartú claro, claramente visible; la llave G lo incluye dentro de su «puerta»",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_020",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1"
+      ],
+      "basis": "panel oscuro rectangular con reflejo vertical en el borde: objeto distinto",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_052",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1"
+      ],
+      "basis": "stuff: pared en sombra (C, no bloquea)",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_039",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E2"
+      ],
+      "basis": "stuff: suelo oscuro (C, no bloquea)",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_051",
+      "b_id": "ae0_038",
+      "bbox": "BOX_AUTO_MEAN",
+      "evidence": [
+        "E5"
+      ],
+      "basis": "IoU 0,89: media automática (stuff)",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_023",
+      "b_id": "ae0_005",
+      "bbox": [
+        216,
+        1047,
+        433,
+        1280
+      ],
+      "evidence": [
+        "E2"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_028",
+      "b_id": "ae0_010",
+      "bbox": [
+        1702,
+        995,
+        1782,
+        1230
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_030",
+      "b_id": "ae0_012",
+      "bbox": [
+        2002,
+        1093,
+        2193,
+        1396
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_032",
+      "b_id": "ae0_013",
+      "bbox": [
+        1702,
+        1293,
+        1850,
+        1617
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_034",
+      "b_id": "ae0_014",
+      "bbox": [
+        1836,
+        1289,
+        1937,
+        1760
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_036",
+      "b_id": "ae0_018",
+      "bbox": [
+        1883,
+        1694,
+        2098,
+        1849
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_037",
+      "b_id": "ae0_017",
+      "bbox": [
+        1967,
+        1626,
+        2076,
+        1690
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_026",
+      "b_id": "ae0_009",
+      "bbox": [
+        1490,
+        1152,
+        1693,
+        1260
+      ],
+      "evidence": [
+        "E3",
+        "E8"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": "objeto negro sobre la superficie posterior (probable bolso)",
+      "concept_en": "bag",
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_029",
+      "b_id": "ae0_011",
+      "bbox": [
+        1806,
+        1099,
+        1907,
+        1212
+      ],
+      "evidence": [
+        "E3",
+        "E8"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {
+        "occlusion": "low",
+        "tier": "A"
+      },
+      "canonical_name": "vaso o recipiente translúcido posterior",
+      "concept_en": "cup",
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_031",
+      "b_id": "ae0_037",
+      "bbox": [
+        2228,
+        1176,
+        2300,
+        1367
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {
+        "occlusion": "medium"
+      },
+      "canonical_name": "botella translúcida junto al brazo de la persona del frente",
+      "concept_en": "bottle",
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_035",
+      "b_id": "ae0_016",
+      "bbox": [
+        1452,
+        1575,
+        1569,
+        1662
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la caja C ajusta el objeto en la lámina; la G lo incluye con margen o desplazada",
+      "attributes": {},
+      "canonical_name": "papel arrugado o flor blanca",
+      "concept_en": "tissue",
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_033",
+      "b_id": "ae0_015",
+      "bbox": [
+        1913,
+        1367,
+        2169,
+        1615
+      ],
+      "evidence": [
+        "E3"
+      ],
+      "basis": "la bolsa transparente sigue hasta y≈1615 (debajo de la etiqueta)",
+      "attributes": {
+        "occlusion": "medium"
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_024",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1"
+      ],
+      "basis": "caja o estuche oscuro con un logo claro, visible detrás de la plancha",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_038",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E3"
+      ],
+      "basis": "tapa blanca pequeña junto al envoltorio (tier B)",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_039",
+      "b_id": "ae0_021",
+      "bbox": [
+        3175,
+        1745,
+        3315,
+        1940
+      ],
+      "evidence": [
+        "E7"
+      ],
+      "basis": "vasito izquierdo con palito: la caja incluye su borde superior (antes C:041)",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_040",
+      "b_id": "ae0_022",
+      "bbox": [
+        3285,
+        1690,
+        3455,
+        1950
+      ],
+      "evidence": [
+        "E7"
+      ],
+      "basis": "vasito derecho con palito: la caja incluye su borde superior (antes C:042)",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_041",
+      "verdict": "EXCLUDE",
+      "same_as": "C:039",
+      "bbox": null,
+      "evidence": [
+        "E7"
+      ],
+      "basis": "R-dup: es la parte alta del vasito C:039, no otro vasito (error de Claude)",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_042",
+      "verdict": "EXCLUDE",
+      "same_as": "C:040",
+      "bbox": null,
+      "evidence": [
+        "E7"
+      ],
+      "basis": "R-dup: es la parte alta del vasito C:040, no otro vasito (error de Claude)",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_043",
+      "b_id": "ae0_048",
+      "bbox": [
+        571,
+        285,
+        900,
+        458
+      ],
+      "evidence": [
+        "E1"
+      ],
+      "basis": "gorra bajo las manos",
+      "attributes": {
+        "occlusion": "medium"
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_044",
+      "b_id": "ae0_047",
+      "bbox": [
+        758,
+        782,
+        874,
+        860
+      ],
+      "evidence": [
+        "E1"
+      ],
+      "basis": "la caja C ajusta la etiqueta (sin transcribir)",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_045",
+      "b_id": "ae0_055",
+      "bbox": [
+        2487,
+        1387,
+        2712,
+        1450
+      ],
+      "evidence": [
+        "E6"
+      ],
+      "basis": "la caja C ajusta el texto (sin transcribir)",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_046",
+      "b_id": "ae0_035",
+      "bbox": [
+        2700,
+        988,
+        2900,
+        1150
+      ],
+      "evidence": [
+        "E6"
+      ],
+      "basis": "el collar baja hasta y≈1150 (C); la caja G incluye la barbilla. R-kind: parte",
+      "attributes": {
+        "kind": "part",
+        "tier": "C"
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_047",
+      "b_id": "ae0_036",
+      "bbox": [
+        2655,
+        875,
+        2715,
+        955
+      ],
+      "evidence": [
+        "E6"
+      ],
+      "basis": "el aro blanco está en x≈2680–2705; la caja G cae sobre el hombro de la persona posterior. R-kind: parte",
+      "attributes": {
+        "kind": "part",
+        "tier": "C"
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_048",
+      "b_id": "ae0_051",
+      "bbox": [
+        2725,
+        620,
+        3350,
+        1362
+      ],
+      "evidence": [
+        "E5",
+        "E6"
+      ],
+      "basis": "la mano en V empieza en x≈2730; x > 3350 es la manga",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_049",
+      "b_id": "ae0_056",
+      "bbox": [
+        2636,
+        305,
+        2795,
+        560
+      ],
+      "evidence": [
+        "E5"
+      ],
+      "basis": "el moño ocupa x 2636–2795; x 2440–2600 de la caja G es el cuadro C:015",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_055",
+      "b_id": "ae0_045",
+      "bbox": [
+        230,
+        420,
+        1195,
+        1660
+      ],
+      "evidence": [
+        "E1",
+        "E2"
+      ],
+      "basis": "la chaqueta incluye las mangas de los brazos levantados (hasta los codos, x≈230 y x≈1195) y baja hasta y≈1660",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_056",
+      "b_id": "ae0_053",
+      "bbox": "MEAN",
+      "evidence": [
+        "E6"
+      ],
+      "basis": "camiseta de rayas: cajas parecidas (IoU 0,78); media de bordes",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_057",
+      "b_id": "ae0_054",
+      "bbox": "MEAN",
+      "evidence": [
+        "E6"
+      ],
+      "basis": "overol: cajas parecidas (IoU 0,78); media de bordes",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_058",
+      "b_id": "ae0_057",
+      "bbox": [
+        2250,
+        690,
+        2560,
+        1040
+      ],
+      "evidence": [
+        "E6"
+      ],
+      "basis": "el estampado floral visible ocupa x 2250–2560, y 690–1040",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_059",
+      "b_id": "ae0_052",
+      "bbox": [
+        2120,
+        1840,
+        2305,
+        2180
+      ],
+      "evidence": [
+        "E2"
+      ],
+      "basis": "la mano izquierda con el teléfono termina en y≈2180",
+      "attributes": {},
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "SAME",
+      "a_id": "ae0_050",
+      "b_id": "ae0_034",
+      "bbox": [
+        2215,
+        1960,
+        2305,
+        2170
+      ],
+      "evidence": [
+        "E2"
+      ],
+      "basis": "teléfono: visible casi entero, los dedos tapan el borde → oclusión media, tier A; possibly_anchored registrado",
+      "attributes": {
+        "occlusion": "medium",
+        "tier": "A",
+        "possibly_anchored": true
+      },
+      "canonical_name": null,
+      "concept_en": null,
+      "status": "PROPOSED"
+    },
+    {
+      "type": "A_ONLY",
+      "id": "ae0_054",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E2"
+      ],
+      "basis": "mosquetón o llavero metálico en el cinturón (parte)",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_043",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1",
+        "E5",
+        "E6"
+      ],
+      "basis": "rostro de la persona izquierda: parte válida (C, no bloquea), con la caja de la llave G",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_044",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1",
+        "E5",
+        "E6"
+      ],
+      "basis": "mano de la persona izquierda: parte válida (C, no bloquea), con la caja de la llave G",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_046",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1",
+        "E5",
+        "E6"
+      ],
+      "basis": "camiseta oscura de la persona izquierda: parte válida (C, no bloquea), con la caja de la llave G",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_049",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1",
+        "E5",
+        "E6"
+      ],
+      "basis": "rostro de la persona del frente: parte válida (C, no bloquea), con la caja de la llave G",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_050",
+      "verdict": "INCLUDE",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E1",
+        "E5",
+        "E6"
+      ],
+      "basis": "cabello de la persona del frente: parte válida (C, no bloquea), con la caja de la llave G",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_041",
+      "verdict": "INCLUDE_PENDING_Q1",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E3"
+      ],
+      "basis": "mantel de la mesa central: parte válida; su entero depende de Q1",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "B_ONLY",
+      "id": "ae0_042",
+      "verdict": "INCLUDE_PENDING_Q1",
+      "same_as": null,
+      "bbox": null,
+      "evidence": [
+        "E4"
+      ],
+      "basis": "mantel de la mesa derecha: parte válida; su entero depende de Q1",
+      "attributes": {},
+      "status": "PROPOSED"
+    },
+    {
+      "type": "THIRD_REVIEW",
+      "id": "Q1",
+      "question": "¿La tela blanca con rosas a la izquierda de la persona del frente (x≈1250–2120) y la de su derecha (x≈3100–3700) cubren la MISMA mesa o dos mesas distintas?",
+      "involves": [
+        "C:004",
+        "G:007",
+        "G:020"
+      ],
+      "evidence": [
+        "E3",
+        "E4",
+        "E2"
+      ],
+      "claude_view": "una sola mesa redonda que la persona del frente tapa por el centro (mismo mantel)",
+      "status": "PROPOSED_FOR_CODEX"
+    },
+    {
+      "type": "THIRD_REVIEW",
+      "id": "Q2",
+      "question": "¿Qué es el objeto con tela floral gris en x≈1415–1830, y≈1230–1490, y el rectángulo claro con borde oscuro en x≈1610–1795, y≈1031–1212: una silla (asiento y respaldo), o una superficie tapizada con un marco encima?",
+      "involves": [
+        "C:005",
+        "C:027",
+        "G:008",
+        "G:007"
+      ],
+      "evidence": [
+        "E8",
+        "E3"
+      ],
+      "claude_view": "superficie o mueble tapizado posterior con un marco de mesa encima; el respaldo de una silla ocuparía todo el ancho del asiento",
+      "status": "PROPOSED_FOR_CODEX"
+    },
+    {
+      "type": "THIRD_REVIEW",
+      "id": "Q3",
+      "question": "El mueble oscuro de la derecha (x≈3390–4000, y≈1175–2248): ¿silla o sofá? La zona clara en x≈3710–3950, y≈1300–1550: ¿cojín, o la pared vista a través de un hueco del respaldo?",
+      "involves": [
+        "C:007",
+        "G:023",
+        "G:024"
+      ],
+      "evidence": [
+        "E4"
+      ],
+      "claude_view": "silla o sillón con un hueco en el respaldo: la zona clara tiene la textura de la pared",
+      "status": "PROPOSED_FOR_CODEX"
+    },
+    {
+      "type": "THIRD_REVIEW",
+      "id": "Q4",
+      "question": "En la zona oscura del borde izquierdo: ¿son objetos distinguibles el rectángulo oscuro x 0–164, y 0–536, los brillos de vidrio x 0–60, y 519–744, y la forma redondeada x 0–112, y 1021–1349?",
+      "involves": [
+        "C:021",
+        "C:022",
+        "C:025"
+      ],
+      "evidence": [
+        "E1"
+      ],
+      "claude_view": "C:021 sí (borde vertical nítido); C:022 y C:025 dudosos",
+      "status": "PROPOSED_FOR_CODEX"
+    }
+  ]
+}

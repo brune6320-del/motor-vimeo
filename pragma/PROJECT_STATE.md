@@ -3,11 +3,12 @@
 - **Proyecto:** PRAGMA · Motor de Transparencia / Inventario exhaustivo de escena
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
-- **Última actualización:** 26 de septiembre de 2026 (v2.3, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v2.3`
+- **Última actualización:** 26 de septiembre de 2026 (v2.4, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
+- **Versión:** `v2.4`
 - **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
 - **Fase B:** `BLOQUEADA`
-- **Último hito documentado (v2.3):** ChatGPT 010 aceptó el delta completo (`MIDLINE` resuelto, cotas, desafío dirigido, formato y custodia de llaves, umbrales `keymatch` v0.1): `A_E0_INFRASTRUCTURE = READY_FOR_KEYS`. **La persona usuaria ratificó la ontología v0.2 tal cual** (2026‑09‑26 20:13 UTC, `6e50c55`). Claude revisó su borrador contra la foto a resolución completa y **congeló su llave de inventario** (contenido retenido hasta archivar la de ChatGPT), comprometida solo por SHA‑256 en `81e26dc` (`84942809…9829`). Carta 011: GO para la llave de ChatGPT, solo desde la foto
+- **Último hito documentado (v2.4):** **Las dos llaves de inventario A‑E0 existen.** La de ChatGPT (57 objetos, `a3ecb53f…0a45`, `valid_key`) se archivó tal cual (`424e89d`) antes de publicar la de Claude (59 objetos), cuyo hash coincide con el compromiso previo (`237be5b` = `81e26dc`). keymatch v0.1 da 16 pares (27 %) y deja ver dos fallos de la regla, declarados y **no** corregidos a posteriori: empareja sin clase (chaqueta↔persona, mesa↔suelo) y el umbral de 0,5 es estricto para cajas holgadas. La propuesta de adjudicación de Claude cubre los 59 + 57 objetos con evidencia en 8 láminas: 44 correspondencias, 7 + 9 inclusiones, 2 errores propios excluidos (vasitos duplicados), `MATCH_REJECTED` en 2 pares y 4 preguntas para Codex (una o dos mesas; silla o superficie; silla o sofá, y cojín o pared; objetos del borde oscuro). Carta 012
+- **Hito v2.3:** ChatGPT 010 aceptó el delta completo (`MIDLINE` resuelto, cotas, desafío dirigido, formato y custodia de llaves, umbrales `keymatch` v0.1): `A_E0_INFRASTRUCTURE = READY_FOR_KEYS`. **La persona usuaria ratificó la ontología v0.2 tal cual** (2026‑09‑26 20:13 UTC, `6e50c55`). Claude revisó su borrador contra la foto a resolución completa y **congeló su llave de inventario** (contenido retenido hasta archivar la de ChatGPT), comprometida solo por SHA‑256 en `81e26dc` (`84942809…9829`). Carta 011: GO para la llave de ChatGPT, solo desde la foto
 - **Hito v2.2:** ChatGPT 009 aceptó DEC‑025 (`t` = 2, 100 px, THICK/ISLAND/thin, OPEN/ENCLOSED, `touches_mask_exterior`) y **encontró un error real**: la «línea media» daba la unión en bandas finas (rectángulo desplazado 1 px → 110 px). Reproducido y corregido antes de producir ninguna referencia: `reference_estimate_mask` con política declarada (`MIDLINE` real por distancia Chebyshev, empates en tablero), cotas exactas `metric_all_pixels_min/max` verificadas por fuerza bruta, prueba de regresión con su nombre. Omisión compartida = teselas de contorno 1:1 + desafío dirigido de Codex. Formato de llave, custodia por hash y regla de comparación de inventarios (`keymatch.py`) fijados **antes de que exista ninguna llave**. 136/136 tests. ChatGPT recomienda aceptar la ontología v0.2 tal cual; la ratificación sigue pendiente de la persona usuaria. Carta 010
 - **Hito v2.1:** **ChatGPT 008 confirmó el cierre de A‑E(−1)** (`AEM1_CLOSED_INCONCLUSIVE = CONFIRMED`): aceptó las tres adjudicaciones ciegas sin tercera revisión, H‑C3 `HOLDS`, H‑G5 `INDETERMINATE`, `AEM1_LOCAL_H2_REPAIR = DEMONSTRATED`; sin v1.5 ni H3. Propuso separar la revisión visual de la **comprobación geométrica** entre llaves (XOR direccional, registro por componente, `uncertain` como tercer estado) → **DEC‑025**, implementada en `pragma_ae/keydiff.py` (18 pruebas; 115/115) y validada retrospectivamente con las máscaras reales de v1.4: encuentra el faltante abierto de N04 (`OPEN`) y la isla de 3 px del moño (`ISLAND`), los dos errores que se escaparon a las dos llaves visuales. Hoja de ratificación de la ontología (R1–R11) y carta 009 con los parámetros de DEC‑025 para que ChatGPT los confirme
 - **Hito v2.0:** **A‑E(−1) cerrado** con la corrida v1.4 (`20260926T063238Z_67d41850`, L4, referencia bit a bit): `INCONCLUSIVE_SELECTED_OUTPUT_FAILED` → **`AEM1_CLOSED_INCONCLUSIVE`** por la regla de parada. Doble llave 21/24 + 12/12 + 15/15, con tres discrepancias **adjudicadas a ciegas por medición antes del desciegue** (reglas en `751cbaa`, resultado en `aa164e3`): N01 y N05 · O = FALSE (isla de 3–5 px en el núcleo del moño) y N04 · B = FALSE (deja fuera 10 043 px de pelo que las dos llaves marcaron D). **H‑C3 `HOLDS`:** H2 cierra la franja en 3/3 semillas, estable a ±15 px. **H‑G5 `INDETERMINATE`.** Hallazgo: el pelo lateral junto al mentón falta en las seis máscaras y ya faltaba, abierto, en C01 (v1.3). Carta 008 pide a ChatGPT confirmar las adjudicaciones y el cierre
@@ -80,6 +81,13 @@ Resultado final esperado del producto: una arquitectura modular que proponga, re
 - **Cierre:** por la regla de parada acordada, A‑E(−1) se cierra como inconcluso, sin más iteraciones.
 - **Siguiente paso:** A‑E0 (el inventario de referencia), que empieza con la ratificación de la
   ontología por la persona usuaria.
+
+**Actualización v2.4.** ChatGPT entregó su inventario de la foto y se comparó con el de Claude.
+Los dos vieron en lo sustancial los mismos objetos (personas, cuadros, reloj, botellas, ropa). Las
+diferencias son sobre todo de precisión de las cajas: las de ChatGPT son más holgadas. Hay además
+cuatro dudas reales de identidad (por ejemplo, si al fondo hay una silla o una superficie con un marco
+encima). Claude también se equivocó: contó cuatro vasitos donde hay dos. La propuesta de adjudicación
+va a ChatGPT, y las dudas que sigan abiertas irán a una tercera revisión.
 
 **Actualización v2.3.** La persona usuaria aceptó la definición de «objeto». Con eso, Claude revisó
 su inventario contra la foto, zona por zona, y lo congeló. Guardó en git solo su huella (hash), para
@@ -472,6 +480,30 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
   - `✅ EJECUTADO GPU` + `✅` doble llave con adjudicación técnica;
   - `✅` confirmado por ChatGPT 008 (v2.1).
 
+## Hito 22 — Las dos llaves y la propuesta de adjudicación (v2.4)
+
+- **Custodia:**
+  - `81e26dc`: compromiso de Claude;
+  - `424e89d`: llave de ChatGPT archivada byte a byte (`ae0/llaves/`, con
+    `RECEPCION_LLAVE_CHATGPT_A-E0.json`); su eco del hash aún no llegó;
+  - `237be5b`: llave de Claude publicada, hash verificado.
+- **keymatch v0.1** (`ae0/comparacion/keymatch_v0_1.json`): 16/59 y 16/57 pares, 2 automáticos.
+  - Fallos de la regla, declarados: sin restricción de clase y umbral de 0,5 frente a cajas
+    holgadas.
+  - Una v0.2 queda propuesta solo para inventarios futuros.
+- **Propuesta de adjudicación** (`ae0/comparacion/propuesta_adjudicacion_claude.json`, desde
+  `work/ae0_adjudication_proposal.py`, con reglas R‑box, R‑kind, R‑dup, R‑include y R‑tier):
+  - 44 `SAME`: 32 con la caja de Claude, 8 combinando bordes y 4 con media;
+  - 9 `A_ONLY`: 7 inclusiones y 2 exclusiones, que son duplicados de Claude;
+  - 9 `B_ONLY` incluidas;
+  - 2 `MATCH_REJECTED`;
+  - 4 `THIRD_REVIEW` (Q1–Q4).
+- **Evidencia:** `work/ae0_key_evidence.py`, 8 láminas en `local/ae0/comparacion/`, privadas.
+- **Carta 012** con `PRAGMA_carta012_comparacion.zip` (`0e7385…7670`).
+- **Certeza:**
+  - `✅` llaves y comparación;
+  - `🟡` adjudicación propuesta, pendiente de ChatGPT y de Codex.
+
 ## Hito 21 — Ontología ratificada y llave de Claude comprometida (v2.3)
 
 - **ChatGPT 010** (`dialogo/010_chatgpt_a_claude.md`): eco `2a7d4b97…c202`, 17/17, 39/39; todo
@@ -561,7 +593,9 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
 
 # 4. Estado Actual del Proyecto
 
-- **Último componente trabajado (v2.3):** archivo de ChatGPT 010, registro de la ratificación, revisión del borrador y congelado de la llave de Claude (solo hash en git), carta 011.
+- **Último componente trabajado (v2.4):** archivo de la llave de ChatGPT, publicación de la de Claude, keymatch v0.1, láminas de evidencia, propuesta de adjudicación, carta 012.
+- **Últimos comandos (v2.4):** `python3 work/validate_ae0_key.py ae0/llaves/llave_chatgpt_A-E0.json` (`valid_key`), `python3 work/ae0_key_evidence.py local/ae0/comparacion …` y `python3 work/ae0_adjudication_proposal.py` (sin objetos sin cubrir).
+- **Componente v2.3:** archivo de ChatGPT 010, registro de la ratificación, revisión del borrador y congelado de la llave de Claude (solo hash en git), carta 011.
 - **Últimos comandos (v2.3):** `python3 work/validate_ae0_key.py local/ae0/llave_claude_A-E0.json` (`valid_key: true`) y `python3 -m pragma_ae sheet local/ae0/llave_claude_A-E0.json --out local/ae0/lamina_llave_claude.png`.
 - **Componente v2.2:** estimador de incertidumbre corregido y cotas (ChatGPT 009), teselas de contorno, formato y regla de comparación de llaves, contrato A‑E1 con `uncertainty_reporting`, carta 010.
 - **Últimos comandos (v2.2):** `python3 -m unittest discover -s tests` (136/136), `python3 work/ae1_analysis_contract.py --check` (True) y `python3 work/keydiff_retro_aem1_v1_4.py …` (cifras sin cambios).
@@ -602,7 +636,7 @@ A‑E(−1) v1.3                  GPU REAL · INCONCLUSIVE_SELECTED_OUTPUT_FAILE
 A‑E(−1) v1.4                  GPU REAL · INCONCLUSIVE · H2 REPARA LA FRANJA (H‑C3) · FALTA PELO LATERAL
 A‑E(−1)                       AEM1_CLOSED_INCONCLUSIVE · CONFIRMADO POR DOBLE LLAVE (ChatGPT 008)
 A‑E0 inventario de referencia DEC‑024: DOBLE LLAVE IA → AI_CONSENSUS_REFERENCE · ESQUEMA LISTO · MÁSCARAS SIN SAM 2
-                              DEC‑025 ACEPTADA · ONTOLOGÍA v0.2 RATIFICADA · LLAVE CLAUDE COMPROMETIDA (hash) · LLAVE CHATGPT PENDIENTE
+                              DEC‑025 ACEPTADA · ONTOLOGÍA v0.2 RATIFICADA · LAS DOS LLAVES ARCHIVADAS · ADJUDICACIÓN PROPUESTA (carta 012)
 A‑E1 SAM2 AMG                 SWEEP PREREGISTERED (ChatGPT 003) · ANÁLISIS CONDICIONADO A A‑E0 · SIN CORRIDA
 Revisión                      AUDITOR IA + CONTRAAUDITORÍA CHATGPT · VETO DE LA PERSONA USUARIA
 Fase B                        BLOQUEADA
@@ -981,7 +1015,10 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 | Paquete de la carta 010 | local (`local/share/`; lámina privada) | delta para ChatGPT | ✅ 17/17, 39 pruebas pasan desde el ZIP | `2a7d4b…c202` |
 | `RATIFICACION_REGISTRO_v0_2.json` · `COMPROMISO_LLAVE_CLAUDE_A-E0.json` | `pragma/ae0/` | ratificación · compromiso por hash de la llave de Claude | ✅ | ver manifiesto · llave `84942809…9829` |
 | `llave_claude_A-E0.json` | local (`local/ae0/`; se publica tras la llave de ChatGPT) | llave de inventario de Claude | ✅ `valid_key` | `84942809…9829` |
-| `010_chatgpt_a_claude.md` · `011_claude_a_chatgpt.md` | `pragma/dialogo/` | delta aceptado · GO para la llave de ChatGPT | ✅ archivada · 🟡 para pegar | ver manifiesto |
+| `010_chatgpt_a_claude.md` · `011_claude_a_chatgpt.md` | `pragma/dialogo/` | delta aceptado · GO para la llave de ChatGPT | ✅ archivada · ✅ respondida con la llave | ver manifiesto |
+| `llave_claude_A-E0.json` · `llave_chatgpt_A-E0.json` | `pragma/ae0/llaves/` | las dos llaves de inventario | ✅ | `84942809…9829` · `a3ecb53f…0a45` |
+| `keymatch_v0_1.json` · `propuesta_adjudicacion_claude.json` | `pragma/ae0/comparacion/` | comparación v0.1 · propuesta de adjudicación | ✅ · 🟡 propuesta | ver manifiesto |
+| `012_claude_a_chatgpt.md` · paquete 012 | `pragma/dialogo/` · local | comparación y adjudicación para ChatGPT | 🟡 para pegar | paquete `0e7385…7670` |
 | `keydiff_retrospectivo_v14.json` · `cierre_chatgpt008.json` | `pragma/auditoria/aem1v14_…/` | retrospectiva (exploratoria) · cierre de v1.4 por doble llave | ✅ | `ec1ef0…c00c` · `3cfa78…3b73` |
 | `008_chatgpt_a_claude.md` · `009_claude_a_chatgpt.md` | `pragma/dialogo/` | cierre confirmado · DEC‑025 y ratificación | ✅ archivada · 🟡 para pegar | `4dec78…7dd1` · ver manifiesto |
 | `RATIFICACION_ONTOLOGIA_v0_2.md` | `pragma/ae0/` | hoja de ratificación (R1–R11) | 🟡 espera a la persona usuaria | ver manifiesto |
@@ -1916,7 +1953,7 @@ Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y ce
   - escribe a Claude «acepto la ontología v0.2» (o qué cambia).
 - **Criterio:** la ratificación escrita, leída por Claude; la respuesta de ChatGPT archivada.
 
-### P0-16 — Llaves de inventario y máscaras de A‑E0 (en curso: paso 1 hecho, `81e26dc`)
+### P0-16 — Llaves de inventario y máscaras de A‑E0 (en curso: pasos 1–3 hechos; adjudicación propuesta)
 
 - **Acción:**
   1. Claude revisa su borrador, lo congela como llave (`ae0/FORMATO_LLAVE_A-E0.md`) y compromete en
@@ -2199,24 +2236,22 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-- **Ontología v0.2:** ratificada.
-- **Llave de inventario de Claude:** congelada.
-  - Está en `local/ae0/llave_claude_A-E0.json`, con una copia de solo lectura
-    `…84942809.json`.
-  - En git solo va su hash: `ae0/COMPROMISO_LLAVE_CLAUDE_A-E0.json`, commit `81e26dc`.
-- **Llave de ChatGPT:** falta. Se hace solo desde la foto, con la carta 011.
+- **Las dos llaves de inventario** están en `ae0/llaves/` y se compararon con keymatch v0.1.
+- **Claude propuso la adjudicación completa:** `ae0/comparacion/propuesta_adjudicacion_claude.json`.
+  Cubre los 59 + 57 objetos, con 8 láminas de evidencia privadas y 4 preguntas candidatas para
+  Codex.
 
 ## Próxima acción
 
-La persona usuaria adjunta `P1070614.JPG` en ChatGPT, pega `dialogo/011_claude_a_chatgpt.md` y trae
-a Claude `llave_chatgpt_A-E0.json` y la respuesta completa.
+La persona usuaria pega `dialogo/012_claude_a_chatgpt.md` en ChatGPT, adjunta
+`local/share/PRAGMA_carta012_comparacion.zip` y trae la respuesta.
 
 ## Resultado esperado
 
-1. Claude archiva la llave de ChatGPT tal cual y verifica su hash y la foto.
-2. Publica la suya; su hash debe coincidir con `81e26dc`.
-3. Corre `pragma_ae.keymatch` (0,5 / 0,85) y produce la lista de adjudicación.
-4. Después, polígonos de las tres personas (`AI_POLYGON_RASTER`) y DEC‑025.
+1. ChatGPT acepta u objeta punto por punto y confirma el hash de su llave.
+2. Lo que siga en disputa (como mucho Q1–Q4) va a Codex a ciegas, con un paquete sin atribución.
+3. Se compone el inventario de referencia adjudicado.
+4. Después: polígonos de las tres personas y DEC‑025.
 
 ---
 
@@ -2225,7 +2260,7 @@ a Claude `llave_chatgpt_A-E0.json` y la respuesta completa.
 ```text
 Continúo el proyecto PRAGMA. Repositorio: brune6320-del/motor-vimeo, carpeta pragma/.
 
-Lee completo pragma/PROJECT_STATE.md (v2.3) y pragma/dialogo/README.md antes de proponer cambios.
+Lee completo pragma/PROJECT_STATE.md (v2.4) y pragma/dialogo/README.md antes de proponer cambios.
 Verifica pragma/MANIFEST_SHA256.txt y, si tienes la foto y la extensión, pragma/inputs/INPUTS_SHA256.txt.
 
 No confundas: diseño, código escrito, verificación estática, ejecución simulada, ejecución GPU y
@@ -2237,7 +2272,7 @@ demostrado; segmentación completa no); v1.4 = PREREGISTERED (H2 = (2994, 892); 
 INDETERMINATE; A-E(−1) = AEM1_CLOSED_INCONCLUSIVE, confirmado por doble llave (ChatGPT 008);
 DEC-025 (comparación geométrica entre llaves, pragma_ae/keydiff.py) aceptada; estimador de incertidumbre
 (reference_estimate_mask + cotas min/max) aceptada por ChatGPT 010; ontología v0.2 RATIFICADA por la persona usuaria;
-llave de inventario de Claude congelada y comprometida solo por hash (81e26dc); falta la llave de ChatGPT;
+llaves de inventario de Claude y ChatGPT archivadas y comparadas (keymatch v0.1); adjudicación propuesta (carta 012);
 A-E0 por doble llave de IA = AI_CONSENSUS_REFERENCE (DEC-024), máscaras sin SAM 2;
 auditoría ciega v2 rev. 1 (paquete antes que resultados, adjudicación técnica); A-E0 = borrador
 DRAFT_UNVERIFIED y ontología sin ratificar; Fase B = BLOQUEADA; SAM 2 todavía no es rechazable.
@@ -2278,6 +2313,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v2.4 | 2026‑09‑26 | llave de ChatGPT archivada tal cual (`424e89d`) y de Claude publicada con su hash verificado (`237be5b`); keymatch v0.1 (16 pares, dos fallos de la regla declarados); láminas de evidencia; propuesta de adjudicación (44 `SAME`, 7 + 9 inclusiones, 2 exclusiones propias, 2 `MATCH_REJECTED`, 4 preguntas para Codex); carta 012 |
 | v2.3 | 2026‑09‑26 | ChatGPT 010 archivada (delta aceptado, `READY_FOR_KEYS`, `GEOMETRIC_MATCH != SEMANTIC_ACCEPTANCE`); **ontología v0.2 ratificada** por la persona usuaria (`6e50c55`); llave de inventario de Claude revisada contra la foto y congelada, comprometida solo por SHA‑256 (`81e26dc`); carta 011 con el GO para la llave de ChatGPT |
 | v2.2 | 2026‑09‑26 | ChatGPT 009 archivada: DEC‑025 aceptada salvo la «línea media» (daba la unión; reproducido y concedido); `reference_estimate_mask` con política declarada (`MIDLINE` real, empates en tablero) y cotas exactas `metric_all_pixels_min/max` (fuerza bruta); teselas de contorno y desafío dirigido para la omisión compartida; miniatura original en la lámina; contrato A‑E1 con `uncertainty_reporting`; formato de llave, validador y regla de comparación `keymatch` fijados antes de cualquier llave; contaminación menor declarada y retirada del protocolo; 136/136; carta 010 |
 | v2.1 | 2026‑09‑26 | ChatGPT 008 archivada: cierre de A‑E(−1) **confirmado por doble llave** (tres adjudicaciones aceptadas, Codex `NOT_NEEDED`, `cierre_chatgpt008.json`); **DEC‑025** (revisión visual ≠ comprobación geométrica) implementada en `pragma_ae/keydiff.py` con 18 pruebas (115/115) y validación retrospectiva con máscaras reales de v1.4 (señala el faltante abierto de N04 y la isla de 3 px); protocolo A‑E0 actualizado; hoja de ratificación de la ontología (R1–R11); carta 009 |
