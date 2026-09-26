@@ -1,0 +1,83 @@
+{
+  "schema": "pragma.aem1v13_blind_step3",
+  "schema_version": "0.1.0",
+  "protocol": "auditoria/PROTOCOLO_AUDITORIA_AEM1_v2.md (rev. 1)",
+  "protocol_sha256": "b5b11c6cce30b534eb83ab9117025e35837e4554eb150e411c8091fec5087a71",
+  "prereg_content_sha256": "5800f2bf624620c353067210c73d782a8aefa39563925e859929ef0cba432a8c",
+  "step2_integrity": {
+    "status": "INTEGRITY_PASS",
+    "run_kind": "REAL_GPU",
+    "problems": [],
+    "zip_sha256": "6d795132cd8e609388cdb1b3671dee7e0d1c39067880cfb0ca6a1b1a6783ce14",
+    "zip_bytes": 2794459,
+    "run_id": "20260926T040705Z_bee282c1",
+    "prereg_content_sha256": "5800f2bf624620c353067210c73d782a8aefa39563925e859929ef0cba432a8c",
+    "environment": {
+      "device": "cuda",
+      "device_name": "NVIDIA L4",
+      "dtype": "bfloat16",
+      "torch": "2.11.0+cu128",
+      "python": "3.13.15",
+      "sam2_commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+      "checkpoint_sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+      "checkpoint_bytes": 898083611,
+      "image_sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d"
+    },
+    "calls": 178,
+    "candidates": 210,
+    "note": "sin datos de resultado: ni áreas, ni scores, ni sentinelas (protocolo v2 §2, paso 2)"
+  },
+  "step3_blind_package": {
+    "file": "PRAGMA_AEM1v13_paquete_ciego_20260926T040705Z_bee282c1.zip",
+    "sha256": "a77a47b5c1e93bbc896dcd7b775afc22fef6ccc54ead8748b7e08c0f34a8051e",
+    "sealed_mapping_sha256": "e1986a2b4ddad61eb0b171cf474797bfea045149ee027801b8ea65b80730c63f",
+    "labels": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C11",
+      "C12",
+      "C13",
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18"
+    ],
+    "sheets_sha256": {
+      "candidata_C01.jpg": "1d746259856db4854ad7ae3408d991c16eabd14a50647a58d5da003ab3689c96",
+      "candidata_C02.jpg": "5ca7d2dd2236bac0fe02fb7b359aa6154dac2b3f3564b8e1d37537ce8e007779",
+      "candidata_C03.jpg": "40afcb4817dff534358bddbadee10be268e8b881a04e22adc692995134060f6c",
+      "candidata_C04.jpg": "ebdf44628eff23cbdb1ffdfefea6c28bd6410afdfe7210daec28f395dfa16413",
+      "candidata_C05.jpg": "a165e966bafafa33f941a9a0ab3d936ff7f3267d80d0485bfd433f9538029cf7",
+      "candidata_C06.jpg": "42299d29c1f4a334e3e837fba51c707a2b467b4c6f504a3669a78e6be0ec6978",
+      "candidata_C07.jpg": "19d427c97cde2f2fb0b4aa831aba55ab08d3f7cb379eb681867d0ffecd9bc437",
+      "candidata_C08.jpg": "b437aa7e064284336cdd920ee623b7afd78fe98dbf40fed942f224d5a8261921",
+      "candidata_C09.jpg": "ec3da95e39e002e77f828e6c774ed9fda5e821383b754c639843512c866eece3",
+      "candidata_C10.jpg": "9375dbec6df4a636136086d9c7315bd254d0255231b9ff3a6661341b9cf6d904",
+      "candidata_C11.jpg": "c13cb79fefaa795ff5d63492eff4c1d3117a26f754bd34825dcccacea382fd9e",
+      "candidata_C12.jpg": "9136992cc59e0a4a7da2faa18542514c7baf64182d7978bfb7b862711c45b1ae",
+      "candidata_C13.jpg": "090b224d1aa70ccc0754cfae288f42eaf44b05d597ecdda74f7ecfff36d7c9e7",
+      "candidata_C14.jpg": "0d61037e447b73f13ce356c8d130891f3c3b30b9f75956aadd49c4bd62dd6eb5",
+      "candidata_C15.jpg": "dcd056ce9cf85dc09546de566796e96dec594e9ffbfa6b3836b8a14da74cdb73",
+      "candidata_C16.jpg": "bf19d7b46532e55bbfc204c391ff5efa6fca221924e72a8ec44cb3ece76314c2",
+      "candidata_C17.jpg": "b262b6dc96976794b89996bc83ad4a4f15d837b88cc9975f5aa1f8aa141a0940",
+      "candidata_C18.jpg": "8336d3878ebed8b4a2e96e81c869a4cbe8d69c8b2586fb9aeca98c17651e67e2"
+    },
+    "note": "permutación aleatoria (secrets); mapeo sellado en local; sin rama, protocolo, semilla ni score en las láminas"
+  },
+  "not_published_until_unblinding": [
+    "mapeo",
+    "juicios de Claude (solo su SHA-256, en el paso 5)",
+    "reproducción de BASE",
+    "métricas",
+    "hipótesis"
+  ]
+}
