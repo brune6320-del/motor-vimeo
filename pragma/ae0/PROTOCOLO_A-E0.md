@@ -51,12 +51,38 @@ de SAM 2 favorecería a SAM 2 cuando A‑E1 mida SAM 2 AMG. Por eso:
 - **Excepción humana:** solo una máscara con `human_ratified` (y `human_ratified_by`) cuenta como
   `HUMAN_GT`.
 
-**Orden (ChatGPT 006 §8):**
+**Refinamiento (ChatGPT 007):**
 
-1. La persona usuaria ratifica la ontología v0.2. Antes de eso **no se produce ni se congela** A‑E0.
-2. Claude hace la llave 1 desde su borrador.
-3. ChatGPT hace la llave 2 desde la foto, sin ver ese borrador.
-4. Se comparan y se adjudica.
+- **Versión v0: `NUMPY_MINIMAL`.** La referencia primaria es `AI_POLYGON_RASTER`, transparente y
+  reproducible.
+- **`AI_POLYGON_CLASSICAL_REFINEMENT`:** solo operaciones simples y deterministas en NumPy, dentro de
+  una banda estrecha de frontera: morfología explícita, gradiente o contraste local, ajuste de borde
+  acotado y generación de `uncertain_mask`. **No** se escribe un «GrabCut casero».
+- **OpenCV/GrabCut:** opción aplazada. Si algún día hace falta, será una derivación nueva y explícita,
+  con `opencv_version`, `parameters`, `rng_seed` (si aplica), `input_mask_sha256` y
+  `output_mask_sha256`.
+- **Pelo y contacto difíciles:** se prefiere `uncertain_mask` a forzar un borde «bonito». A‑E0 no se
+  convierte en otro proyecto de segmentación.
+
+**`uncertain_mask` (ChatGPT 007):**
+
+- Representa regiones donde las dos llaves **no pueden justificar** la precisión de la frontera.
+  Nunca sirve para borrar errores en silencio.
+- Toda métrica se reporta con **`metric_all_pixels`** y, cuando corresponda, también con
+  `metric_excluding_uncertain`, junto con `uncertain_area_px` y `uncertain_fraction`. Así ninguna
+  mejora aparente puede venir de esconder una zona difícil.
+
+**Orden (ChatGPT 006 §8 y 007 §8):**
+
+1. Se cierra A‑E(−1) (v1.4).
+2. La persona usuaria ratifica la ontología v0.2. Antes de eso **no se produce ni se congela** A‑E0.
+3. Claude congela su llave de inventario, a partir de su borrador.
+4. ChatGPT construye la segunda desde la foto, sin abrir la primera.
+5. Se comparan y se adjudica.
+6. Se hacen las máscaras de las tres personas con derivación no‑SAM.
+7. Se congela como `AI_CONSENSUS_REFERENCE`.
+8. Solo entonces se congela del todo el contrato A‑E1.
+9. Se ejecuta A‑E1 (AMG).
 
 Las secciones 1–4 describen el modo humano (`HUMAN_GT`), que sigue disponible si la persona usuaria
 lo prefiere.

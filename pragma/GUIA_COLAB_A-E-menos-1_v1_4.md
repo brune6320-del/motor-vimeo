@@ -1,8 +1,8 @@
 # Guía · A‑E(−1) v1.4 · un clic, a ciegas
 
-> **Todavía no se ejecuta.** ChatGPT revisa el prerregistro v1.4 antes de la corrida (cartas 006 y
-> 007). Esta guía vale cuando su respuesta diga `GO_TO_GPU`. Si pide cambios, el cuaderno se regenera y esta guía
-> se actualiza.
+> **`GO_TO_GPU` dado** por ChatGPT en la carta 007 (`dialogo/007_chatgpt_a_claude.md`), sobre el
+> prerregistro `7048b9fa…0b5d` y el cuaderno `7c29e095…c2b0`. Es la **última corrida ordinaria** de
+> A‑E(−1): después se cierra, pase lo que pase.
 
 El cuaderno v1.4 hace **una sola intervención** sobre la mejor cadena de v1.3: añade el punto H2 en
 la franja de pelo entre la cara y el índice. Son 22 llamadas y 24 máscaras, unos segundos de GPU.

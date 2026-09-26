@@ -3,11 +3,12 @@
 - **Proyecto:** PRAGMA · Motor de Transparencia / Inventario exhaustivo de escena
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
-- **Última actualización:** 26 de septiembre de 2026 (v1.8, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v1.8`
+- **Última actualización:** 26 de septiembre de 2026 (v1.9, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
+- **Versión:** `v1.9`
 - **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
 - **Fase B:** `BLOQUEADA`
-- **Último hito documentado (v1.8):** ChatGPT 006 contraauditó el paquete de la carta 006 (ZIP y 11/11 archivos PASS; `content_sha256` reproducido), dio **`H2_OWNER_SECOND_KEY = PASS`** (y 5/5 perturbaciones válidas), aceptó las seis láminas, la regla de parada y DEC‑024, y encontró **un hueco real en `new_d`** (H‑G5): un agujero que tocaba la región de H2 en 1 px, o con < 50 % dentro de la referencia, no contaba. Parche aplicado **antes de cualquier corrida**: `new_d` = pérdida nueva fuera de H2 (agujero ∩ referencia ∩ ¬región) ≥ 1000 px, con sus 4 pruebas. Prerregistro regenerado (`content_sha256` `7048b9fa…0b5d`), cuaderno 30/30 simulado, 97/97 tests. `pragma_ae/inventory.py` adaptado a DEC‑024 (`AI_DOUBLE_KEY_REVIEWED` → `AI_CONSENSUS_REFERENCE`, derivación no‑SAM). Carta 007 con el delta: falta el `GO_TO_GPU`
+- **Último hito documentado (v1.9):** ChatGPT 007 verificó el delta (13/13; `content_sha256` `7048b9fa…0b5d` reproducido), aceptó el parche `new_d` sin abrir otro ciclo y dio **`AEM1_v1.4 = GO_TO_GPU`** (última corrida ordinaria de A‑E(−1)). Aceptó también el esquema A‑E0, fijó el refinamiento `NUMPY_MINIMAL` (OpenCV/GrabCut aplazado) y `uncertain_mask` con métricas en todos los píxeles y sin la zona incierta. GO archivado en git antes de la corrida; GPU v1.4 `NOT_RUN` hasta que la persona usuaria la ejecute
+- **Hito v1.8:** ChatGPT 006 contraauditó el paquete de la carta 006 (ZIP y 11/11 archivos PASS; `content_sha256` reproducido), dio **`H2_OWNER_SECOND_KEY = PASS`** (y 5/5 perturbaciones válidas), aceptó las seis láminas, la regla de parada y DEC‑024, y encontró **un hueco real en `new_d`** (H‑G5): un agujero que tocaba la región de H2 en 1 px, o con < 50 % dentro de la referencia, no contaba. Parche aplicado **antes de cualquier corrida**: `new_d` = pérdida nueva fuera de H2 (agujero ∩ referencia ∩ ¬región) ≥ 1000 px, con sus 4 pruebas. Prerregistro regenerado (`content_sha256` `7048b9fa…0b5d`), cuaderno 30/30 simulado, 97/97 tests. `pragma_ae/inventory.py` adaptado a DEC‑024 (`AI_DOUBLE_KEY_REVIEWED` → `AI_CONSENSUS_REFERENCE`, derivación no‑SAM). Carta 007 con el delta: falta el `GO_TO_GPU`
 - **Hito v1.7:** ChatGPT 005 cerró v1.3 (`CLOSED_INCONCLUSIVE`; C05 y C07 aceptados sin Codex; `AEM1_POSTERIOR_PERSON_SEPARATION_SUBPROBLEM = DEMONSTRATED`, `FULL_SUBJECT_SEGMENTATION = NOT_DEMONSTRATED`) y dio `GO_TO_PREREGISTRATION` para v1.4. Al prerregistrar, Claude detectó **su propio error**: el H2 de la carta 005 caía en el tramo alto de la franja, que C01 ya cubre. H2 se elige ahora por regla dentro de los píxeles D de consenso en las tres semillas: **(2994, 892)**. **A‑E(−1) v1.4 `PREREGISTERED`** (22 llamadas, 24 máscaras, referencia bit a bit, H‑C3 y H‑G5, regla de PASS completa y **regla de parada**: A‑E(−1) se cierra con v1.4); cuaderno verificado 30/30 con SAM simulado; GPU `NOT_RUN` hasta que ChatGPT lo revise (carta 006). **DEC‑024:** A‑E0 por doble llave de IA, etiquetado `AI_CONSENSUS_REFERENCE`, nunca `HUMAN_GT`
 - **Hito v1.6:** corrida v1.3 en GPU (`REAL_GPU`, BASE bit a bit 12/12) auditada con **doble ciego temporal completo**: ChatGPT juzgó solo el paquete ciego, sin ninguna carta con resultados, y Claude comprometió sus juicios por hash antes. Doble llave `INCONCLUSIVE_SELECTED_OUTPUT_FAILED` (acuerdo 103/108 celdas; B FALSE en las 18 en ambas llaves). **La separación de la persona posterior ya se consigue** (nombre corregido en v1.7: `AEM1_POSTERIOR_PERSON_SEPARATION_SUBPROBLEM = DEMONSTRATED`, no «PRAGMA») con H1+S1 en `box+corrections` (O TRUE en ambas llaves, 7/7 KEEP, robusta a ±15 px); lo que impide el PASS es la **completitud** (una franja cerrada de pelo entre la cara y el índice). Mejor intento C01 = `+POS_HAIR+SLEEVE|box+corrections|s1`, un solo agujero D de 3011 px. H‑C1 y H‑G1 refutadas; H‑C2, H‑G2, H‑G3 y H‑G4 se cumplen. Adjudicación técnica por medición: C03 · O → FALSE; C05 y C07 · O → TRUE **provisional** hasta que ChatGPT lo confirme. Carta 005 con la propuesta v1.4 (un positivo H2 en la franja) y A‑E0 por doble llave de IA
 - **Hito v1.5:** ChatGPT contraauditó el paquete 003 (integridad PASS, diseño PASS, decisiones a–d aceptadas) y pidió dos cambios de contrato, aplicados **antes de cualquier corrida**: `BASE_V2_REFERENCE` (una máscara idéntica no hereda un juicio emitido con otro protocolo) y adjudicación técnica de discrepancias (la persona usuaria no arbitra píxeles). Con eso `AEM1_v1.3 = GO_TO_BUILD`: prerregistro `PREREGISTERED` con plan de 178 llamadas y el código de análisis congelado por hash; cuaderno v1.3 generado desde el prerregistro y verificado 26/26 con SAM simulado; contrato de análisis A‑E1 en borrador. GPU v1.3 `NOT_RUN`
@@ -393,6 +394,20 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
   - `✅ VERIFICADO ESTÁTICO + SIMULADO`;
   - `❌` GO final de ChatGPT y GPU v1.4.
 
+## Hito 17 — GO a la GPU de v1.4 (v1.9)
+
+- **ChatGPT 007** (tal cual, `2694eb06…c3fb`):
+  - `DELTA_V1_4 = PASS`, `NEW_D_PATCH = ACCEPTED`, `PREREGISTRATION = ACCEPTED`;
+  - `PASS_CONTRACT = UNCHANGED`, `STOP_RULE = CONFIRMED` → **`AEM1_v1.4 = GO_TO_GPU`**;
+  - A‑E0: `A_E0_SCHEMA = ACCEPTED`, `A_E0_REFINEMENT = NUMPY_MINIMAL`, `UNCERTAIN_MASK = ACCEPTED`.
+- **Limitación conocida (no bloquea):** H‑G5 solo detecta agujeros D **cerrados** nuevos, no la erosión
+  abierta al fondo. Queda como diagnóstico en `global_change`, y el PASS de doble llave sigue
+  juzgando la completitud.
+- **Aprobado:** el cuaderno `7c29e095…c2b0`, que embebe el prerregistro `7048b9fa…0b5d`.
+- **Certeza:**
+  - `✅` doble llave del diseño;
+  - `❌` corrida GPU v1.4.
+
 ## Hito 10 — La persona usuaria deja de fiscalizar; ping‑pong con ChatGPT (v1.2)
 
 - **Solicitud:** "no me delegues fiscalizar lo que la IA puede hacer"; mandar los avances a ChatGPT en retroalimentación constante; traspasar no es delegar; usar Colab MCP/CLI si es posible.
@@ -437,7 +452,7 @@ Fase A dirigida por clic       INCONCLUSIVE
 A‑E(−1) diagnóstico chica     CORRIDA 1 (v1.2, GPU): INCONCLUSIVE_SELECTED_OUTPUT_FAILED (0/12) · ACEPTADO POR DOBLE LLAVE
 A‑E(−1) v1.3                  GPU REAL · INCONCLUSIVE_SELECTED_OUTPUT_FAILED (0/18) · ACEPTADO POR DOBLE LLAVE
                               CLOSED_INCONCLUSIVE · SUBPROBLEMA DE SEPARACIÓN DEMOSTRADO · SEGMENTACIÓN COMPLETA NO
-A‑E(−1) v1.4                  PREREGISTERED (H2 = (2994, 892); new_d parcheado) · H2 2.ª LLAVE PASS · 30/30 SIMULADO · GPU NOT_RUN · ESPERA GO_TO_GPU
+A‑E(−1) v1.4                  PREREGISTERED Y ACEPTADO (ChatGPT 007) · GO_TO_GPU · GPU NOT_RUN · ÚLTIMA CORRIDA DE A‑E(−1)
 A‑E0 inventario de referencia DEC‑024: DOBLE LLAVE IA → AI_CONSENSUS_REFERENCE · ESQUEMA LISTO · MÁSCARAS SIN SAM 2 · ONTOLOGÍA SIN RATIFICAR
 A‑E1 SAM2 AMG                 SWEEP PREREGISTERED (ChatGPT 003) · ANÁLISIS CONDICIONADO A A‑E0 · SIN CORRIDA
 Revisión                      AUDITOR IA + CONTRAAUDITORÍA CHATGPT · VETO DE LA PERSONA USUARIA
@@ -1604,6 +1619,11 @@ Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y ce
   - **Falta:** la ratificación de la ontología por la persona usuaria.
   - **Después:** rasterizador y refinamiento (NumPy u OpenCV, en consulta en la carta 007),
     `uncertain_mask` opcional, llave de Claude, llave de ChatGPT solo desde la foto, comparación.
+  - **Decidido (ChatGPT 007):**
+    - refinador `NUMPY_MINIMAL`; OpenCV/GrabCut aplazado, como derivación explícita con versión,
+      parámetros y hashes;
+    - `uncertain_mask` reportando siempre `metric_all_pixels`, más `metric_excluding_uncertain`,
+      `uncertain_area_px` y `uncertain_fraction`.
 - **Dependencia:** P0-3.
 - **Criterio:** inventario congelado por hash y revisado.
 
@@ -1660,8 +1680,8 @@ Todos los notebooks conservados en `outputs/` tienen `execution_count=null` y ce
 
 ### P0-13 — Revisión de ChatGPT (cartas 006 y 007) → corrida v1.4 → auditoría ciega
 
-- **Estado (v1.8):** 006 hecha (`HOLD_FOR_ONE_PREREG_PATCH`); parche aplicado; falta la respuesta a la
-  carta 007 (`GO_TO_GPU`).
+- **Estado (v1.9):** `GO_TO_GPU` (ChatGPT 007). Falta que la persona usuaria ejecute el cuaderno en L4
+  y adjunte el ZIP.
 
 - **Acción:**
   1. La persona usuaria pega la carta 006 y adjunta `local/share/PRAGMA_carta006_prerregistro_v1_4.zip`.
@@ -1920,39 +1940,36 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-- **v1.3:** cerrada por doble llave (`CLOSED_INCONCLUSIVE`).
-- **v1.4:** `PREREGISTERED`, contraauditada por ChatGPT (006).
-  - Segunda llave de H2 PASS.
-  - `new_d` corregido antes de correr; `content_sha256` `7048b9fa…0b5d`.
-  - Cuaderno 30/30 con SAM simulado; 97/97 tests.
-  - **GPU `NOT_RUN`: falta el `GO_TO_GPU`** sobre el delta (carta 007).
-- **A‑E0:**
-  - esquema DEC‑024 listo y derivación sin SAM 2 acordada;
-  - no se produce nada hasta que la persona usuaria ratifique la ontología v0.2.
+- **A‑E(−1) v1.4** tiene el **`GO_TO_GPU`** de ChatGPT (carta 007, archivada antes de la corrida).
+  - Cuaderno aprobado: `outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_4.ipynb` (`7c29e095…c2b0`),
+    con el prerregistro `7048b9fa…0b5d`.
+  - GPU `NOT_RUN`.
+  - Es la última corrida ordinaria de A‑E(−1).
+- **A‑E0:** esquema y decisiones de derivación, refinamiento e incertidumbre cerrados por doble llave.
+  Espera la ratificación de la ontología.
 
 ## Próxima acción
 
-La persona usuaria pega `dialogo/007_claude_a_chatgpt.md` en ChatGPT, **adjunta**
-`local/share/PRAGMA_carta007_delta_v1_4.zip` y trae la respuesta completa.
+La persona usuaria ejecuta el cuaderno v1.4 en Colab con **GPU L4**, siguiendo
+`GUIA_COLAB_A-E-menos-1_v1_4.md`, y adjunta aquí el ZIP `PRAGMA_AEM1v14_…_PENDING_EXTERNAL_AUDIT.zip`.
+No lo envía a ChatGPT.
 
 ## Resultado esperado
 
-Respuesta archivada tal cual como `007_chatgpt_a_claude.md`.
+Claude, en este orden, sin publicar resultados hasta el desciegue:
 
-1. **`GO_TO_GPU`:** la persona usuaria ejecuta el cuaderno v1.4 en **L4**
-   (`GUIA_COLAB_A-E-menos-1_v1_4.md`) y adjunta el ZIP. Después sigue la auditoría ciega v2:
-   1. integridad y referencia bit a bit (solo hashes);
-   2. paquete ciego `N01–N06` solo a ChatGPT;
-   3. juicios de Claude por hash;
-   4. desciegue y `aem1_v14_audit.analyze`;
-   5. cierre de A‑E(−1) por la regla de parada.
-2. **Otro cambio pedido:** se aplica antes de correr, con el mismo procedimiento.
+1. `aem1_v14_audit.integrity` (sin datos de resultado);
+2. la referencia bit a bit frente a v1.3, solo por hashes;
+3. el paquete ciego `N01–N06` para ChatGPT, que viaja **solo**;
+4. sus juicios comprometidos por hash;
+5. con la segunda llave, desciegue y `aem1_v14_audit.analyze`, adjudicación técnica si hace falta, y
+   `AEM1_CLOSED_DEMONSTRATED` o `AEM1_CLOSED_INCONCLUSIVE`.
 
 ## En paralelo
 
 La persona usuaria ratifica (o cambia) la ontología v0.2 (`ae0/ONTOLOGIA_PROPUESTA.md`), que es una
-decisión de producto. Con eso empieza A‑E0 por doble llave de IA. A‑E1 sigue esperando el congelado de
-A‑E0. Nada de A‑E(−1) cuenta como evidencia A‑E1.
+decisión de producto. Con eso empieza A‑E0 por doble llave de IA. Nada de A‑E(−1) cuenta como
+evidencia A‑E1.
 
 ---
 
@@ -1961,7 +1978,7 @@ A‑E0. Nada de A‑E(−1) cuenta como evidencia A‑E1.
 ```text
 Continúo el proyecto PRAGMA. Repositorio: brune6320-del/motor-vimeo, carpeta pragma/.
 
-Lee completo pragma/PROJECT_STATE.md (v1.8) y pragma/dialogo/README.md antes de proponer cambios.
+Lee completo pragma/PROJECT_STATE.md (v1.9) y pragma/dialogo/README.md antes de proponer cambios.
 Verifica pragma/MANIFEST_SHA256.txt y, si tienes la foto y la extensión, pragma/inputs/INPUTS_SHA256.txt.
 
 No confundas: diseño, código escrito, verificación estática, ejecución simulada, ejecución GPU y
@@ -1969,7 +1986,7 @@ aceptación (doble llave Claude + ChatGPT). Estado de partida: v4 = INCONCLUSIVE
 (v1.2, GPU) = INCONCLUSIVE_SELECTED_OUTPUT_FAILED aceptado por doble llave; v1.3 (GPU real) =
 INCONCLUSIVE_SELECTED_OUTPUT_FAILED, CLOSED_INCONCLUSIVE por doble llave (subproblema de separación
 demostrado; segmentación completa no); v1.4 = PREREGISTERED (H2 = (2994, 892); new_d parcheado tras ChatGPT
-006), cuaderno 30/30 con SAM simulado, GPU NOT_RUN hasta el GO_TO_GPU, y A-E(−1) se cierra con v1.4;
+006), aceptado con GO_TO_GPU (ChatGPT 007), GPU NOT_RUN hasta que se ejecute, y A-E(−1) se cierra con v1.4;
 A-E0 por doble llave de IA = AI_CONSENSUS_REFERENCE (DEC-024), máscaras sin SAM 2;
 auditoría ciega v2 rev. 1 (paquete antes que resultados, adjudicación técnica); A-E0 = borrador
 DRAFT_UNVERIFIED y ontología sin ratificar; Fase B = BLOQUEADA; SAM 2 todavía no es rechazable.
@@ -2010,6 +2027,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v1.9 | 2026‑09‑26 | ChatGPT 007 archivada antes de la corrida: delta PASS, `new_d` aceptado, **`AEM1_v1.4 = GO_TO_GPU`**; A‑E0: esquema aceptado, refinamiento `NUMPY_MINIMAL` (OpenCV aplazado), `uncertain_mask` con métricas en todos los píxeles y sin la zona incierta; orden de A‑E0 → A‑E1 fijado; guía v1.4 habilitada |
 | v1.8 | 2026‑09‑26 | ChatGPT 006 archivada (contraauditoría del prerregistro v1.4: H2 PASS, seis láminas, parada y DEC‑024 aceptadas; `new_d` `CHANGE_REQUIRED`); parche `new_d` = pérdida nueva fuera de H2 ≥ 1000 px con las 4 pruebas de ChatGPT; prerregistro, cuaderno y verificación regenerados (`7048b9fa…0b5d`, 30/30); `inventory.py` con modo `AI_DOUBLE_KEY_REVIEWED` (6 pruebas), contrato A‑E1 y protocolo A‑E0 actualizados; derivación de máscaras sin SAM 2; 97/97 tests; carta 007 y delta |
 | v1.7 | 2026‑09‑26 | ChatGPT 005 archivada; cierre de v1.3 (`cierre_chatgpt005.json`: C05/C07 aceptados, subproblema de separación demostrado, `CLOSED_INCONCLUSIVE`); corrección del H2 de la carta 005 (tramo alto → región D común) → **A‑E(−1) v1.4 prerregistrado** (H2 = (2994, 892), 22 llamadas, H‑C3/H‑G5, regla de PASS completa y de parada), `aem1_v14` + auditoría + 19 tests, cuaderno v1.4 verificado 30/30 simulado, guía v1.4 y paquete de revisión; **DEC‑024** (A‑E0 `AI_CONSENSUS_REFERENCE`), enmienda del protocolo A‑E0 y `REFERENCE_TYPE_DECLARED` en el contrato A‑E1; carta 006 |
 | v1.6 | 2026‑09‑26 | segunda llave v1.3 de ChatGPT (solo paquete ciego) archivada; juicios de Claude publicados y coincidentes con el hash; desciegue con `work/unblind_aem1_v1_3.py`; doble llave `INCONCLUSIVE_SELECTED_OUTPUT_FAILED` (103/108); adjudicación por medición (C03 → FALSE; C05, C07 → TRUE provisional); hipótesis H‑C1/H‑G1 refutadas, H‑C2/H‑G2/H‑G3/H‑G4 se cumplen; separación conseguida, completitud pendiente; P0‑11/P0‑12; carta 005 |
