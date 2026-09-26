@@ -20,10 +20,25 @@
     "HUMAN_GT": "solo si una muestra se anota o ratifica de forma independiente por personas",
     "report_by_derivation": "las métricas contra máscaras derivadas de prompts de SAM 2 se reportan aparte (circularidad)"
   },
+  "uncertainty_reporting": {
+    "rule": "REQUIRED (DEC-025, ChatGPT 009): la referencia tiene tres estados (foreground, background, uncertain). La máscara binaria es reference_estimate_mask, con su estimate_policy declarada, y nunca se presenta como verdad",
+    "report_always": [
+      "metric_all_pixels_estimate",
+      "metric_all_pixels_min",
+      "metric_all_pixels_max",
+      "metric_excluding_uncertain",
+      "uncertain_area_px",
+      "uncertain_fraction",
+      "estimate_policy"
+    ],
+    "bounds": "min = |P∩F| / (|P∪F| + |U∖P|); max = (|P∩F| + |P∩U|) / |P∪F|; F = primer plano cierto, U = incierto (pragma_ae.keydiff.iou_with_uncertainty)",
+    "reading": "una conclusión que cambia dentro del intervalo [min, max] depende de la incertidumbre y se declara así"
+  },
   "metrics_implementation_sha256": {
     "pragma_ae/metrics.py": "48b3ff9af53cd320adcb89eca82e95be4acb18272c5bfa958247e0075fb95e96",
     "pragma_ae/masks.py": "412d1ead02fb92891ca989c5c6ac7a5b2dcd5b6bcdbb57551ec1ce12db712ac9",
-    "pragma_ae/inventory.py": "6540c0dcc21c718ebc3aee4b6a94d2680af536fd2680629f009ff197f2e42035"
+    "pragma_ae/inventory.py": "6540c0dcc21c718ebc3aee4b6a94d2680af536fd2680629f009ff197f2e42035",
+    "pragma_ae/keydiff.py": "c5e15ed6f1ab81b8b0237df9b1e5bd11849a97219c5e5af321caf634546d1e7a"
   },
   "entrypoint": "pragma_ae.metrics.evaluate(objects, gt_masks, proposals, GateParams())",
   "gate_params": {
@@ -56,5 +71,5 @@
     "fragmentación"
   ],
   "rule": "si cambia un SHA-256 o un umbral de este contrato después de congelarlo, el análisis A-E1 es otra versión y se declara",
-  "content_sha256": "3fa3d60f153a34de4f668d659f4819cc59f0840e0f86a69b8a823885a10836fe"
+  "content_sha256": "bce34617d95cd3d388c80fb57227c87a9d1ec2d6896b8d7b85784e28315fc369"
 }

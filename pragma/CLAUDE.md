@@ -36,8 +36,12 @@
 - A‑E(−1) está cerrado (`AEM1_CLOSED_INCONCLUSIVE`, confirmado por ChatGPT 008): no se proponen más
   corridas SAM de diagnóstico. Toda máscara de referencia de A‑E0 pasa por la comprobación geométrica
   entre llaves (DEC‑025, `pragma_ae/keydiff.py`): el código dice que la diferencia existe y cuánto
-  mide; la revisión adjudica qué significa. El XOR no ve la omisión compartida: la revisión visual
-  sigue siendo obligatoria para eso.
+  mide; la revisión adjudica qué significa. El XOR no ve la omisión compartida: para eso están las
+  teselas de contorno y el desafío dirigido de Codex. Dentro de lo incierto no se inventa verdad: la
+  binaria es `reference_estimate_mask` (política declarada) y toda métrica lleva sus cotas min/max.
+- Llaves de inventario A‑E0: formato y custodia en `ae0/FORMATO_LLAVE_A-E0.md`. La de Claude se
+  compromete por SHA‑256 **antes** de ver la de ChatGPT, y se comparan con `pragma_ae/keymatch.py`.
+  Nunca se envía a ChatGPT nada del borrador (`scene_inventory.draft.json`) antes de su llave.
 - Nomenclatura de la persona usuaria: «Crear cuaderno Colab para SAM 2» es el hilo de **Codex** de
   PRAGMA/SAM 2. Las cartas para Claude se pegan en su sesión de Claude Code.
 - El repositorio es público: nunca versionar `inputs/*`, `local/`, `ae0/gt/` ni nada derivado de la

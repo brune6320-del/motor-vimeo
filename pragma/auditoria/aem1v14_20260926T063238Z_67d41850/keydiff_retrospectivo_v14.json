@@ -3,7 +3,7 @@
   "schema_version": "0.1.0",
   "nature": "EXPLORATORIO, después del desciegue y del cierre por doble llave; no cambia ningún veredicto",
   "question": "qué habría señalado la comprobación geométrica (DEC-025) tratando dos máscaras de v1.4 como dos llaves",
-  "keydiff_sha256": "0b001a8b06ad1ccb2b9e37ad1e264e0a8affc5b10590654b7e3d713b5d6a128f",
+  "keydiff_sha256": "c5e15ed6f1ab81b8b0237df9b1e5bd11849a97219c5e5af321caf634546d1e7a",
   "script_sha256": "82179928f483b1e2b7ec3b09045ba169813ad17c13d1e0f95c29844080641717",
   "mapping_sha256": "1a68b79e3df2ab7e4fe8f75daef16ebe3c933d4bdcf4eb8fb582e3e47c3f1a66",
   "tolerance_px": 2,

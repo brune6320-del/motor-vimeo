@@ -19,7 +19,7 @@ Definiciones (A y B son las máscaras de las dos llaves, del mismo tamaño):
   - Cada píxel del XOR cae exactamente en uno de los tres grupos.
 - **Qué exige adjudicación** (``requires_adjudication``): toda ``ISLAND``, sea del tamaño que sea, y
   todo ``THICK`` de ``area_px`` ≥ ``MIN_ADJUDICATE_PX``. Un ``THICK`` pegado más pequeño se lista
-  igual, pero si nadie lo adjudica pasa a ``uncertain`` por la regla de la línea media.
+  igual, pero si nadie lo adjudica pasa a ``uncertain``.
 - Campos de cada componente:
   - ``missing_from``: la llave que no incluye la región;
   - ``touches_image_border``: toca el marco de la foto;
@@ -31,9 +31,20 @@ Definiciones (A y B son las máscaras de las dos llaves, del mismo tamaño):
   - ``touches_consensus``: vecina (8) del consenso;
   - ``semantic_adjudication``: lo rellena la revisión y nunca el código.
 
-Adjudicación: ``INCLUDE`` · ``EXCLUDE`` · ``UNCERTAIN_INCLUDE`` · ``UNCERTAIN_EXCLUDE``. Las dos últimas
-van a ``uncertain_mask`` con un valor binario de mejor estimación, que es el que usa
-``metric_all_pixels``.
+Adjudicación: ``INCLUDE`` · ``EXCLUDE`` · ``UNCERTAIN_INCLUDE`` · ``UNCERTAIN_EXCLUDE``.
+
+Tres estados (ChatGPT 009): ``foreground``, ``background`` y ``uncertain``. Dentro de ``uncertain``
+no se inventa verdad:
+- La máscara binaria se llama ``reference_estimate_mask``. Es un **estimador** con política declarada
+  (``MIDLINE`` por defecto, ``INTERSECTION`` o ``UNION``), y lo que se mide contra ella se llama
+  ``metric_all_pixels_estimate``.
+- Toda métrica lleva sus **cotas exactas** sobre cualquier asignación de lo incierto:
+  ``metric_all_pixels_min`` y ``metric_all_pixels_max``. Además se reportan
+  ``metric_excluding_uncertain``, ``uncertain_area_px`` y ``uncertain_fraction``.
+
+La omisión compartida (lo que las dos llaves dejan fuera igual) no aparece en el XOR. Para eso están
+``contour_tiles``: teselas 1:1 sobre todo el contorno de la referencia compuesta, con las zonas de
+desafío marcadas para la tercera revisión dirigida.
 """
 
 from __future__ import annotations
@@ -45,6 +56,10 @@ from .masks import as_bool, dilate_square, mask_bbox, mask_iou
 TOLERANCE_PX = 2
 MIN_ADJUDICATE_PX = 100
 ADJUDICATIONS = ("INCLUDE", "EXCLUDE", "UNCERTAIN_INCLUDE", "UNCERTAIN_EXCLUDE")
+ESTIMATE_POLICIES = ("MIDLINE", "INTERSECTION", "UNION")
+MIDLINE_MAX_PX = 64
+CONTOUR_TILE_PX = 512
+CONTOUR_TILE_OVERLAP_PX = 64
 
 
 def labels(mask) -> np.ndarray:
@@ -220,16 +235,54 @@ def _paste(target, crop, region):
     target[y1:y2, x1:x2] |= region
 
 
-def compose_reference(diff: dict, adjudications: dict, tolerance_px: int | None = None) -> dict:
+def midline_estimate(consensus, background, targets, max_px: int = MIDLINE_MAX_PX) -> np.ndarray:
+    """Línea media real entre las dos fronteras, evaluada solo en ``targets``.
+
+    Un píxel objetivo es primer plano si está más cerca (Chebyshev) del consenso ``A & B`` que del
+    fondo común ``~A & ~B``. Si está a la misma distancia de los dos, decide un tablero fijo
+    (``(x + y)`` par → primer plano), que no favorece a ninguna llave ni sesga el área. Si no llega
+    a ninguno de los dos en ``max_px`` px, queda como fondo.
+    """
+    t = as_bool(targets)
+    out = np.zeros(t.shape, bool)
+    box = mask_bbox(t)
+    if box is None:
+        return out
+    h, w = t.shape
+    x1, y1 = max(0, box[0] - max_px), max(0, box[1] - max_px)
+    x2, y2 = min(w, box[2] + max_px), min(h, box[3] + max_px)
+    pending = t[y1:y2, x1:x2].copy()
+    fg = as_bool(consensus)[y1:y2, x1:x2]
+    bg = as_bool(background)[y1:y2, x1:x2]
+    even = (np.arange(y1, y2)[:, None] + np.arange(x1, x2)[None, :]) % 2 == 0
+    result = np.zeros(pending.shape, bool)
+    for _ in range(max_px):
+        if not pending.any():
+            break
+        fg, bg = dilate_square(fg, 1), dilate_square(bg, 1)
+        hit_fg, hit_bg = pending & fg, pending & bg
+        result |= (hit_fg & ~hit_bg) | (hit_fg & hit_bg & even)
+        pending &= ~(hit_fg | hit_bg)
+    out[y1:y2, x1:x2] = result
+    return out
+
+
+def compose_reference(diff: dict, adjudications: dict, estimate_policy: str = "MIDLINE") -> dict:
     """Referencia de tres estados a partir del consenso y de las adjudicaciones.
 
     - Consenso → primer plano. Fuera de A y de B → fondo.
     - Cada componente con ``requires_adjudication`` exige una adjudicación: sin eso no hay
       referencia (nada se decide en silencio).
-    - ``thin`` y los ``THICK`` pequeños sin adjudicar → ``uncertain``. Su valor binario de mejor
-      estimación es la línea media: un píxel es primer plano si está a ≤ t px (Chebyshev) del consenso.
+    - ``thin`` y los ``THICK`` pequeños sin adjudicar → ``uncertain``. Su valor en
+      ``reference_estimate_mask`` sale de ``estimate_policy``, que queda registrada:
+      - ``MIDLINE``: ``midline_estimate``;
+      - ``INTERSECTION``: fondo;
+      - ``UNION``: primer plano.
+    - ``UNCERTAIN_INCLUDE`` y ``UNCERTAIN_EXCLUDE`` → ``uncertain``, con el valor que dio la
+      adjudicación.
     """
-    t = diff["summary"]["tolerance_px"] if tolerance_px is None else tolerance_px
+    if estimate_policy not in ESTIMATE_POLICIES:
+        raise ValueError(f"Política de estimación no válida: {estimate_policy}")
     masks = diff["masks"]
     missing = [c["id"] for c in diff["components"] if c["requires_adjudication"] and c["id"] not in adjudications]
     if missing:
@@ -237,38 +290,107 @@ def compose_reference(diff: dict, adjudications: dict, tolerance_px: int | None 
     bad = {k: v for k, v in adjudications.items() if v not in ADJUDICATIONS}
     if bad:
         raise ValueError(f"Adjudicación no válida: {bad}")
-    foreground = masks["consensus"].copy()
-    uncertain = masks["thin"].copy()
-    midline = dilate_square(masks["consensus"], t)
-    foreground |= masks["thin"] & midline
+    estimate = masks["consensus"].copy()
+    uncertain = np.zeros(estimate.shape, bool)
+    auto = masks["thin"].copy()
     for c in diff["components"]:
         crop, region = masks["components"][c["id"]]
-        if c["id"] not in adjudications:
-            x1, y1, x2, y2 = crop
-            _paste(uncertain, crop, region)
-            _paste(foreground, crop, region & midline[y1:y2, x1:x2])
+        verdict = adjudications.get(c["id"])
+        if verdict is None:
+            _paste(auto, crop, region)
             continue
-        verdict = adjudications[c["id"]]
         if verdict in ("INCLUDE", "UNCERTAIN_INCLUDE"):
-            _paste(foreground, crop, region)
+            _paste(estimate, crop, region)
         if verdict.startswith("UNCERTAIN"):
             _paste(uncertain, crop, region)
-    total = foreground.size
-    return {"mask": foreground, "uncertain_mask": uncertain,
+    uncertain |= auto
+    if estimate_policy == "UNION":
+        estimate |= auto
+    elif estimate_policy == "MIDLINE":
+        background = ~(masks["consensus"] | masks["a_only"] | masks["b_only"])
+        estimate |= midline_estimate(masks["consensus"], background, auto)
+    return {"reference_estimate_mask": estimate, "uncertain_mask": uncertain,
+            "estimate_policy": estimate_policy,
+            "certain_foreground_px": int((estimate & ~uncertain).sum()),
             "uncertain_area_px": int(uncertain.sum()),
-            "uncertain_fraction": round(float(uncertain.sum()) / total, 8)}
+            "uncertain_fraction": round(float(uncertain.sum()) / uncertain.size, 8)}
 
 
-def masked_iou(pred, ref, uncertain=None) -> dict:
-    """IoU contra la referencia en todos los píxeles y, si hay zona incierta, también sin ella."""
-    pred, ref = as_bool(pred), as_bool(ref)
-    out = {"metric_all_pixels": round(mask_iou(pred, ref), 6)}
-    if uncertain is not None:
-        keep = ~as_bool(uncertain)
-        out["metric_excluding_uncertain"] = round(mask_iou(pred & keep, ref & keep), 6)
-        out["uncertain_area_px"] = int((~keep).sum())
-        out["uncertain_fraction"] = round(float((~keep).sum()) / keep.size, 8)
-    return out
+def iou_with_uncertainty(pred, estimate, uncertain) -> dict:
+    """IoU contra una referencia de tres estados, con sus cotas exactas (ChatGPT 009).
+
+    Con P = predicción, F = primer plano cierto (``estimate & ~uncertain``) y U = incierto:
+    - máximo (U a favor de P): ``(|P∩F| + |P∩U|) / |P∪F|``;
+    - mínimo (U en contra de P): ``|P∩F| / (|P∪F| + |U∖P|)``.
+    Unión vacía → 0, como ``mask_iou``.
+    """
+    p, e, u = as_bool(pred), as_bool(estimate), as_bool(uncertain)
+    f = e & ~u
+    pf, pu = int((p & f).sum()), int((p & u).sum())
+    p_or_f, u_out = int((p | f).sum()), int((u & ~p).sum())
+    return {
+        "metric_all_pixels_estimate": round(mask_iou(p, e), 6),
+        "metric_all_pixels_min": round(pf / (p_or_f + u_out), 6) if p_or_f + u_out else 0.0,
+        "metric_all_pixels_max": round((pf + pu) / p_or_f, 6) if p_or_f else 0.0,
+        "metric_excluding_uncertain": round(mask_iou(p & ~u, e & ~u), 6),
+        "uncertain_area_px": int(u.sum()),
+        "uncertain_fraction": round(float(u.sum()) / u.size, 8),
+    }
+
+
+def _inner_contour(mask) -> np.ndarray:
+    """Píxeles de la máscara con algún vecino (8) fuera de ella dentro de la foto; el marco no cuenta."""
+    m = as_bool(mask)
+    padded = np.ones((m.shape[0] + 2, m.shape[1] + 2), bool)
+    padded[1:-1, 1:-1] = m
+    return m & dilate_square(~padded, 1)[1:-1, 1:-1]
+
+
+def _overlap(a, b) -> bool:
+    return not (a[2] <= b[0] or b[2] <= a[0] or a[3] <= b[1] or b[3] <= a[1])
+
+
+def contour_tiles(reference, uncertain=None, zones=None, size: int = CONTOUR_TILE_PX,
+                  overlap: int = CONTOUR_TILE_OVERLAP_PX) -> list:
+    """Teselas 1:1 que cubren todo el contorno de la referencia compuesta (omisión compartida).
+
+    ``zones`` = {nombre: [cajas]} de alto riesgo (pelo, contacto, manos, objetos sostenidos). Una
+    tesela es de desafío si toca ``uncertain`` o alguna zona; solo esas van a la tercera revisión
+    dirigida, que no sabe qué decidió cada llave.
+    """
+    edge = _inner_contour(reference)
+    h, w = edge.shape
+    unc = as_bool(uncertain) if uncertain is not None else None
+    step = max(1, size - overlap)
+    tiles = []
+    for y in range(0, max(1, h - overlap), step):
+        for x in range(0, max(1, w - overlap), step):
+            box = (x, y, min(w, x + size), min(h, y + size))
+            n = int(edge[box[1]:box[3], box[0]:box[2]].sum())
+            if not n:
+                continue
+            u = int(unc[box[1]:box[3], box[0]:box[2]].sum()) if unc is not None else 0
+            hit = sorted(name for name, boxes in (zones or {}).items() if any(_overlap(box, z) for z in boxes))
+            tiles.append({"id": f"T{len(tiles) + 1:03d}", "box": list(box), "contour_px": n,
+                          "uncertain_px": u, "zones": hit, "challenge": bool(u or hit)})
+    return tiles
+
+
+def tile_pair(photo, reference, box):
+    """Tesela 1:1: original sin nada al lado del contorno de la referencia (sin decir de qué llave)."""
+    from PIL import Image
+
+    rgb = np.asarray(photo)[..., :3]
+    x1, y1, x2, y2 = box
+    base = rgb[y1:y2, x1:x2]
+    overlay = base.astype(np.float32) * 0.6
+    m = as_bool(reference)[y1:y2, x1:x2]
+    overlay[m] = base[m]
+    overlay[dilate_square(_inner_contour(m), 1)] = (255, 220, 0)
+    pair = Image.new("RGB", (2 * (x2 - x1) + 8, y2 - y1), (24, 24, 24))
+    pair.paste(Image.fromarray(base.astype(np.uint8)), (0, 0))
+    pair.paste(Image.fromarray(overlay.clip(0, 255).astype(np.uint8)), (x2 - x1 + 8, 0))
+    return pair
 
 
 def public_report(diff: dict) -> dict:
@@ -324,13 +446,15 @@ def diff_sheet(photo, a, b, diff: dict, out_path, box=None, max_width=1500, zoom
         x1, y1, x2, y2 = c["bbox"]
         pad = max(24, (x2 - x1 + y2 - y1) // 4)
         crop = (max(0, x1 - pad), max(0, y1 - pad), min(w, x2 + pad), min(h, y2 + pad))
-        tile = render("xor", crop)
-        factor = max(1, min(8, 240 // max(tile.width, tile.height, 1)))
-        tile = tile.resize((tile.width * factor, tile.height * factor), Image.NEAREST)
-        if tile.width > 480 or tile.height > 480:
-            tile.thumbnail((480, 480), Image.LANCZOS)
         label = f"{c['id']} {c['kind']} {c['area_px']} px {c['open_or_enclosed']}"
-        zooms.append((label, tile))
+        kinds = (("original", " · original"), ("xor", "")) if c["requires_adjudication"] else (("xor", ""),)
+        for kind, suffix in kinds:
+            tile = render(kind, crop)
+            factor = max(1, min(8, 240 // max(tile.width, tile.height, 1)))
+            tile = tile.resize((tile.width * factor, tile.height * factor), Image.NEAREST)
+            if tile.width > 480 or tile.height > 480:
+                tile.thumbnail((480, 480), Image.LANCZOS)
+            zooms.append((label + suffix, tile))
     rows = [panels[:2], panels[2:]] + [zooms[i:i + 4] for i in range(0, len(zooms), 4)]
     header, gap = 22, 8
     sizes = [(sum(t.width for _, t in row) + gap * (len(row) - 1), max(t.height for _, t in row) + header)

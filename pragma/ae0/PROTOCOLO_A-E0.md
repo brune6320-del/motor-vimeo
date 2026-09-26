@@ -93,21 +93,45 @@ porque dos auditores digan «se ve completa». Implementación: `pragma_ae/keydi
 - **Qué se adjudica:** toda `ISLAND` y todo `THICK` ≥ 100 px, como `INCLUDE`, `EXCLUDE`,
   `UNCERTAIN_INCLUDE` o `UNCERTAIN_EXCLUDE`. Lo demás se lista y pasa a `uncertain`. Sin todas las
   adjudicaciones no se compone la referencia.
-- **Tres estados:** `foreground`, `background` y `uncertain`. Lo incierto guarda un valor binario de
-  mejor estimación: el de la adjudicación o, si no la hay, la línea media (a ≤ t px del consenso).
-  `metric_all_pixels` lo usa; `metric_excluding_uncertain` excluye la zona, y se reportan
-  `uncertain_area_px` y `uncertain_fraction`.
-- **Límite:** el XOR solo ve lo que las llaves hacen distinto. Lo que **las dos** omiten no aparece;
-  eso sigue siendo tarea de la revisión visual de completitud.
+- **Tres estados (ChatGPT 009):** `foreground`, `background` y `uncertain`. Dentro de lo incierto no
+  se inventa verdad.
+  - La máscara binaria es un **estimador**, `reference_estimate_mask`, con política declarada
+    (`estimate_policy`):
+    - `MIDLINE`, por defecto: línea media real por distancia Chebyshev al consenso y al fondo
+      común; los empates se deciden con un tablero fijo, que no favorece a ninguna llave;
+    - `INTERSECTION` o `UNION`, solo si se declaran.
+  - Lo medido contra ella es `metric_all_pixels_estimate`, siempre con sus **cotas exactas** sobre
+    cualquier asignación de lo incierto:
+    - `metric_all_pixels_min = |P∩F| / (|P∪F| + |U∖P|)`;
+    - `metric_all_pixels_max = (|P∩F| + |P∩U|) / |P∪F|`.
+  - También `metric_excluding_uncertain`, `uncertain_area_px` y `uncertain_fraction`
+    (`keydiff.iou_with_uncertainty`).
+  - La primera versión, que se llamaba «línea media» pero daba la unión en bandas finas, se retiró
+    (prueba de regresión del rectángulo desplazado 1 px).
+- **Omisión compartida** (`SHARED_OMISSION_CHECK = CONTOUR_TILES + TARGETED_THIRD_CHALLENGE`). El XOR
+  solo ve lo que las llaves hacen distinto; lo que **las dos** omiten no aparece.
+  1. Se compone la referencia.
+  2. `keydiff.contour_tiles` cubre **todo** su contorno con teselas 1:1 de 512 px (64 de solape).
+     Cada tesela muestra el original sin nada al lado del contorno (`tile_pair`).
+  3. Son teselas de desafío las que tocan `uncertain` o una zona de alto riesgo: pelo,
+     contacto/oclusión entre personas, manos/dedos y objetos sostenidos (cajas tomadas del
+     inventario congelado).
+  4. Claude y ChatGPT recorren todas las teselas.
+  5. **Codex** recibe solo las de desafío, sin saber qué decidió cada llave. Es una tercera revisión
+     procedimental, no un anotador estadísticamente independiente.
+  6. Si Codex señala una posible omisión común, esa región vuelve a adjudicación.
+- **Lámina:** cada componente que exige adjudicación lleva su miniatura original, sin nada encima,
+  al lado del overlay, porque el color puede tapar justo la textura que se adjudica.
 
 **Orden (ChatGPT 006 §8, 007 §8 y 008):**
 
 1. Se cierra A‑E(−1) (v1.4). **Hecho:** `AEM1_CLOSED_INCONCLUSIVE`, confirmado por ChatGPT 008.
 2. La persona usuaria ratifica la ontología v0.2 (`RATIFICACION_ONTOLOGIA_v0_2.md`). Antes de eso
    **no se produce ni se congela** A‑E0.
-3. Claude congela su llave de inventario, a partir de su borrador.
-4. ChatGPT construye la segunda desde la foto, sin abrir la primera.
-5. Se comparan y se adjudica.
+3. Claude congela su llave de inventario, a partir de su borrador, y compromete en git solo su SHA‑256
+   (formato y custodia: `FORMATO_LLAVE_A-E0.md`).
+4. ChatGPT construye la segunda desde la foto, sin abrir la primera, y la entrega con su SHA‑256.
+5. Se comparan con la regla fijada antes de ver ninguna llave (`pragma_ae/keymatch.py`) y se adjudica.
 6. Se hacen las máscaras de las tres personas con derivación no‑SAM, una por llave, y se comparan con
    `keydiff` (DEC‑025).
 7. Se congela como `AI_CONSENSUS_REFERENCE`.
@@ -132,7 +156,8 @@ seleccionarías para recortar como PNG. Diez minutos, sin volver atrás.
 *Por qué:* el borrador (`scene_inventory.draft.json`) lo hizo una IA mirando la foto. Si lo
 lees primero, lo que falta en él tiende a faltar también en tu revisión. Tu lista ciega es la
 única defensa contra ese anclaje. Ya pasó una vez: al revisar su propia lámina, el borrador
-descubrió que había omitido el teléfono en la mano de la persona del frente (`ae0_050`).
+descubrió que había omitido un objeto. (El detalle se retiró en v2.2 para no anclar la llave de
+ChatGPT; ya había salido en el paquete 009 y se declaró en la carta 010.)
 
 ## 2. Revisar el borrador con la lámina
 

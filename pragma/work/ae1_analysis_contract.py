@@ -27,7 +27,7 @@ from pragma_ae.metrics import GateParams  # noqa: E402
 SWEEP = ROOT / "ae1" / "SWEEP_PRERREGISTRO_A-E1.json"
 SWEEP_SHA256_INSPECTED = "25a61aa98ec7db261d837ba4129474905f41bfedb28cc76e599ef920172d5a38"
 OUT = ROOT / "ae1" / "CONTRATO_ANALISIS_A-E1.json"
-IMPLEMENTATION = ["pragma_ae/metrics.py", "pragma_ae/masks.py", "pragma_ae/inventory.py"]
+IMPLEMENTATION = ["pragma_ae/metrics.py", "pragma_ae/masks.py", "pragma_ae/inventory.py", "pragma_ae/keydiff.py"]
 
 
 def sha(path: Path) -> str:
@@ -57,6 +57,16 @@ def build() -> dict:
             "AI_CONSENSUS_REFERENCE": "ingeniería y comparación interna; nunca se presenta como exactitud frente a verdad humana",
             "HUMAN_GT": "solo si una muestra se anota o ratifica de forma independiente por personas",
             "report_by_derivation": "las métricas contra máscaras derivadas de prompts de SAM 2 se reportan aparte (circularidad)",
+        },
+        "uncertainty_reporting": {
+            "rule": ("REQUIRED (DEC-025, ChatGPT 009): la referencia tiene tres estados (foreground, background, "
+                     "uncertain). La máscara binaria es reference_estimate_mask, con su estimate_policy declarada, "
+                     "y nunca se presenta como verdad"),
+            "report_always": ["metric_all_pixels_estimate", "metric_all_pixels_min", "metric_all_pixels_max",
+                              "metric_excluding_uncertain", "uncertain_area_px", "uncertain_fraction", "estimate_policy"],
+            "bounds": ("min = |P∩F| / (|P∪F| + |U∖P|); max = (|P∩F| + |P∩U|) / |P∪F|; "
+                       "F = primer plano cierto, U = incierto (pragma_ae.keydiff.iou_with_uncertainty)"),
+            "reading": "una conclusión que cambia dentro del intervalo [min, max] depende de la incertidumbre y se declara así",
         },
         "metrics_implementation_sha256": {p: sha(ROOT / p) for p in IMPLEMENTATION},
         "entrypoint": "pragma_ae.metrics.evaluate(objects, gt_masks, proposals, GateParams())",
