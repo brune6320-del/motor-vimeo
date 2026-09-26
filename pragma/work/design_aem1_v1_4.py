@@ -39,6 +39,9 @@ V13_RUN = ROOT / "auditoria" / "aem1v13_20260926T040705Z_bee282c1"
 V13_ZIP = ROOT / "local" / "runs" / "PRAGMA_AEM1v13_20260926T040705Z_bee282c1_PENDING_EXTERNAL_AUDIT.zip"
 V13_ZIP_SHA256 = "6d795132cd8e609388cdb1b3671dee7e0d1c39067880cfb0ca6a1b1a6783ce14"
 LETTER_005 = ROOT / "dialogo" / "005_chatgpt_a_claude.md"
+LETTER_006 = ROOT / "dialogo" / "006_chatgpt_a_claude.md"
+INSPECTED_006 = {"package_sha256": "635640565d3e3efbbad6ce3f1c6d30cdcaed1e45dbefb46676f3d9ae516adc5e",
+                 "prereg_content_sha256": "bd437a87a33651ab7103f6934ea7fd6934b16c1cc29cc069ed376293dafc15a3"}
 PROTOCOL_V2 = ROOT / "auditoria" / "PROTOCOLO_AUDITORIA_AEM1_v2.md"
 ANALYSIS_CODE = ["pragma_ae/aem1_v14.py", "pragma_ae/aem1_v14_audit.py",
                  "pragma_ae/aem1_v13.py", "pragma_ae/aem1_v13_audit.py", "pragma_ae/masks.py"]
@@ -149,7 +152,7 @@ def build(image, gray, dark):
         "image_sha256": EXPECTED_IMAGE_SHA256,
         "inside_target_hole_of_each_reference_seed": targets,
         "owner_verified_by": "auditor IA Claude en la lámina privada de diseño",
-        "owner_second_key": "PENDIENTE (ChatGPT, en la lámina privada del paquete de la carta 006)",
+        "owner_second_key": "PASS (ChatGPT 006: H2 y sus 5 perturbaciones válidas sobre el pelo de la chica; las 3 hacia +x, bien marcadas inválidas)",
     }
     perturbations = []
     for p in v13.point_perturbations(xy):
@@ -178,14 +181,30 @@ def build(image, gray, dark):
         "experiment": "A-E(−1) v1.4 · caso chica · una sola intervención (H2)",
         "status": "PREREGISTERED",
         "frozen_on": "2026-09-26",
-        "responds_to": ["dialogo/005_chatgpt_a_claude.md"],
+        "responds_to": ["dialogo/005_chatgpt_a_claude.md", "dialogo/006_chatgpt_a_claude.md"],
         "go_to_preregistration": {
             "by": "ChatGPT", "letter": LETTER_005.relative_to(ROOT).as_posix(), "letter_sha256": sha(LETTER_005),
             "accepted": ["una sola intervención nueva", "cadena +POS_HAIR+SLEEVE · box+corrections", "tres semillas",
                          "referencia v1.3 obligatoriamente bit a bit", "H2 únicamente como positivo adicional",
                          "ningún otro cambio", "H-C3 congelada tal cual", "H-G5 añadida antes de los datos",
                          "PASS = contrato completo, no «H2 cerró el agujero»"],
-            "cross_audit_before_run": "PENDIENTE: ChatGPT revisa este prerregistro antes de ejecutar (ChatGPT 005)",
+            "cross_audit_before_run": "ver cross_audit (ChatGPT 006)",
+        },
+        "cross_audit": {
+            "by": "ChatGPT", "letter": LETTER_006.relative_to(ROOT).as_posix(), "letter_sha256": sha(LETTER_006),
+            "inspected": INSPECTED_006,
+            "verdicts": {"ZIP_INTEGRITY": "PASS", "H2_OWNER_SECOND_KEY": "PASS", "H2_VALID_PERTURBATIONS": "5/5 PASS",
+                         "SIX_SHEET_BLIND_PACKAGE": "ACCEPTED", "STOP_RULE": "CONFIRMED", "DEC_024": "ACCEPTED",
+                         "H-G5": "CHANGE_REQUIRED (solo la definición de new_d)",
+                         "AEM1_v1.4": "HOLD_FOR_ONE_PREREG_PATCH"},
+            "changes_applied_before_any_run": [
+                ("new_d: «nuevo fuera de H2» = agujero ∩ referencia ∩ ¬región ≥ 1000 px (ChatGPT 006 §2). Antes: el agujero "
+                 "se descartaba si tocaba la región en 1 px (caso A) y se exigía ≥ 50 % de su área dentro de la referencia "
+                 "(caso B); la fracción queda solo como diagnóstico"),
+                "cuatro pruebas sintéticas de ChatGPT 006 añadidas a tests/test_aem1_v14.py antes de regenerar",
+            ],
+            "unchanged": "H2, ramas, hipótesis (salvo new_d), seis láminas, PASS y regla de parada",
+            "result": "pendiente de que ChatGPT confirme este delta; entonces AEM1_v1.4 = GO_TO_GPU",
         },
         "correction_of_letter_005": {
             "proposed": list(w.UPPER_PROBE),
@@ -193,7 +212,7 @@ def build(image, gray, dark):
                         "parte y su único agujero D es la parte BAJA (2984–3025 × 842–997). Con ese punto la hipótesis no "
                         "podía probarse en el mejor intento"),
             "fix": "H2 se elige dentro de los píxeles que son agujero D de consenso en las tres semillas (la parte baja)",
-            "second_key_on_old_point": "ChatGPT 005 confirmó que el punto viejo es pelo de la chica; el nuevo requiere su llave",
+            "second_key_on_old_point": "ChatGPT 005 confirmó el punto viejo (pelo de la chica); ChatGPT 006 confirmó el nuevo y sus 5 perturbaciones válidas",
             "upper_probe_role": "solo descriptivo: si la parte alta de s0 y s2 también se cierra",
         },
         "generated_by": "work/design_aem1_v1_4.py",
@@ -258,8 +277,10 @@ def build(image, gray, dark):
             "closure": ("cerrado = quedan < 1000 px del agujero objetivo sin cubrir Y ningún agujero ≥ 1000 px de la "
                         "candidata lo toca (pragma_ae.aem1_v14.closure)"),
             "h2_region": "el agujero objetivo dilatado 15 px (L∞)",
-            "new_d_hole": ("agujero ≥ 1000 px de la candidata, fuera de la región de H2, con ≥ 50 % de sus píxeles DENTRO "
-                           "de la máscara de referencia (pérdida nueva, no material que ya faltaba) y D en las dos llaves"),
+            "new_d_hole": ("agujero ≥ 1000 px de la candidata cuya pérdida nueva fuera de la región de H2 "
+                           "(agujero ∩ máscara de referencia ∩ ¬región) es ≥ 1000 px, toque o no la región, y D en las dos "
+                           "llaves (ChatGPT 006). La fracción del agujero que ya estaba dentro de la referencia solo se "
+                           "reporta"),
             "o_worse": ("referencia O TRUE y candidata O no TRUE; o, si la referencia ya era FALSE (s0: isla de 5 px en el "
                         "moño), más píxeles en los núcleos que la referencia"),
             "perturbation_stability": "pragma_ae.aem1_v13.perturbation_stability por semilla, más cierre bajo cada perturbación",
@@ -275,7 +296,7 @@ def build(image, gray, dark):
              "otherwise": "INDETERMINATE"},
             {"id": "H-G5", "by": "ChatGPT (carta 005)", "function": "pragma_ae.aem1_v14.hypothesis_h_g5",
              "statement": "H2 actúa como reparación local, no como resegmentación global",
-             "holds_if": "≥ 2/3 semillas cerradas, ninguna con o_worse y ninguna con un agujero D nuevo fuera de la región de H2",
+             "holds_if": "≥ 2/3 semillas cerradas, ninguna con o_worse y ninguna con un agujero D nuevo (pérdida nueva ≥ 1000 px fuera de la región de H2)",
              "refuted_if": "≥ 2/3 semillas cerradas CON un agujero D nuevo, o ≥ 2/3 con o_worse",
              "otherwise": "INDETERMINATE",
              "role": "hipótesis causal y diagnóstica; NO es un quinto requisito de PASS"},

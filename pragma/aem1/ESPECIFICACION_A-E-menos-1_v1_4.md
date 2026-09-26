@@ -46,8 +46,8 @@ semillas, que es la parte baja. El punto viejo queda solo como sonda descriptiva
   seguro no llega a los 43 px de H1 y S1. El mínimo para H2 es que quepa el parche de luma de 13 px.
   Por eso 3 de las 8 perturbaciones (las que se mueven 15 px hacia el dedo) salen del pelo. Son
   `INVALID_PERTURBATION` y no se ejecutan.
-- **Propietario:** Claude lo verificó en la lámina privada. La segunda llave de ChatGPT está
-  pendiente sobre el punto nuevo; confirmó el viejo en la carta 005.
+- **Propietario:** Claude lo verificó en la lámina privada. ChatGPT dio su segunda llave en la carta
+  006: H2 y sus 5 perturbaciones válidas son pelo de la chica.
 
 ## 4. Plan: 22 llamadas, 24 máscaras
 
@@ -86,10 +86,14 @@ semillas, que es la parte baja. El punto viejo queda solo como sonda descriptiva
 - **Cierre:** quedan menos de 1000 px del objetivo sin cubrir, **y** ningún agujero ≥ 1000 px de la
   candidata lo toca. Lo primero impide llamar cerrado a un faltante que solo dejó de estar encerrado.
 - **Región de H2:** el objetivo dilatado 15 px.
-- **Agujero D nuevo:** un agujero ≥ 1000 px de la candidata que cumple todo esto:
-  - está fuera de la región de H2;
-  - al menos la mitad de sus píxeles estaban **dentro** de la máscara de referencia;
+- **Agujero D nuevo** (corregido por ChatGPT 006 antes de correr): un agujero ≥ 1000 px de la
+  candidata que cumple las dos condiciones:
+  - su **pérdida nueva fuera de H2** (agujero ∩ máscara de referencia ∩ ¬región de H2) es ≥ 1000 px;
   - es D en las dos llaves.
+
+  Da igual que el agujero toque la región de H2 o que parte de él ya faltara. La fracción que estaba
+  dentro de la referencia solo se reporta. Antes, un contacto de 1 px con la región o menos del 50 %
+  dentro de la referencia lo descartaban. Esos eran dos huecos, los casos A y B de ChatGPT 006.
 - **O empeora:** la referencia tenía O TRUE y la candidata no. Si la referencia ya era FALSE (s0, con
   una isla de 5 px en el moño), empeora cuando hay más píxeles en los núcleos.
 - **Perturbación de H2:** estabilidad (como en v1.3) y si el agujero sigue cerrado con cada
@@ -104,7 +108,7 @@ semillas, que es la parte baja. El punto viejo queda solo como sonda descriptiva
 | ID | De | Se cumple si | Se refuta si |
 |---|---|---|---|
 | H‑C3 | Claude (carta 005) | ≥ 2 semillas cierran el objetivo sin empeorar O | ni contando como éxito las no evaluables se llega a 2 |
-| H‑G5 | ChatGPT (carta 005) | ≥ 2 cierran, ninguna empeora O y ninguna tiene un D nuevo fuera de la región | ≥ 2 cierran **con** un D nuevo, o ≥ 2 empeoran O |
+| H‑G5 | ChatGPT (cartas 005 y 006) | ≥ 2 cierran, ninguna empeora O y ninguna tiene un D nuevo (≥ 1000 px de pérdida nueva fuera de la región) | ≥ 2 cierran **con** un D nuevo, o ≥ 2 empeoran O |
 
 En cualquier otro caso, `INDETERMINATE`. H‑G5 es diagnóstica: **no** es un quinto requisito de PASS.
 

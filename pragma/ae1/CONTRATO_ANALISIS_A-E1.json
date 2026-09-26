@@ -23,7 +23,7 @@
   "metrics_implementation_sha256": {
     "pragma_ae/metrics.py": "48b3ff9af53cd320adcb89eca82e95be4acb18272c5bfa958247e0075fb95e96",
     "pragma_ae/masks.py": "412d1ead02fb92891ca989c5c6ac7a5b2dcd5b6bcdbb57551ec1ce12db712ac9",
-    "pragma_ae/inventory.py": "b8e6ba7fe21ccc38f3749c4e199dd5a216418492e6b2bd7bdc760463fe49a7ad"
+    "pragma_ae/inventory.py": "6540c0dcc21c718ebc3aee4b6a94d2680af536fd2680629f009ff197f2e42035"
   },
   "entrypoint": "pragma_ae.metrics.evaluate(objects, gt_masks, proposals, GateParams())",
   "gate_params": {
@@ -56,5 +56,5 @@
     "fragmentación"
   ],
   "rule": "si cambia un SHA-256 o un umbral de este contrato después de congelarlo, el análisis A-E1 es otra versión y se declara",
-  "content_sha256": "4f25fb29a9850816f506a74081a33b1175fff953c38d0db1dc7839df677a1e8e"
+  "content_sha256": "3fa3d60f153a34de4f668d659f4819cc59f0840e0f86a69b8a823885a10836fe"
 }

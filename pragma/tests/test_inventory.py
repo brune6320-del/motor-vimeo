@@ -31,7 +31,7 @@ def document(objects, status="HUMAN_REVIEWED", ratified=True):
             "objects": objects}
 
 
-class InventoryContract(unittest.TestCase):
+class Fixture(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.dir = Path(self.tmp.name)
@@ -47,6 +47,8 @@ class InventoryContract(unittest.TestCase):
         return obj(1, concept_en="person", canonical_name="persona", bbox=[480, 180, 920, 1220],
                    gt_required=True, gt_mask=copy.deepcopy(self.mask_entry), **kw)
 
+
+class InventoryContract(Fixture):
     def test_committed_draft_is_valid_draft(self):
         path = ROOT / "ae0" / "scene_inventory.draft.json"
         result = inv.validate(inv.load(path), path.parent)
@@ -120,6 +122,67 @@ class InventoryContract(unittest.TestCase):
         doc = document([self.person()])
         shuffled = json.loads(json.dumps(doc, sort_keys=True))
         self.assertEqual(inv.content_sha256(doc), inv.content_sha256(shuffled))
+
+
+class DoubleKeyReference(Fixture):
+    """DEC-024: A-E0 por doble llave de IA → AI_CONSENSUS_REFERENCE, nunca HUMAN_GT."""
+
+    def ai_document(self, derivation="AI_POLYGON_RASTER"):
+        person = self.person()
+        person["gt_mask"]["derivation"] = derivation
+        doc = document([person], status="AI_DOUBLE_KEY_REVIEWED")
+        doc["ontology"]["ratified_by"] = "persona usuaria"
+        doc["reference_type"] = "AI_CONSENSUS_REFERENCE"
+        doc["double_key"] = {"keys": [{"auditor": "Claude", "inventory_sha256": "a" * 64},
+                                      {"auditor": "ChatGPT", "inventory_sha256": "b" * 64}]}
+        return doc
+
+    def test_ai_double_key_freezes_as_ai_consensus_reference(self):
+        doc = self.ai_document()
+        self.assertEqual(inv.validate(doc, self.dir)["state"], "A_E0_READY_TO_FREEZE")
+        frozen = inv.freeze(doc, self.dir, frozen_by="Claude + ChatGPT (DEC-024)")
+        result = inv.validate(frozen, self.dir)
+        self.assertEqual(result["state"], "A_E0_FROZEN")
+        self.assertEqual((result["review_mode"], result["reference_type"]), ("AI_DOUBLE_KEY", "AI_CONSENSUS_REFERENCE"))
+        self.assertEqual(result["gt_reference"]["ae0_001"],
+                         {"derivation": "AI_POLYGON_RASTER", "reference_type": "AI_CONSENSUS_REFERENCE"})
+        self.assertEqual(frozen["freeze"]["reference_type"], "AI_CONSENSUS_REFERENCE")
+
+    def test_ai_consensus_can_never_be_declared_human_gt(self):
+        doc = self.ai_document()
+        doc["reference_type"] = "HUMAN_GT"
+        self.assertTrue(any("nunca HUMAN_GT" in e for e in inv.validate(doc, self.dir)["errors"]))
+        frozen = inv.freeze(self.ai_document(), self.dir, frozen_by="Claude + ChatGPT")
+        relabelled = copy.deepcopy(frozen)
+        relabelled["freeze"]["reviewed_as"] = "HUMAN_REVIEWED"
+        self.assertEqual(inv.validate(relabelled, self.dir)["state"], "A_E0_INVALID")
+
+    def test_sam2_assisted_mask_cannot_be_the_reference(self):
+        errors = inv.validate(self.ai_document("SAM2_ASSISTED"), self.dir)["errors"]
+        self.assertTrue(any("SAM2_ASSISTED es secundaria" in e for e in errors))
+        errors = inv.validate(self.ai_document(None), self.dir)["errors"]
+        self.assertTrue(any("derivation" in e for e in errors))
+
+    def test_two_distinct_keys_and_user_ratification_are_required(self):
+        doc = self.ai_document()
+        doc["double_key"]["keys"][1]["auditor"] = "Claude"
+        self.assertTrue(any("dos llaves" in e for e in inv.validate(doc, self.dir)["errors"]))
+        doc = self.ai_document()
+        del doc["ontology"]["ratified_by"]
+        self.assertTrue(any("ratified_by" in e for e in inv.validate(doc, self.dir)["errors"]))
+
+    def test_only_a_human_ratified_mask_counts_as_human(self):
+        doc = self.ai_document()
+        doc["objects"][0]["gt_mask"].update({"human_ratified": True, "human_ratified_by": "persona usuaria"})
+        self.assertEqual(inv.validate(doc, self.dir)["gt_reference"]["ae0_001"]["reference_type"], "HUMAN_GT")
+        doc["objects"][0]["gt_mask"]["human_ratified_by"] = ""
+        self.assertTrue(any("human_ratified_by" in e for e in inv.validate(doc, self.dir)["errors"]))
+
+    def test_human_mode_is_unchanged(self):
+        frozen = inv.freeze(document([self.person()]), self.dir, frozen_by="revisora")
+        result = inv.validate(frozen, self.dir)
+        self.assertEqual((result["state"], result["review_mode"], result["reference_type"]),
+                         ("A_E0_FROZEN", "HUMAN", "HUMAN_GT"))
 
 
 if __name__ == "__main__":

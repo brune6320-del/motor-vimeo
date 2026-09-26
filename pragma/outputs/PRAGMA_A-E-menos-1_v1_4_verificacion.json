@@ -1,7 +1,7 @@
 {
   "notebook": "PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_4.ipynb",
-  "notebook_sha256": "b6f29bbb447f416640cd0a4e7a9bcc0cbcb0d71a11824633c8fa52440efa48b1",
-  "prereg_sha256": "9548b2118761876e8a1b51366603fe7fba332fc737d632f84f83c6ed0e296b76",
+  "notebook_sha256": "7c29e09546aa3226c59bcd0e64e44ed7af302d579131cc565577b76fb56ec2b0",
+  "prereg_sha256": "b0cfe33ee6aca8921c3e0c7a01a2604131b5e6cf9a448d6b8635626f13c690aa",
   "result": "30/30",
   "status": "PASS",
   "scope": "estático + E2E con SAM SIMULADO + auditoría sobre el ZIP simulado; no mide la calidad de SAM 2",
@@ -19,7 +19,7 @@
     {
       "check": "prerregistro embebido idéntico byte a byte al versionado",
       "pass": true,
-      "detail": "9548b2118761876e"
+      "detail": "b0cfe33ee6aca892"
     },
     {
       "check": "celda 1: commit fijado y checkout exacto (no main)",

@@ -1,9 +1,18 @@
 """A-E0 · contrato, validación y congelado de ``scene_inventory.json``.
 
-El inventario es la verdad humana contra la que se medirán los proponentes. Por eso
-este módulo es deliberadamente estricto: un inventario solo se puede congelar cuando
-la ontología está ratificada, la revisión humana está hecha, no quedan campos por
-verificar y todas las máscaras GT obligatorias existen y coinciden por hash.
+El inventario es la referencia contra la que se medirán los proponentes. Por eso este
+módulo es deliberadamente estricto: un inventario solo se puede congelar cuando la
+ontología está ratificada, la revisión está hecha, no quedan campos por verificar y
+todas las máscaras GT obligatorias existen y coinciden por hash.
+
+Dos modos de revisión (DEC-024):
+
+- ``HUMAN_REVIEWED`` → ``reference_type = HUMAN_GT``;
+- ``AI_DOUBLE_KEY_REVIEWED`` → ``reference_type = AI_CONSENSUS_REFERENCE``: dos llaves de IA
+  registradas por hash, ontología ratificada por la persona usuaria (``ratified_by``) y cada
+  máscara GT con ``derivation`` que no dependa de SAM 2 (``AI_POLYGON_RASTER`` o
+  ``AI_POLYGON_CLASSICAL_REFINEMENT``; ChatGPT 006). ``AI_CONSENSUS_REFERENCE`` nunca se
+  convierte en ``HUMAN_GT``; solo una máscara con ``human_ratified`` cuenta como humana.
 
 Los nombres de campo siguen el contrato ``SceneObject`` de PROJECT_STATE §13.2
 (``id``, ``canonical_name``, ``synonyms``, ``tier``, ``bbox``, ``gt_mask``,
@@ -28,7 +37,13 @@ from .masks import mask_bbox, packed_sha256
 
 SCHEMA = "pragma.scene_inventory"
 SCHEMA_VERSION = "0.1.0"
-STATUSES = ("DRAFT_UNVERIFIED", "HUMAN_REVIEWED", "FROZEN")
+STATUSES = ("DRAFT_UNVERIFIED", "HUMAN_REVIEWED", "AI_DOUBLE_KEY_REVIEWED", "FROZEN")
+REFERENCE_TYPES = ("HUMAN_GT", "AI_CONSENSUS_REFERENCE")
+REVIEW_TO_REFERENCE = {"HUMAN_REVIEWED": "HUMAN_GT", "AI_DOUBLE_KEY_REVIEWED": "AI_CONSENSUS_REFERENCE"}
+DERIVATIONS = ("AI_POLYGON_RASTER", "AI_POLYGON_CLASSICAL_REFINEMENT", "SAM2_ASSISTED", "HUMAN_PAINTED")
+# SAM2_ASSISTED es secundaria y no bloqueante (ChatGPT 006): no puede ser la referencia de A-E1.
+AI_REFERENCE_DERIVATIONS = ("AI_POLYGON_RASTER", "AI_POLYGON_CLASSICAL_REFINEMENT")
+HEX64 = re.compile(r"^[0-9a-f]{64}$")
 TIERS = ("A", "B", "C", "IGNORE")
 KINDS = ("instance", "part", "stuff", "text")
 LEVELS = ("none", "low", "medium", "high", "extreme", "unknown")
@@ -130,6 +145,23 @@ def validate(inventory: dict, inventory_dir=None, image_sha256: str | None = Non
     status = inventory.get("status")
     if status not in STATUSES:
         report.error(f"status inválido: {status!r}")
+    reviewed_as = (inventory.get("freeze") or {}).get("reviewed_as", "HUMAN_REVIEWED") if status == "FROZEN" else status
+    ai_mode = reviewed_as == "AI_DOUBLE_KEY_REVIEWED"
+    declared_type = inventory.get("reference_type")
+    if declared_type is not None and declared_type not in REFERENCE_TYPES:
+        report.error(f"reference_type inválido: {declared_type!r}")
+    expected_type = REVIEW_TO_REFERENCE.get(reviewed_as)
+    if expected_type == "AI_CONSENSUS_REFERENCE" and declared_type != expected_type:
+        report.error("una revisión por doble llave de IA exige reference_type = AI_CONSENSUS_REFERENCE (nunca HUMAN_GT)")
+    if expected_type == "HUMAN_GT" and declared_type not in (None, "HUMAN_GT"):
+        report.error("una revisión humana declara reference_type = HUMAN_GT")
+    reference_type = expected_type or declared_type
+    if ai_mode:
+        keys = (inventory.get("double_key") or {}).get("keys", [])
+        auditors = [str(k.get("auditor", "")).strip() for k in keys]
+        if len(keys) != 2 or len(set(auditors)) != 2 or not all(auditors) \
+                or not all(HEX64.match(str(k.get("inventory_sha256", ""))) for k in keys):
+            report.error("double_key.keys exige dos llaves de auditores distintos, cada una con inventory_sha256")
 
     image = inventory.get("image", {})
     if image.get("sha256") != EXPECTED_IMAGE_SHA256:
@@ -145,6 +177,8 @@ def validate(inventory: dict, inventory_dir=None, image_sha256: str | None = Non
     min_side = int(ontology.get("min_short_side_px", 32))
     tier_a_side = int(ontology.get("tier_a_min_short_side_px", 64))
     ratified = bool(ontology.get("ratified", False))
+    if ai_mode and ratified and not str(ontology.get("ratified_by", "")).strip():
+        report.error("en modo doble llave de IA, la ontología la ratifica la persona usuaria: falta ontology.ratified_by")
 
     raw_objects = inventory.get("objects", [])
     objects: dict[str, dict] = {}
@@ -162,6 +196,7 @@ def validate(inventory: dict, inventory_dir=None, image_sha256: str | None = Non
 
     names: dict[str, str] = {}
     gt_status: dict[str, str] = {}
+    gt_reference: dict[str, dict] = {}
     pending_review: list[str] = []
     for oid, obj in objects.items():
         tier, kind = obj["tier"], obj["kind"]
@@ -233,6 +268,17 @@ def validate(inventory: dict, inventory_dir=None, image_sha256: str | None = Non
         if entry is None:
             gt_status[oid] = "missing" if obj["gt_required"] else "not_required"
             continue
+        derivation = entry.get("derivation")
+        if derivation is not None and derivation not in DERIVATIONS:
+            report.error(f"{oid}: derivation inválida {derivation!r}")
+        if ai_mode and derivation not in AI_REFERENCE_DERIVATIONS:
+            report.error(f"{oid}: en modo doble llave de IA la GT necesita derivation en {AI_REFERENCE_DERIVATIONS} "
+                         f"(recibida {derivation!r}; SAM2_ASSISTED es secundaria y no bloqueante)")
+        human = entry.get("human_ratified", False)
+        if human and not str(entry.get("human_ratified_by", "")).strip():
+            report.error(f"{oid}: human_ratified exige human_ratified_by")
+        gt_reference[oid] = {"derivation": derivation,
+                             "reference_type": "HUMAN_GT" if (human or reference_type == "HUMAN_GT") else reference_type}
         path = inventory_dir / entry.get("path", "")
         if not path.is_file():
             gt_status[oid] = "file_missing"
@@ -288,6 +334,9 @@ def validate(inventory: dict, inventory_dir=None, image_sha256: str | None = Non
     return {
         "state": state,
         "status": status,
+        "review_mode": "AI_DOUBLE_KEY" if ai_mode else ("HUMAN" if reviewed_as == "HUMAN_REVIEWED" else None),
+        "reference_type": reference_type,
+        "gt_reference": gt_reference,
         "ontology_ratified": ratified,
         "objects": len(objects),
         "tier_counts": counts,
@@ -305,18 +354,21 @@ def validate(inventory: dict, inventory_dir=None, image_sha256: str | None = Non
 
 def freeze(inventory: dict, inventory_dir=None, frozen_by: str = "", now: datetime | None = None) -> dict:
     """Devuelve una copia congelada o lanza ValueError con el motivo."""
-    if inventory.get("status") != "HUMAN_REVIEWED":
-        raise ValueError("Solo se congela un inventario con status HUMAN_REVIEWED")
+    reviewed_as = inventory.get("status")
+    if reviewed_as not in REVIEW_TO_REFERENCE:
+        raise ValueError("Solo se congela un inventario con status HUMAN_REVIEWED o AI_DOUBLE_KEY_REVIEWED")
     result = validate(inventory, inventory_dir)
     if result["state"] != "A_E0_READY_TO_FREEZE":
         raise ValueError(f"No se puede congelar: estado {result['state']}; errores={result['errors']}")
     if not frozen_by.strip():
-        raise ValueError("frozen_by es obligatorio: el congelado es una firma humana")
+        raise ValueError("frozen_by es obligatorio: firma quien congela (la persona usuaria, o las dos llaves de IA)")
     frozen = copy.deepcopy(inventory)
     frozen["status"] = "FROZEN"
     frozen.pop("freeze", None)
     frozen["freeze"] = {
         "frozen_by": frozen_by.strip(),
+        "reviewed_as": reviewed_as,
+        "reference_type": REVIEW_TO_REFERENCE[reviewed_as],
         "frozen_utc": (now or datetime.now(timezone.utc)).isoformat(),
         "gt_mask_sha256": {
             o["id"]: o["gt_mask"]["mask_sha256"] for o in frozen["objects"] if o["gt_mask"]

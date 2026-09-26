@@ -86,12 +86,15 @@ class Measures(unittest.TestCase):
         small[700:720, 1150:1170] = False                        # 400 px: por debajo del umbral
         self.assertTrue(w.closure(self.target["mask"], small)["closed"])
 
+    def region(self):
+        return w.h2_region(SHAPE, self.target["mask"], (1170, 720))   # objetivo dilatado: y 685–774, x 1135–1214
+
     def test_new_holes(self):
-        region = w.h2_region(SHAPE, self.target["mask"], (1170, 720))
+        region = self.region()
         moved = rect(SHAPE, 1000, 500, 1400, 1100)
         moved[900:950, 1050:1100] = False                        # pérdida nueva de 2500 px
         found = w.candidate_new_holes(moved, self.ref, region)
-        self.assertEqual([h["area"] for h in found], [2500])
+        self.assertEqual([(h["area"], h["new_loss_outside_px"]) for h in found], [(2500, 2500)])
         self.assertEqual(found[0]["fraction_inside_reference"], 1.0)
         # Material que ya faltaba (abierto al exterior en la referencia) y ahora queda encerrado: no es nuevo.
         ref_open = rect(SHAPE, 1000, 500, 1400, 1100)
@@ -99,10 +102,48 @@ class Measures(unittest.TestCase):
         enclosed = rect(SHAPE, 1000, 500, 1400, 1100)
         enclosed[900:950, 1030:1100] = False
         self.assertEqual(w.candidate_new_holes(enclosed, ref_open, region), [])
-        # Un agujero que toca la región de H2 no cuenta como «fuera de la región».
+
+    # Las cuatro pruebas que pidió ChatGPT 006 antes de regenerar el prerregistro.
+    def test_chatgpt006_a_touches_region_by_one_pixel_plus_1500_new_outside_counts(self):
+        mask = rect(SHAPE, 1000, 500, 1400, 1100)
+        mask[775:805, 1150:1200] = False                          # 1500 px fuera de la región
+        mask[774, 1175] = False                                   # 1 px dentro de la región, conectado
+        found = w.candidate_new_holes(mask, self.ref, self.region())
+        self.assertEqual([(h["area"], h["new_loss_outside_px"], h["touches_region"]) for h in found], [(1501, 1500, True)])
+
+    def test_chatgpt006_b_1200_new_outside_with_only_40_percent_inside_reference_counts(self):
+        ref = self.ref.copy()
+        ref[900:936, 1030:1080] = False                           # 1800 px que ya faltaban
+        mask = rect(SHAPE, 1000, 500, 1400, 1100)
+        mask[900:960, 1030:1080] = False                          # agujero de 3000 px: 1200 nuevos
+        found = w.candidate_new_holes(mask, ref, self.region())
+        self.assertEqual([(h["new_loss_outside_px"], h["fraction_inside_reference"]) for h in found], [(1200, 0.4)])
+
+    def test_chatgpt006_c_only_900_new_outside_does_not_count(self):
+        ref = self.ref.copy()
+        ref[900:920, 1030:1080] = False                           # 1000 px que ya faltaban
+        mask = rect(SHAPE, 1000, 500, 1400, 1100)
+        mask[900:938, 1030:1080] = False                          # agujero de 1900 px: 900 nuevos
+        self.assertEqual([h["area"] for h in a13.holes_with_masks(mask)], [1900])
+        self.assertEqual(w.candidate_new_holes(mask, ref, self.region()), [])
+
+    def test_chatgpt006_d_preexisting_hole_without_new_loss_does_not_count(self):
+        ref = self.ref.copy()
+        ref[900:936, 1030:1080] = False
+        mask = rect(SHAPE, 1000, 500, 1400, 1100)
+        mask[900:936, 1030:1080] = False                          # el mismo agujero, sin pérdida nueva
+        self.assertEqual(w.candidate_new_holes(mask, ref, self.region()), [])
+
+    def test_hole_touching_region_counts_only_its_loss_outside(self):
         near = rect(SHAPE, 1000, 500, 1400, 1100)
-        near[765:800, 1150:1200] = False
-        self.assertEqual(w.candidate_new_holes(near, self.ref, region), [])
+        near[765:780, 1150:1200] = False                          # 500 px dentro y 250 fuera
+        near[765:800, 1150:1200] = False                          # ahora 500 dentro y 1250 fuera
+        found = w.candidate_new_holes(near, self.ref, self.region())
+        self.assertEqual([h["new_loss_outside_px"] for h in found], [1250])
+        small = rect(SHAPE, 1000, 500, 1400, 1100)
+        small[760:775, 1120:1200] = False                         # 1200 px: 975 dentro de la región y 225 fuera
+        self.assertEqual([h["area"] for h in a13.holes_with_masks(small)], [1200])
+        self.assertEqual(w.candidate_new_holes(small, self.ref, self.region()), [])
 
     def test_region_without_target_is_a_square(self):
         region = w.h2_region((100, 100), None, (50, 50))

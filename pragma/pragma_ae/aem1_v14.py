@@ -30,9 +30,10 @@ HOLE_MIN_PX = 1000
 # restricciones (caja de contacto, holdouts, prompts) son las mismas de H1 y S1 en v1.3.
 H2_SAFE_HALF_MIN = v13.PATCH_RADIUS + 1
 H2_REGION_DILATION_PX = v13.STEP
-# Un agujero de v1.4 es una pérdida nueva si al menos la mitad de sus píxeles estaban DENTRO de la
-# máscara de referencia (si ya estaban fuera, es material que ya faltaba y ahora quedó encerrado).
-NEW_HOLE_PRIOR_INSIDE_MIN = 0.5
+# Pérdida nueva fuera de H2 (ChatGPT 006): píxeles del agujero que ERAN máscara en la referencia y
+# están fuera de la región de H2. Cuenta si son ≥ 1000, toque o no el agujero la región y sea cual
+# sea la fracción del agujero que ya faltaba (esa fracción queda solo como diagnóstico).
+NEW_LOSS_OUTSIDE_MIN_PX = HOLE_MIN_PX
 # Regla de medición de O de la adjudicación v1.3 (dialogo/005; aceptada por ChatGPT 005),
 # prerregistrada aquí con la corrección de islas separadas del núcleo hombro/blusa.
 BUN_CORE = (2610, 315, 2780, 415)          # ∩ material oscuro
@@ -133,21 +134,23 @@ def closure(target_mask, mask, min_area=HOLE_MIN_PX) -> dict:
             "holes_touching_target": touching, "closed": residual < min_area and not touching}
 
 
-def candidate_new_holes(mask, ref_mask, region, min_area=HOLE_MIN_PX) -> list:
-    """Agujeros ≥ 1000 px de ``mask`` fuera de ``region`` que son pérdida nueva frente a ``ref_mask``.
+def candidate_new_holes(mask, ref_mask, region, min_area=HOLE_MIN_PX, min_new_loss=NEW_LOSS_OUTSIDE_MIN_PX) -> list:
+    """Agujeros ≥ 1000 px de ``mask`` con pérdida nueva de sujeto fuera de ``region``.
 
-    Devuelve sus números de lámina; que sean ``D`` lo deciden las dos llaves (consenso).
+    ``new_loss_outside = agujero ∩ referencia ∩ ¬región``; el agujero es candidato si ese recuento
+    llega a ``min_new_loss`` (ChatGPT 006). Devuelve sus números de lámina; que sean ``D`` lo deciden
+    las dos llaves (consenso).
     """
     ref = as_bool(ref_mask)
     reg = as_bool(region)
     out = []
     for h in holes_with_masks(mask, min_area):
-        if (h["mask"] & reg).any():
-            continue
-        inside_before = float((h["mask"] & ref).sum()) / h["area"]
-        if inside_before >= NEW_HOLE_PRIOR_INSIDE_MIN:
+        new_loss = int((h["mask"] & ref & ~reg).sum())
+        if new_loss >= min_new_loss:
             out.append({"number": h["number"], "area": h["area"], "bbox": list(h["bbox"]),
-                        "fraction_inside_reference": round(inside_before, 4)})
+                        "new_loss_outside_px": new_loss,
+                        "touches_region": bool((h["mask"] & reg).any()),
+                        "fraction_inside_reference": round(float((h["mask"] & ref).sum()) / h["area"], 4)})
     return out
 
 

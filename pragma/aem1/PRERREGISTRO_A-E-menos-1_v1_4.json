@@ -5,7 +5,8 @@
   "status": "PREREGISTERED",
   "frozen_on": "2026-09-26",
   "responds_to": [
-    "dialogo/005_chatgpt_a_claude.md"
+    "dialogo/005_chatgpt_a_claude.md",
+    "dialogo/006_chatgpt_a_claude.md"
   ],
   "go_to_preregistration": {
     "by": "ChatGPT",
@@ -22,7 +23,32 @@
       "H-G5 añadida antes de los datos",
       "PASS = contrato completo, no «H2 cerró el agujero»"
     ],
-    "cross_audit_before_run": "PENDIENTE: ChatGPT revisa este prerregistro antes de ejecutar (ChatGPT 005)"
+    "cross_audit_before_run": "ver cross_audit (ChatGPT 006)"
+  },
+  "cross_audit": {
+    "by": "ChatGPT",
+    "letter": "dialogo/006_chatgpt_a_claude.md",
+    "letter_sha256": "9587f1c0b04a6dd852b96a9f014603ba183727d7cb9504f8b4d27534e7309ddf",
+    "inspected": {
+      "package_sha256": "635640565d3e3efbbad6ce3f1c6d30cdcaed1e45dbefb46676f3d9ae516adc5e",
+      "prereg_content_sha256": "bd437a87a33651ab7103f6934ea7fd6934b16c1cc29cc069ed376293dafc15a3"
+    },
+    "verdicts": {
+      "ZIP_INTEGRITY": "PASS",
+      "H2_OWNER_SECOND_KEY": "PASS",
+      "H2_VALID_PERTURBATIONS": "5/5 PASS",
+      "SIX_SHEET_BLIND_PACKAGE": "ACCEPTED",
+      "STOP_RULE": "CONFIRMED",
+      "DEC_024": "ACCEPTED",
+      "H-G5": "CHANGE_REQUIRED (solo la definición de new_d)",
+      "AEM1_v1.4": "HOLD_FOR_ONE_PREREG_PATCH"
+    },
+    "changes_applied_before_any_run": [
+      "new_d: «nuevo fuera de H2» = agujero ∩ referencia ∩ ¬región ≥ 1000 px (ChatGPT 006 §2). Antes: el agujero se descartaba si tocaba la región en 1 px (caso A) y se exigía ≥ 50 % de su área dentro de la referencia (caso B); la fracción queda solo como diagnóstico",
+      "cuatro pruebas sintéticas de ChatGPT 006 añadidas a tests/test_aem1_v14.py antes de regenerar"
+    ],
+    "unchanged": "H2, ramas, hipótesis (salvo new_d), seis láminas, PASS y regla de parada",
+    "result": "pendiente de que ChatGPT confirme este delta; entonces AEM1_v1.4 = GO_TO_GPU"
   },
   "correction_of_letter_005": {
     "proposed": [
@@ -31,7 +57,7 @@
     ],
     "problem": "(2964, 672) está en la parte ALTA de la franja: agujero D solo en s0 y s2; C01 (s1) ya cubre esa parte y su único agujero D es la parte BAJA (2984–3025 × 842–997). Con ese punto la hipótesis no podía probarse en el mejor intento",
     "fix": "H2 se elige dentro de los píxeles que son agujero D de consenso en las tres semillas (la parte baja)",
-    "second_key_on_old_point": "ChatGPT 005 confirmó que el punto viejo es pelo de la chica; el nuevo requiere su llave",
+    "second_key_on_old_point": "ChatGPT 005 confirmó el punto viejo (pelo de la chica); ChatGPT 006 confirmó el nuevo y sus 5 perturbaciones válidas",
     "upper_probe_role": "solo descriptivo: si la parte alta de s0 y s2 también se cierra"
   },
   "generated_by": "work/design_aem1_v1_4.py",
@@ -420,7 +446,7 @@
         }
       },
       "owner_verified_by": "auditor IA Claude en la lámina privada de diseño",
-      "owner_second_key": "PENDIENTE (ChatGPT, en la lámina privada del paquete de la carta 006)"
+      "owner_second_key": "PASS (ChatGPT 006: H2 y sus 5 perturbaciones válidas sobre el pelo de la chica; las 3 hacia +x, bien marcadas inválidas)"
     }
   },
   "safety_constants": {
@@ -2348,7 +2374,7 @@
   ],
   "call_plan_semantics": "cada llamada es SAM2ImagePredictor.predict(point_coords=points o None, point_labels=labels o None, box=box o None, mask_input=low_res_logits[index][None] de mask_input_from o None, multimask_output, return_logits=True); máscara = logits > 0; mismas conversiones que v1.2 (float32 para puntos y caja, int32 para etiquetas)",
   "analysis_implementation_sha256": {
-    "pragma_ae/aem1_v14.py": "f699373495961d08dbd27110b6d9f8dd251d28f984ed09c0f8ac4d8823aebd42",
+    "pragma_ae/aem1_v14.py": "ee6cdecd07a7d79adee94109c93ea4a7b76ab55da291d18343f6816bc1c7342d",
     "pragma_ae/aem1_v14_audit.py": "595b5f42d041864f9a614c7519829bacbee7b7961ee6694af6d7a3c6e86e4a44",
     "pragma_ae/aem1_v13.py": "2e9433604a834db8b5636d112dcd5169b5330727e0a0c05c4e92e9cbc4087da7",
     "pragma_ae/aem1_v13_audit.py": "820af07186a171099f94e98541d89d0b0948a3cf4333222c4c0c5a77ebfdc13a",
@@ -2376,7 +2402,7 @@
     "target_hole": "por semilla: el agujero cerrado ≥ 1000 px de la referencia que contiene H2; es evaluable si las dos llaves lo marcaron D",
     "closure": "cerrado = quedan < 1000 px del agujero objetivo sin cubrir Y ningún agujero ≥ 1000 px de la candidata lo toca (pragma_ae.aem1_v14.closure)",
     "h2_region": "el agujero objetivo dilatado 15 px (L∞)",
-    "new_d_hole": "agujero ≥ 1000 px de la candidata, fuera de la región de H2, con ≥ 50 % de sus píxeles DENTRO de la máscara de referencia (pérdida nueva, no material que ya faltaba) y D en las dos llaves",
+    "new_d_hole": "agujero ≥ 1000 px de la candidata cuya pérdida nueva fuera de la región de H2 (agujero ∩ máscara de referencia ∩ ¬región) es ≥ 1000 px, toque o no la región, y D en las dos llaves (ChatGPT 006). La fracción del agujero que ya estaba dentro de la referencia solo se reporta",
     "o_worse": "referencia O TRUE y candidata O no TRUE; o, si la referencia ya era FALSE (s0: isla de 5 px en el moño), más píxeles en los núcleos que la referencia",
     "perturbation_stability": "pragma_ae.aem1_v13.perturbation_stability por semilla, más cierre bajo cada perturbación",
     "descriptive_only": [
@@ -2400,7 +2426,7 @@
       "by": "ChatGPT (carta 005)",
       "function": "pragma_ae.aem1_v14.hypothesis_h_g5",
       "statement": "H2 actúa como reparación local, no como resegmentación global",
-      "holds_if": "≥ 2/3 semillas cerradas, ninguna con o_worse y ninguna con un agujero D nuevo fuera de la región de H2",
+      "holds_if": "≥ 2/3 semillas cerradas, ninguna con o_worse y ninguna con un agujero D nuevo (pérdida nueva ≥ 1000 px fuera de la región de H2)",
       "refuted_if": "≥ 2/3 semillas cerradas CON un agujero D nuevo, o ≥ 2/3 con o_worse",
       "otherwise": "INDETERMINATE",
       "role": "hipótesis causal y diagnóstica; NO es un quinto requisito de PASS"
@@ -2438,5 +2464,5 @@
     ],
     "not_shown_in_colab": "el cuaderno no muestra máscaras, áreas, scores ni sentinelas: solo progreso e integridad"
   },
-  "content_sha256": "bd437a87a33651ab7103f6934ea7fd6934b16c1cc29cc069ed376293dafc15a3"
+  "content_sha256": "7048b9fabf03544885d749ad3f19d0dd9d373730d8531f87db58e40ca7220b5d"
 }

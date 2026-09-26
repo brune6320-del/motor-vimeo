@@ -24,14 +24,39 @@ ratificada de forma independiente por personas.
 la llave de Claude. La llave de ChatGPT se hace **solo desde la foto**, sin abrir ese borrador;
 después se comparan objeto a objeto.
 
-**Contra la circularidad.** Una máscara de referencia obtenida con prompts de SAM 2 favorece a SAM 2
-cuando A‑E1 mida SAM 2 AMG. Cada máscara declara su `derivation`, y A‑E1 separa las métricas por
-derivación. La forma concreta de producir las máscaras de las tres personas está pendiente de
-acordar con ChatGPT.
+**Contra la circularidad** (acordado en ChatGPT 006). Una máscara de referencia obtenida con prompts
+de SAM 2 favorecería a SAM 2 cuando A‑E1 mida SAM 2 AMG. Por eso:
 
-**Pendiente de implementar antes de producir A‑E0:** el esquema de `pragma_ae/inventory.py` todavía
-exige `HUMAN_REVIEWED` y una firma humana para congelar. Hay que añadir `reference_type`,
-`derivation` y un estado de revisión por doble llave de IA.
+- **Derivación principal:** `AI_POLYGON_RASTER` o `AI_POLYGON_CLASSICAL_REFINEMENT`. Cada IA traza,
+  por su cuenta y desde la foto, el polígono modal de cada persona, sin ver el de la otra.
+  - Se rasteriza a 4000×2248.
+  - Opcionalmente se refina con un método determinista que solo use píxeles (graph‑cut, GrabCut o
+    ajuste a bordes en una banda de frontera), **sin SAM 2**.
+  - Se conservan la máscara cruda y la refinada.
+- **Comparación:** las dos llaves se comparan por IoU y diferencia de frontera, y solo se adjudican las
+  regiones en discrepancia.
+- **SAM 2:** una máscara `SAM2_ASSISTED` puede existir como comparación, pero es **secundaria y no
+  bloqueante**. El validador la rechaza como referencia en el modo de doble llave.
+- **Pelo y contacto:** si el trazado no alcanza la precisión suficiente, esas zonas se marcan con
+  incertidumbre o se excluyen de cualquier afirmación de exactitud de borde. No se finge una GT
+  perfecta.
+
+**Esquema (ya implementado en `pragma_ae/inventory.py`).**
+
+- **Estado:** `AI_DOUBLE_KEY_REVIEWED`, que congela como `AI_CONSENSUS_REFERENCE`.
+- **Obligatorio en este modo:**
+  - `double_key.keys`: dos auditores distintos, cada uno con el `inventory_sha256` de su llave;
+  - `ontology.ratified_by`: la persona usuaria;
+  - `gt_mask.derivation` en cada máscara.
+- **Excepción humana:** solo una máscara con `human_ratified` (y `human_ratified_by`) cuenta como
+  `HUMAN_GT`.
+
+**Orden (ChatGPT 006 §8):**
+
+1. La persona usuaria ratifica la ontología v0.2. Antes de eso **no se produce ni se congela** A‑E0.
+2. Claude hace la llave 1 desde su borrador.
+3. ChatGPT hace la llave 2 desde la foto, sin ver ese borrador.
+4. Se comparan y se adjudica.
 
 Las secciones 1–4 describen el modo humano (`HUMAN_GT`), que sigue disponible si la persona usuaria
 lo prefiere.
