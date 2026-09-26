@@ -1,0 +1,117 @@
+{
+  "schema": "pragma.aem1v14_blind_adjudication_robustness",
+  "schema_version": "0.1.0",
+  "nature": "descriptivo, calculado después de aplicar la regla y antes del desciegue; no cambia la regla ni la decisión",
+  "question": "¿depende la decisión B(N04) = FALSE de qué agujero D acordado se use?",
+  "per_agreed_D_hole": [
+    {
+      "label": "N01",
+      "hole": 2,
+      "bbox": [
+        2682,
+        842,
+        2723,
+        930
+      ],
+      "area_px": 2177,
+      "left_out_by_N04_px": 2067
+    },
+    {
+      "label": "N02",
+      "hole": 2,
+      "bbox": [
+        2590,
+        834,
+        2751,
+        1057
+      ],
+      "area_px": 10374,
+      "left_out_by_N04_px": 9387
+    },
+    {
+      "label": "N03",
+      "hole": 2,
+      "bbox": [
+        2651,
+        830,
+        2822,
+        1021
+      ],
+      "area_px": 10793,
+      "left_out_by_N04_px": 7260
+    },
+    {
+      "label": "N03",
+      "hole": 3,
+      "bbox": [
+        2964,
+        785,
+        3026,
+        999
+      ],
+      "area_px": 8120,
+      "left_out_by_N04_px": 339
+    },
+    {
+      "label": "N03",
+      "hole": 4,
+      "bbox": [
+        2949,
+        636,
+        2999,
+        781
+      ],
+      "area_px": 5027,
+      "left_out_by_N04_px": 0
+    },
+    {
+      "label": "N05",
+      "hole": 2,
+      "bbox": [
+        2969,
+        789,
+        3027,
+        1000
+      ],
+      "area_px": 7575,
+      "left_out_by_N04_px": 339
+    },
+    {
+      "label": "N05",
+      "hole": 3,
+      "bbox": [
+        2950,
+        636,
+        2999,
+        779
+      ],
+      "area_px": 4176,
+      "left_out_by_N04_px": 0
+    },
+    {
+      "label": "N05",
+      "hole": 4,
+      "bbox": [
+        2683,
+        832,
+        2730,
+        930
+      ],
+      "area_px": 2985,
+      "left_out_by_N04_px": 2386
+    },
+    {
+      "label": "N06",
+      "hole": 2,
+      "bbox": [
+        2984,
+        842,
+        3025,
+        997
+      ],
+      "area_px": 3011,
+      "left_out_by_N04_px": 339
+    }
+  ],
+  "reading": "cualquiera de los agujeros laterales (junto al mentón y hacia el hombro) basta por sí solo para superar 1000 px: N01#2 2067, N05#4 2386, N03#2 7260, N02#2 9387. En la franja entre la cara y el índice, N04 solo deja fuera 339 px."
+}
