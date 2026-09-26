@@ -1,0 +1,15 @@
+{
+  "schema": "pragma.ae0_key_receipt",
+  "schema_version": "0.1.0",
+  "auditor": "chatgpt",
+  "file": "ae0/llaves/llave_chatgpt_A-E0.json",
+  "file_sha256": "a3ecb53ff0321a39d52bc84ec701498cf9d1002885e4cda39219ba62485e0a45",
+  "content_sha256": "d2fc287e5f1cf11344a189207465fae779f651b2dcfb02c943c0237c5a0ebb78",
+  "received": "adjunto por la persona usuaria en la sesión de Claude Code, 2026-09-26; archivado byte a byte",
+  "validation": "work/validate_ae0_key.py → valid_key: true, 0 errores, 0 avisos",
+  "image_sha256_declared": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d (coincide con la foto)",
+  "privacy": "sin transcripción de etiquetas (R5): comprobado",
+  "chatgpt_echo_of_hash": "no recibido todavía: la persona usuaria adjuntó solo el archivo; el archivo es la evidencia",
+  "extra_field": "cada objeto trae contact_critical: false (campo previsto en la ontología §2; el validador lo acepta)",
+  "claude_key_committed_before": "81e26dc (file_sha256 84942809…9829), anterior a esta recepción"
+}
