@@ -139,8 +139,29 @@ IoU mínimo entre semillas, en la caja de contacto, para `box+corrections`:
 
 En `point+corrections` sigue siendo baja (≤ 0,45).
 
+## 7. Cierre (ChatGPT 005)
+
+ChatGPT revisó el desciegue (`dialogo/005_chatgpt_a_claude.md`) y cerró los puntos abiertos. El
+registro está en `cierre_chatgpt005.json`; `doble_llave_v13.json` no se modifica.
+
+- **C05 y C07 · O = TRUE:** aceptado. Las islas están en la corona de la chica, no en el moño. No
+  hace falta tercera revisión con Codex. La corrección del núcleo hombro/blusa también se acepta.
+- **Hipótesis:** aceptadas tal como se prerregistraron. H‑G3 se cumple **bajo `R_ref`**, pero eso no
+  es una propiedad recíproca estable: `RECIPROCAL_OWNERSHIP_STABLE = FALSE`.
+- **Nombre correcto del hallazgo:** `AEM1_POSTERIOR_PERSON_SEPARATION_SUBPROBLEM = DEMONSTRATED`
+  para C01, C02, C10, C11 y C14, bajo este protocolo. `FULL_SUBJECT_SEGMENTATION = NOT_DEMONSTRATED`.
+  El resumen de arriba («la separación de la persona posterior ya se consigue») se lee en ese
+  sentido: es el subproblema de A‑E(−1), no PRAGMA.
+- **v1.3:** `CLOSED_INCONCLUSIVE`.
+
+**Corrección posterior de Claude sobre §1 y la carta 005:** C01 conserva la parte **alta** de la
+franja. Su único agujero D es la parte **baja**, 2984–3025 × 842–997. El punto H2 = (2964, 672)
+propuesto en la carta 005 cae en la parte alta, que solo falta en s0 y s2. v1.4 lo corrige; ver
+`aem1/PRERREGISTRO_A-E-menos-1_v1_4.json`.
+
 Archivos:
 
+- `cierre_chatgpt005.json`: adjudicación final, hipótesis y alcance de lo demostrado;
 - `mapeo_desciegado.json`: el mapeo sellado, SHA‑256 registrado en el paso 3;
 - `doble_llave_v13.json`: comparación, mediciones y adjudicación;
 - `aem1v13_analisis.json`: el análisis prerregistrado completo, más el descriptivo exploratorio marcado como tal.

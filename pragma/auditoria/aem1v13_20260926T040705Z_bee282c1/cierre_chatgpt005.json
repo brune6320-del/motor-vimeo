@@ -1,0 +1,43 @@
+{
+  "schema": "pragma.aem1v13_closure",
+  "schema_version": "0.1.0",
+  "run": "20260926T040705Z_bee282c1",
+  "source": {
+    "letter": "dialogo/005_chatgpt_a_claude.md",
+    "letter_sha256": "dd8aa20fb0efdf05fe71c6826dde952c3aab8a681ca3d6783518db7206376d60",
+    "answers": "dialogo/005_claude_a_chatgpt.md",
+    "answers_sha256": "0568e838669f2e6fee32984732574e2da915a077b43fb2ed7043df2e75231ce8"
+  },
+  "supersedes": "el estado «medicion_provisional» de C05 y C07 en doble_llave_v13.json (que no se modifica: es el registro histórico)",
+  "technical_adjudication_final": {
+    "+POS_HAIR+SLEEVE|box+corrections|s0.other_person_excluded": {"label": "C03", "value": "FALSE", "kind": "medicion", "status": "ACCEPTED"},
+    "+POS_SLEEVE|box+corrections|s1.other_person_excluded": {"label": "C05", "value": "TRUE", "kind": "medicion", "status": "ACCEPTED_BY_SECOND_KEY"},
+    "+POS_HAIR+SLEEVE|point+corrections|s2.other_person_excluded": {"label": "C07", "value": "TRUE", "kind": "medicion", "status": "ACCEPTED_BY_SECOND_KEY"},
+    "+POS_SLEEVE|box+corrections|s1.target_hair_included": {"label": "C05", "value": "NO_CONSENSO", "kind": "regla_prerregistrada", "status": "ACCEPTED"},
+    "+POS_SLEEVE|box+corrections|s2.target_dark_sleeves_included": {"label": "C15", "value": "NO_CONSENSO", "kind": "regla_prerregistrada", "status": "ACCEPTED"}
+  },
+  "third_review_codex": "NOT_NEEDED",
+  "core_geometry_correction": "ACCEPTED (ChatGPT 005 §1: un núcleo que invade la componente conectada de la propia chica no es evidencia de contaminación posterior)",
+  "hypotheses": {
+    "H-C1": "REFUTED",
+    "H-C2": "HOLDS",
+    "H-G1": "REFUTED",
+    "H-G2": "HOLDS",
+    "H-G3": "HOLDS_BY_ITS_PREREGISTERED_DEFINITION (supported under R_ref)",
+    "H-G4": "HOLDS"
+  },
+  "epistemic_notes": {
+    "RECIPROCAL_OWNERSHIP_STABLE": "FALSE",
+    "why": "H-G3 se cumple con R_ref = s0, pero el recíproco es UNSTABLE (solo s0 toma el moño; s1 y s2 se quedan con la blusa) y la tabla de interpretación da NO_INFERENCE. Son afirmaciones distintas, no contradictorias (ChatGPT 005 §2)."
+  },
+  "what_v1_3_demonstrates": {
+    "AEM1_POSTERIOR_PERSON_SEPARATION_SUBPROBLEM": "DEMONSTRATED",
+    "scope": "C01 (+POS_HAIR+SLEEVE box+corr s1), C02 (+POS_HAIR box+corr s2), C10 (+POS_HAIR+SLEEVE box+corr s2), C11 (+POS_HAIR box+corr s1) y C14 (+POS_HAIR+SLEEVE point+corr s1), bajo este protocolo fijo, en esta foto",
+    "FULL_SUBJECT_SEGMENTATION": "NOT_DEMONSTRATED (body_and_edges_complete FALSE en 18/18)",
+    "naming_note": "ChatGPT 005 §3: no se dice «la separación que bloqueaba PRAGMA ya se consigue», porque PRAGMA como proyecto depende de A-E0/A-E1 y la Fase B sigue bloqueada"
+  },
+  "AEM1_v1_3": "CLOSED_INCONCLUSIVE",
+  "case_status": "INCONCLUSIVE_SELECTED_OUTPUT_FAILED",
+  "sam2_rejectable": false,
+  "project_status": "INCONCLUSIVE_A_E0_REQUIRED"
+}

@@ -1,0 +1,164 @@
+{
+  "notebook": "PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_4.ipynb",
+  "notebook_sha256": "b6f29bbb447f416640cd0a4e7a9bcc0cbcb0d71a11824633c8fa52440efa48b1",
+  "prereg_sha256": "9548b2118761876e8a1b51366603fe7fba332fc737d632f84f83c6ed0e296b76",
+  "result": "30/30",
+  "status": "PASS",
+  "scope": "estático + E2E con SAM SIMULADO + auditoría sobre el ZIP simulado; no mide la calidad de SAM 2",
+  "checks": [
+    {
+      "check": "cuaderno: todas las celdas de código compilan",
+      "pass": true,
+      "detail": "6 celdas"
+    },
+    {
+      "check": "cuaderno: sin salidas ni contadores de ejecución",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "prerregistro embebido idéntico byte a byte al versionado",
+      "pass": true,
+      "detail": "9548b2118761876e"
+    },
+    {
+      "check": "celda 1: commit fijado y checkout exacto (no main)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "celda 1: se detiene si el commit o el checkpoint difieren",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: no muestra máscaras ni usa lo prohibido",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: el score nunca se usa (una sola lectura, para archivarlo)",
+      "pass": true,
+      "detail": "lecturas: 1"
+    },
+    {
+      "check": "cuaderno: compuerta de luma sobre todos los prompts y holdouts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: solo nombres de v1.4 en la ejecución y el ZIP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: PNG para BASE, referencia y H2; perturbaciones en npz",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: pide L4 (la referencia debe salir bit a bit)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "plan: BASE|box y la referencia son llamada a llamada las de v1.3",
+      "pass": true,
+      "detail": "4/4"
+    },
+    {
+      "check": "plan: la rama H2 solo añade H2 a la referencia (misma caja, semillas y resto de prompts)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E navegador: sin errores",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E: número de llamadas = plan",
+      "pass": true,
+      "detail": "22 / 22"
+    },
+    {
+      "check": "E2E: cada llamada = la del plan (puntos, etiquetas, caja, multimask, semilla)",
+      "pass": true,
+      "detail": "22 llamadas idénticas"
+    },
+    {
+      "check": "E2E navegador: una descarga, el ZIP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E sin navegador: sin errores y sin descarga",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E sin foto: error claro, sin selector",
+      "pass": true,
+      "detail": "FileNotFoundError"
+    },
+    {
+      "check": "integridad del ZIP simulado: SIMULATED_RUN_NOT_EVIDENCE sin problemas",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "integridad: no devuelve datos de resultado",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "manipular una máscara → INVALID_BUNDLE",
+      "pass": true,
+      "detail": [
+        "bytes o SHA-256 distintos: masks/+POS_HAIR+SLEEVE+H2__box+corrections__s0.png"
+      ]
+    },
+    {
+      "check": "mover H2 un píxel en lo ejecutado → INVALID_BUNDLE",
+      "pass": true,
+      "detail": [
+        "bytes o SHA-256 distintos: aem1v14_calls.json"
+      ]
+    },
+    {
+      "check": "paquete ciego: 6 láminas N01–N06, LEEME y plantilla",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "paquete ciego: el LEEME no nombra ramas, H2, semillas ni scores",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "paquete ciego: mapeo sellado con hash publicado y las 6 candidatas previstas",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "análisis: G en disputa queda pendiente; O en disputa se adjudica por medición",
+      "pass": true,
+      "detail": "['+POS_HAIR+SLEEVE+H2|box+corrections|s2.background_excluded']"
+    },
+    {
+      "check": "análisis: con la adjudicación, veredicto, cierre de A-E(−1) e hipótesis H-C3 y H-G5 evaluadas",
+      "pass": true,
+      "detail": "valores sobre datos SIMULADOS: no se archivan (no son resultados)"
+    },
+    {
+      "check": "análisis: la referencia simulada no es bit a bit y se declara",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "análisis: por semilla, cierre, agujeros nuevos, O y perturbación de H2",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,2442 @@
+{
+  "schema": "pragma.aem1_preregistration",
+  "schema_version": "0.1.0",
+  "experiment": "A-E(−1) v1.4 · caso chica · una sola intervención (H2)",
+  "status": "PREREGISTERED",
+  "frozen_on": "2026-09-26",
+  "responds_to": [
+    "dialogo/005_chatgpt_a_claude.md"
+  ],
+  "go_to_preregistration": {
+    "by": "ChatGPT",
+    "letter": "dialogo/005_chatgpt_a_claude.md",
+    "letter_sha256": "dd8aa20fb0efdf05fe71c6826dde952c3aab8a681ca3d6783518db7206376d60",
+    "accepted": [
+      "una sola intervención nueva",
+      "cadena +POS_HAIR+SLEEVE · box+corrections",
+      "tres semillas",
+      "referencia v1.3 obligatoriamente bit a bit",
+      "H2 únicamente como positivo adicional",
+      "ningún otro cambio",
+      "H-C3 congelada tal cual",
+      "H-G5 añadida antes de los datos",
+      "PASS = contrato completo, no «H2 cerró el agujero»"
+    ],
+    "cross_audit_before_run": "PENDIENTE: ChatGPT revisa este prerregistro antes de ejecutar (ChatGPT 005)"
+  },
+  "correction_of_letter_005": {
+    "proposed": [
+      2964,
+      672
+    ],
+    "problem": "(2964, 672) está en la parte ALTA de la franja: agujero D solo en s0 y s2; C01 (s1) ya cubre esa parte y su único agujero D es la parte BAJA (2984–3025 × 842–997). Con ese punto la hipótesis no podía probarse en el mejor intento",
+    "fix": "H2 se elige dentro de los píxeles que son agujero D de consenso en las tres semillas (la parte baja)",
+    "second_key_on_old_point": "ChatGPT 005 confirmó que el punto viejo es pelo de la chica; el nuevo requiere su llave",
+    "upper_probe_role": "solo descriptivo: si la parte alta de s0 y s2 también se cierra"
+  },
+  "generated_by": "work/design_aem1_v1_4.py",
+  "image": {
+    "sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+    "size": [
+      4000,
+      2248
+    ],
+    "orientation": "EXIF aplicado; sin redimensionar"
+  },
+  "sam2_freeze": {
+    "SAM2_GIT_COMMIT": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+    "MODEL_CONFIG": "configs/sam2.1/sam2.1_hiera_l.yaml",
+    "CHECKPOINT": "sam2.1_hiera_large.pt",
+    "CHECKPOINT_SHA256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+    "CHECKPOINT_BYTES": 898083611,
+    "dtype": "bfloat16 (autocast CUDA), como la corrida 1",
+    "gate": "el cuaderno bloquea antes de generar si el commit, el checkpoint o la foto difieren",
+    "reproducibility": "GPU NVIDIA L4, como la corrida 1 y v1.3 (la reproducción bit a bit se probó en L4)"
+  },
+  "base_config": {
+    "source_notebook": "outputs/PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_2.ipynb",
+    "source_notebook_sha256": "06315e0fe15b84b446570903d7a6c5c219df5ea2ecf4577429cf107cdcdef0da",
+    "run1_config_digest": "fd29b18bbe50cf8236f41057567265e6083d13465511e4882cd8e533af58aa71",
+    "BOX": [
+      2100,
+      300,
+      3500,
+      2247
+    ],
+    "prompts": [
+      {
+        "id": "P+1",
+        "xy": [
+          2588,
+          1785
+        ],
+        "description": "botón/overol en el torso de la chica",
+        "patch_luma_mean": 249.3,
+        "patch_luma_std": 6.2,
+        "description_v1_2": "torso de la chica"
+      },
+      {
+        "id": "P-1",
+        "xy": [
+          2350,
+          900
+        ],
+        "description": "torso floral posterior",
+        "patch_luma_mean": 125.6,
+        "patch_luma_std": 71.0
+      },
+      {
+        "id": "P-2",
+        "xy": [
+          2640,
+          430
+        ],
+        "description": "cabello recogido posterior (v1.1: antes borde con pared)",
+        "patch_luma_mean": 56.8,
+        "patch_luma_std": 44.9
+      },
+      {
+        "id": "P-3",
+        "xy": [
+          2400,
+          810
+        ],
+        "description": "hombro posterior, tela oscura (v1.1: antes pared)",
+        "patch_luma_mean": 90.9,
+        "patch_luma_std": 53.0
+      }
+    ],
+    "holdouts": {
+      "keep_subject": [
+        {
+          "id": "K1",
+          "xy": [
+            2835,
+            635
+          ],
+          "description": "cara",
+          "patch_luma_mean": 245.8,
+          "patch_luma_std": 2.9
+        },
+        {
+          "id": "K2",
+          "xy": [
+            2730,
+            650
+          ],
+          "description": "cabello frontal",
+          "patch_luma_mean": 135.3,
+          "patch_luma_std": 51.7
+        },
+        {
+          "id": "K3",
+          "xy": [
+            2435,
+            1135
+          ],
+          "description": "hombro/ropa izquierda",
+          "patch_luma_mean": 101.4,
+          "patch_luma_std": 57.1
+        },
+        {
+          "id": "K4",
+          "xy": [
+            3185,
+            985
+          ],
+          "description": "mano levantada",
+          "patch_luma_mean": 254.3,
+          "patch_luma_std": 0.8
+        },
+        {
+          "id": "K5",
+          "xy": [
+            3285,
+            1335
+          ],
+          "description": "manga/brazo derecho",
+          "patch_luma_mean": 101.7,
+          "patch_luma_std": 53.1
+        },
+        {
+          "id": "K6",
+          "xy": [
+            2235,
+            1935
+          ],
+          "description": "mano que cuelga",
+          "patch_luma_mean": 220.3,
+          "patch_luma_std": 23.7
+        },
+        {
+          "id": "K7",
+          "xy": [
+            2785,
+            2035
+          ],
+          "description": "torso inferior",
+          "patch_luma_mean": 252.9,
+          "patch_luma_std": 1.7
+        }
+      ],
+      "drop_other_person": [
+        {
+          "id": "O1",
+          "xy": [
+            2460,
+            860
+          ],
+          "description": "ropa floral posterior",
+          "patch_luma_mean": 179.8,
+          "patch_luma_std": 57.1
+        },
+        {
+          "id": "O2",
+          "xy": [
+            2700,
+            380
+          ],
+          "description": "cabello recogido posterior (v1.1: antes pared)",
+          "patch_luma_mean": 78.7,
+          "patch_luma_std": 52.6
+        },
+        {
+          "id": "O3",
+          "xy": [
+            2735,
+            360
+          ],
+          "description": "cabello recogido posterior, arriba (v1.2: antes zona de contacto)",
+          "patch_luma_mean": 57.1,
+          "patch_luma_std": 43.5
+        },
+        {
+          "id": "O4",
+          "xy": [
+            2325,
+            965
+          ],
+          "description": "blusa floral posterior, interior (v1.2: antes borde)",
+          "patch_luma_mean": 185.1,
+          "patch_luma_std": 36.5
+        }
+      ],
+      "drop_background": [
+        {
+          "id": "B1",
+          "xy": [
+            2185,
+            435
+          ],
+          "description": "cuadro",
+          "patch_luma_mean": 203.4,
+          "patch_luma_std": 28.8
+        },
+        {
+          "id": "B2",
+          "xy": [
+            1735,
+            1635
+          ],
+          "description": "mesa/mantel",
+          "patch_luma_mean": 182.9,
+          "patch_luma_std": 35.6
+        },
+        {
+          "id": "B3",
+          "xy": [
+            3485,
+            1485
+          ],
+          "description": "sofá/fondo",
+          "patch_luma_mean": 49.6,
+          "patch_luma_std": 39.4
+        }
+      ]
+    },
+    "patch_radius": 6,
+    "keep_min_coverage": 0.8,
+    "drop_max_coverage": 0.2
+  },
+  "new_prompts": {
+    "H1": {
+      "xy": [
+        3072,
+        592
+      ],
+      "owner_expected": "chica",
+      "material": "pelo oscuro",
+      "declared_window_xyxy": [
+        2940,
+        400,
+        3200,
+        900
+      ],
+      "window_rationale": "pelo de la chica a la derecha de su cabeza (lado opuesto al moño), fuera de la caja de contacto",
+      "selection_rule": "pragma_ae.aem1_v13.select_safe_point (rejilla de 2 px)",
+      "safe_square_half_px": 30,
+      "safe_square_dark_fraction": 0.9817,
+      "contact_box_margin_linf_px": 173,
+      "frontier_distance_lower_bound_px": 173,
+      "nearest_holdout": {
+        "id": "K1",
+        "distance_px": 240.9
+      },
+      "nearest_prompt": {
+        "id": "P-2",
+        "distance_px": 461.4
+      },
+      "patch_luma_mean": 70.8,
+      "patch_luma_std": 48.4,
+      "image_sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+      "owner_verified_by": "auditor IA Claude en la lámina privada de diseño",
+      "owner_second_key": "PASS (ChatGPT 003: el punto y sus 8 perturbaciones sobre la chica)"
+    },
+    "S1": {
+      "xy": [
+        2230,
+        1686
+      ],
+      "owner_expected": "chica",
+      "material": "manga oscura",
+      "declared_window_xyxy": [
+        2120,
+        1350,
+        2340,
+        1850
+      ],
+      "window_rationale": "manga oscura del brazo que cuelga, por debajo de la caja de contacto",
+      "selection_rule": "pragma_ae.aem1_v13.select_safe_point (rejilla de 2 px)",
+      "safe_square_half_px": 85,
+      "safe_square_dark_fraction": 0.9842,
+      "contact_box_margin_linf_px": 387,
+      "frontier_distance_lower_bound_px": 387,
+      "nearest_holdout": {
+        "id": "K6",
+        "distance_px": 249.1
+      },
+      "nearest_prompt": {
+        "id": "P+1",
+        "distance_px": 371.4
+      },
+      "patch_luma_mean": 66.9,
+      "patch_luma_std": 49.4,
+      "image_sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+      "owner_verified_by": "auditor IA Claude en la lámina privada de diseño",
+      "owner_second_key": "PASS (ChatGPT 003: el punto y sus 8 perturbaciones sobre la chica)"
+    },
+    "H2": {
+      "xy": [
+        2994,
+        892
+      ],
+      "owner_expected": "chica",
+      "material": "pelo oscuro visible entre la cara y el índice levantado (parte baja de la franja)",
+      "region_rule": "píxeles que las dos llaves de v1.3 marcaron como agujero D (consenso) en las TRES semillas de referencia +POS_HAIR+SLEEVE|box+corrections",
+      "region": {
+        "px": 2973,
+        "bbox_xyxy": [
+          2984,
+          842,
+          3025,
+          997
+        ],
+        "packed_sha256": "fb60cd3e6cc5835d7aa537151f1a153ab61ea8083b6b7887e2dbe20f7e88cc56"
+      },
+      "selection_rule": "pragma_ae.aem1_v14.select_point_in_region: rejilla par; mayor cuadrado seguro ≥ 98 % oscuro; empates por fracción oscura, margen a la caja de contacto, menor y, menor x",
+      "safe_square_half_min_px": 7,
+      "safe_square_half_px": 15,
+      "safe_square_dark_fraction": 0.990635,
+      "why_smaller_than_H1_S1": "la franja mide ~40 px de ancho: el mayor cuadrado seguro dentro de la región es de 31 px, por debajo del mínimo de 43 px de H1/S1. Consecuencia declarada: las perturbaciones que sacan el parche del pelo son INVALID_PERTURBATION y no se ejecutan",
+      "contact_box_margin_linf_px": 95,
+      "nearest_holdout": {
+        "id": "K4",
+        "distance_px": 212.4
+      },
+      "nearest_prompt": {
+        "id": "H1",
+        "distance_px": 310.0
+      },
+      "patch_luma_mean": 97.8,
+      "patch_luma_std": 54.7,
+      "image_sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+      "inside_target_hole_of_each_reference_seed": {
+        "s0": {
+          "target_hole": {
+            "number": 2,
+            "area": 7575,
+            "bbox": [
+              2969,
+              789,
+              3027,
+              1000
+            ]
+          },
+          "upper_probe_hole": {
+            "number": 3,
+            "area": 4176,
+            "bbox": [
+              2950,
+              636,
+              2999,
+              779
+            ]
+          }
+        },
+        "s1": {
+          "target_hole": {
+            "number": 2,
+            "area": 3011,
+            "bbox": [
+              2984,
+              842,
+              3025,
+              997
+            ]
+          },
+          "upper_probe_hole": null
+        },
+        "s2": {
+          "target_hole": {
+            "number": 3,
+            "area": 8120,
+            "bbox": [
+              2964,
+              785,
+              3026,
+              999
+            ]
+          },
+          "upper_probe_hole": {
+            "number": 4,
+            "area": 5027,
+            "bbox": [
+              2949,
+              636,
+              2999,
+              781
+            ]
+          }
+        }
+      },
+      "owner_verified_by": "auditor IA Claude en la lámina privada de diseño",
+      "owner_second_key": "PENDIENTE (ChatGPT, en la lámina privada del paquete de la carta 006)"
+    }
+  },
+  "safety_constants": {
+    "contact_box_xyxy": [
+      2150,
+      250,
+      2900,
+      1300
+    ],
+    "contact_box_claim": "toda la frontera visible chica↔persona posterior está dentro de esta caja; su margen es cota inferior de la distancia a la frontera",
+    "contact_margin_min_linf_px": 40,
+    "perturbed_contact_margin_min_linf_px": 25,
+    "holdout_distance_min_px": 100,
+    "perturbed_holdout_distance_min_px": 78,
+    "prompt_distance_min_px": 100,
+    "dark_luma_threshold": 110,
+    "dark_blur_radius": 4,
+    "safe_square_dark_fraction_min": 0.98,
+    "safe_square_half_min_px": 21,
+    "perturbed_patch_dark_fraction_min": 0.9,
+    "luma": "media de los canales RGB en el parche 13×13, como el preflight v1.2",
+    "runtime_binding": "el cuaderno recalcula la luma de TODO prompt (base y perturbado) y bloquea si difiere > 3,0 del valor registrado aquí"
+  },
+  "invalid_perturbation": "un caso INVALID_PERTURBATION no se ejecuta y nunca cuenta como evidencia contra SAM 2",
+  "reference": {
+    "v1_3_run": "20260926T040705Z_bee282c1",
+    "v1_3_zip_sha256": "6d795132cd8e609388cdb1b3671dee7e0d1c39067880cfb0ca6a1b1a6783ce14",
+    "v1_3_prereg_content_sha256": "5800f2bf624620c353067210c73d782a8aefa39563925e859929ef0cba432a8c",
+    "v1_3_closure": {
+      "file": "auditoria/aem1v13_20260926T040705Z_bee282c1/cierre_chatgpt005.json",
+      "sha256": "1922d2a66cec32786b71350d25cec924e3880323f5530c44f5faf006160abcbe",
+      "AEM1_v1_3": "CLOSED_INCONCLUSIVE"
+    },
+    "chain": "+POS_HAIR+SLEEVE|box+corrections",
+    "v1_3_packed_mask_sha256": {
+      "BASE|box|0": "2e3cc1c8ef21fa99919506b1e2fbb4d8e24e38ac93fce7e31e272fb2e05590aa",
+      "BASE|box|1": "9aa2c41783b0593ca8d702104b1d8756b9c0c08450c1bf9b0e9afdff2ac624e8",
+      "BASE|box|2": "7fa08b3ddb75b6e585811caea4d65ffab19f38a621af64cdf2ade28cce011466",
+      "+POS_HAIR+SLEEVE|box+corrections|s0": "179502200aa2829aed1672886434a4ad8c464304bf8ac6f9f678540d5ee09243",
+      "+POS_HAIR+SLEEVE|box+corrections|s1": "2815486d00ea3bc9bae00834b8dd1b04f4a350a243efd3b2f8986661a8bd070a",
+      "+POS_HAIR+SLEEVE|box+corrections|s2": "0423308b83ed6043c438e13c96fb9b0bea90c0c748e15f2bb49cde969db8bbfe"
+    },
+    "bit_exact_rule": "BASE|box y las 3 semillas de referencia deben salir bit a bit iguales a v1.3. Si alguna no lo es, la comparación de esa semilla usa la referencia de esta corrida y su consenso ciego",
+    "judgments": {
+      "s0": {
+        "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s0",
+        "v1_3_label": "C03",
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE",
+        "d_holes": [
+          "2",
+          "3",
+          "4"
+        ],
+        "holes": [
+          {
+            "number": 1,
+            "area": 11120,
+            "bbox": [
+              2208,
+              1962,
+              2284,
+              2177
+            ],
+            "consensus": "L"
+          },
+          {
+            "number": 2,
+            "area": 7575,
+            "bbox": [
+              2969,
+              789,
+              3027,
+              1000
+            ],
+            "consensus": "D"
+          },
+          {
+            "number": 3,
+            "area": 4176,
+            "bbox": [
+              2950,
+              636,
+              2999,
+              779
+            ],
+            "consensus": "D"
+          },
+          {
+            "number": 4,
+            "area": 2985,
+            "bbox": [
+              2683,
+              832,
+              2730,
+              930
+            ],
+            "consensus": "D"
+          }
+        ],
+        "o_core_px": 5,
+        "keys_v1_3": {
+          "claude": {
+            "correct_subject": "TRUE",
+            "body_and_edges_complete": "FALSE",
+            "other_person_excluded": "TRUE",
+            "background_excluded": "TRUE"
+          },
+          "chatgpt": {
+            "correct_subject": "TRUE",
+            "body_and_edges_complete": "FALSE",
+            "other_person_excluded": "FALSE",
+            "background_excluded": "TRUE"
+          }
+        }
+      },
+      "s1": {
+        "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s1",
+        "v1_3_label": "C01",
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "d_holes": [
+          "2"
+        ],
+        "holes": [
+          {
+            "number": 1,
+            "area": 10903,
+            "bbox": [
+              2209,
+              1965,
+              2287,
+              2175
+            ],
+            "consensus": "L"
+          },
+          {
+            "number": 2,
+            "area": 3011,
+            "bbox": [
+              2984,
+              842,
+              3025,
+              997
+            ],
+            "consensus": "D"
+          }
+        ],
+        "o_core_px": 0,
+        "keys_v1_3": {
+          "claude": {
+            "correct_subject": "TRUE",
+            "body_and_edges_complete": "FALSE",
+            "other_person_excluded": "TRUE",
+            "background_excluded": "TRUE"
+          },
+          "chatgpt": {
+            "correct_subject": "TRUE",
+            "body_and_edges_complete": "FALSE",
+            "other_person_excluded": "TRUE",
+            "background_excluded": "TRUE"
+          }
+        }
+      },
+      "s2": {
+        "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s2",
+        "v1_3_label": "C10",
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "d_holes": [
+          "2",
+          "3",
+          "4"
+        ],
+        "holes": [
+          {
+            "number": 1,
+            "area": 11506,
+            "bbox": [
+              2209,
+              1963,
+              2285,
+              2177
+            ],
+            "consensus": "L"
+          },
+          {
+            "number": 2,
+            "area": 10793,
+            "bbox": [
+              2651,
+              830,
+              2822,
+              1021
+            ],
+            "consensus": "D"
+          },
+          {
+            "number": 3,
+            "area": 8120,
+            "bbox": [
+              2964,
+              785,
+              3026,
+              999
+            ],
+            "consensus": "D"
+          },
+          {
+            "number": 4,
+            "area": 5027,
+            "bbox": [
+              2949,
+              636,
+              2999,
+              781
+            ],
+            "consensus": "D"
+          }
+        ],
+        "o_core_px": 0,
+        "keys_v1_3": {
+          "claude": {
+            "correct_subject": "TRUE",
+            "body_and_edges_complete": "FALSE",
+            "other_person_excluded": "TRUE",
+            "background_excluded": "TRUE"
+          },
+          "chatgpt": {
+            "correct_subject": "TRUE",
+            "body_and_edges_complete": "FALSE",
+            "other_person_excluded": "TRUE",
+            "background_excluded": "TRUE"
+          }
+        }
+      }
+    }
+  },
+  "branches": {
+    "BASE": {
+      "purpose": "semillas: la misma llamada box (multimask) de v1.3",
+      "protocols": {
+        "box": "BOX, multimask, 3 salidas"
+      }
+    },
+    "+POS_HAIR+SLEEVE": {
+      "purpose": "referencia: la cadena ganadora de v1.3, idéntica llamada a llamada",
+      "points": [
+        "P+1",
+        "H1",
+        "S1",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "+POS_HAIR+SLEEVE+H2": {
+      "purpose": "la intervención: H2 como cuarto positivo en la corrección; nada más cambia",
+      "points": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "PERTURB_POINT": {
+      "offsets_px": [
+        [
+          15,
+          0
+        ],
+        [
+          -15,
+          0
+        ],
+        [
+          0,
+          15
+        ],
+        [
+          0,
+          -15
+        ],
+        [
+          15,
+          15
+        ],
+        [
+          15,
+          -15
+        ],
+        [
+          -15,
+          15
+        ],
+        [
+          -15,
+          -15
+        ]
+      ],
+      "linf_radius_px": 15,
+      "one_at_a_time": true,
+      "targets": {
+        "H2": {
+          "base": "H2",
+          "base_xy": [
+            2994,
+            892
+          ],
+          "branch": "+POS_HAIR+SLEEVE+H2",
+          "protocols": [
+            "box+corrections"
+          ],
+          "perturbations": [
+            {
+              "id": "d+15+0",
+              "dx": 15,
+              "dy": 0,
+              "xy": [
+                3009,
+                892
+              ],
+              "linf_px": 15,
+              "euclidean_px": 15.0,
+              "valid": false,
+              "reasons": [
+                "INVALID_PERTURBATION: el parche deja el material oscuro (0.56 < 0.9)"
+              ],
+              "patch_luma_mean": 117.0,
+              "patch_luma_std": 69.4
+            },
+            {
+              "id": "d-15+0",
+              "dx": -15,
+              "dy": 0,
+              "xy": [
+                2979,
+                892
+              ],
+              "linf_px": 15,
+              "euclidean_px": 15.0,
+              "valid": true,
+              "reasons": [],
+              "patch_luma_mean": 93.3,
+              "patch_luma_std": 53.5
+            },
+            {
+              "id": "d+0+15",
+              "dx": 0,
+              "dy": 15,
+              "xy": [
+                2994,
+                907
+              ],
+              "linf_px": 15,
+              "euclidean_px": 15.0,
+              "valid": true,
+              "reasons": [],
+              "patch_luma_mean": 101.2,
+              "patch_luma_std": 50.3
+            },
+            {
+              "id": "d+0-15",
+              "dx": 0,
+              "dy": -15,
+              "xy": [
+                2994,
+                877
+              ],
+              "linf_px": 15,
+              "euclidean_px": 15.0,
+              "valid": true,
+              "reasons": [],
+              "patch_luma_mean": 95.5,
+              "patch_luma_std": 54.5
+            },
+            {
+              "id": "d+15+15",
+              "dx": 15,
+              "dy": 15,
+              "xy": [
+                3009,
+                907
+              ],
+              "linf_px": 15,
+              "euclidean_px": 21.21,
+              "valid": false,
+              "reasons": [
+                "INVALID_PERTURBATION: el parche deja el material oscuro (0.60 < 0.9)"
+              ],
+              "patch_luma_mean": 105.3,
+              "patch_luma_std": 57.7
+            },
+            {
+              "id": "d+15-15",
+              "dx": 15,
+              "dy": -15,
+              "xy": [
+                3009,
+                877
+              ],
+              "linf_px": 15,
+              "euclidean_px": 21.21,
+              "valid": false,
+              "reasons": [
+                "INVALID_PERTURBATION: el parche deja el material oscuro (0.42 < 0.9)"
+              ],
+              "patch_luma_mean": 135.0,
+              "patch_luma_std": 81.5
+            },
+            {
+              "id": "d-15+15",
+              "dx": -15,
+              "dy": 15,
+              "xy": [
+                2979,
+                907
+              ],
+              "linf_px": 15,
+              "euclidean_px": 21.21,
+              "valid": true,
+              "reasons": [],
+              "patch_luma_mean": 99.5,
+              "patch_luma_std": 54.2
+            },
+            {
+              "id": "d-15-15",
+              "dx": -15,
+              "dy": -15,
+              "xy": [
+                2979,
+                877
+              ],
+              "linf_px": 15,
+              "euclidean_px": 21.21,
+              "valid": true,
+              "reasons": [],
+              "patch_luma_mean": 88.3,
+              "patch_luma_std": 57.5
+            }
+          ],
+          "valid_count": 5,
+          "chain": "semillas de BASE sin cambios; solo H2 se perturba (H1 y S1 fijos)"
+        }
+      }
+    }
+  },
+  "combination": "NINGUNA",
+  "candidate_counts": {
+    "BASE|box": 3,
+    "REF": 3,
+    "H2": 3,
+    "PERTURB_POINT": 15,
+    "valid_point_perturbations": 5,
+    "total_masks": 24,
+    "calls": 22
+  },
+  "call_plan": [
+    {
+      "call_id": "BASE|box",
+      "branch": "BASE",
+      "protocol": "box",
+      "point_ids": [],
+      "points": [],
+      "labels": [],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": null,
+      "multimask_output": true,
+      "candidates": [
+        "BASE|box|0",
+        "BASE|box|1",
+        "BASE|box|2"
+      ]
+    },
+    {
+      "call_id": "+POS_HAIR+SLEEVE|box+corrections|s0",
+      "branch": "+POS_HAIR+SLEEVE",
+      "protocol": "box+corrections",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 0
+      },
+      "multimask_output": false,
+      "candidates": [
+        "+POS_HAIR+SLEEVE|box+corrections|s0"
+      ]
+    },
+    {
+      "call_id": "+POS_HAIR+SLEEVE|box+corrections|s1",
+      "branch": "+POS_HAIR+SLEEVE",
+      "protocol": "box+corrections",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 1
+      },
+      "multimask_output": false,
+      "candidates": [
+        "+POS_HAIR+SLEEVE|box+corrections|s1"
+      ]
+    },
+    {
+      "call_id": "+POS_HAIR+SLEEVE|box+corrections|s2",
+      "branch": "+POS_HAIR+SLEEVE",
+      "protocol": "box+corrections",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 2
+      },
+      "multimask_output": false,
+      "candidates": [
+        "+POS_HAIR+SLEEVE|box+corrections|s2"
+      ]
+    },
+    {
+      "call_id": "+POS_HAIR+SLEEVE+H2|box+corrections|s0",
+      "branch": "+POS_HAIR+SLEEVE+H2",
+      "protocol": "box+corrections",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          892
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 0
+      },
+      "multimask_output": false,
+      "candidates": [
+        "+POS_HAIR+SLEEVE+H2|box+corrections|s0"
+      ]
+    },
+    {
+      "call_id": "+POS_HAIR+SLEEVE+H2|box+corrections|s1",
+      "branch": "+POS_HAIR+SLEEVE+H2",
+      "protocol": "box+corrections",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          892
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 1
+      },
+      "multimask_output": false,
+      "candidates": [
+        "+POS_HAIR+SLEEVE+H2|box+corrections|s1"
+      ]
+    },
+    {
+      "call_id": "+POS_HAIR+SLEEVE+H2|box+corrections|s2",
+      "branch": "+POS_HAIR+SLEEVE+H2",
+      "protocol": "box+corrections",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          892
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 2
+      },
+      "multimask_output": false,
+      "candidates": [
+        "+POS_HAIR+SLEEVE+H2|box+corrections|s2"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15+0|box+corrections|s0",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15+0",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          892
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 0
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15+0|box+corrections|s0"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15+0|box+corrections|s1",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15+0",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          892
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 1
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15+0|box+corrections|s1"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15+0|box+corrections|s2",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15+0",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          892
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 2
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15+0|box+corrections|s2"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d+0+15|box+corrections|s0",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d+0+15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          907
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 0
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d+0+15|box+corrections|s0"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d+0+15|box+corrections|s1",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d+0+15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          907
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 1
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d+0+15|box+corrections|s1"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d+0+15|box+corrections|s2",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d+0+15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          907
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 2
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d+0+15|box+corrections|s2"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d+0-15|box+corrections|s0",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d+0-15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          877
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 0
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d+0-15|box+corrections|s0"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d+0-15|box+corrections|s1",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d+0-15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          877
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 1
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d+0-15|box+corrections|s1"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d+0-15|box+corrections|s2",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d+0-15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2994,
+          877
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 2
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d+0-15|box+corrections|s2"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15+15|box+corrections|s0",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15+15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          907
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 0
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15+15|box+corrections|s0"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15+15|box+corrections|s1",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15+15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          907
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 1
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15+15|box+corrections|s1"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15+15|box+corrections|s2",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15+15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          907
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 2
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15+15|box+corrections|s2"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15-15|box+corrections|s0",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15-15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          877
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 0
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15-15|box+corrections|s0"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15-15|box+corrections|s1",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15-15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          877
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 1
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15-15|box+corrections|s1"
+      ]
+    },
+    {
+      "call_id": "PERTURB_POINT|H2|d-15-15|box+corrections|s2",
+      "branch": "PERTURB_POINT",
+      "protocol": "box+corrections",
+      "target": "H2",
+      "perturbation": "d-15-15",
+      "point_ids": [
+        "P+1",
+        "H1",
+        "S1",
+        "H2",
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "points": [
+        [
+          2588,
+          1785
+        ],
+        [
+          3072,
+          592
+        ],
+        [
+          2230,
+          1686
+        ],
+        [
+          2979,
+          877
+        ],
+        [
+          2350,
+          900
+        ],
+        [
+          2640,
+          430
+        ],
+        [
+          2400,
+          810
+        ]
+      ],
+      "labels": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "box": [
+        2100,
+        300,
+        3500,
+        2247
+      ],
+      "mask_input_from": {
+        "call_id": "BASE|box",
+        "index": 2
+      },
+      "multimask_output": false,
+      "candidates": [
+        "PERTURB_POINT|H2|d-15-15|box+corrections|s2"
+      ]
+    }
+  ],
+  "call_plan_semantics": "cada llamada es SAM2ImagePredictor.predict(point_coords=points o None, point_labels=labels o None, box=box o None, mask_input=low_res_logits[index][None] de mask_input_from o None, multimask_output, return_logits=True); máscara = logits > 0; mismas conversiones que v1.2 (float32 para puntos y caja, int32 para etiquetas)",
+  "analysis_implementation_sha256": {
+    "pragma_ae/aem1_v14.py": "f699373495961d08dbd27110b6d9f8dd251d28f984ed09c0f8ac4d8823aebd42",
+    "pragma_ae/aem1_v14_audit.py": "595b5f42d041864f9a614c7519829bacbee7b7961ee6694af6d7a3c6e86e4a44",
+    "pragma_ae/aem1_v13.py": "2e9433604a834db8b5636d112dcd5169b5330727e0a0c05c4e92e9cbc4087da7",
+    "pragma_ae/aem1_v13_audit.py": "820af07186a171099f94e98541d89d0b0948a3cf4333222c4c0c5a77ebfdc13a",
+    "pragma_ae/masks.py": "412d1ead02fb92891ca989c5c6ac7a5b2dcd5b6bcdbb57551ec1ce12db712ac9"
+  },
+  "blind_audit": {
+    "protocol": "auditoria/PROTOCOLO_AUDITORIA_AEM1_v2.md",
+    "protocol_sha256": "b5b11c6cce30b534eb83ab9117025e35837e4554eb150e411c8091fec5087a71",
+    "candidates": "6 láminas N01–N06: las 3 semillas con H2 y las 3 de referencia, mezcladas al azar",
+    "why_reference_is_included": "señuelo y retest: la persona que juzga no sabe cuáles tienen H2, y se mide si cada llave repite su juicio de v1.3 sobre la misma máscara",
+    "reference_judgment_if_bit_exact": "la doble llave de v1.3 (congelada arriba); el retest solo describe",
+    "not_blind_judged": [
+      "BASE|box",
+      "PERTURB_POINT"
+    ],
+    "order": "el paquete va a ChatGPT antes que cualquier resultado; los juicios de Claude se comprometen por hash"
+  },
+  "adjudication_rules": {
+    "other_person_excluded": "discrepancia → medición prerregistrada: FALSE si hay píxeles de máscara en el núcleo oscuro del moño [2610, 315, 2780, 415] o islas separadas en el núcleo hombro/blusa [2400, 840, 2520, 990]; si una llave cita material posterior fuera de los núcleos, con coordenadas, tercera revisión ciega (§5.2)",
+    "aux": "discrepancia → NO_CONSENSO (las auxiliares no deciden nada en v1.4)",
+    "correct_subject, body_and_edges_complete, background_excluded": "protocolo v2 rev. 1 §5.2",
+    "hole_D_L": "solo se adjudica si el agujero cuenta para H-G5 (agujero nuevo fuera de la región de H2); §5.2"
+  },
+  "metrics": {
+    "target_hole": "por semilla: el agujero cerrado ≥ 1000 px de la referencia que contiene H2; es evaluable si las dos llaves lo marcaron D",
+    "closure": "cerrado = quedan < 1000 px del agujero objetivo sin cubrir Y ningún agujero ≥ 1000 px de la candidata lo toca (pragma_ae.aem1_v14.closure)",
+    "h2_region": "el agujero objetivo dilatado 15 px (L∞)",
+    "new_d_hole": "agujero ≥ 1000 px de la candidata, fuera de la región de H2, con ≥ 50 % de sus píxeles DENTRO de la máscara de referencia (pérdida nueva, no material que ya faltaba) y D en las dos llaves",
+    "o_worse": "referencia O TRUE y candidata O no TRUE; o, si la referencia ya era FALSE (s0: isla de 5 px en el moño), más píxeles en los núcleos que la referencia",
+    "perturbation_stability": "pragma_ae.aem1_v13.perturbation_stability por semilla, más cierre bajo cada perturbación",
+    "descriptive_only": [
+      "cambio global (IoU global y fuera de la región, píxeles perdidos y ganados fuera)",
+      "cierre de la parte alta de la franja en s0 y s2 (sonda (2964, 672))",
+      "retest de cada llave sobre las máscaras de referencia"
+    ]
+  },
+  "hypotheses": [
+    {
+      "id": "H-C3",
+      "by": "Claude (carta 005), congelada por ChatGPT 005",
+      "function": "pragma_ae.aem1_v14.hypothesis_h_c3",
+      "statement": "H2 cierra el agujero objetivo de la franja en ≥ 2 de 3 semillas sin empeorar O",
+      "holds_if": "≥ 2 semillas evaluables con closure = cerrado y sin o_worse",
+      "refuted_if": "aun contando como éxito las semillas no evaluables, no llegan a 2",
+      "otherwise": "INDETERMINATE"
+    },
+    {
+      "id": "H-G5",
+      "by": "ChatGPT (carta 005)",
+      "function": "pragma_ae.aem1_v14.hypothesis_h_g5",
+      "statement": "H2 actúa como reparación local, no como resegmentación global",
+      "holds_if": "≥ 2/3 semillas cerradas, ninguna con o_worse y ninguna con un agujero D nuevo fuera de la región de H2",
+      "refuted_if": "≥ 2/3 semillas cerradas CON un agujero D nuevo, o ≥ 2/3 con o_worse",
+      "otherwise": "INDETERMINATE",
+      "role": "hipótesis causal y diagnóstica; NO es un quinto requisito de PASS"
+    }
+  ],
+  "decision": {
+    "acceptance": "solo por el protocolo de auditoría v2 rev. 1 §5: los cuatro criterios TRUE en el consenso de las dos llaves, más agujeros, sentinelas y adjudicación. Solo las candidatas con H2 pueden dar PASS. Cerrar la franja no basta: si queda el mentón u otro D, es NO PASS (ChatGPT 005 §6)",
+    "case_labels": {
+      "PASS_FULL_SUBJECT_UNDER_FIXED_AEM1_PROTOCOL": "alguna candidata con H2 pasa",
+      "INCONCLUSIVE_SELECTED_OUTPUT_FAILED": "ninguna pasa"
+    },
+    "stop_rule": "A-E(−1) se cierra con v1.4 pase lo que pase: AEM1_CLOSED_DEMONSTRATED o AEM1_CLOSED_INCONCLUSIVE. Otra iteración exige una decisión explícita de las dos IAs y de la persona usuaria (ChatGPT 005)",
+    "user_veto": true,
+    "sam2_rejectable": false,
+    "project_status": "INCONCLUSIVE_A_E0_REQUIRED",
+    "phase_b": "BLOQUEADA",
+    "scope_of_a_pass": "una foto, un caso, un protocolo fijo: no demuestra A-E1 ni generaliza"
+  },
+  "forbidden": [
+    "cambiar H2, la caja, los umbrales o cualquier otro prompt después de ver datos de esta corrida",
+    "elegir semilla, salida o candidata por score",
+    "reparar máscaras (restas, uniones o rellenos): se juzga la salida de SAM 2 tal cual",
+    "ejecutar un caso INVALID_PERTURBATION",
+    "FastAPI, localhost, YOLO-seg o BiRefNet; tocar la extensión"
+  ],
+  "outputs": {
+    "zip": "PRAGMA_AEM1v14_<run_id>_PENDING_EXTERNAL_AUDIT.zip",
+    "contents": [
+      "aem1v14_config.json (prerregistro embebido, entorno, compuertas y luma)",
+      "aem1v14_calls.json (las llamadas ejecutadas, en orden)",
+      "aem1v14_manifest.json (bytes y SHA-256)",
+      "aem1v14_report.json",
+      "masks/<candidata>.png para BASE, referencia y H2 (9)",
+      "aem1v14_perturbaciones.npz (15 máscaras en packbits)"
+    ],
+    "not_shown_in_colab": "el cuaderno no muestra máscaras, áreas, scores ni sentinelas: solo progreso e integridad"
+  },
+  "content_sha256": "bd437a87a33651ab7103f6934ea7fd6934b16c1cc29cc069ed376293dafc15a3"
+}

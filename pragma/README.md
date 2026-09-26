@@ -5,7 +5,7 @@ trabajo (extensión Chrome con motor por color e ISNet). El problema abierto es 
 **segmentación por instancia**: en una foto con varias personas y objetos, elegir exactamente
 qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
-> **Fuente de verdad:** [`PROJECT_STATE.md`](PROJECT_STATE.md) (v1.6). Léelo antes de cambiar nada.
+> **Fuente de verdad:** [`PROJECT_STATE.md`](PROJECT_STATE.md) (v1.7). Léelo antes de cambiar nada.
 > Este directorio convive con un proyecto no relacionado (el backend `motor-vimeo` en la raíz
 > del repositorio); no lo toca.
 
@@ -13,8 +13,8 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
-A‑E(−1) diagnóstico chica       v1.3 (L4): INCONCLUSIVE (0/18) ACEPTADO por doble llave · separación de la persona posterior CONSEGUIDA; falta completitud (franja de pelo) → v1.4 propuesto
-A‑E0 inventario humano          kit listo; borrador de 52 objetos DRAFT_UNVERIFIED; ontología PROPUESTA sin ratificar
+A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4 (H2) PRERREGISTRADO, espera revisión
+A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; borrador de 52 objetos = llave de Claude; ontología sin ratificar
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
 Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · extensión NO modificada
@@ -24,21 +24,22 @@ Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · ext
 
 | Ruta | Qué es |
 |---|---|
-| `PROJECT_STATE.md` | Estado operativo v1.6: decisiones, pruebas, riesgos, backlog y punto de reanudación |
+| `PROJECT_STATE.md` | Estado operativo v1.7: decisiones, pruebas, riesgos, backlog y punto de reanudación |
 | `auditoria/` | Protocolos de auditoría ciega (v1 congelado; v2 para v1.3) y la auditoría de cada corrida real, con su doble llave |
-| `aem1/` | A‑E(−1) v1.3: especificación cerrada y prerregistro (`python3 work/design_aem1_v1_3.py --check`) |
+| `aem1/` | A‑E(−1) v1.3 y v1.4: especificaciones y prerregistros (`python3 work/design_aem1_v1_3.py --check`, `python3 work/design_aem1_v1_4.py --check`) |
 | `ae1/` | Sweep A‑E1 prerregistrado |
-| `GUIA_COLAB_A-E-menos-1_v1_3.md` | **Pasos vigentes** para la corrida v1.3: un clic, a ciegas; qué adjuntar y a quién |
+| `GUIA_COLAB_A-E-menos-1_v1_4.md` | **Pasos vigentes** para la corrida v1.4 (solo tras el `GO` de ChatGPT): un clic en L4, a ciegas |
+| `GUIA_COLAB_A-E-menos-1_v1_3.md` | Guía de la corrida v1.3 (hecha) |
 | `GUIA_COLAB_A-E-menos-1_v1_2.md` | Guía v1.2 (modo delegado con Colab CLI, que sigue valiendo) |
 | `dialogo/` | Ping‑pong Claude ↔ ChatGPT: protocolo y cartas numeradas |
 | `GUIA_COLAB_A-E-menos-1_v1_1.md` | Guía anterior (v1.1, con decisiones humanas); histórica |
 | `CLAUDE.md` | Reglas para agentes (incluye: cerrar siempre con los pasos del usuario) |
 | `outputs/` | Artefactos Codex/Claude originales (byte a byte) + cuadernos A‑E(−1) v1.1 y **v1.2** con sus verificaciones |
-| `work/` | Constructores y verificadores (`*_codex.py` originales; `*_v1_1.py`, `*_v1_2.py`, `harness_aem1.py`), auditoría ciega, doble llave, diseño v1.3 y desciegue v1.3 |
+| `work/` | Constructores y verificadores (`*_codex.py` originales; `*_v1_1.py`, `*_v1_2.py`, `harness_aem1.py`), auditoría ciega, doble llave, diseño y desciegue v1.3, diseño y cuaderno v1.4 |
 | `pragma_ae/` | Kit A‑E en Python (NumPy + Pillow): contrato de inventario, métricas, lámina, preflight, auditoría IA de ZIPs, CLI |
 | `ae0/` | Ontología propuesta, protocolo humano y `scene_inventory.draft.json` |
 | `preflight/` | Preflight de coordenadas: v1.0 (3 puntos mal ubicados) y v1.2 (confirmación 18/18 del auditor IA) |
-| `tests/` | 67 tests (`python3 -m unittest discover -s tests`) |
+| `tests/` | 86 tests (`python3 -m unittest discover -s tests`) |
 | `inputs/` | **No versionado**: la foto y la extensión se colocan aquí y se verifican por SHA‑256 |
 | `history/handoff_v1.0/` | Paquete de traspaso v1.0 intacto (verificable con su manifiesto original) |
 
@@ -72,6 +73,9 @@ python3 work/build_pragma_aem1_v1_3.py         # genera el cuaderno v1.3 desde e
 python3 work/verify_pragma_aem1_v1_3.py        # v1.3: estático + E2E con SAM simulado + auditoría (necesita la foto)
 python3 work/ae1_analysis_contract.py --check  # contrato de análisis A‑E1 (borrador; se congela con A‑E0)
 python3 work/unblind_aem1_v1_3.py --zip <ZIP> --mapping <mapeo sellado local>  # desciegue y doble llave v1.3
+python3 work/design_aem1_v1_4.py --check       # prerregistro v1.4 byte a byte (necesita la foto y el ZIP v1.3)
+python3 work/build_pragma_aem1_v1_4.py         # genera el cuaderno v1.4 desde el prerregistro
+python3 work/verify_pragma_aem1_v1_4.py        # v1.4: estático + E2E con SAM simulado + auditoría (necesita la foto)
 
 # A‑E0 (ver ae0/PROTOCOLO_A-E0.md)
 python3 -m pragma_ae validate ae0/scene_inventory.draft.json
@@ -83,8 +87,8 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Pegar en ChatGPT la carta [`dialogo/005_claude_a_chatgpt.md`](dialogo/005_claude_a_chatgpt.md), sin
-adjuntos, y traer su respuesta. La carta publica el desciegue de la corrida v1.3
-([`auditoria/aem1v13_20260926T040705Z_bee282c1/INFORME.md`](auditoria/aem1v13_20260926T040705Z_bee282c1/INFORME.md))
-y pide tres decisiones: confirmar C05 y C07, `GO_TO_PREREGISTRATION` de v1.4 (H2) y A‑E0 por doble
-llave de IA.
+Pegar en ChatGPT la carta [`dialogo/006_claude_a_chatgpt.md`](dialogo/006_claude_a_chatgpt.md) y
+adjuntar el paquete privado `PRAGMA_carta006_prerregistro_v1_4.zip`. ChatGPT revisa el prerregistro
+de A‑E(−1) v1.4 ([`aem1/ESPECIFICACION_A-E-menos-1_v1_4.md`](aem1/ESPECIFICACION_A-E-menos-1_v1_4.md))
+y la DEC‑024 **antes** de ejecutar nada. Con su `GO`, la corrida sigue
+[`GUIA_COLAB_A-E-menos-1_v1_4.md`](GUIA_COLAB_A-E-menos-1_v1_4.md).

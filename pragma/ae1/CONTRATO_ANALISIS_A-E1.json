@@ -12,7 +12,13 @@
   "gates": {
     "A_E0_FROZEN": "REQUIRED: el inventario se congela por hash antes de mirar ninguna salida A-E1",
     "METRICS_CONTRACT_FROZEN": "REQUIRED: este archivo pasa a FROZEN en el mismo commit que A-E0",
-    "SAM2_FREEZE": "el del sweep (commit, checkpoint, imagen)"
+    "SAM2_FREEZE": "el del sweep (commit, checkpoint, imagen)",
+    "REFERENCE_TYPE_DECLARED": "REQUIRED (DEC-024, ChatGPT 005): cada métrica registra contra qué referencia se calculó: AI_CONSENSUS_REFERENCE (producida y adjudicada solo por IA) o HUMAN_GT (ratificada píxel a píxel por personas), y la derivation de cada máscara"
+  },
+  "reference_types": {
+    "AI_CONSENSUS_REFERENCE": "ingeniería y comparación interna; nunca se presenta como exactitud frente a verdad humana",
+    "HUMAN_GT": "solo si una muestra se anota o ratifica de forma independiente por personas",
+    "report_by_derivation": "las métricas contra máscaras derivadas de prompts de SAM 2 se reportan aparte (circularidad)"
   },
   "metrics_implementation_sha256": {
     "pragma_ae/metrics.py": "48b3ff9af53cd320adcb89eca82e95be4acb18272c5bfa958247e0075fb95e96",
@@ -50,5 +56,5 @@
     "fragmentación"
   ],
   "rule": "si cambia un SHA-256 o un umbral de este contrato después de congelarlo, el análisis A-E1 es otra versión y se declara",
-  "content_sha256": "6b1e975600c224a2de3814146c6597a55bde9dc2699c7cfcd07ef8e0634c02e1"
+  "content_sha256": "4f25fb29a9850816f506a74081a33b1175fff953c38d0db1dc7839df677a1e8e"
 }

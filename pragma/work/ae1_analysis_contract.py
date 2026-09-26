@@ -49,6 +49,14 @@ def build() -> dict:
             "A_E0_FROZEN": "REQUIRED: el inventario se congela por hash antes de mirar ninguna salida A-E1",
             "METRICS_CONTRACT_FROZEN": "REQUIRED: este archivo pasa a FROZEN en el mismo commit que A-E0",
             "SAM2_FREEZE": "el del sweep (commit, checkpoint, imagen)",
+            "REFERENCE_TYPE_DECLARED": ("REQUIRED (DEC-024, ChatGPT 005): cada métrica registra contra qué referencia se "
+                                        "calculó: AI_CONSENSUS_REFERENCE (producida y adjudicada solo por IA) o HUMAN_GT "
+                                        "(ratificada píxel a píxel por personas), y la derivation de cada máscara"),
+        },
+        "reference_types": {
+            "AI_CONSENSUS_REFERENCE": "ingeniería y comparación interna; nunca se presenta como exactitud frente a verdad humana",
+            "HUMAN_GT": "solo si una muestra se anota o ratifica de forma independiente por personas",
+            "report_by_derivation": "las métricas contra máscaras derivadas de prompts de SAM 2 se reportan aparte (circularidad)",
         },
         "metrics_implementation_sha256": {p: sha(ROOT / p) for p in IMPLEMENTATION},
         "entrypoint": "pragma_ae.metrics.evaluate(objects, gt_masks, proposals, GateParams())",

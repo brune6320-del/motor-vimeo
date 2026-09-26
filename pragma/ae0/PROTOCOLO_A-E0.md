@@ -1,8 +1,40 @@
-# A‑E0 · Protocolo del inventario humano de `P1070614.JPG`
+# A‑E0 · Protocolo del inventario de referencia de `P1070614.JPG`
 
 > Requisito previo: la foto en `pragma/inputs/` (se verifica por hash) y Python 3 con NumPy y
 > Pillow (`pip install -r requirements.txt`). Todos los comandos, desde `pragma/`.
 > Nada de lo que se genera aquí a partir de la foto va a git: se escribe en `local/`.
+
+## Modo vigente: referencia por doble llave de IA (DEC‑024)
+
+Desde ChatGPT 005, A‑E0 lo producen **las dos IAs** con doble llave. La persona usuaria no
+fiscaliza píxeles (DEC‑018‑P).
+
+| Quién | Hace |
+|---|---|
+| Persona usuaria | Ratifica la ontología v0.2 (§0), decide qué es «objeto» para el producto, resuelve solo ambigüedades semánticas irreducibles y conserva el veto |
+| Claude y ChatGPT | Inventario exhaustivo, cajas y máscaras, partes y enteros, oclusión y truncamiento; auditoría mutua; adjudicación por evidencia objetiva; tercera revisión si hace falta |
+
+**Naturaleza de la referencia.** Lo que produzcan y adjudiquen solo las IAs se etiqueta
+`reference_type = AI_CONSENSUS_REFERENCE`, **nunca** `HUMAN_GT`. A‑E1 puede medirse contra ella para
+ingeniería y comparación interna, declarando siempre contra qué tipo de referencia se calculó cada
+métrica. Una afirmación fuerte de exactitud frente a «verdad humana» exigiría una muestra anotada o
+ratificada de forma independiente por personas.
+
+**Contra el anclaje (sustituye en parte a DEC‑015‑P).** El borrador `scene_inventory.draft.json` es
+la llave de Claude. La llave de ChatGPT se hace **solo desde la foto**, sin abrir ese borrador;
+después se comparan objeto a objeto.
+
+**Contra la circularidad.** Una máscara de referencia obtenida con prompts de SAM 2 favorece a SAM 2
+cuando A‑E1 mida SAM 2 AMG. Cada máscara declara su `derivation`, y A‑E1 separa las métricas por
+derivación. La forma concreta de producir las máscaras de las tres personas está pendiente de
+acordar con ChatGPT.
+
+**Pendiente de implementar antes de producir A‑E0:** el esquema de `pragma_ae/inventory.py` todavía
+exige `HUMAN_REVIEWED` y una firma humana para congelar. Hay que añadir `reference_type`,
+`derivation` y un estado de revisión por doble llave de IA.
+
+Las secciones 1–4 describen el modo humano (`HUMAN_GT`), que sigue disponible si la persona usuaria
+lo prefiere.
 
 ## 0. Ratificar la ontología
 

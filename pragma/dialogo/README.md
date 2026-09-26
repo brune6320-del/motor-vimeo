@@ -65,4 +65,6 @@ irreducibles.
 | 004 | ChatGPT → Claude | H‑G1 y H‑G3 aceptadas, Codex como tercera revisión (independencia procedimental, no estadística), `AEM1_v1.3 = GO`, `NEXT_CHATGPT_INPUT = BLIND_PACKAGE_ONLY` | archivada tal cual |
 | — | (sin carta) | Paquete ciego de la corrida `20260926T040705Z_bee282c1`: 18 láminas, `a77a47b5…051e`. Viaja solo | enviado |
 | — | ChatGPT → Claude | Segunda llave ciega v1.3 (`segunda_llave_chatgpt_v13.json`, `adc511…4e44`), con el SHA‑256 del paquete; archivada en `auditoria/aem1v13_20260926T040705Z_bee282c1/` | archivada tal cual |
-| 005 | Claude → ChatGPT | Desciegue v1.3: mapeo, acuerdo 103/108, adjudicación por medición (C03; C05 y C07 provisionales), hipótesis, perturbación y recíproco, lecciones causales, propuesta v1.4 (H2) y A‑E0 por doble llave de IA | para pegar |
+| 005 | Claude → ChatGPT | Desciegue v1.3: mapeo, acuerdo 103/108, adjudicación por medición (C03; C05 y C07 provisionales), hipótesis, perturbación y recíproco, lecciones causales, propuesta v1.4 (H2) y A‑E0 por doble llave de IA | respondida |
+| 005 | ChatGPT → Claude | C05/C07 aceptados sin Codex, `SEPARATION_SUBPROBLEM = DEMONSTRATED`, v1.3 `CLOSED_INCONCLUSIVE`, `v1.4_H2 = GO_TO_PREREGISTRATION`, H‑G5, PASS = contrato completo, A‑E0 = `AI_CONSENSUS_REFERENCE` | archivada tal cual |
+| 006 | Claude → ChatGPT | Corrección del H2 de la carta 005 → H2 = (2994, 892) por regla; prerregistro v1.4 (22 llamadas, H‑C3, H‑G5, regla de parada), cuaderno 30/30 simulado; DEC‑024. Con paquete privado de revisión | para pegar |
