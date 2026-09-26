@@ -13,7 +13,7 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
-A‑E(−1) diagnóstico chica       corrida 1 (v1.2, L4): INCONCLUSIVE (0/12) ACEPTADO por doble llave · v1.3 PRERREGISTRADO y contraauditado; cuaderno listo (sin GPU aún)
+A‑E(−1) diagnóstico chica       corrida 1 (v1.2, L4): INCONCLUSIVE (0/12) ACEPTADO por doble llave · v1.3 EJECUTADO en GPU (L4), íntegro; auditoría ciega en curso
 A‑E0 inventario humano          kit listo; borrador de 52 objetos DRAFT_UNVERIFIED; ontología PROPUESTA sin ratificar
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
@@ -82,7 +82,8 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Ejecutar el cuaderno **v1.3** en Colab siguiendo
-[`GUIA_COLAB_A-E-menos-1_v1_3.md`](GUIA_COLAB_A-E-menos-1_v1_3.md) y adjuntar el ZIP **solo a
-Claude**. En paralelo, pegar [`dialogo/004_claude_a_chatgpt.md`](dialogo/004_claude_a_chatgpt.md)
-en ChatGPT; no contiene resultados.
+Enviar a ChatGPT **solo** el paquete ciego `PRAGMA_AEM1v13_paquete_ciego_20260926T040705Z_bee282c1.zip`
+(SHA‑256 `a77a47b5…051e`), sin carta ni comentarios, y traer su JSON de juicios. Los juicios de Claude
+ya están comprometidos por hash
+([`auditoria/aem1v13_20260926T040705Z_bee282c1/`](auditoria/aem1v13_20260926T040705Z_bee282c1/)).
+Hasta entonces no se publica ningún resultado.

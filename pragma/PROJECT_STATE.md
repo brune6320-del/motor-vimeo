@@ -4,7 +4,7 @@
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
 - **Última actualización:** 25 de septiembre de 2026 (v1.5, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v1.5`
+- **Versión:** `v1.5` (+ addendum 2026‑09‑26: corrida v1.3 en GPU, auditoría ciega en curso)
 - **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
 - **Fase B:** `BLOQUEADA`
 - **Último hito documentado (v1.5):** ChatGPT contraauditó el paquete 003 (integridad PASS, diseño PASS, decisiones a–d aceptadas) y pidió dos cambios de contrato, aplicados **antes de cualquier corrida**: `BASE_V2_REFERENCE` (una máscara idéntica no hereda un juicio emitido con otro protocolo) y adjudicación técnica de discrepancias (la persona usuaria no arbitra píxeles). Con eso `AEM1_v1.3 = GO_TO_BUILD`: prerregistro `PREREGISTERED` con plan de 178 llamadas y el código de análisis congelado por hash; cuaderno v1.3 generado desde el prerregistro y verificado 26/26 con SAM simulado; contrato de análisis A‑E1 en borrador. GPU v1.3 `NOT_RUN`
@@ -1632,24 +1632,39 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-El prerregistro v1.3 está contraauditado por ChatGPT, con sus dos cambios de contrato aplicados
-antes de correr. El cuaderno v1.3 está construido desde el prerregistro y verificado con SAM
-simulado (26/26). Falta la corrida en GPU.
+La corrida v1.3 `20260926T040705Z_bee282c1` se ejecutó en GPU:
+
+- NVIDIA L4, bf16, commit `2b90b9f5`, checkpoint `2647878d…`;
+- `INTEGRITY_PASS` y `REAL_GPU`;
+- 178 llamadas y 210 máscaras idénticas al plan (ZIP `6d795132…ce14`, local).
+
+Siguiendo el protocolo v2 rev. 1:
+
+- el paquete ciego (18 láminas, `a77a47b5…051e`) y el mapeo sellado (`e1986a2b…c63f`) están
+  registrados en git sin resultados;
+- los juicios ciegos de Claude están comprometidos solo por hash (`8dde158b…57bf`).
+
+**Ningún resultado está publicado.**
 
 ## Próxima acción
 
-La persona usuaria ejecuta el cuaderno v1.3 en Colab (`GUIA_COLAB_A-E-menos-1_v1_3.md`) y adjunta
-el ZIP **solo a Claude**. En paralelo, sin bloquear nada, pega la carta 004 en ChatGPT.
+La persona usuaria envía a ChatGPT solo el paquete ciego, sin carta, y trae su JSON de juicios y el
+SHA‑256 del paquete.
 
 ## Resultado esperado
 
-Un ZIP `PRAGMA_AEM1v13_…_PENDING_EXTERNAL_AUDIT.zip`. Claude verifica su integridad sin mirar
-resultados, prepara el paquete ciego `C01…` y la persona usuaria se lo manda **solo** a ChatGPT.
+Segunda llave archivada tal cual. Después, Claude:
+
+1. publica sus juicios, que deben coincidir con el hash;
+2. desciega;
+3. corre `aem1_v13_audit.analyze`;
+4. aplica la adjudicación técnica si hace falta;
+5. escribe la carta con resultados.
 
 ## En paralelo
 
-- Respuesta de ChatGPT a la carta 004: interpretaciones de H‑G1 y H‑G3, Codex como tercera revisión.
-- Ratificar la ontología v0.2 y hacer la pasada ciega del inventario A‑E0.
+Ratificar la ontología v0.2 y hacer la pasada ciega del inventario A‑E0; A‑E1 sigue esperando el
+congelado de A‑E0.
 
 ---
 
@@ -1704,6 +1719,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v1.5+ | 2026‑09‑26 | addendum: carta 004 de ChatGPT archivada (`GO`); corrida v1.3 en GPU íntegra (`REAL_GPU`); paquete ciego y compromiso por hash de los juicios de Claude; sin resultados publicados |
 | v1.5 | 2026‑09‑25 | contraauditoría previa de ChatGPT 003 archivada; `BASE_V2_REFERENCE` (DEC‑023) y protocolo v2 rev. 1 con adjudicación técnica (DEC‑022); L∞/euclídea, cobertura O* continua y razones direccionales; H‑G1–G4; prerregistro `PREREGISTERED` con `call_plan` (178) y código de análisis congelado; cuaderno v1.3 construido y verificado 26/26 con SAM simulado; `aem1_v13_audit` (integridad, paquete ciego, análisis); contrato A‑E1 en borrador; guía v1.3; carta 004 |
 | v1.4 | 2026‑09‑25 | segunda llave de ChatGPT archivada y comparada (`doble_llave.json`: veredicto concordante, 42/48, 5 concesiones y 1 refutación medida, contaminación acotada 1/207 900) → corrida 1 aceptada por doble llave; A‑E(−1) v1.3 cerrado y prerregistrado (ramas, región segura H1/S1, perturbaciones deterministas, recíproco sin reparación; `aem1_v13` + 18 tests); protocolo ciego v2 y DEC‑021; carta 003 |
 | v1.3 | 2026‑09‑25 | primera corrida GPU real de A‑E(−1) v1.2 auditada a ciegas con protocolo congelado antes de mirar (`INCONCLUSIVE_SELECTED_OUTPUT_FAILED`, 0/12); reproducción de v4; respuesta 001 de ChatGPT archivada; DEC‑013‑Q adoptada por matriz prerregistrada; sweep A‑E1 prerregistrado y verificado en el commit exacto; ontología v0.2; DEC‑020; carta 002 |

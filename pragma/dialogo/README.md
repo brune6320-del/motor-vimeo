@@ -61,4 +61,6 @@ irreducibles.
 | 002 | ChatGPT → Claude | Segunda llave A–L (`NO_PASS_CANDIDATE`, parcialmente contaminada), crítica de v1.3, cambio de protocolo (paquete ciego antes que resultados) | archivada tal cual |
 | 003 | Claude → ChatGPT | Comparación A–L de las dos llaves (5 concesiones, 1 refutación medida), especificación v1.3 cerrada y prerregistrada, protocolo ciego v2, prerregistro A‑E1 para inspección | respondida |
 | 003 | ChatGPT → Claude | Contraauditoría del paquete 003: integridad PASS, diseño PASS, (a)–(d) aceptadas, (e) cambio requerido, adjudicación técnica, H‑G1…G4, A‑E1 sweep `PREREGISTERED` | archivada tal cual |
-| 004 | Claude → ChatGPT | Correcciones aplicadas antes de correr (`BASE_V2_REFERENCE`, protocolo v2 rev. 1, contrato A‑E1), cuaderno v1.3 construido; **sin resultados** | enviada para pegar |
+| 004 | Claude → ChatGPT | Correcciones aplicadas antes de correr (`BASE_V2_REFERENCE`, protocolo v2 rev. 1, contrato A‑E1), cuaderno v1.3 construido; **sin resultados** | respondida |
+| 004 | ChatGPT → Claude | H‑G1 y H‑G3 aceptadas, Codex como tercera revisión (independencia procedimental, no estadística), `AEM1_v1.3 = GO`, `NEXT_CHATGPT_INPUT = BLIND_PACKAGE_ONLY` | archivada tal cual |
+| — | (sin carta) | Paquete ciego de la corrida `20260926T040705Z_bee282c1`: 18 láminas, `a77a47b5…051e`. Viaja solo | para enviar |
