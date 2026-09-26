@@ -1,0 +1,254 @@
+{
+  "schema": "pragma.aem1v14_double_key",
+  "schema_version": "0.1.0",
+  "first_key": {
+    "file": "juicios_claude_crudos_v14.json",
+    "sha256": "6febe5d6e37198af8fc4ceceb2e98ce1e5794fb1bd52a68e5ce9ad54f30c78d0",
+    "committed_in": "0a0e19c"
+  },
+  "second_key": {
+    "file": "segunda_llave_chatgpt_v14.json",
+    "sha256": "01fcae3cdf9167f6dd37da771b8557a48ab181acb69470946b846c6e5e036443",
+    "package_sha256_echoed": "8f8df2730f64f5f94deb72c8f7af8b3653bc95bf0f5a3bb81e065b331ee4a17b"
+  },
+  "blindness": "TEMPORAL_DOBLE: ChatGPT recibió solo el paquete y su LEEME; Claude comprometió sus juicios por hash antes; la adjudicación técnica se hizo y versionó por etiqueta ANTES del desciegue (751cbaa reglas, aa164e3 resultado)",
+  "agreement": {
+    "criteria": "21/24",
+    "aux": "12/12",
+    "holes": "15/15"
+  },
+  "cells": {
+    "N01": {
+      "correct_subject": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "body_and_edges_complete": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "other_person_excluded": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "background_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_hair_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_dark_sleeves_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "N02": {
+      "correct_subject": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "body_and_edges_complete": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "other_person_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "background_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_hair_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_dark_sleeves_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "N03": {
+      "correct_subject": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "body_and_edges_complete": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "other_person_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "background_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_hair_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_dark_sleeves_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "N04": {
+      "correct_subject": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "body_and_edges_complete": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "other_person_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "background_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_hair_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_dark_sleeves_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "N05": {
+      "correct_subject": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "body_and_edges_complete": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "other_person_excluded": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE",
+        "agree": false
+      },
+      "background_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_hair_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_dark_sleeves_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    },
+    "N06": {
+      "correct_subject": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "body_and_edges_complete": {
+        "claude": "FALSE",
+        "chatgpt": "FALSE",
+        "agree": true
+      },
+      "other_person_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "background_excluded": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_hair_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      },
+      "target_dark_sleeves_included": {
+        "claude": "TRUE",
+        "chatgpt": "TRUE",
+        "agree": true
+      }
+    }
+  },
+  "disagreements": [
+    {
+      "label": "N01",
+      "candidate_id": "+POS_HAIR+SLEEVE+H2|box+corrections|s0",
+      "field": "other_person_excluded",
+      "claude": "FALSE",
+      "chatgpt": "TRUE"
+    },
+    {
+      "label": "N04",
+      "candidate_id": "+POS_HAIR+SLEEVE+H2|box+corrections|s1",
+      "field": "body_and_edges_complete",
+      "claude": "FALSE",
+      "chatgpt": "TRUE"
+    },
+    {
+      "label": "N05",
+      "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s0",
+      "field": "other_person_excluded",
+      "claude": "FALSE",
+      "chatgpt": "TRUE"
+    }
+  ],
+  "technical_adjudication": {
+    "file": "adjudicacion_tecnica_ciega_v14.json",
+    "sha256": "bb29e4c9d9ca7f5a510ae25efacee9af8a53f9590d77d444e6381236c94c322e",
+    "decisions": {
+      "N01.other_person_excluded": "FALSE",
+      "N05.other_person_excluded": "FALSE",
+      "N04.body_and_edges_complete": "FALSE"
+    }
+  },
+  "mapping": {
+    "N01": "+POS_HAIR+SLEEVE+H2|box+corrections|s0",
+    "N02": "+POS_HAIR+SLEEVE+H2|box+corrections|s2",
+    "N03": "+POS_HAIR+SLEEVE|box+corrections|s2",
+    "N04": "+POS_HAIR+SLEEVE+H2|box+corrections|s1",
+    "N05": "+POS_HAIR+SLEEVE|box+corrections|s0",
+    "N06": "+POS_HAIR+SLEEVE|box+corrections|s1"
+  }
+}

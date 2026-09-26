@@ -1,0 +1,192 @@
+{
+  "holes": {
+    "N01": [
+      {
+        "area_px": 10952,
+        "bbox": [
+          2208,
+          1962,
+          2284,
+          2177
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 2177,
+        "bbox": [
+          2682,
+          842,
+          2723,
+          930
+        ],
+        "number": 2
+      }
+    ],
+    "N02": [
+      {
+        "area_px": 11198,
+        "bbox": [
+          2208,
+          1963,
+          2285,
+          2176
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 10374,
+        "bbox": [
+          2590,
+          834,
+          2751,
+          1057
+        ],
+        "number": 2
+      }
+    ],
+    "N03": [
+      {
+        "area_px": 11506,
+        "bbox": [
+          2209,
+          1963,
+          2285,
+          2177
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 10793,
+        "bbox": [
+          2651,
+          830,
+          2822,
+          1021
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 8120,
+        "bbox": [
+          2964,
+          785,
+          3026,
+          999
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 5027,
+        "bbox": [
+          2949,
+          636,
+          2999,
+          781
+        ],
+        "number": 4
+      }
+    ],
+    "N04": [
+      {
+        "area_px": 10612,
+        "bbox": [
+          2209,
+          1965,
+          2286,
+          2174
+        ],
+        "number": 1
+      }
+    ],
+    "N05": [
+      {
+        "area_px": 11120,
+        "bbox": [
+          2208,
+          1962,
+          2284,
+          2177
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 7575,
+        "bbox": [
+          2969,
+          789,
+          3027,
+          1000
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 4176,
+        "bbox": [
+          2950,
+          636,
+          2999,
+          779
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 2985,
+        "bbox": [
+          2683,
+          832,
+          2730,
+          930
+        ],
+        "number": 4
+      }
+    ],
+    "N06": [
+      {
+        "area_px": 10903,
+        "bbox": [
+          2209,
+          1965,
+          2287,
+          2175
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 3011,
+        "bbox": [
+          2984,
+          842,
+          3025,
+          997
+        ],
+        "number": 2
+      }
+    ]
+  },
+  "mapping": {
+    "N01": {
+      "candidate_id": "+POS_HAIR+SLEEVE+H2|box+corrections|s0",
+      "packed_mask_sha256": "32ddda954f379e14f9961d3f829c2c6e7c66cf42219bca0454db7c23272fbf75"
+    },
+    "N02": {
+      "candidate_id": "+POS_HAIR+SLEEVE+H2|box+corrections|s2",
+      "packed_mask_sha256": "23567843130bd1f19f95bd41c364a249842a55775f2af83246d146f175f61fa9"
+    },
+    "N03": {
+      "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s2",
+      "packed_mask_sha256": "0423308b83ed6043c438e13c96fb9b0bea90c0c748e15f2bb49cde969db8bbfe"
+    },
+    "N04": {
+      "candidate_id": "+POS_HAIR+SLEEVE+H2|box+corrections|s1",
+      "packed_mask_sha256": "cf672cab83e274bcb2e9c35ced7b9c4bd2c2826bf4b273788e04829463c74346"
+    },
+    "N05": {
+      "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s0",
+      "packed_mask_sha256": "179502200aa2829aed1672886434a4ad8c464304bf8ac6f9f678540d5ee09243"
+    },
+    "N06": {
+      "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s1",
+      "packed_mask_sha256": "2815486d00ea3bc9bae00834b8dd1b04f4a350a243efd3b2f8986661a8bd070a"
+    }
+  }
+}

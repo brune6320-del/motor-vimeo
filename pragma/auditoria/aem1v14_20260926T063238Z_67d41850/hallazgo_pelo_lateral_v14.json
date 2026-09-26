@@ -1,0 +1,37 @@
+{
+  "schema": "pragma.aem1v14_lateral_finding",
+  "schema_version": "0.1.0",
+  "nature": "EXPLORATORIO, calculado después del desciegue; no cambia el veredicto, las adjudicaciones ni las hipótesis",
+  "region": "unión de los agujeros cerrados que las dos llaves marcaron D en esta corrida y que están a la izquierda de x = 2900 (pelo lateral de la chica junto al mentón, hacia el contacto): 13944 px",
+  "left_out_by_each_mask": {
+    "N01 · +POS_HAIR+SLEEVE+H2 · s0": {
+      "px": 2991,
+      "open_px": 0
+    },
+    "N02 · +POS_HAIR+SLEEVE+H2 · s2": {
+      "px": 10404,
+      "open_px": 0
+    },
+    "N03 · referencia s2 (= v1.3 C10)": {
+      "px": 12034,
+      "open_px": 0
+    },
+    "N04 · +POS_HAIR+SLEEVE+H2 · s1": {
+      "px": 9704,
+      "open_px": 9704
+    },
+    "N05 · referencia s0 (= v1.3 C03)": {
+      "px": 4420,
+      "open_px": 0
+    },
+    "N06 · referencia s1 (= v1.3 C01)": {
+      "px": 9803,
+      "open_px": 9797
+    }
+  },
+  "N04_vs_N06_in_region": {
+    "N04_excludes_N06_includes_px": 388,
+    "N06_excludes_N04_includes_px": 487
+  },
+  "reading": "El pelo lateral junto al mentón falta en las SEIS máscaras. En s0 y s2 es un agujero cerrado (las láminas lo contornean y las dos llaves lo marcaron D); en s1 está abierto al exterior (no se contornea). La referencia s1 = C01, el mejor intento de v1.3, ya lo tenía: N04 y N06 difieren en menos de 500 px ahí. H2 no lo causó. En v1.3 ninguna llave lo señaló en C01 porque su agujero de la franja ya bastaba para B FALSE y la lámina no contornea los faltantes abiertos."
+}

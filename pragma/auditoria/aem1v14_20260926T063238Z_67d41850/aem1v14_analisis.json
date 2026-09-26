@@ -1,0 +1,1240 @@
+{
+  "schema": "pragma.aem1v14_analysis_public",
+  "schema_version": "0.1.0",
+  "prereg_content_sha256": "7048b9fabf03544885d749ad3f19d0dd9d373730d8531f87db58e40ca7220b5d",
+  "analysis_code_frozen": {
+    "pragma_ae/aem1_v14.py": "ee6cdecd07a7d79adee94109c93ea4a7b76ab55da291d18343f6816bc1c7342d",
+    "pragma_ae/aem1_v14_audit.py": "595b5f42d041864f9a614c7519829bacbee7b7961ee6694af6d7a3c6e86e4a44",
+    "pragma_ae/aem1_v13.py": "2e9433604a834db8b5636d112dcd5169b5330727e0a0c05c4e92e9cbc4087da7",
+    "pragma_ae/aem1_v13_audit.py": "820af07186a171099f94e98541d89d0b0948a3cf4333222c4c0c5a77ebfdc13a",
+    "pragma_ae/masks.py": "412d1ead02fb92891ca989c5c6ac7a5b2dcd5b6bcdbb57551ec1ce12db712ac9"
+  },
+  "case_status": "INCONCLUSIVE_SELECTED_OUTPUT_FAILED",
+  "aem1_closure": "AEM1_CLOSED_INCONCLUSIVE",
+  "passing": [],
+  "best_attempt": "+POS_HAIR+SLEEVE+H2|box+corrections|s1",
+  "pending_adjudication": [],
+  "adjudications": {
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s0.other_person_excluded": {
+      "value": "FALSE",
+      "kind": "medicion_prerregistrada",
+      "blind_label": "N01"
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s0.other_person_excluded": {
+      "value": "FALSE",
+      "kind": "medicion_prerregistrada",
+      "blind_label": "N05"
+    },
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s1.body_and_edges_complete": {
+      "value": "FALSE",
+      "kind": "medicion_consenso_D",
+      "blind_label": "N04"
+    }
+  },
+  "reproduction": {
+    "label": "BIT_EXACT",
+    "bit_exact": [
+      "+POS_HAIR+SLEEVE|box+corrections|s0",
+      "+POS_HAIR+SLEEVE|box+corrections|s1",
+      "+POS_HAIR+SLEEVE|box+corrections|s2",
+      "BASE|box|0",
+      "BASE|box|1",
+      "BASE|box|2"
+    ],
+    "not_bit_exact": []
+  },
+  "consensus": {
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s0": {
+      "correct_subject": "TRUE",
+      "body_and_edges_complete": "FALSE",
+      "other_person_excluded": "FALSE",
+      "background_excluded": "TRUE",
+      "target_hair_included": "TRUE",
+      "target_dark_sleeves_included": "TRUE"
+    },
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s2": {
+      "correct_subject": "TRUE",
+      "body_and_edges_complete": "FALSE",
+      "other_person_excluded": "TRUE",
+      "background_excluded": "TRUE",
+      "target_hair_included": "TRUE",
+      "target_dark_sleeves_included": "TRUE"
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s2": {
+      "correct_subject": "TRUE",
+      "body_and_edges_complete": "FALSE",
+      "other_person_excluded": "TRUE",
+      "background_excluded": "TRUE",
+      "target_hair_included": "TRUE",
+      "target_dark_sleeves_included": "TRUE"
+    },
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s1": {
+      "correct_subject": "TRUE",
+      "body_and_edges_complete": "FALSE",
+      "other_person_excluded": "TRUE",
+      "background_excluded": "TRUE",
+      "target_hair_included": "TRUE",
+      "target_dark_sleeves_included": "TRUE"
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s0": {
+      "correct_subject": "TRUE",
+      "body_and_edges_complete": "FALSE",
+      "other_person_excluded": "FALSE",
+      "background_excluded": "TRUE",
+      "target_hair_included": "TRUE",
+      "target_dark_sleeves_included": "TRUE"
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s1": {
+      "correct_subject": "TRUE",
+      "body_and_edges_complete": "FALSE",
+      "other_person_excluded": "TRUE",
+      "background_excluded": "TRUE",
+      "target_hair_included": "TRUE",
+      "target_dark_sleeves_included": "TRUE"
+    }
+  },
+  "holes_consensus": {
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s0": {
+      "1": "L",
+      "2": "D"
+    },
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s2": {
+      "1": "L",
+      "2": "D"
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s2": {
+      "1": "L",
+      "2": "D",
+      "3": "D",
+      "4": "D"
+    },
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s1": {
+      "1": "L"
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s0": {
+      "1": "L",
+      "2": "D",
+      "3": "D",
+      "4": "D"
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s1": {
+      "1": "L",
+      "2": "D"
+    }
+  },
+  "keys_reconciled": {
+    "claude": {
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s0": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s2": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE|box+corrections|s2": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s1": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE|box+corrections|s0": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE|box+corrections|s1": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      }
+    },
+    "chatgpt": {
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s0": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s2": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE|box+corrections|s2": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s1": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "TRUE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE|box+corrections|s0": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "+POS_HAIR+SLEEVE|box+corrections|s1": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE",
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      }
+    }
+  },
+  "per_seed": {
+    "s0": {
+      "reference": "+POS_HAIR+SLEEVE|box+corrections|s0",
+      "reference_source": "v1.3 (doble llave y adjudicación aceptadas)",
+      "candidate": "+POS_HAIR+SLEEVE+H2|box+corrections|s0",
+      "label": "N01",
+      "reference_label_v14": "N05",
+      "evaluable": true,
+      "target_hole": {
+        "number": 2,
+        "area": 7575,
+        "bbox": [
+          2969,
+          789,
+          3027,
+          1000
+        ],
+        "consensus_d": true
+      },
+      "closure": {
+        "target_px": 7575,
+        "residual_px": 406,
+        "covered_fraction": 0.9464,
+        "holes_touching_target": [],
+        "closed": true
+      },
+      "closed": true,
+      "new_holes_candidates": [],
+      "new_d": false,
+      "o_reference": "FALSE",
+      "o_new": "FALSE",
+      "core_px_reference": 5,
+      "core_px_new": 3,
+      "o_worse": false
+    },
+    "s1": {
+      "reference": "+POS_HAIR+SLEEVE|box+corrections|s1",
+      "reference_source": "v1.3 (doble llave y adjudicación aceptadas)",
+      "candidate": "+POS_HAIR+SLEEVE+H2|box+corrections|s1",
+      "label": "N04",
+      "reference_label_v14": "N06",
+      "evaluable": true,
+      "target_hole": {
+        "number": 2,
+        "area": 3011,
+        "bbox": [
+          2984,
+          842,
+          3025,
+          997
+        ],
+        "consensus_d": true
+      },
+      "closure": {
+        "target_px": 3011,
+        "residual_px": 339,
+        "covered_fraction": 0.8874,
+        "holes_touching_target": [],
+        "closed": true
+      },
+      "closed": true,
+      "new_holes_candidates": [],
+      "new_d": false,
+      "o_reference": "TRUE",
+      "o_new": "TRUE",
+      "core_px_reference": 0,
+      "core_px_new": 0,
+      "o_worse": false
+    },
+    "s2": {
+      "reference": "+POS_HAIR+SLEEVE|box+corrections|s2",
+      "reference_source": "v1.3 (doble llave y adjudicación aceptadas)",
+      "candidate": "+POS_HAIR+SLEEVE+H2|box+corrections|s2",
+      "label": "N02",
+      "reference_label_v14": "N03",
+      "evaluable": true,
+      "target_hole": {
+        "number": 3,
+        "area": 8120,
+        "bbox": [
+          2964,
+          785,
+          3026,
+          999
+        ],
+        "consensus_d": true
+      },
+      "closure": {
+        "target_px": 8120,
+        "residual_px": 488,
+        "covered_fraction": 0.9399,
+        "holes_touching_target": [],
+        "closed": true
+      },
+      "closed": true,
+      "new_holes_candidates": [
+        {
+          "number": 2,
+          "area": 10374,
+          "bbox": [
+            2590,
+            834,
+            2751,
+            1057
+          ],
+          "new_loss_outside_px": 1883,
+          "touches_region": false,
+          "fraction_inside_reference": 0.1815,
+          "consensus": "D"
+        }
+      ],
+      "new_d": true,
+      "o_reference": "TRUE",
+      "o_new": "TRUE",
+      "core_px_reference": 0,
+      "core_px_new": 0,
+      "o_worse": false
+    }
+  },
+  "hypotheses": {
+    "H-C3": "HOLDS",
+    "H-G5": "INDETERMINATE"
+  },
+  "perturbation": {
+    "per_seed": {
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s0": {
+        "label": "STABLE",
+        "n": 5,
+        "min_iou": 0.999,
+        "min_iou_contact": 0.9966,
+        "o_flip": [],
+        "o_threshold": 0.2,
+        "o_coverage": {
+          "base": {
+            "O1": 0.0,
+            "O2": 0.0,
+            "O3": 0.0,
+            "O4": 0.0
+          },
+          "perturbed": {
+            "d-15+0": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d+0+15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d+0-15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d-15+15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d-15-15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            }
+          }
+        },
+        "o_flip_detail": [],
+        "closed_under_perturbation": {
+          "d-15+0": true,
+          "d+0+15": true,
+          "d+0-15": true,
+          "d-15+15": true,
+          "d-15-15": true
+        }
+      },
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s1": {
+        "label": "STABLE",
+        "n": 5,
+        "min_iou": 0.9988,
+        "min_iou_contact": 0.995,
+        "o_flip": [],
+        "o_threshold": 0.2,
+        "o_coverage": {
+          "base": {
+            "O1": 0.0,
+            "O2": 0.0,
+            "O3": 0.0,
+            "O4": 0.0
+          },
+          "perturbed": {
+            "d-15+0": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d+0+15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d+0-15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d-15+15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d-15-15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            }
+          }
+        },
+        "o_flip_detail": [],
+        "closed_under_perturbation": {
+          "d-15+0": true,
+          "d+0+15": true,
+          "d+0-15": true,
+          "d-15+15": true,
+          "d-15-15": true
+        }
+      },
+      "+POS_HAIR+SLEEVE+H2|box+corrections|s2": {
+        "label": "STABLE",
+        "n": 5,
+        "min_iou": 0.9982,
+        "min_iou_contact": 0.9939,
+        "o_flip": [],
+        "o_threshold": 0.2,
+        "o_coverage": {
+          "base": {
+            "O1": 0.0,
+            "O2": 0.0,
+            "O3": 0.0,
+            "O4": 0.0
+          },
+          "perturbed": {
+            "d-15+0": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d+0+15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d+0-15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d-15+15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            },
+            "d-15-15": {
+              "O1": 0.0,
+              "O2": 0.0,
+              "O3": 0.0,
+              "O4": 0.0
+            }
+          }
+        },
+        "o_flip_detail": [],
+        "closed_under_perturbation": {
+          "d-15+0": true,
+          "d+0+15": true,
+          "d+0-15": true,
+          "d-15+15": true,
+          "d-15-15": true
+        }
+      }
+    },
+    "family_summary": "STABLE"
+  },
+  "descriptive_preregistered": {
+    "per_seed": {
+      "s0": {
+        "global_change": {
+          "iou_global": 0.9875,
+          "iou_outside_region": 0.9922,
+          "lost_px_outside_region": 2626,
+          "gained_px_outside_region": 9355,
+          "gained_px_inside_region": 7292
+        },
+        "upper_strip": {
+          "reference_hole": {
+            "number": 3,
+            "area": 4176
+          },
+          "target_px": 4176,
+          "residual_px": 12,
+          "covered_fraction": 0.9971,
+          "holes_touching_target": [],
+          "closed": true
+        }
+      },
+      "s1": {
+        "global_change": {
+          "iou_global": 0.9929,
+          "iou_outside_region": 0.9946,
+          "lost_px_outside_region": 3589,
+          "gained_px_outside_region": 4556,
+          "gained_px_inside_region": 2672
+        },
+        "upper_strip": null
+      },
+      "s2": {
+        "global_change": {
+          "iou_global": 0.9835,
+          "iou_outside_region": 0.9885,
+          "lost_px_outside_region": 5362,
+          "gained_px_outside_region": 12120,
+          "gained_px_inside_region": 7830
+        },
+        "upper_strip": {
+          "reference_hole": {
+            "number": 4,
+            "area": 5027
+          },
+          "target_px": 5027,
+          "residual_px": 30,
+          "covered_fraction": 0.994,
+          "holes_touching_target": [],
+          "closed": true
+        }
+      }
+    },
+    "retest_same_mask": {
+      "s0": {
+        "claude": {
+          "correct_subject": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "body_and_edges_complete": {
+            "v1_3": "FALSE",
+            "v1_4": "FALSE",
+            "same": true
+          },
+          "other_person_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "FALSE",
+            "same": false
+          },
+          "background_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          }
+        },
+        "chatgpt": {
+          "correct_subject": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "body_and_edges_complete": {
+            "v1_3": "FALSE",
+            "v1_4": "FALSE",
+            "same": true
+          },
+          "other_person_excluded": {
+            "v1_3": "FALSE",
+            "v1_4": "TRUE",
+            "same": false
+          },
+          "background_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          }
+        }
+      },
+      "s1": {
+        "claude": {
+          "correct_subject": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "body_and_edges_complete": {
+            "v1_3": "FALSE",
+            "v1_4": "FALSE",
+            "same": true
+          },
+          "other_person_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "background_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          }
+        },
+        "chatgpt": {
+          "correct_subject": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "body_and_edges_complete": {
+            "v1_3": "FALSE",
+            "v1_4": "FALSE",
+            "same": true
+          },
+          "other_person_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "background_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          }
+        }
+      },
+      "s2": {
+        "claude": {
+          "correct_subject": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "body_and_edges_complete": {
+            "v1_3": "FALSE",
+            "v1_4": "FALSE",
+            "same": true
+          },
+          "other_person_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "background_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          }
+        },
+        "chatgpt": {
+          "correct_subject": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "body_and_edges_complete": {
+            "v1_3": "FALSE",
+            "v1_4": "FALSE",
+            "same": true
+          },
+          "other_person_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          },
+          "background_excluded": {
+            "v1_3": "TRUE",
+            "v1_4": "TRUE",
+            "same": true
+          }
+        }
+      }
+    }
+  },
+  "sentinels": {
+    "BASE|box|0": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 0.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 0.0,
+        "O1": 0.1538,
+        "O2": 1.0,
+        "O3": 1.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [
+        "K4",
+        "K7"
+      ],
+      "leaked_other_person": [
+        "O2",
+        "O3"
+      ],
+      "leaked_background": []
+    },
+    "BASE|box|1": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 1.0,
+        "O3": 1.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [
+        "O2",
+        "O3"
+      ],
+      "leaked_background": []
+    },
+    "BASE|box|2": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 0.0414,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 0.0,
+        "O1": 0.0,
+        "O2": 1.0,
+        "O3": 1.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [
+        "K4",
+        "K7"
+      ],
+      "leaked_other_person": [
+        "O2",
+        "O3"
+      ],
+      "leaked_background": []
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s0": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s1": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "+POS_HAIR+SLEEVE|box+corrections|s2": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s0": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s1": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "+POS_HAIR+SLEEVE+H2|box+corrections|s2": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15+0|box+corrections|s0": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15+0|box+corrections|s1": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15+0|box+corrections|s2": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d+0+15|box+corrections|s0": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d+0+15|box+corrections|s1": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d+0+15|box+corrections|s2": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d+0-15|box+corrections|s0": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d+0-15|box+corrections|s1": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d+0-15|box+corrections|s2": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15+15|box+corrections|s0": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15+15|box+corrections|s1": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15+15|box+corrections|s2": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15-15|box+corrections|s0": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15-15|box+corrections|s1": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    },
+    "PERTURB_POINT|H2|d-15-15|box+corrections|s2": {
+      "coverage": {
+        "K1": 1.0,
+        "K2": 1.0,
+        "K3": 1.0,
+        "K4": 1.0,
+        "K5": 1.0,
+        "K6": 1.0,
+        "K7": 1.0,
+        "O1": 0.0,
+        "O2": 0.0,
+        "O3": 0.0,
+        "O4": 0.0,
+        "B1": 0.0,
+        "B2": 0.0,
+        "B3": 0.0
+      },
+      "missed_keep": [],
+      "leaked_other_person": [],
+      "leaked_background": []
+    }
+  },
+  "sam2_rejectable": false,
+  "project_status": "INCONCLUSIVE_A_E0_REQUIRED"
+}
