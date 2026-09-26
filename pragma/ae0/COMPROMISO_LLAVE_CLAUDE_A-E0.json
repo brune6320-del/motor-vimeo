@@ -1,0 +1,14 @@
+{
+  "schema": "pragma.ae0_key_commitment",
+  "schema_version": "0.1.0",
+  "auditor": "claude",
+  "key_file": "llave_claude_A-E0.json (local; se publica después de archivar la llave de ChatGPT)",
+  "file_sha256": "84942809f608e08d6e0c1921a7ababa3750c0f70517ce0c12691e1e933939829",
+  "content_sha256": "2124f6888718c8d50117478a8d48a86ea4ccecaa63d57d5aafe9a6167bb4858a",
+  "committed_at_utc": "2026-09-26T20:19:39Z",
+  "after": "ratificación de la ontología v0.2 (6e50c55)",
+  "before": "cualquier llave de ChatGPT (no existe todavía; ChatGPT 010: «Todavía no construiré mi llave»)",
+  "validation": "python3 work/validate_ae0_key.py → valid_key: true, 0 errores",
+  "withheld": "contenido, número de objetos y tiers se retienen hasta archivar la llave de ChatGPT, para no anclarla",
+  "rule": "ninguna llave se ajusta después de ver la otra; las correcciones van a la adjudicación con registro (FORMATO_LLAVE_A-E0.md §3)"
+}
