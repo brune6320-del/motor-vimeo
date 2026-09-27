@@ -90,10 +90,8 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Dos pegados en paralelo (numeración de órdenes: termina en 0 → va a ChatGPT; termina en 1 → va a
-Claude):
+Numeración de órdenes: termina en 0 → va a ChatGPT; termina en 1 → va a Claude.
 
-1. En ChatGPT, la carta [`dialogo/017_claude_a_chatgpt.md`](dialogo/017_claude_a_chatgpt.md)
-   (**ORDEN 170**) con `PRAGMA_carta017_teselas.zip`.
-2. En Codex, `PRAGMA_teselas_contorno_A-E0_codex.zip` con el texto de su
-   `PREGUNTAS_TESELAS_CONTORNO.md`.
+1. En ChatGPT, la carta [`dialogo/018_claude_a_chatgpt.md`](dialogo/018_claude_a_chatgpt.md)
+   (**ORDEN 180**) con `PRAGMA_carta018_codex.zip`. Su respuesta termina en `ORDEN 181`.
+2. Traer la respuesta a Claude.

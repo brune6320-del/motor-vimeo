@@ -1,0 +1,751 @@
+{
+ "schema": "pragma.ae0_codex_findings_adjudication",
+ "schema_version": "0.1.0",
+ "author": "claude",
+ "status": "PROPOSAL_PENDING_SECOND_KEY",
+ "codex_answer": {
+  "file": "ae0/comparacion_poligonos/revision_codex_teselas_A-E0.json",
+  "sha256": "77cc16cd968394c14916d6f24830bfdca1cbea64c6de8551c0970f9982c61cd2",
+  "tiles": 31,
+  "contour": {
+   "OK": 30,
+   "OMISSION": 1
+  },
+  "orange": {
+   "NONE": 10,
+   "TOO_BROAD": 21
+  },
+  "consulted_only_these_images": true,
+  "regions": {
+   "OMISSION": 1,
+   "TOO_BROAD": 26
+  }
+ },
+ "rule_prefixed": "teselas_contorno_plan.json addendum_v0_2: todo OMISSION, EXCESS, TOO_BROAD o TOO_NARROW vuelve a adjudicación antes del congelado",
+ "translation": "photo_box = box_in_photo[:2] + panel_box (TESELAS.json = teselas_contorno_v0.json, 31/31 iguales)",
+ "principle": "aceptar un TOO_BROAD vuelve cierto lo que era incierto; si es un error, la referencia queda mal. Rechazarlo solo deja cotas más anchas. Se acepta donde la evidencia es clara y se mantiene lo incierto donde una medición o una disputa adjudicada lo sostiene",
+ "summary": {
+  "ACCEPT": 5,
+  "PARTIAL": 5,
+  "REJECT": 16,
+  "ALREADY_ADDRESSED": 1
+ },
+ "measurements": {
+  "left_leg_edge": "filas 1850–1950: mantel ≈ 100–111 hasta x = 530; de 536 a 700, 13–20 sin escalón; la estimación está en 553",
+  "between_legs": "banda x ≈ 760–850 más oscura que las dos piernas: 12,2–13,5 vs 14,6–15,5 (y = 1700); 11,2–13,4 vs 14,3–15,8 (y = 1900); 10,2–12,7 vs 13,1–16,8 (y = 2100)",
+  "right_leg_edge": "filas 2060–2248 (siete franjas de 30 filas, gaussiana σ = 8): escalón en x = 1082–1089, pierna 18,8–19,6 → fondo 11,3–12,7; las llaves están en 1000–1013 (A) y 969–972 (B); la zona incierta acaba en 1079",
+  "luminance": "gris de la foto con gaussiana σ = 3 (C3) o σ = 8 (perfiles); medias por columna sobre 80–100 filas"
+ },
+ "own_finding": {
+  "id": "N1",
+  "what": "la pierna derecha de ae0_001 llega hasta el escalón de x ≈ 1085 en la parte baja; las dos llaves la cortan 75–115 px antes",
+  "proposal": "UNCERTAIN_INCLUDE hasta el escalón; alternativa conservadora si se contesta: UNCERTAIN (solo ampliar lo incierto)"
+ },
+ "contest_rule": "regla conjunta conservadora, fijada antes de la respuesta de ChatGPT: en todo desacuerdo gana lo incierto. Un parche CERTAIN contestado no se aplica; si se contesta N1, se aplica su alternativa UNCERTAIN; un REJECT contestado deja la región incierta, como está. Sin cuarta vuelta",
+ "patches_file": "ae0/comparacion_poligonos/parches_codex_propuestos_v0.json",
+ "preview": "ae0/comparacion_poligonos/vista_previa_con_parches_v1.json",
+ "findings": [
+  {
+   "id": "1T004.T1",
+   "tile": "1T004",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La zona naranja cae dentro de un brazo claramente visible, no sobre un borde dudoso.",
+   "panel_box": [
+    466,
+    158,
+    512,
+    216
+   ],
+   "photo_box": [
+    466,
+    606,
+    512,
+    664
+   ],
+   "uncertain_px_v0": 2305,
+   "uncertain_px_after_accepted_patches": 2305,
+   "from_ring_A_px": 2305,
+   "from_ring_B_px": 0,
+   "decision": "ACCEPT",
+   "patch": "C1",
+   "reason": "interior de la manga izquierda levantada; el tajo oscuro es un pliegue rodeado de tela iluminada"
+  },
+  {
+   "id": "1T005.T1",
+   "tile": "1T005",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Ambos parches naranjas cubren interior inequívoco de los brazos.",
+   "panel_box": [
+    18,
+    158,
+    76,
+    216
+   ],
+   "photo_box": [
+    466,
+    606,
+    524,
+    664
+   ],
+   "uncertain_px_v0": 2808,
+   "uncertain_px_after_accepted_patches": 2808,
+   "from_ring_A_px": 2808,
+   "from_ring_B_px": 0,
+   "decision": "ACCEPT",
+   "patch": "C1",
+   "reason": "el mismo rectángulo que 1T004.T1"
+  },
+  {
+   "id": "1T005.T2",
+   "tile": "1T005",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Ambos parches naranjas cubren interior inequívoco de los brazos.",
+   "panel_box": [
+    440,
+    120,
+    512,
+    182
+   ],
+   "photo_box": [
+    888,
+    568,
+    960,
+    630
+   ],
+   "uncertain_px_v0": 3393,
+   "uncertain_px_after_accepted_patches": 3393,
+   "from_ring_A_px": 3393,
+   "from_ring_B_px": 0,
+   "decision": "ACCEPT",
+   "patch": "C2",
+   "reason": "interior de la manga derecha, bajo la cuña oscura entre antebrazo y cabeza"
+  },
+  {
+   "id": "1T006.T1",
+   "tile": "1T006",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La franja naranja cubre interior claramente visible del brazo.",
+   "panel_box": [
+    0,
+    121,
+    74,
+    182
+   ],
+   "photo_box": [
+    896,
+    569,
+    970,
+    630
+   ],
+   "uncertain_px_v0": 3620,
+   "uncertain_px_after_accepted_patches": 3620,
+   "from_ring_A_px": 3620,
+   "from_ring_B_px": 0,
+   "decision": "ACCEPT",
+   "patch": "C2",
+   "reason": "el mismo rectángulo que 1T005.T2"
+  },
+  {
+   "id": "1T010.T1",
+   "tile": "1T010",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La banda naranja continúa mucho más allá del contacto visible y cubre píxeles claramente asignables.",
+   "panel_box": [
+    418,
+    104,
+    512,
+    512
+   ],
+   "photo_box": [
+    418,
+    1448,
+    512,
+    1856
+   ],
+   "uncertain_px_v0": 32800,
+   "uncertain_px_after_accepted_patches": 13369,
+   "from_ring_A_px": 3508,
+   "from_ring_B_px": 12909,
+   "decision": "PARTIAL",
+   "patch": "C3",
+   "reason": "sí en lo iluminado (mantel de la tabla); no en lo oscuro: entre la sombra y el pantalón no hay escalón de luminancia"
+  },
+  {
+   "id": "1T011.T1",
+   "tile": "1T011",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Las bandas naranjas abarcan zonas claramente propias y ajenas lejos del borde dudoso.",
+   "panel_box": [
+    0,
+    104,
+    169,
+    512
+   ],
+   "photo_box": [
+    448,
+    1448,
+    617,
+    1856
+   ],
+   "uncertain_px_v0": 46780,
+   "uncertain_px_after_accepted_patches": 31950,
+   "from_ring_A_px": 25314,
+   "from_ring_B_px": 9378,
+   "decision": "PARTIAL",
+   "patch": "C3",
+   "reason": "ídem 1T010.T1; B1 (EXCLUDE) se aceptó porque «la parte oscura de abajo sigue incierta por las zonas inciertas de ambas llaves»"
+  },
+  {
+   "id": "1T011.T2",
+   "tile": "1T011",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Las bandas naranjas abarcan zonas claramente propias y ajenas lejos del borde dudoso.",
+   "panel_box": [
+    475,
+    154,
+    512,
+    512
+   ],
+   "photo_box": [
+    923,
+    1498,
+    960,
+    1856
+   ],
+   "uncertain_px_v0": 11525,
+   "uncertain_px_after_accepted_patches": 11525,
+   "from_ring_A_px": 0,
+   "from_ring_B_px": 11525,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "pierna derecha: el escalón medido está a 70–115 px a la derecha de las dos llaves; ver N1"
+  },
+  {
+   "id": "1T012.T1",
+   "tile": "1T012",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La incertidumbre forma una franja demasiado ancha alrededor de un límite visible.",
+   "panel_box": [
+    27,
+    148,
+    196,
+    512
+   ],
+   "photo_box": [
+    923,
+    1492,
+    1092,
+    1856
+   ],
+   "uncertain_px_v0": 55364,
+   "uncertain_px_after_accepted_patches": 55364,
+   "from_ring_A_px": 40069,
+   "from_ring_B_px": 24920,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "pierna derecha y cadera bajo el faldón (B4): oscuro contra oscuro, sin escalón en las líneas de las llaves"
+  },
+  {
+   "id": "1T013.T1",
+   "tile": "1T013",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Tres franjas naranjas cubren grandes áreas alejadas de cualquier borde dudoso.",
+   "panel_box": [
+    0,
+    0,
+    169,
+    456
+   ],
+   "photo_box": [
+    448,
+    1792,
+    617,
+    2248
+   ],
+   "uncertain_px_v0": 74137,
+   "uncertain_px_after_accepted_patches": 65131,
+   "from_ring_A_px": 41040,
+   "from_ring_B_px": 24423,
+   "decision": "PARTIAL",
+   "patch": "C3",
+   "reason": "sí en el borde inferior iluminado del mantel; no en lo oscuro"
+  },
+  {
+   "id": "1T013.T2",
+   "tile": "1T013",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Tres franjas naranjas cubren grandes áreas alejadas de cualquier borde dudoso.",
+   "panel_box": [
+    320,
+    56,
+    384,
+    456
+   ],
+   "photo_box": [
+    768,
+    1848,
+    832,
+    2248
+   ],
+   "uncertain_px_v0": 23880,
+   "uncertain_px_after_accepted_patches": 23880,
+   "from_ring_A_px": 23880,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "entre las piernas hay una banda 2–4 niveles más oscura que ambas piernas en y = 1700, 1900 y 2100: puede ser hueco o pliegue"
+  },
+  {
+   "id": "1T013.T3",
+   "tile": "1T013",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Tres franjas naranjas cubren grandes áreas alejadas de cualquier borde dudoso.",
+   "panel_box": [
+    470,
+    0,
+    512,
+    456
+   ],
+   "photo_box": [
+    918,
+    1792,
+    960,
+    2248
+   ],
+   "uncertain_px_v0": 16850,
+   "uncertain_px_after_accepted_patches": 16850,
+   "from_ring_A_px": 1506,
+   "from_ring_B_px": 16850,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "pierna derecha: ver 1T011.T2 y N1"
+  },
+  {
+   "id": "1T014.T1",
+   "tile": "1T014",
+   "person": "ae0_001",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La banda naranja cubre una zona amplia a ambos lados de un límite visualmente localizable.",
+   "panel_box": [
+    22,
+    0,
+    186,
+    456
+   ],
+   "photo_box": [
+    918,
+    1792,
+    1082,
+    2248
+   ],
+   "uncertain_px_v0": 71570,
+   "uncertain_px_after_accepted_patches": 71570,
+   "from_ring_A_px": 55829,
+   "from_ring_B_px": 31920,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "pierna derecha: ver 1T011.T2 y N1"
+  },
+  {
+   "id": "2T001.T1",
+   "tile": "2T001",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La zona naranja incluye cabello y fondo claramente asignables, no solo el contacto.",
+   "panel_box": [
+    0,
+    418,
+    155,
+    512
+   ],
+   "photo_box": [
+    2688,
+    418,
+    2843,
+    512
+   ],
+   "uncertain_px_v0": 8777,
+   "uncertain_px_after_accepted_patches": 8777,
+   "from_ring_A_px": 8097,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "contacto moño de 003 / cabello de 002 (y < 700): la propiedad está disputada (A3, B4, EXCLUSIVITY)"
+  },
+  {
+   "id": "2T002.T1",
+   "tile": "2T002",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La gran zona naranja se extiende por cabello y fondo inequívocos alrededor del contacto entre personas.",
+   "panel_box": [
+    251,
+    0,
+    512,
+    512
+   ],
+   "photo_box": [
+    2491,
+    448,
+    2752,
+    960
+   ],
+   "uncertain_px_v0": 66262,
+   "uncertain_px_after_accepted_patches": 53567,
+   "from_ring_A_px": 26145,
+   "from_ring_B_px": 30065,
+   "decision": "PARTIAL",
+   "patch": "C4, C5",
+   "reason": "sí en el marco y la pared y en la columna de cabello por debajo de y = 700; no bajo el moño"
+  },
+  {
+   "id": "2T003.T1",
+   "tile": "2T003",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La continuación naranja cubre cabello claramente perteneciente o no perteneciente a la persona.",
+   "panel_box": [
+    0,
+    0,
+    114,
+    174
+   ],
+   "photo_box": [
+    2688,
+    448,
+    2802,
+    622
+   ],
+   "uncertain_px_v0": 14703,
+   "uncertain_px_after_accepted_patches": 14703,
+   "from_ring_A_px": 14703,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "contacto moño / cabello (y < 700)"
+  },
+  {
+   "id": "2T005.T1",
+   "tile": "2T005",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La franja naranja penetra ampliamente en ropa o fondo claramente distinguibles.",
+   "panel_box": [
+    431,
+    276,
+    512,
+    505
+   ],
+   "photo_box": [
+    2223,
+    1172,
+    2304,
+    1401
+   ],
+   "uncertain_px_v0": 15272,
+   "uncertain_px_after_accepted_patches": 15272,
+   "from_ring_A_px": 15048,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "botella translúcida ae0_031 delante del brazo (B6, UNCERTAIN_EXCLUDE): se ve a través de ella"
+  },
+  {
+   "id": "2T006.T1",
+   "tile": "2T006",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Las franjas abarcan partes inequívocas de la manga, la mano o el fondo, no solo el contacto con el teléfono.",
+   "panel_box": [
+    228,
+    0,
+    362,
+    186
+   ],
+   "photo_box": [
+    2468,
+    896,
+    2602,
+    1082
+   ],
+   "uncertain_px_v0": 15466,
+   "uncertain_px_after_accepted_patches": 4904,
+   "from_ring_A_px": 0,
+   "from_ring_B_px": 4904,
+   "decision": "ACCEPT",
+   "patch": "C6",
+   "reason": "unión blusa de 003 / cabello de 002, lejos del borde"
+  },
+  {
+   "id": "2T006.T2",
+   "tile": "2T006",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "Las franjas abarcan partes inequívocas de la manga, la mano o el fondo, no solo el contacto con el teléfono.",
+   "panel_box": [
+    0,
+    276,
+    64,
+    481
+   ],
+   "photo_box": [
+    2240,
+    1172,
+    2304,
+    1377
+   ],
+   "uncertain_px_v0": 12289,
+   "uncertain_px_after_accepted_patches": 12289,
+   "from_ring_A_px": 12276,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "botella translúcida ae0_031"
+  },
+  {
+   "id": "2T008.T1",
+   "tile": "2T008",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La continuación naranja cubre una zona claramente asignable fuera del borde dudoso.",
+   "panel_box": [
+    431,
+    0,
+    512,
+    57
+   ],
+   "photo_box": [
+    2223,
+    1344,
+    2304,
+    1401
+   ],
+   "uncertain_px_v0": 2352,
+   "uncertain_px_after_accepted_patches": 2352,
+   "from_ring_A_px": 2128,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "botella translúcida ae0_031"
+  },
+  {
+   "id": "2T009.T1",
+   "tile": "2T009",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La franja naranja residual cae sobre píxeles claramente asignables.",
+   "panel_box": [
+    0,
+    0,
+    64,
+    33
+   ],
+   "photo_box": [
+    2240,
+    1344,
+    2304,
+    1377
+   ],
+   "uncertain_px_v0": 1749,
+   "uncertain_px_after_accepted_patches": 1749,
+   "from_ring_A_px": 1736,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "botella translúcida ae0_031; además, nada de una sola llave fuera de la banda de 8 px"
+  },
+  {
+   "id": "2T011.T1",
+   "tile": "2T011",
+   "person": "ae0_002",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "El rectángulo naranja cae sobre la otra persona, ya separada por el contorno.",
+   "panel_box": [
+    102,
+    213,
+    211,
+    438
+   ],
+   "photo_box": [
+    3238,
+    1557,
+    3347,
+    1782
+   ],
+   "uncertain_px_v0": 23109,
+   "uncertain_px_after_accepted_patches": 23109,
+   "from_ring_A_px": 23100,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "mechones sueltos (S2, confirmado por las dos llaves) sobre el mantel floral; no hay otra persona ahí"
+  },
+  {
+   "id": "3T001.T1",
+   "tile": "3T001",
+   "person": "ae0_003",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La zona naranja incluye cabello y fondo claramente asignables alrededor del contacto.",
+   "panel_box": [
+    307,
+    430,
+    512,
+    512
+   ],
+   "photo_box": [
+    2547,
+    430,
+    2752,
+    512
+   ],
+   "uncertain_px_v0": 9605,
+   "uncertain_px_after_accepted_patches": 9120,
+   "from_ring_A_px": 9120,
+   "from_ring_B_px": 509,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "contacto moño / cabello (y < 700)"
+  },
+  {
+   "id": "3T002.T1",
+   "tile": "3T002",
+   "person": "ae0_003",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La continuación naranja cubre una franja de cabello o fondo inequívoca.",
+   "panel_box": [
+    0,
+    419,
+    114,
+    512
+   ],
+   "photo_box": [
+    2688,
+    419,
+    2802,
+    512
+   ],
+   "uncertain_px_v0": 8104,
+   "uncertain_px_after_accepted_patches": 8104,
+   "from_ring_A_px": 8097,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "contacto moño / cabello (y < 700)"
+  },
+  {
+   "id": "3T004.T1",
+   "tile": "3T004",
+   "person": "ae0_003",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La gran zona naranja cubre amplias áreas claramente asignables y no solo la unión entre las dos personas.",
+   "panel_box": [
+    218,
+    0,
+    512,
+    512
+   ],
+   "photo_box": [
+    2458,
+    448,
+    2752,
+    960
+   ],
+   "uncertain_px_v0": 60722,
+   "uncertain_px_after_accepted_patches": 41957,
+   "from_ring_A_px": 26145,
+   "from_ring_B_px": 23312,
+   "decision": "PARTIAL",
+   "patch": "C7",
+   "reason": "sí por debajo de y = 700; arriba, el marco y la pared ya los resolvió F3a y bajo el moño la propiedad está disputada"
+  },
+  {
+   "id": "3T005.T1",
+   "tile": "3T005",
+   "person": "ae0_003",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "La continuación naranja cubre cabello inequívoco más allá del contacto.",
+   "panel_box": [
+    0,
+    0,
+    114,
+    174
+   ],
+   "photo_box": [
+    2688,
+    448,
+    2802,
+    622
+   ],
+   "uncertain_px_v0": 14703,
+   "uncertain_px_after_accepted_patches": 14703,
+   "from_ring_A_px": 14703,
+   "from_ring_B_px": 0,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "contacto moño / cabello (y < 700)"
+  },
+  {
+   "id": "3T007.O1",
+   "tile": "3T007",
+   "person": "ae0_003",
+   "codex_kind": "OMISSION",
+   "codex_note": "El contorno omite la mano visible de la persona posterior; la zona naranja cubre además parte inequívoca de su brazo.",
+   "panel_box": [
+    135,
+    90,
+    335,
+    185
+   ],
+   "photo_box": [
+    2375,
+    986,
+    2575,
+    1081
+   ],
+   "uncertain_px_v0": 39,
+   "uncertain_px_after_accepted_patches": 39,
+   "from_ring_A_px": 0,
+   "from_ring_B_px": 15,
+   "decision": "REJECT",
+   "patch": null,
+   "reason": "no hay mano: son las rayas de la manga de 002, que siguen el patrón de chevrones de su top, cruzadas por su cabello oscuro; ningún tono de piel"
+  },
+  {
+   "id": "3T007.T1",
+   "tile": "3T007",
+   "person": "ae0_003",
+   "codex_kind": "TOO_BROAD",
+   "codex_note": "El contorno omite la mano visible de la persona posterior; la zona naranja cubre además parte inequívoca de su brazo.",
+   "panel_box": [
+    218,
+    0,
+    334,
+    96
+   ],
+   "photo_box": [
+    2458,
+    896,
+    2574,
+    992
+   ],
+   "uncertain_px_v0": 6187,
+   "uncertain_px_after_accepted_patches": 778,
+   "from_ring_A_px": 0,
+   "from_ring_B_px": 751,
+   "decision": "ALREADY_ADDRESSED",
+   "patch": "F3b",
+   "reason": "lo que queda es la unión protegida (B8, EXCLUSIVITY) o la banda de 8 px"
+  }
+ ]
+}

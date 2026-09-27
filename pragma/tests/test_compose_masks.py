@@ -64,3 +64,33 @@ class EvidencePatches(unittest.TestCase):
         self.assertTrue(est[20, 32] and unc[20, 32])
         with self.assertRaises(ValueError):
             self.apply(self.est, self.unc, {"verdict": "MAYBE", "polygon": self.sq(0, 0, 5, 5)})
+
+
+class RingsOnlyPatches(unittest.TestCase):
+    """``rings_only`` (carta 018): un CERTAIN solo retira la incertidumbre de una sola llave."""
+
+    def setUp(self):
+        from ae0_compose_masks import apply_patch
+        self.apply = apply_patch
+        self.est = np.zeros((40, 40), bool); self.est[10:30, 10:30] = True
+        self.unc = np.zeros((40, 40), bool); self.unc[0:40, 0:20] = True
+        self.protected = np.zeros((40, 40), bool); self.protected[0:40, 0:5] = True
+        self.patch = {"verdict": "CERTAIN", "polygon": [[0, 0], [20, 0], [20, 40], [0, 40]], "margin_px": 2,
+                      "rings_only": True}
+
+    def test_protected_uncertainty_survives(self):
+        est, unc, _ = self.apply(self.est, self.unc, self.patch, self.protected)
+        self.assertTrue(np.array_equal(est, self.est))
+        self.assertTrue(unc[20, 2])                   # protegido: sigue incierto
+        self.assertFalse(unc[20, 7])                  # solo anillo, lejos del contorno: cierto
+        self.assertTrue(unc[20, 10])                  # banda del contorno: sigue incierta
+
+    def test_rings_only_requires_protected_mask(self):
+        with self.assertRaises(ValueError):
+            self.apply(self.est, self.unc, self.patch)
+
+    def test_uncertain_only_widens_the_uncertain_zone(self):
+        est, unc, _ = self.apply(self.est, self.unc, {"verdict": "UNCERTAIN", "polygon": [[30, 10], [35, 10], [35, 30], [30, 30]]})
+        self.assertTrue(np.array_equal(est, self.est))
+        self.assertTrue(unc[20, 32])
+        self.assertFalse(est[20, 32])

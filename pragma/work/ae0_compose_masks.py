@@ -1,6 +1,6 @@
 """Compone las máscaras de referencia A‑E0 de las tres personas a partir de las dos llaves de polígonos.
 
-    python3 work/ae0_compose_masks.py <adjudicaciones.json> [--patches <parches.json>] [--write]
+    python3 work/ae0_compose_masks.py <adjudicaciones.json> [--patches <parches.json> ...] [--write]
 
 Pasos (DEC‑025; ``ae0/FORMATO_POLIGONOS_A-E0.md`` §3):
 1. Rasteriza las dos llaves (``local/``, nunca en git) y verifica sus SHA‑256 contra el compromiso y la
@@ -15,10 +15,18 @@ Pasos (DEC‑025; ``ae0/FORMATO_POLIGONOS_A-E0.md`` §3):
    las llaves. Veredictos:
    - ``CERTAIN``: quita la incertidumbre y deja la estimación como está;
    - ``INCLUDE`` / ``EXCLUDE``: primer plano o fondo ciertos;
-   - ``UNCERTAIN_INCLUDE``: primer plano estimado e incierto (una omisión dudosa).
+   - ``UNCERTAIN_INCLUDE``: primer plano estimado e incierto (una omisión dudosa);
+   - ``UNCERTAIN`` (carta 018): solo marca incierto y deja la estimación como está (zona incierta
+     demasiado estrecha).
    ``margin_px`` protege la banda de frontera: el parche no toca los píxeles a esa distancia
    (Chebyshev) o menos del contorno de la estimación.
    Se aplican después de ``EXCLUSIVITY`` y la exclusividad se vuelve a comprobar al final.
+   ``"rings_only": true`` (propuesta de la carta 018, tras el desafío de Codex) limita el parche a la
+   incertidumbre que puso **una sola** llave con sus ``uncertain_rings``. Nunca toca:
+   - lo incierto por adjudicación de ``keydiff`` (``UNCERTAIN_*`` y ``thin``);
+   - lo que marcaron las dos llaves a la vez;
+   - lo que retiró ``EXCLUSIVITY``;
+   - lo que añadió un parche ``UNCERTAIN_INCLUDE`` o ``UNCERTAIN`` anterior.
 6. Imprime un resumen público (áreas, fracciones, cotas de cada llave). Con ``--write`` guarda las
    máscaras en ``ae0/gt/`` (no versionado) y sus hashes.
 """
@@ -62,15 +70,18 @@ def exclusive_persons(refs: dict) -> dict:
     for oid in ids:
         overlap = refs[oid]["estimate"] & shared
         out[oid] = {"estimate": refs[oid]["estimate"] & ~shared, "uncertain": refs[oid]["uncertain"] | overlap,
-                    "shared_px": int(overlap.sum())}
+                    "shared_px": int(overlap.sum()), "shared_mask": overlap}
     return out
 
 
-PATCH_VERDICTS = ("CERTAIN", "INCLUDE", "EXCLUDE", "UNCERTAIN_INCLUDE")
+PATCH_VERDICTS = ("CERTAIN", "INCLUDE", "EXCLUDE", "UNCERTAIN_INCLUDE", "UNCERTAIN")
 
 
-def apply_patch(estimate, uncertain, patch: dict):
-    """Aplica un parche por evidencia; devuelve ``(estimate, uncertain, píxeles tocados)``."""
+def apply_patch(estimate, uncertain, patch: dict, protected=None):
+    """Aplica un parche por evidencia; devuelve ``(estimate, uncertain, píxeles tocados)``.
+
+    Con ``rings_only`` el parche no toca ``protected`` (lo incierto que no viene de una sola llave).
+    """
     from pragma_ae.keydiff import erode_square
     from pragma_ae.masks import dilate_square
     from pragma_ae.polygon import rasterize
@@ -82,6 +93,10 @@ def apply_patch(estimate, uncertain, patch: dict):
     if margin:
         edge = estimate & ~erode_square(estimate, 1)
         region &= ~dilate_square(edge, margin)
+    if patch.get("rings_only"):
+        if protected is None:
+            raise ValueError("rings_only exige la máscara protegida")
+        region &= ~protected
     est, unc = estimate.copy(), uncertain.copy()
     if verdict == "CERTAIN":
         unc &= ~region
@@ -89,8 +104,10 @@ def apply_patch(estimate, uncertain, patch: dict):
         est |= region; unc &= ~region
     elif verdict == "EXCLUDE":
         est &= ~region; unc &= ~region
-    else:
+    elif verdict == "UNCERTAIN_INCLUDE":
         est |= region; unc |= region
+    else:
+        unc |= region
     return est, unc, int(region.sum())
 
 
@@ -111,15 +128,22 @@ def compose(adjudications: dict, key_a: Path = KEY_A, key_b: Path = KEY_B, check
         ref = keydiff.compose_reference(diff, verdicts, "MIDLINE")
         rings = ra["uncertain"] | rb["uncertain"]
         refs[oid] = {"estimate": ref["reference_estimate_mask"], "uncertain": ref["uncertain_mask"] | rings,
-                     "a": ra["mask"], "b": rb["mask"]}
+                     "a": ra["mask"], "b": rb["mask"],
+                     "protected": ref["uncertain_mask"] | (ra["uncertain"] & rb["uncertain"])}
         report[oid] = {"keydiff": diff["summary"], "rings_union_px": int(rings.sum())}
     final = exclusive_persons({k: {"estimate": v["estimate"], "uncertain": v["uncertain"]} for k, v in refs.items()})
+    protected = {oid: refs[oid]["protected"] | final[oid]["shared_mask"] for oid in PERSONS}
     applied = []
     for k, patch in enumerate(patches or [], 1):
         oid = patch["person"]
-        est, unc, n = apply_patch(final[oid]["estimate"], final[oid]["uncertain"], patch)
+        before = final[oid]["uncertain"]
+        est, unc, n = apply_patch(final[oid]["estimate"], before, patch, protected[oid])
+        if patch["verdict"] in ("UNCERTAIN_INCLUDE", "UNCERTAIN"):
+            from pragma_ae.polygon import rasterize
+            protected[oid] = protected[oid] | (rasterize([patch["polygon"]], unc.shape) & unc)
         final[oid]["estimate"], final[oid]["uncertain"] = est, unc
-        applied.append({"n": k, "person": oid, "verdict": patch["verdict"], "pixels": n})
+        applied.append({"n": k, "id": patch.get("id"), "person": oid, "verdict": patch["verdict"], "pixels": n,
+                        "uncertain_removed_px": int((before & ~unc).sum())})
     if patches:
         again = exclusive_persons({k: {"estimate": v["estimate"], "uncertain": v["uncertain"]} for k, v in final.items()})
         for oid in PERSONS:
@@ -135,18 +159,18 @@ def compose(adjudications: dict, key_a: Path = KEY_A, key_b: Path = KEY_B, check
             "key_A_vs_reference": keydiff.iou_with_uncertainty(refs[oid]["a"], est, unc),
             "key_B_vs_reference": keydiff.iou_with_uncertainty(refs[oid]["b"], est, unc),
         })
-        refs[oid].update(final[oid])
+        refs[oid].update({k: v for k, v in final[oid].items() if k != "shared_mask"})
     return {"report": report, "refs": refs, "patches_applied": applied}
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("adjudications", type=Path)
-    parser.add_argument("--patches", type=Path)
+    parser.add_argument("--patches", type=Path, action="append", help="se puede repetir; se aplican en orden")
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args(argv)
     adj = json.loads(args.adjudications.read_text(encoding="utf-8"))["adjudications"]
-    patches = json.loads(args.patches.read_text(encoding="utf-8"))["patches"] if args.patches else None
+    patches = [p for f in args.patches or [] for p in json.loads(f.read_text(encoding="utf-8"))["patches"]] or None
     out = compose(adj, patches=patches)
     report = out["report"]
     if args.write:
@@ -159,8 +183,7 @@ def main(argv=None):
                 Image.fromarray(m.astype(np.uint8) * 255).save(path)
                 report[oid][f"{name}_png_sha256"] = sha(path)
     print(json.dumps({"adjudications_file": args.adjudications.as_posix(), "adjudications_sha256": sha(args.adjudications),
-                      "patches_file": args.patches.as_posix() if args.patches else None,
-                      "patches_sha256": sha(args.patches) if args.patches else None,
+                      "patches_files": [{"file": f.as_posix(), "sha256": sha(f)} for f in args.patches or []],
                       "patches_applied": out["patches_applied"],
                       "estimate_policy": "MIDLINE", "cross_person_rule": "EXCLUSIVITY", "persons": report},
                      indent=1, ensure_ascii=False))
