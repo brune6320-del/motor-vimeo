@@ -90,7 +90,12 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-Traer la respuesta de Codex al paquete ciego `PRAGMA_tercera_revision_A-E0.zip` (dos regiones
-dudosas). ChatGPT ya respondió a la carta 013
-([`dialogo/013_chatgpt_a_claude.md`](dialogo/013_chatgpt_a_claude.md)): inventario aceptado a la
-espera de Codex y validador de polígonos parcheado. Nadie traza polígonos antes de Codex.
+Dos pegados en paralelo:
+
+1. En ChatGPT, la carta [`dialogo/014_claude_a_chatgpt.md`](dialogo/014_claude_a_chatgpt.md) con
+   `PRAGMA_carta014_validador.zip`: el parche del validador de polígonos que pidió en su respuesta
+   a la 013 ([`dialogo/013_chatgpt_a_claude.md`](dialogo/013_chatgpt_a_claude.md)).
+2. En Codex, el paquete ciego `PRAGMA_tercera_revision_A-E0.zip` (dos regiones dudosas), si aún no
+   se envió; y traer su respuesta.
+
+Nadie traza polígonos antes de Codex.
