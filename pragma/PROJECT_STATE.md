@@ -2312,6 +2312,11 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
+- **(v2.6+, 2026‑09‑27)** Se cumplieron las dos condiciones: `POLYGON_VALIDATOR_PATCH = PASS`
+  (ChatGPT 014) y Codex incorporado (C:022 y C:025 `NOT_SEPARABLE` → excluidos). Lista de objetos
+  congelada por hash en `ae0/CONGELADO_INVENTARIO_A-E0.json` (65 objetos, sin pendientes), **antes
+  de trazar**. Siguiente: Claude traza sus polígonos y compromete solo el hash (carta 015).
+
 - **Inventario adjudicado compuesto:** `ae0/scene_inventory.json`, 65 objetos + 2 pendientes,
   aceptado por ChatGPT **a la espera de Codex**. No es un inventario final todavía.
 - **Polígonos:** formato, derivación y custodia aceptados; validador parcheado según ChatGPT 013

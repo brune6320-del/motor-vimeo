@@ -47,14 +47,18 @@
         "file": "ae0/comparacion/tercera_revision_reglas.json",
         "sha256": "2e0f21c407b0e2a81bf258c28d9c20b6e6c285e5fb3808190500a23a7a92357c"
       },
-      "third_review_answer": "pendiente"
+      "third_review_answer": {
+        "file": "ae0/comparacion/tercera_revision_codex.json",
+        "sha256": "dbda0477b74ad6dbaaca6a0ca48539e290cc2c80dbc0221f16141127f44c3e5e",
+        "status": "incorporada"
+      }
     }
   },
   "provenance": {
     "method": "doble llave de IA (DEC-024) con adjudicación por evidencia; ninguna persona ratificó píxeles",
     "composer": {
       "file": "work/ae0_compose_reference.py",
-      "sha256": "a2aa87cf9f38417ca2fcbe4c4c2213747b3077a2d988548a1717f250d9880c64"
+      "sha256": "d7fa610f8782603d20658961930a03be7541f8e596fd16a7e0b71e67f87bc1ce"
     },
     "bbox_convention": "XYXY en píxeles de la foto a resolución completa, semiabierta [x1, x2) × [y1, y2)"
   },
@@ -1918,72 +1922,7 @@
       }
     }
   ],
-  "pending_third_review": [
-    {
-      "region": "a",
-      "key_ref": "C:022",
-      "object": {
-        "id": "ae0_022",
-        "canonical_name": "objeto de vidrio en el borde izquierdo",
-        "synonyms": [],
-        "concept_en": "glass",
-        "kind": "instance",
-        "tier": "B",
-        "bbox": [
-          0,
-          519,
-          60,
-          744
-        ],
-        "bbox_source": "ai_visual_estimate",
-        "occlusion": "none",
-        "truncation": "medium",
-        "parent_id": null,
-        "occluded_by": [],
-        "gt_required": false,
-        "gt_mask": null,
-        "ignore_reason": null,
-        "review": [],
-        "notes": "Brillos verticales de un objeto de vidrio (¿florero o copa?); cortado por el borde izquierdo. Lado corto ~60 px.",
-        "sources": {
-          "claude": "ae0_022",
-          "chatgpt": null
-        }
-      }
-    },
-    {
-      "region": "b",
-      "key_ref": "C:025",
-      "object": {
-        "id": "ae0_025",
-        "canonical_name": "recipiente oscuro en el borde izquierdo",
-        "synonyms": [],
-        "concept_en": "jar",
-        "kind": "instance",
-        "tier": "A",
-        "bbox": [
-          0,
-          1021,
-          112,
-          1349
-        ],
-        "bbox_source": "ai_visual_estimate",
-        "occlusion": "none",
-        "truncation": "medium",
-        "parent_id": null,
-        "occluded_by": [],
-        "gt_required": false,
-        "gt_mask": null,
-        "ignore_reason": null,
-        "review": [],
-        "notes": "Forma redondeada oscura, apenas distinguible; cortada por el borde izquierdo. Identidad dudosa.",
-        "sources": {
-          "claude": "ae0_025",
-          "chatgpt": null
-        }
-      }
-    }
-  ],
+  "pending_third_review": [],
   "retired_ids": [
     {
       "id": "ae0_041",
@@ -2004,6 +1943,16 @@
       "id": "ae0_024",
       "key": "chatgpt",
       "reason": "Q3: es la pared vista a través del respaldo abierto"
+    },
+    {
+      "id": "ae0_022",
+      "key": "claude",
+      "reason": "tercera revisión: NOT_SEPARABLE — Solo hay brillos discontinuos y una traza estrecha, sin un contorno estable que permita separarlos de reflejos o del fondo. La parte claramente visible tampoco alcanza con seguridad los 32 px de lado corto."
+    },
+    {
+      "id": "ae0_025",
+      "key": "claude",
+      "reason": "tercera revisión: NOT_SEPARABLE — La región mantiene la textura oscura del fondo y no presenta límites propios. Las débiles líneas visibles no delimitan una instancia independiente."
     }
   ],
   "adjudication_log": {

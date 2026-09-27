@@ -263,6 +263,9 @@ def main(argv=None):
     args = parser.parse_args(argv)
     codex = json.loads(args.codex.read_text(encoding="utf-8")) if args.codex else None
     out = compose(codex)
+    if args.codex:
+        out["double_key"]["adjudication"]["third_review_answer"] = {
+            "file": args.codex.resolve().relative_to(ROOT).as_posix(), "sha256": sha(args.codex), "status": "incorporada"}
     OUT.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     result = inv.validate(out, OUT.parent)
     print(json.dumps({k: result[k] for k in ("state", "reference_type", "tier_counts", "errors", "warnings")},
