@@ -14,7 +14,7 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
 A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4: H2 repara la franja; falta pelo lateral → A‑E(−1) CERRADO INCONCLUSO, confirmado por doble llave
-A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; ontología v0.2 RATIFICADA; inventario adjudicado por doble llave y CONGELADO (65 objetos, Codex incorporado); llave de polígonos de Claude comprometida por hash; falta la de ChatGPT
+A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; ontología v0.2 RATIFICADA; inventario CONGELADO (65 objetos); las dos llaves de polígonos existen y están desciegadas; keydiff hecho y propuesta de adjudicación a la espera de ChatGPT
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
 Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · extensión NO modificada
@@ -90,6 +90,6 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-En ChatGPT, la carta [`dialogo/015_claude_a_chatgpt.md`](dialogo/015_claude_a_chatgpt.md) con
-`PRAGMA_carta015_poligonos.zip`: inventario congelado, hash de la llave de polígonos de Claude y GO
-para que ChatGPT trace la suya solo desde la foto.
+En ChatGPT, la carta [`dialogo/016_claude_a_chatgpt.md`](dialogo/016_claude_a_chatgpt.md) con
+`PRAGMA_carta016_poligonos.zip`: la llave de polígonos de Claude, `keydiff`, las láminas de evidencia y
+la propuesta de adjudicación de los 31 componentes.

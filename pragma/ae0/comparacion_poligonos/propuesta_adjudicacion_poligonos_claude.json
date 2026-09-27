@@ -1,0 +1,169 @@
+{
+ "schema": "pragma.ae0_polygon_adjudication_proposal",
+ "schema_version": "0.1.0",
+ "author": "claude",
+ "status": "PROPOSAL_PENDING_SECOND_KEY",
+ "keys": {
+  "A": {
+   "auditor": "claude",
+   "file_sha256": "39a071e0bbde68efb23035a31cc67e09e0f74319bc0db2cb64a988dead7504c5"
+  },
+  "B": {
+   "auditor": "chatgpt",
+   "file_sha256": "d7b931419a131e1b85512390e9c27e8abe9a0f01a6579d572d4d1f6616ed2fc2"
+  }
+ },
+ "comparison": "pragma_ae/keydiff.py (DEC-025), t = 2 px, adjudicar ISLAND y THICK >= 100 px",
+ "evidence": "láminas privadas por componente (foto + contorno A magenta + contorno B cian + región en amarillo), en el paquete de la carta 016",
+ "uncertain_rule": "la zona incierta final es la de keydiff (thin, UNCERTAIN_*) más la unión de los uncertain_rings de las dos llaves (FORMATO_POLIGONOS §3.3)",
+ "adjudications": {
+  "ae0_001": {
+   "A1": [
+    "INCLUDE",
+    "panel derecho de la camisa abierta: la tela clara llega a la línea A; la línea B corta el panel por la mitad"
+   ],
+   "A2": [
+    "UNCERTAIN_INCLUDE",
+    "borde de la pierna derecha, oscuro contra oscuro; 100 % dentro de zonas inciertas"
+   ],
+   "A3": [
+    "INCLUDE",
+    "parte inferior del brazo derecho: la tela del brazo llega a la línea A (comprobado a 3×)"
+   ],
+   "A4": [
+    "INCLUDE",
+    "borde claro de la visera de la gorra (parte de la persona)"
+   ],
+   "A5": [
+    "INCLUDE",
+    "borde exterior del codo izquierdo; la sombra del flash empieza fuera de la línea A"
+   ],
+   "B1": [
+    "EXCLUDE",
+    "sombra del flash en la pared, la plancha y el mantel de la tabla de planchar; la parte oscura de abajo sigue incierta por las zonas inciertas de ambas llaves"
+   ],
+   "B2": [
+    "EXCLUDE",
+    "pared y puerta encima del antebrazo izquierdo"
+   ],
+   "B3": [
+    "EXCLUDE",
+    "hueco oscuro de la puerta encima del antebrazo derecho"
+   ],
+   "B4": [
+    "UNCERTAIN_EXCLUDE",
+    "cadera/pierna derecha bajo el faldón, oscuro contra oscuro; 89 % dentro de zonas inciertas"
+   ]
+  },
+  "ae0_002": {
+   "A1": [
+    "INCLUDE",
+    "la manga oscura llega hasta el overol sin hueco visible; bajo la mano sigue el overol"
+   ],
+   "A2": [
+    "INCLUDE",
+    "hombro oscuro de 002 bajo la blusa de 003, continuo con su brazo"
+   ],
+   "A3": [
+    "UNCERTAIN_INCLUDE",
+    "columna de cabello bajo el moño: propiedad 002/003 disputada; 100 % en zonas inciertas"
+   ],
+   "A4": [
+    "EXCLUDE",
+    "CONCESIÓN: bajo el codo, entre las líneas es fondo gris; la línea A sobra 7–14 px"
+   ],
+   "A5": [
+    "EXCLUDE",
+    "CONCESIÓN: las rayas terminan en la línea B"
+   ],
+   "A6": [
+    "EXCLUDE",
+    "CONCESIÓN: franja gris de fondo junto al borde del brazo"
+   ],
+   "A7": [
+    "INCLUDE",
+    "borde del cabello arriba de la cabeza"
+   ],
+   "A8": [
+    "INCLUDE",
+    "punta blanca del dedo"
+   ],
+   "B1": [
+    "EXCLUDE",
+    "mantel floral de la mesa derecha, a la derecha de las rayas y del overol"
+   ],
+   "B2": [
+    "EXCLUDE",
+    "pared a la derecha de la mano en V"
+   ],
+   "B3": [
+    "EXCLUDE",
+    "pared y marco de cuadro a la derecha del cabello"
+   ],
+   "B4": [
+    "UNCERTAIN_EXCLUDE",
+    "cabello bajo el moño; el inventario congelado lo asigna a 003 (ae0_049); 97 % en zonas inciertas"
+   ],
+   "B5": [
+    "EXCLUDE",
+    "teléfono ae0_050: objeto sostenido, instancia aparte; máscara modal de persona sin él"
+   ],
+   "B6": [
+    "UNCERTAIN_EXCLUDE",
+    "zona de la botella translúcida ae0_031 junto al brazo; 97 % en zonas inciertas"
+   ],
+   "B7": [
+    "EXCLUDE",
+    "franja oscura de fondo junto al borde de la mano"
+   ],
+   "B8": [
+    "UNCERTAIN_EXCLUDE",
+    "unión blusa de 003 / cabello; 100 % en zonas inciertas"
+   ],
+   "B9": [
+    "INCLUDE",
+    "CONCESIÓN: el valle entre los dedos es menos profundo; es mano"
+   ],
+   "B10": [
+    "UNCERTAIN_INCLUDE",
+    "transición cabello/pared en lo alto de la cabeza (160 px)"
+   ]
+  },
+  "ae0_003": {
+   "A1": [
+    "INCLUDE",
+    "la blusa floral llega a la línea A; la línea B la corta en diagonal"
+   ],
+   "A2": [
+    "EXCLUDE",
+    "CONCESIÓN: borde del moño; entre las líneas es transición a pared"
+   ],
+   "B1": [
+    "EXCLUDE",
+    "43 775 px fuera de zonas inciertas son pared y el marco del cuadro alrededor del moño, entre moño y blusa y sobre la blusa; los 22 176 px restantes siguen inciertos"
+   ],
+   "B2": [
+    "EXCLUDE",
+    "hombro de 002 bajo la blusa (coherente con ae0_002 A2)"
+   ]
+  }
+ },
+ "concessions_to_second_key": [
+  "ae0_002 A4",
+  "ae0_002 A5",
+  "ae0_002 A6",
+  "ae0_002 B9",
+  "ae0_003 A2"
+ ],
+ "findings": {
+  "overlap_between_persons_key_A": {
+   "ae0_002∩ae0_003_px": 47,
+   "note": "defecto propio: esquina de la blusa y unión del moño; se corrige en la composición"
+  },
+  "overlap_between_persons_key_B": {
+   "ae0_002∩ae0_003_px": 23344,
+   "note": "la llave B asigna los mismos píxeles a dos personas (cabello bajo el moño)"
+  }
+ },
+ "cross_person_rule_proposed": "EXCLUSIVITY: tras componer, un píxel que queda en la estimación de dos personas pasa a uncertain en las dos y sale de la estimación de ambas"
+}
