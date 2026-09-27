@@ -1,0 +1,189 @@
+{
+ "adjudications_file": "ae0/comparacion_poligonos/adjudicacion_poligonos_final.json",
+ "adjudications_sha256": "f7f8abe4cf2f49aad40845521018090fe73e8a510a1a384ecc5a993a2bcd311e",
+ "patches_file": "ae0/comparacion_poligonos/parches_propuestos_v0.json",
+ "patches_sha256": "1d1e08c06affe2f8e41bd19cd661290a86aaa1ab2c678f296bc970e0fa7ae095",
+ "patches_applied": [
+  {
+   "n": 1,
+   "person": "ae0_001",
+   "verdict": "CERTAIN",
+   "pixels": 3536
+  },
+  {
+   "n": 2,
+   "person": "ae0_001",
+   "verdict": "CERTAIN",
+   "pixels": 24800
+  },
+  {
+   "n": 3,
+   "person": "ae0_002",
+   "verdict": "CERTAIN",
+   "pixels": 22998
+  },
+  {
+   "n": 4,
+   "person": "ae0_003",
+   "verdict": "CERTAIN",
+   "pixels": 16566
+  },
+  {
+   "n": 5,
+   "person": "ae0_003",
+   "verdict": "CERTAIN",
+   "pixels": 23051
+  },
+  {
+   "n": 6,
+   "person": "ae0_002",
+   "verdict": "UNCERTAIN_INCLUDE",
+   "pixels": 2759
+  }
+ ],
+ "estimate_policy": "MIDLINE",
+ "cross_person_rule": "EXCLUSIVITY",
+ "persons": {
+  "ae0_001": {
+   "keydiff": {
+    "shape": [
+     2248,
+     4000
+    ],
+    "tolerance_px": 2,
+    "min_adjudicate_px": 100,
+    "area_a": 1135225,
+    "area_b": 1225665,
+    "iou": 0.82688,
+    "consensus_px": 1068583,
+    "xor_px": 223724,
+    "a_only_px": 66642,
+    "b_only_px": 157082,
+    "adjudicable_px": 222932,
+    "thin_px": 792,
+    "n_thick": 9,
+    "n_island": 0,
+    "n_open": 9,
+    "n_requires_adjudication": 9,
+    "auto_uncertain_px": 0
+   },
+   "rings_union_px": 268231,
+   "estimate_px": 1135231,
+   "certain_foreground_px": 984439,
+   "uncertain_area_px": 243760,
+   "uncertain_fraction_of_image": 0.027109,
+   "uncertain_fraction_of_estimate": 0.1328,
+   "shared_between_persons_px": 0,
+   "key_A_vs_reference": {
+    "metric_all_pixels_estimate": 0.999664,
+    "metric_all_pixels_min": 0.801531,
+    "metric_all_pixels_max": 1.0,
+    "metric_excluding_uncertain": 1.0,
+    "uncertain_area_px": 243760,
+    "uncertain_fraction": 0.02710854
+   },
+   "key_B_vs_reference": {
+    "metric_all_pixels_estimate": 0.827151,
+    "metric_all_pixels_min": 0.70291,
+    "metric_all_pixels_max": 0.879098,
+    "metric_excluding_uncertain": 0.859588,
+    "uncertain_area_px": 243760,
+    "uncertain_fraction": 0.02710854
+   }
+  },
+  "ae0_002": {
+   "keydiff": {
+    "shape": [
+     2248,
+     4000
+    ],
+    "tolerance_px": 2,
+    "min_adjudicate_px": 100,
+    "area_a": 1599096,
+    "area_b": 1592006,
+    "iou": 0.884371,
+    "consensus_px": 1497645,
+    "xor_px": 195812,
+    "a_only_px": 101451,
+    "b_only_px": 94361,
+    "adjudicable_px": 194145,
+    "thin_px": 1667,
+    "n_thick": 18,
+    "n_island": 0,
+    "n_open": 17,
+    "n_requires_adjudication": 18,
+    "auto_uncertain_px": 0
+   },
+   "rings_union_px": 119010,
+   "estimate_px": 1590144,
+   "certain_foreground_px": 1548747,
+   "uncertain_area_px": 103931,
+   "uncertain_fraction_of_image": 0.011558,
+   "uncertain_fraction_of_estimate": 0.026,
+   "shared_between_persons_px": 105,
+   "key_A_vs_reference": {
+    "metric_all_pixels_estimate": 0.990401,
+    "metric_all_pixels_min": 0.930591,
+    "metric_all_pixels_max": 0.992779,
+    "metric_excluding_uncertain": 0.992595,
+    "uncertain_area_px": 103931,
+    "uncertain_fraction": 0.01155816
+   },
+   "key_B_vs_reference": {
+    "metric_all_pixels_estimate": 0.890102,
+    "metric_all_pixels_min": 0.84964,
+    "metric_all_pixels_max": 0.907062,
+    "metric_excluding_uncertain": 0.904077,
+    "uncertain_area_px": 103931,
+    "uncertain_fraction": 0.01155816
+   }
+  },
+  "ae0_003": {
+   "keydiff": {
+    "shape": [
+     2248,
+     4000
+    ],
+    "tolerance_px": 2,
+    "min_adjudicate_px": 100,
+    "area_a": 102222,
+    "area_b": 168713,
+    "iou": 0.552778,
+    "consensus_px": 96451,
+    "xor_px": 78033,
+    "a_only_px": 5771,
+    "b_only_px": 72262,
+    "adjudicable_px": 77687,
+    "thin_px": 346,
+    "n_thick": 4,
+    "n_island": 0,
+    "n_open": 4,
+    "n_requires_adjudication": 4,
+    "auto_uncertain_px": 0
+   },
+   "rings_union_px": 66620,
+   "estimate_px": 101879,
+   "certain_foreground_px": 84293,
+   "uncertain_area_px": 47399,
+   "uncertain_fraction_of_image": 0.005271,
+   "uncertain_fraction_of_estimate": 0.1726,
+   "shared_between_persons_px": 105,
+   "key_A_vs_reference": {
+    "metric_all_pixels_estimate": 0.996274,
+    "metric_all_pixels_min": 0.63915,
+    "metric_all_pixels_max": 0.998132,
+    "metric_excluding_uncertain": 0.997739,
+    "uncertain_area_px": 47399,
+    "uncertain_fraction": 0.00527124
+   },
+   "key_B_vs_reference": {
+    "metric_all_pixels_estimate": 0.553528,
+    "metric_all_pixels_min": 0.417423,
+    "metric_all_pixels_max": 0.633985,
+    "metric_excluding_uncertain": 0.555795,
+    "uncertain_area_px": 47399,
+    "uncertain_fraction": 0.00527124
+   }
+  }
+ }
+}

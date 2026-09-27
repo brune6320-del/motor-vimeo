@@ -14,7 +14,7 @@ qué conservar y exportarlo limpio, sin arrastrar un trozo de otra cosa.
 ```text
 Fase A dirigida por clic (v4)   INCONCLUSIVE — el PASS histórico fue corregido por evidencia visual
 A‑E(−1) diagnóstico chica       v1.3 (L4): CLOSED_INCONCLUSIVE por doble llave · subproblema de separación DEMOSTRADO; segmentación completa no · v1.4: H2 repara la franja; falta pelo lateral → A‑E(−1) CERRADO INCONCLUSO, confirmado por doble llave
-A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; ontología v0.2 RATIFICADA; inventario CONGELADO (65 objetos); las dos llaves de polígonos existen y están desciegadas; keydiff hecho y propuesta de adjudicación a la espera de ChatGPT
+A‑E0 inventario de referencia   DEC‑024: doble llave de IA → AI_CONSENSUS_REFERENCE; máscaras sin SAM 2; ontología v0.2 RATIFICADA; inventario CONGELADO (65 objetos); referencia de las tres personas compuesta por doble llave (31/31 aceptados); teselas de contorno en revisión (ChatGPT + Codex a ciegas)
 A‑E1 SAM2 AMG                   sweep prerregistrado (verificado en el commit exacto); DEC‑013‑Q adoptada; sin corrida
 Revisión                        la hace la IA (auditoría + contraauditoría de ChatGPT); la persona usuaria solo veta
 Fase B                          BLOQUEADA · SAM 2 todavía NO rechazable · extensión NO modificada
@@ -90,6 +90,10 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 ## Próxima acción única
 
-En ChatGPT, la carta [`dialogo/016_claude_a_chatgpt.md`](dialogo/016_claude_a_chatgpt.md) con
-`PRAGMA_carta016_poligonos.zip`: la llave de polígonos de Claude, `keydiff`, las láminas de evidencia y
-la propuesta de adjudicación de los 31 componentes.
+Dos pegados en paralelo (numeración de órdenes: termina en 0 → va a ChatGPT; termina en 1 → va a
+Claude):
+
+1. En ChatGPT, la carta [`dialogo/017_claude_a_chatgpt.md`](dialogo/017_claude_a_chatgpt.md)
+   (**ORDEN 170**) con `PRAGMA_carta017_teselas.zip`.
+2. En Codex, `PRAGMA_teselas_contorno_A-E0_codex.zip` con el texto de su
+   `PREGUNTAS_TESELAS_CONTORNO.md`.

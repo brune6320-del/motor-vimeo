@@ -24,6 +24,21 @@ contraauditoría de ChatGPT sobre los mismos hashes.
 La persona usuaria **no** arbitra píxeles: conserva el veto y decide solo cuestiones semánticas
 irreducibles.
 
+
+## Numeración de órdenes (desde la carta 017, a pedido de la persona usuaria)
+
+Para que la persona usuaria sepa a quién llevar cada mensaje sin releer los dos últimos:
+
+- Cada respuesta de **Claude** termina con `ORDEN N0`. Con carta, N es su número: la carta 017 es la
+  `ORDEN 170`.
+- Cada carta pide a **ChatGPT** que termine su respuesta con `ORDEN N1`: respuesta a la 017 →
+  `ORDEN 171`.
+- **Regla para la persona usuaria:**
+  - si el último mensaje termina en **0**, va a ChatGPT;
+  - si termina en **1**, va a Claude.
+- Codex no entra en la numeración: su paquete sale junto a una orden de Claude y su respuesta vuelve
+  a Claude.
+
 ## Canal
 
 1. Las cartas viven aquí, numeradas: `NNN_claude_a_chatgpt.md` y `NNN_chatgpt_a_claude.md`.
@@ -89,5 +104,7 @@ irreducibles.
 | 014 | ChatGPT → Claude | Parche reproducido (15/15; el validador anterior da 4 FAIL + 1 ERROR): **`POLYGON_VALIDATOR_PATCH = PASS`**, procedencia de atributos aceptada; espera a Codex | archivada tal cual |
 | 015 | Claude → ChatGPT | Codex incorporado; inventario congelado (`bbf59747…b0ce`); llave de polígonos de Claude solo por hash (`39a071e0…04c5`) con el método declarado; GO para la llave de polígonos de ChatGPT. Con paquete privado (sin nada de los polígonos de Claude) | respondida con la llave |
 | — | ChatGPT → Claude | Llave de polígonos (`poligonos_chatgpt_A-E0.json`, `d7b93141…2fc2`) e informe del validador, sin carta | archivada tal cual en `local/` (solo hash en git) |
-| 016 | Claude → ChatGPT | Desciegue: llave de Claude (`39a071e0…04c5`), `keydiff` (31 componentes), propuesta de adjudicación con láminas y 5 concesiones, solape entre personas en las dos llaves, regla `EXCLUSIVITY`, vista previa. Con paquete privado | para pegar |
+| 016 | Claude → ChatGPT | Desciegue: llave de Claude (`39a071e0…04c5`), `keydiff` (31 componentes), propuesta de adjudicación con láminas y 5 concesiones, solape entre personas en las dos llaves, regla `EXCLUSIVITY`, vista previa. Con paquete privado | respondida |
+| 016 | ChatGPT → Claude | 31 `ACCEPT`, 0 contestados; `EXCLUSIVITY` y la regla del 90 % aceptadas; GO para componer, teselas y Codex dirigido | archivada tal cual |
+| 017 | Claude → ChatGPT | **ORDEN 170.** Referencia compuesta (hashes y cotas), 36 teselas de contorno, revisión propia (S1, F1–F3), 6 parches por evidencia, Codex en paralelo. Con paquete privado | para pegar |
 | — | Codex → (tercera revisión ciega) | Región a (C:022) y región b (C:025): `NOT_SEPARABLE` las dos → `EXCLUDE` por la regla fijada; `consulted_only_these_images = true` | archivada tal cual en `ae0/comparacion/tercera_revision_codex.json` |

@@ -3,11 +3,12 @@
 - **Proyecto:** PRAGMA · Motor de Transparencia / Inventario exhaustivo de escena
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
-- **Última actualización:** 27 de septiembre de 2026 (v2.8, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v2.8`
+- **Última actualización:** 27 de septiembre de 2026 (v2.9, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
+- **Versión:** `v2.9`
 - **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
 - **Fase B:** `BLOQUEADA`
-- **Último hito documentado (v2.8):** llave de polígonos de ChatGPT recibida (`d7b93141…2fc2`, `4ef9224`) y **desciegue**. `keydiff` (DEC‑025): IoU A/B 0,827 · 0,884 · 0,553 y 31 componentes `THICK` que adjudicar, sin islas. Claude propone los 31 verdictos con una lámina de evidencia cada uno, incluidas **5 concesiones** a ChatGPT. Hallazgo: la llave de ChatGPT asigna 23 344 px a dos personas a la vez; la de Claude, 47 (defecto propio declarado). Regla nueva propuesta, `EXCLUSIVITY`. Vista previa de la composición (`work/ae0_compose_masks.py`), sin valor de referencia. 153/153. Carta 016
+- **Último hito documentado (v2.9):** ChatGPT 016 aceptó los 31 verdictos (0 contestados, nada a Codex), `EXCLUSIVITY` y la regla del 90 %. **Referencia A‑E0 compuesta** (máscaras en `ae0/gt/`, hashes y cotas en `composicion_referencia_v0.json`). **36 teselas de contorno** (31 de desafío), con el plan fijado antes de verlas. Claude las recorrió: una posible omisión compartida (S1, ≈ 2,8 kpx) y tres zonas de incertidumbre donde no hay duda (F1–F3), heredadas de la unión de zonas inciertas. Propone 6 parches por evidencia (mecanismo nuevo con pruebas; 155/155). Paquete ciego de Codex con las 31 de desafío, etiquetas tapadas y regla fijada antes. Numeración de órdenes (x0 Claude, x1 ChatGPT). Carta 017 = **ORDEN 170**
+- **Hito v2.8:** llave de polígonos de ChatGPT recibida (`d7b93141…2fc2`, `4ef9224`) y **desciegue**. `keydiff` (DEC‑025): IoU A/B 0,827 · 0,884 · 0,553 y 31 componentes `THICK` que adjudicar, sin islas. Claude propone los 31 verdictos con una lámina de evidencia cada uno, incluidas **5 concesiones** a ChatGPT. Hallazgo: la llave de ChatGPT asigna 23 344 px a dos personas a la vez; la de Claude, 47 (defecto propio declarado). Regla nueva propuesta, `EXCLUSIVITY`. Vista previa de la composición (`work/ae0_compose_masks.py`), sin valor de referencia. 153/153. Carta 016
 - **Hito v2.7:** ChatGPT 014 dio `POLYGON_VALIDATOR_PATCH = PASS` y Codex respondió `NOT_SEPARABLE` a C:022 y C:025 → excluidos por la regla fijada, sin cuarta vuelta. **Inventario A‑E0 congelado** antes de trazar (`bbf59747…b0ce`, 65 objetos, `4ca47c1`). Claude trazó su **llave de polígonos** de las tres personas (juicio visual, sin segmentadores) y la **comprometió solo por SHA‑256** (`39a071e0…04c5`, `027dec1`); su contenido queda en `local/` y fuera de git y de las cartas hasta archivar la llave de ChatGPT. Carta 015: GO para la llave de polígonos de ChatGPT, solo desde la foto
 - **Hito v2.6:** ChatGPT 013 aceptó el inventario compuesto **a la espera de Codex** (`COMPOSED_INVENTORY = ACCEPTED_PENDING_CODEX`; «65 objetos + 2 pendientes» no es todavía un inventario final), las cajas de las dos mesas, los ids y el formato, la derivación y la custodia de los polígonos. Los 18 atributos por defecto quedan como `CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED`, no como consenso. **Encontró un hueco real en el validador de polígonos:** una zona incierta enorme pasaba, y los vértices fuera de la foto se recortaban en silencio. Parche aplicado antes de que exista ningún polígono: vértices crudos finitos dentro de 4000 × 2248 y caja de la zona incierta dentro de la caja de la persona ± 40 px; las cuatro pruebas de rechazo fallan con el validador anterior. 151/151 tests. Carta 014 pide a ChatGPT `POLYGON_VALIDATOR_PATCH`. Nadie traza hasta que Codex esté incorporado
 - **Hito v2.5:** ChatGPT 012 confirmó la custodia y aceptó la propuesta de adjudicación. En Q2 y Q3 aceptó la lectura de Claude; en Q1 mantuvo **dos mesas**, y Claude, al revisar la banda inferior completa, se lo concedió (bordes frontales asimétricos; borde propio de la mesa derecha). Solo C:022 y C:025 van a Codex, en un paquete ciego y con la regla de decisión fijada antes (`4281c28`). **Inventario adjudicado compuesto** (`ae0/scene_inventory.json`): 65 objetos, `AI_DOUBLE_KEY_REVIEWED` → `AI_CONSENSUS_REFERENCE`; el validador da `A_E0_PENDING_GT`, sin errores. **Rasterizador de polígonos** `NUMPY_MINIMAL` (`pragma_ae/polygon.py`) y formato y custodia de los polígonos de las tres personas. 145/145 tests. Carta 013
@@ -489,6 +490,37 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
 - **Certeza:**
   - `✅ EJECUTADO GPU` + `✅` doble llave con adjudicación técnica;
   - `✅` confirmado por ChatGPT 008 (v2.1).
+
+## Hito 27 — Referencia compuesta, teselas de contorno y parches por evidencia (v2.9)
+
+- **ChatGPT 016** (`dialogo/016_chatgpt_a_claude.md`):
+  - 31 `ACCEPT`, 0 `CONTEST`, nada a Codex;
+  - `EXCLUSIVITY = ACCEPT`;
+  - regla del 90 % `ACCEPT_V0_1`: `UNCERTAIN_*` solo cambia la estimación y nunca crea certeza.
+  - Su archivo es `adjudicacion_chatgpt_poligonos_A-E0.json` (`7304fb05…d459`).
+- **Composición** (`work/ae0_compose_masks.py --write`):
+  - hashes y cotas en `composicion_referencia_v0.json`;
+  - primer plano cierto: 981 921, 1 543 213 y 73 629 px;
+  - incierto dentro de la estimación: 13,5 %, 2,8 % y 27,7 %.
+- **Teselas** (`teselas_contorno_plan.json`, fijado antes de verlas): 36, de las cuales 31 son de
+  desafío.
+- **Revisión de Claude** (`revision_teselas_claude_v0.json`):
+  - **S1:** posible omisión en el hombro de 002;
+  - **S2:** mechones ya inciertos;
+  - **F1–F3:** incertidumbre sobre mantel, marco, pared y la propia blusa de 003, heredada de la
+    unión de zonas inciertas.
+- **Parches por evidencia** (`parches_propuestos_v0.json`):
+  - veredictos `CERTAIN`, `INCLUDE`, `EXCLUDE` y `UNCERTAIN_INCLUDE`, con `margin_px` que protege la
+    frontera;
+  - vista previa en `vista_previa_con_parches_v0.json`.
+- **Codex:** `PRAGMA_teselas_contorno_A-E0_codex.zip` (`aad3fc06…b78b`), con regla `addendum_v0_2`
+  fijada antes de enviarlo.
+- **Numeración de órdenes** (en `dialogo/README.md` y `CLAUDE.md`): Claude termina en 0 y ChatGPT
+  en 1.
+- **Carta 017** (ORDEN 170) con `PRAGMA_carta017_teselas.zip` (`d4f6a9…d43a`).
+- **Certeza:**
+  - `✅` composición, teselas y revisión propia;
+  - `🟡` parches (esperan a ChatGPT) y Codex.
 
 ## Hito 26 — Desciegue de los polígonos, keydiff y propuesta de adjudicación (v2.8)
 
@@ -1169,7 +1201,12 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 | `RECEPCION_POLIGONOS_CHATGPT_A-E0.json` · `poligonos_chatgpt_A-E0.json` | `pragma/ae0/` · local | llave de polígonos de ChatGPT (solo hash en git) | ✅ `valid` | `d7b93141…2fc2` |
 | `keydiff_poligonos_v0.json` · `propuesta_adjudicacion_poligonos_claude.json` · `vista_previa_composicion_propuesta.json` | `pragma/ae0/comparacion_poligonos/` | comparación · propuesta · vista previa | ✅ · 🟡 propuesta · vista previa | ver manifiesto |
 | `ae0_compose_masks.py` · `test_compose_masks.py` | `work/` · `tests/` | composición de las máscaras con `EXCLUSIVITY` | ✅ 2 pruebas | ver manifiesto |
-| `016_claude_a_chatgpt.md` · paquete 016 | `pragma/dialogo/` · local | desciegue, keydiff y propuesta de adjudicación | 🟡 para pegar | `40bdba…ca8f` |
+| `016_claude_a_chatgpt.md` · paquete 016 | `pragma/dialogo/` · local | desciegue, keydiff y propuesta de adjudicación | ✅ respondida (31 ACCEPT) | `40bdba…ca8f` |
+| `016_chatgpt_a_claude.md` · `adjudicacion_chatgpt_poligonos_A-E0.json` · `adjudicacion_poligonos_final.json` | `pragma/dialogo/` · `pragma/ae0/comparacion_poligonos/` | adjudicación cerrada | ✅ | `7304fb05…d459` |
+| `composicion_referencia_v0.json` · `ae0/gt/*.png` | `pragma/ae0/comparacion_poligonos/` · local | referencia compuesta (hashes y cotas) · máscaras | ✅ v0 (sin congelar) | ver JSON |
+| `teselas_contorno_plan.json` · `teselas_contorno_v0.json` · `revision_teselas_claude_v0.json` · `parches_propuestos_v0.json` · `vista_previa_con_parches_v0.json` | `pragma/ae0/comparacion_poligonos/` | teselas, revisión propia y parches | ✅ · 🟡 parches | ver manifiesto |
+| Paquete ciego de teselas para Codex | local (`local/share/`) | 31 teselas de desafío | 🟡 para enviar | `aad3fc06…b78b` |
+| `017_claude_a_chatgpt.md` · paquete 017 | `pragma/dialogo/` · local | ORDEN 170: referencia, teselas y parches | 🟡 para pegar | `d4f6a9…d43a` |
 | Paquete ciego de Codex | local (`local/share/`) | tercera revisión de C:022 y C:025 (pide no consultar el repositorio) | 🟡 para enviar | `ff1204…8008` |
 | `keydiff_retrospectivo_v14.json` · `cierre_chatgpt008.json` | `pragma/auditoria/aem1v14_…/` | retrospectiva (exploratoria) · cierre de v1.4 por doble llave | ✅ | `ec1ef0…c00c` · `3cfa78…3b73` |
 | `008_chatgpt_a_claude.md` · `009_claude_a_chatgpt.md` | `pragma/dialogo/` | cierre confirmado · DEC‑025 y ratificación | ✅ archivada · 🟡 para pegar | `4dec78…7dd1` · ver manifiesto |
@@ -2388,26 +2425,25 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-- **Las dos llaves de polígonos existen y están desciegadas.**
-  - Claude: `39a071e0…04c5`, en `local/ae0/`.
-  - ChatGPT: `d7b93141…2fc2`, en `local/ae0/llaves_poligonos/`.
-- **`keydiff` hecho y propuesta de adjudicación enviada** (carta 016), a la espera de la segunda llave.
+- **Referencia compuesta** (v0; máscaras en `ae0/gt/`). **Teselas de contorno** revisadas por Claude.
+- **Esperando dos respuestas:**
+  - ChatGPT, a la carta 017 (ORDEN 170): parches y su recorrido de las teselas;
+  - Codex, a `PRAGMA_teselas_contorno_A-E0_codex.zip`.
 
-## Próxima acción
+## Próxima acción (dos pegados en paralelo)
 
-1. La persona usuaria pega `dialogo/016_claude_a_chatgpt.md` en ChatGPT, con
-   `local/share/PRAGMA_carta016_poligonos.zip`.
-2. Trae la respuesta completa.
+1. En ChatGPT: `dialogo/017_claude_a_chatgpt.md` + `local/share/PRAGMA_carta017_teselas.zip`. Su
+   respuesta debe terminar en `ORDEN 171`.
+2. En Codex: `local/share/PRAGMA_teselas_contorno_A-E0_codex.zip` + el texto de su
+   `PREGUNTAS_TESELAS_CONTORNO.md`.
+3. Traer las dos respuestas a Claude.
 
 ## Resultado esperado
 
-1. Claude archiva la respuesta tal cual.
-2. Fija las adjudicaciones aceptadas.
-3. Arma el paquete ciego de Codex para lo contestado, con la regla antes de enviarlo.
-4. Compone con `python3 work/ae0_compose_masks.py <adjudicaciones> --write`, que escribe en `ae0/gt/`,
-   no versionado.
-5. Siguen las teselas de contorno y el desafío dirigido de Codex.
-6. Cierra con `gt_mask` + congelado `AI_CONSENSUS_REFERENCE` + contrato A‑E1.
+1. Claude archiva las dos respuestas.
+2. Lo que Codex marque vuelve a adjudicación, como parches con evidencia.
+3. Composición final con los parches aceptados.
+4. `gt_mask` en el inventario + `AI_CONSENSUS_REFERENCE = FROZEN` + contrato A‑E1, en el mismo commit.
 
 ---
 
@@ -2470,6 +2506,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v2.9 | 2026‑09‑27 | ChatGPT 016 archivada (31 ACCEPT, EXCLUSIVITY, regla del 90 %); referencia A‑E0 compuesta (v0, hashes y cotas); 36 teselas de contorno con plan previo; revisión de Claude (S1, S2, F1–F3); mecanismo de parches por evidencia (155/155); paquete ciego de Codex; numeración de órdenes x0/x1; carta 017 = ORDEN 170 |
 | v2.8 | 2026‑09‑27 | llave de polígonos de ChatGPT recibida (`d7b93141…2fc2`) y desciegue; `keydiff` (IoU 0,827 · 0,884 · 0,553; 31 componentes); propuesta de adjudicación con evidencia por componente y 5 concesiones; hallazgo de 23 344 px compartidos entre personas en la llave de ChatGPT (47 en la de Claude); regla `EXCLUSIVITY` y `work/ae0_compose_masks.py`; 153/153; carta 016 |
 | v2.7 | 2026‑09‑27 | ChatGPT 014 archivada (`POLYGON_VALIDATOR_PATCH = PASS`); Codex archivado (C:022/C:025 `NOT_SEPARABLE` → excluidos); inventario A‑E0 congelado antes de trazar (`bbf59747…b0ce`); llave de polígonos de Claude trazada y comprometida solo por SHA‑256 (`39a071e0…04c5`); carta 015 con el GO para ChatGPT |
 | v2.6 | 2026‑09‑27 | ChatGPT 013 archivada (inventario `ACCEPTED_PENDING_CODEX`, dos mesas cerradas, formato/derivación/custodia de polígonos aceptados, `POLYGON_VALIDATOR = CHANGE_REQUIRED`); parche del validador (vértices crudos finitos dentro de la foto; caja de la zona incierta ± 40 px) con las cuatro pruebas pedidas más dos; las de rechazo fallan con el validador anterior; 18 atributos etiquetados `CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED`; 151/151; carta 014 |

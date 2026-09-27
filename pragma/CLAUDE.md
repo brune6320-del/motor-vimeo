@@ -7,6 +7,9 @@
 - **La persona usuaria no fiscaliza (DEC‑018‑P).** Toda verificación que una IA pueda hacer la hace
   la IA, con evidencia y hashes: coordenadas, integridad de ZIPs, revisión visual de máscaras. A la
   persona solo se le piden pasos mecánicos y decisiones de producto; siempre puede vetar.
+- **Numeración de órdenes:** toda respuesta de Claude termina con `ORDEN N0`; con carta, N es su número
+  (carta 017 → `ORDEN 170`). Cada carta pide a ChatGPT terminar con `ORDEN N1`. Si el último mensaje termina
+  en 0 va a ChatGPT; si termina en 1, a Claude (`dialogo/README.md`).
 - **Ping‑pong con ChatGPT (DEC‑019‑P).** Tras cada avance significativo, escribe una carta
   `dialogo/NNN_claude_a_chatgpt.md` según `dialogo/README.md` y entrégala lista para pegar. Guarda las
   respuestas de ChatGPT tal cual como `dialogo/NNN_chatgpt_a_claude.md`, audítalas y respóndelas.

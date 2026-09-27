@@ -1,0 +1,211 @@
+{
+ "schema": "pragma.ae0_evidence_patches",
+ "schema_version": "0.1.0",
+ "author": "claude",
+ "status": "PROPOSAL_PENDING_SECOND_KEY_AND_CODEX",
+ "origin": "revisión de Claude de las 36 teselas de contorno (teselas_contorno_v0.json)",
+ "patches": [
+  {
+   "id": "F1a",
+   "person": "ae0_001",
+   "verdict": "CERTAIN",
+   "margin_px": 4,
+   "polygon": [
+    [
+     420,
+     1450
+    ],
+    [
+     500,
+     1450
+    ],
+    [
+     500,
+     1500
+    ],
+    [
+     420,
+     1500
+    ]
+   ],
+   "reason": "zona incierta sobre el faldón izquierdo (persona) y la sombra del flash (fondo): la estimación ya es correcta y no hay ambigüedad"
+  },
+  {
+   "id": "F1c",
+   "person": "ae0_001",
+   "verdict": "CERTAIN",
+   "margin_px": 4,
+   "polygon": [
+    [
+     425,
+     1640
+    ],
+    [
+     505,
+     1640
+    ],
+    [
+     505,
+     1950
+    ],
+    [
+     425,
+     1950
+    ]
+   ],
+   "reason": "zona incierta sobre el mantel claro de la tabla de planchar (x < 505): fondo claro, no borde de pierna"
+  },
+  {
+   "id": "F2",
+   "person": "ae0_002",
+   "verdict": "CERTAIN",
+   "margin_px": 4,
+   "polygon": [
+    [
+     2505,
+     600
+    ],
+    [
+     2575,
+     600
+    ],
+    [
+     2552,
+     700
+    ],
+    [
+     2546,
+     800
+    ],
+    [
+     2548,
+     900
+    ],
+    [
+     2550,
+     960
+    ],
+    [
+     2560,
+     1000
+    ],
+    [
+     2548,
+     1085
+    ],
+    [
+     2460,
+     1065
+    ],
+    [
+     2490,
+     950
+    ],
+    [
+     2515,
+     850
+    ],
+    [
+     2522,
+     720
+    ],
+    [
+     2515,
+     620
+    ]
+   ],
+   "reason": "zona incierta de 002 sobre el marco del cuadro, la pared y la blusa de 003, a la izquierda del cabello de 002; la columna de cabello en disputa queda fuera del parche"
+  },
+  {
+   "id": "F3a",
+   "person": "ae0_003",
+   "verdict": "CERTAIN",
+   "margin_px": 4,
+   "polygon": [
+    [
+     2505,
+     495
+    ],
+    [
+     2590,
+     495
+    ],
+    [
+     2590,
+     690
+    ],
+    [
+     2505,
+     690
+    ]
+   ],
+   "reason": "zona incierta de 003 sobre el marco del cuadro y la pared, entre el moño y la blusa"
+  },
+  {
+   "id": "F3b",
+   "person": "ae0_003",
+   "verdict": "CERTAIN",
+   "margin_px": 4,
+   "polygon": [
+    [
+     2462,
+     700
+    ],
+    [
+     2550,
+     700
+    ],
+    [
+     2548,
+     985
+    ],
+    [
+     2462,
+     985
+    ]
+   ],
+   "reason": "zona incierta de 003 sobre el interior de su propia blusa: primer plano claro"
+  },
+  {
+   "id": "S1",
+   "person": "ae0_002",
+   "verdict": "UNCERTAIN_INCLUDE",
+   "margin_px": 0,
+   "polygon": [
+    [
+     2250,
+     1017
+    ],
+    [
+     2262,
+     1017
+    ],
+    [
+     2272,
+     1068
+    ],
+    [
+     2292,
+     1118
+    ],
+    [
+     2302,
+     1165
+    ],
+    [
+     2292,
+     1168
+    ],
+    [
+     2268,
+     1122
+    ],
+    [
+     2254,
+     1070
+    ]
+   ],
+   "reason": "posible omisión compartida: el borde oscuro del hombro de 002 sigue 7–15 px por fuera de la referencia entre y ≈ 1040 y 1120"
+  }
+ ]
+}

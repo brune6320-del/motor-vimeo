@@ -1,6 +1,6 @@
 """Compone las máscaras de referencia A‑E0 de las tres personas a partir de las dos llaves de polígonos.
 
-    python3 work/ae0_compose_masks.py <adjudicaciones.json> [--write]
+    python3 work/ae0_compose_masks.py <adjudicaciones.json> [--patches <parches.json>] [--write]
 
 Pasos (DEC‑025; ``ae0/FORMATO_POLIGONOS_A-E0.md`` §3):
 1. Rasteriza las dos llaves (``local/``, nunca en git) y verifica sus SHA‑256 contra el compromiso y la
@@ -10,7 +10,16 @@ Pasos (DEC‑025; ``ae0/FORMATO_POLIGONOS_A-E0.md`` §3):
 3. La zona incierta final añade la unión de los ``uncertain_rings`` de las dos llaves.
 4. **Exclusividad entre personas** (propuesta de la carta 016): un píxel que queda en la estimación de
    dos personas pasa a ``uncertain`` en las dos y sale de la estimación de ambas.
-5. Imprime un resumen público (áreas, fracciones, cotas de cada llave). Con ``--write`` guarda las
+5. **Parches por evidencia** (propuesta de la carta 017, tras las teselas de contorno), opcionales:
+   ``{"persona", "verdict", "polygon", "margin_px", "reason"}``. Cada polígono se rasteriza igual que
+   las llaves. Veredictos:
+   - ``CERTAIN``: quita la incertidumbre y deja la estimación como está;
+   - ``INCLUDE`` / ``EXCLUDE``: primer plano o fondo ciertos;
+   - ``UNCERTAIN_INCLUDE``: primer plano estimado e incierto (una omisión dudosa).
+   ``margin_px`` protege la banda de frontera: el parche no toca los píxeles a esa distancia
+   (Chebyshev) o menos del contorno de la estimación.
+   Se aplican después de ``EXCLUSIVITY`` y la exclusividad se vuelve a comprobar al final.
+6. Imprime un resumen público (áreas, fracciones, cotas de cada llave). Con ``--write`` guarda las
    máscaras en ``ae0/gt/`` (no versionado) y sus hashes.
 """
 
@@ -57,7 +66,36 @@ def exclusive_persons(refs: dict) -> dict:
     return out
 
 
-def compose(adjudications: dict, key_a: Path = KEY_A, key_b: Path = KEY_B, check_custody: bool = True) -> dict:
+PATCH_VERDICTS = ("CERTAIN", "INCLUDE", "EXCLUDE", "UNCERTAIN_INCLUDE")
+
+
+def apply_patch(estimate, uncertain, patch: dict):
+    """Aplica un parche por evidencia; devuelve ``(estimate, uncertain, píxeles tocados)``."""
+    from pragma_ae.keydiff import erode_square
+    from pragma_ae.masks import dilate_square
+    from pragma_ae.polygon import rasterize
+    verdict = patch["verdict"]
+    if verdict not in PATCH_VERDICTS:
+        raise ValueError(f"Veredicto de parche no válido: {verdict}")
+    region = rasterize([patch["polygon"]], estimate.shape)
+    margin = int(patch.get("margin_px", 0))
+    if margin:
+        edge = estimate & ~erode_square(estimate, 1)
+        region &= ~dilate_square(edge, margin)
+    est, unc = estimate.copy(), uncertain.copy()
+    if verdict == "CERTAIN":
+        unc &= ~region
+    elif verdict == "INCLUDE":
+        est |= region; unc &= ~region
+    elif verdict == "EXCLUDE":
+        est &= ~region; unc &= ~region
+    else:
+        est |= region; unc |= region
+    return est, unc, int(region.sum())
+
+
+def compose(adjudications: dict, key_a: Path = KEY_A, key_b: Path = KEY_B, check_custody: bool = True,
+            patches: list | None = None) -> dict:
     if check_custody:
         want_a = json.loads(COMMIT_A.read_text(encoding="utf-8"))["file_sha256"]
         want_b = json.loads(RECEIPT_B.read_text(encoding="utf-8"))["file_sha256"]
@@ -76,6 +114,17 @@ def compose(adjudications: dict, key_a: Path = KEY_A, key_b: Path = KEY_B, check
                      "a": ra["mask"], "b": rb["mask"]}
         report[oid] = {"keydiff": diff["summary"], "rings_union_px": int(rings.sum())}
     final = exclusive_persons({k: {"estimate": v["estimate"], "uncertain": v["uncertain"]} for k, v in refs.items()})
+    applied = []
+    for k, patch in enumerate(patches or [], 1):
+        oid = patch["person"]
+        est, unc, n = apply_patch(final[oid]["estimate"], final[oid]["uncertain"], patch)
+        final[oid]["estimate"], final[oid]["uncertain"] = est, unc
+        applied.append({"n": k, "person": oid, "verdict": patch["verdict"], "pixels": n})
+    if patches:
+        again = exclusive_persons({k: {"estimate": v["estimate"], "uncertain": v["uncertain"]} for k, v in final.items()})
+        for oid in PERSONS:
+            final[oid]["shared_px"] += again[oid]["shared_px"]
+            final[oid]["estimate"], final[oid]["uncertain"] = again[oid]["estimate"], again[oid]["uncertain"]
     for oid in PERSONS:
         est, unc = final[oid]["estimate"], final[oid]["uncertain"]
         report[oid].update({
@@ -87,16 +136,18 @@ def compose(adjudications: dict, key_a: Path = KEY_A, key_b: Path = KEY_B, check
             "key_B_vs_reference": keydiff.iou_with_uncertainty(refs[oid]["b"], est, unc),
         })
         refs[oid].update(final[oid])
-    return {"report": report, "refs": refs}
+    return {"report": report, "refs": refs, "patches_applied": applied}
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("adjudications", type=Path)
+    parser.add_argument("--patches", type=Path)
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args(argv)
     adj = json.loads(args.adjudications.read_text(encoding="utf-8"))["adjudications"]
-    out = compose(adj)
+    patches = json.loads(args.patches.read_text(encoding="utf-8"))["patches"] if args.patches else None
+    out = compose(adj, patches=patches)
     report = out["report"]
     if args.write:
         from PIL import Image
@@ -108,6 +159,9 @@ def main(argv=None):
                 Image.fromarray(m.astype(np.uint8) * 255).save(path)
                 report[oid][f"{name}_png_sha256"] = sha(path)
     print(json.dumps({"adjudications_file": args.adjudications.as_posix(), "adjudications_sha256": sha(args.adjudications),
+                      "patches_file": args.patches.as_posix() if args.patches else None,
+                      "patches_sha256": sha(args.patches) if args.patches else None,
+                      "patches_applied": out["patches_applied"],
                       "estimate_policy": "MIDLINE", "cross_person_rule": "EXCLUSIVITY", "persons": report},
                      indent=1, ensure_ascii=False))
 

@@ -35,3 +35,32 @@ class CrossPersonExclusivity(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EvidencePatches(unittest.TestCase):
+    def setUp(self):
+        from ae0_compose_masks import apply_patch
+        self.apply = apply_patch
+        self.est = np.zeros((40, 40), bool); self.est[10:30, 10:30] = True
+        self.unc = np.zeros((40, 40), bool); self.unc[0:40, 0:20] = True
+
+    def sq(self, x1, y1, x2, y2):
+        return [[x1, y1], [x2, y1], [x2, y2], [x1, y2]]
+
+    def test_certain_removes_uncertainty_but_keeps_estimate_and_boundary_band(self):
+        est, unc, n = self.apply(self.est, self.unc, {"verdict": "CERTAIN", "polygon": self.sq(0, 0, 20, 40), "margin_px": 2})
+        self.assertTrue(np.array_equal(est, self.est))
+        self.assertTrue(unc[20, 10])                  # sobre el contorno: la banda sigue incierta
+        self.assertFalse(unc[20, 3])                  # fondo lejos del contorno: ya cierto
+        self.assertFalse(unc[20, 15])                 # primer plano lejos del contorno: ya cierto
+        self.assertGreater(n, 0)
+
+    def test_include_exclude_and_uncertain_include(self):
+        est, unc, _ = self.apply(self.est, self.unc, {"verdict": "EXCLUDE", "polygon": self.sq(10, 10, 15, 30)})
+        self.assertFalse(est[20, 12] or unc[20, 12])
+        est, unc, _ = self.apply(self.est, self.unc, {"verdict": "INCLUDE", "polygon": self.sq(30, 10, 35, 30)})
+        self.assertTrue(est[20, 32] and not unc[20, 32])
+        est, unc, _ = self.apply(self.est, self.unc, {"verdict": "UNCERTAIN_INCLUDE", "polygon": self.sq(30, 10, 35, 30)})
+        self.assertTrue(est[20, 32] and unc[20, 32])
+        with self.assertRaises(ValueError):
+            self.apply(self.est, self.unc, {"verdict": "MAYBE", "polygon": self.sq(0, 0, 5, 5)})
