@@ -1,0 +1,544 @@
+{
+ "ae0_001": [
+  {
+   "id": "1T001",
+   "box": [
+    0,
+    0,
+    512,
+    512
+   ],
+   "contour_px": 330,
+   "uncertain_px": 0,
+   "zones": [
+    "manos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "1T002",
+   "box": [
+    448,
+    0,
+    960,
+    512
+   ],
+   "contour_px": 892,
+   "uncertain_px": 125,
+   "zones": [
+    "manos",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "1T003",
+   "box": [
+    896,
+    0,
+    1408,
+    512
+   ],
+   "contour_px": 337,
+   "uncertain_px": 86,
+   "zones": [
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "1T004",
+   "box": [
+    0,
+    448,
+    512,
+    960
+   ],
+   "contour_px": 855,
+   "uncertain_px": 2477,
+   "zones": [],
+   "challenge": true
+  },
+  {
+   "id": "1T005",
+   "box": [
+    448,
+    448,
+    960,
+    960
+   ],
+   "contour_px": 150,
+   "uncertain_px": 6239,
+   "zones": [
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "1T006",
+   "box": [
+    896,
+    448,
+    1408,
+    960
+   ],
+   "contour_px": 1115,
+   "uncertain_px": 4077,
+   "zones": [
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "1T007",
+   "box": [
+    0,
+    896,
+    512,
+    1408
+   ],
+   "contour_px": 600,
+   "uncertain_px": 0,
+   "zones": [],
+   "challenge": false
+  },
+  {
+   "id": "1T008",
+   "box": [
+    448,
+    896,
+    960,
+    1408
+   ],
+   "contour_px": 241,
+   "uncertain_px": 0,
+   "zones": [],
+   "challenge": false
+  },
+  {
+   "id": "1T009",
+   "box": [
+    896,
+    896,
+    1408,
+    1408
+   ],
+   "contour_px": 637,
+   "uncertain_px": 0,
+   "zones": [],
+   "challenge": false
+  },
+  {
+   "id": "1T010",
+   "box": [
+    0,
+    1344,
+    512,
+    1856
+   ],
+   "contour_px": 294,
+   "uncertain_px": 32800,
+   "zones": [],
+   "challenge": true
+  },
+  {
+   "id": "1T011",
+   "box": [
+    448,
+    1344,
+    960,
+    1856
+   ],
+   "contour_px": 462,
+   "uncertain_px": 58665,
+   "zones": [],
+   "challenge": true
+  },
+  {
+   "id": "1T012",
+   "box": [
+    896,
+    1344,
+    1408,
+    1856
+   ],
+   "contour_px": 629,
+   "uncertain_px": 55365,
+   "zones": [],
+   "challenge": true
+  },
+  {
+   "id": "1T013",
+   "box": [
+    448,
+    1792,
+    960,
+    2248
+   ],
+   "contour_px": 464,
+   "uncertain_px": 114867,
+   "zones": [],
+   "challenge": true
+  },
+  {
+   "id": "1T014",
+   "box": [
+    896,
+    1792,
+    1408,
+    2248
+   ],
+   "contour_px": 497,
+   "uncertain_px": 71570,
+   "zones": [],
+   "challenge": true
+  }
+ ],
+ "ae0_002": [
+  {
+   "id": "2T001",
+   "box": [
+    2688,
+    0,
+    3200,
+    512
+   ],
+   "contour_px": 491,
+   "uncertain_px": 9040,
+   "zones": [
+    "contacto_entre_personas",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T002",
+   "box": [
+    2240,
+    448,
+    2752,
+    960
+   ],
+   "contour_px": 687,
+   "uncertain_px": 66262,
+   "zones": [
+    "contacto_entre_personas",
+    "manos",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T003",
+   "box": [
+    2688,
+    448,
+    3200,
+    960
+   ],
+   "contour_px": 921,
+   "uncertain_px": 14925,
+   "zones": [
+    "contacto_entre_personas",
+    "manos",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T004",
+   "box": [
+    3136,
+    448,
+    3648,
+    960
+   ],
+   "contour_px": 405,
+   "uncertain_px": 46,
+   "zones": [
+    "manos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T005",
+   "box": [
+    1792,
+    896,
+    2304,
+    1408
+   ],
+   "contour_px": 576,
+   "uncertain_px": 15314,
+   "zones": [
+    "contacto_entre_personas"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T006",
+   "box": [
+    2240,
+    896,
+    2752,
+    1408
+   ],
+   "contour_px": 932,
+   "uncertain_px": 27786,
+   "zones": [
+    "contacto_entre_personas",
+    "manos",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T007",
+   "box": [
+    3136,
+    896,
+    3648,
+    1408
+   ],
+   "contour_px": 767,
+   "uncertain_px": 221,
+   "zones": [
+    "manos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T008",
+   "box": [
+    1792,
+    1344,
+    2304,
+    1856
+   ],
+   "contour_px": 725,
+   "uncertain_px": 2842,
+   "zones": [
+    "manos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T009",
+   "box": [
+    2240,
+    1344,
+    2752,
+    1856
+   ],
+   "contour_px": 91,
+   "uncertain_px": 1767,
+   "zones": [
+    "manos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T010",
+   "box": [
+    2688,
+    1344,
+    3200,
+    1856
+   ],
+   "contour_px": 241,
+   "uncertain_px": 49,
+   "zones": [
+    "manos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T011",
+   "box": [
+    3136,
+    1344,
+    3648,
+    1856
+   ],
+   "contour_px": 791,
+   "uncertain_px": 23179,
+   "zones": [
+    "manos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T012",
+   "box": [
+    1792,
+    1792,
+    2304,
+    2248
+   ],
+   "contour_px": 1139,
+   "uncertain_px": 243,
+   "zones": [
+    "manos",
+    "objetos_sostenidos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T013",
+   "box": [
+    2240,
+    1792,
+    2752,
+    2248
+   ],
+   "contour_px": 302,
+   "uncertain_px": 3,
+   "zones": [
+    "manos",
+    "objetos_sostenidos"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "2T014",
+   "box": [
+    2688,
+    1792,
+    3200,
+    2248
+   ],
+   "contour_px": 537,
+   "uncertain_px": 0,
+   "zones": [],
+   "challenge": false
+  },
+  {
+   "id": "2T015",
+   "box": [
+    3136,
+    1792,
+    3648,
+    2248
+   ],
+   "contour_px": 74,
+   "uncertain_px": 0,
+   "zones": [],
+   "challenge": false
+  }
+ ],
+ "ae0_003": [
+  {
+   "id": "3T001",
+   "box": [
+    2240,
+    0,
+    2752,
+    512
+   ],
+   "contour_px": 388,
+   "uncertain_px": 9703,
+   "zones": [
+    "contacto_entre_personas",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "3T002",
+   "box": [
+    2688,
+    0,
+    3200,
+    512
+   ],
+   "contour_px": 355,
+   "uncertain_px": 8268,
+   "zones": [
+    "contacto_entre_personas",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "3T003",
+   "box": [
+    1792,
+    448,
+    2304,
+    960
+   ],
+   "contour_px": 122,
+   "uncertain_px": 0,
+   "zones": [
+    "contacto_entre_personas"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "3T004",
+   "box": [
+    2240,
+    448,
+    2752,
+    960
+   ],
+   "contour_px": 1154,
+   "uncertain_px": 60722,
+   "zones": [
+    "contacto_entre_personas",
+    "manos",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "3T005",
+   "box": [
+    2688,
+    448,
+    3200,
+    960
+   ],
+   "contour_px": 188,
+   "uncertain_px": 14703,
+   "zones": [
+    "contacto_entre_personas",
+    "manos",
+    "pelo"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "3T006",
+   "box": [
+    1792,
+    896,
+    2304,
+    1408
+   ],
+   "contour_px": 225,
+   "uncertain_px": 56,
+   "zones": [
+    "contacto_entre_personas"
+   ],
+   "challenge": true
+  },
+  {
+   "id": "3T007",
+   "box": [
+    2240,
+    896,
+    2752,
+    1408
+   ],
+   "contour_px": 629,
+   "uncertain_px": 6252,
+   "zones": [
+    "contacto_entre_personas",
+    "manos",
+    "pelo"
+   ],
+   "challenge": true
+  }
+ ]
+}
