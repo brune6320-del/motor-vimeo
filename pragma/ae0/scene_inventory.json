@@ -54,7 +54,7 @@
     "method": "doble llave de IA (DEC-024) con adjudicación por evidencia; ninguna persona ratificó píxeles",
     "composer": {
       "file": "work/ae0_compose_reference.py",
-      "sha256": "1af3f4355b7eb9f732e6dd83dd062678c7c2b4e39441dd71d401bc13b4f17143"
+      "sha256": "a2aa87cf9f38417ca2fcbe4c4c2213747b3077a2d988548a1717f250d9880c64"
     },
     "bbox_convention": "XYXY en píxeles de la foto a resolución completa, semiabierta [x1, x2) × [y1, y2)"
   },
@@ -2012,109 +2012,127 @@
         "ref_id": "ae0_008",
         "field": "truncation",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_051",
         "field": "truncation",
         "claude": "medium",
-        "chatgpt": "high"
+        "chatgpt": "high",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_028",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_034",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_037",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_039",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_040",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_046",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_047",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "medium"
+        "chatgpt": "medium",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_049",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "medium"
+        "chatgpt": "medium",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_055",
         "field": "truncation",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_056",
         "field": "truncation",
         "claude": "none",
-        "chatgpt": "medium"
+        "chatgpt": "medium",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_057",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "medium"
+        "chatgpt": "medium",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_057",
         "field": "truncation",
         "claude": "low",
-        "chatgpt": "medium"
+        "chatgpt": "medium",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_058",
         "field": "occlusion",
         "claude": "high",
-        "chatgpt": "medium"
+        "chatgpt": "medium",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_059",
         "field": "occlusion",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_059",
         "field": "truncation",
         "claude": "none",
-        "chatgpt": "medium"
+        "chatgpt": "medium",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       },
       {
         "ref_id": "ae0_050",
         "field": "truncation",
         "claude": "none",
-        "chatgpt": "low"
+        "chatgpt": "low",
+        "resolution": "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
       }
     ],
     "notes": []

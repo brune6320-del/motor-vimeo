@@ -17,7 +17,9 @@ Salida: `ae0/scene_inventory.json`, con `status = AI_DOUBLE_KEY_REVIEWED` y
 Reglas de composición (las declara la carta 013):
 1. `SAME`: se parte del objeto de la llave de Claude. Se aplican la caja y los atributos adjudicados.
    Un atributo que la propuesta no nombra conserva el valor de Claude, y queda listado en
-   `adjudication_log.unspecified_attribute_defaults` para que se pueda objetar.
+   `adjudication_log.unspecified_attribute_defaults` para que se pueda objetar. Cada uno lleva
+   `resolution = CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED` (ChatGPT 013): no es un atributo de
+   consenso.
 2. `A_ONLY` / `B_ONLY` con `INCLUDE`: se copia el objeto de su llave. Los de ChatGPT reciben ids
    nuevos desde `ae0_060`, y sus relaciones se traducen por el emparejamiento. `EXCLUDE`: se retira,
    y su id no se reutiliza nunca.
@@ -53,6 +55,7 @@ FIRST_NEW_ID = 60
 CENTRAL_TABLE_BOX = [1245, 1485, 2135, 2120]
 RIGHT_TABLE_BOX = [3090, 1505, 3725, 2248]
 ATTRS = ("occlusion", "truncation")
+DEFAULT_RESOLUTION = "CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED"
 
 
 def sha(path) -> str:
@@ -103,7 +106,8 @@ def compose(codex=None) -> dict:
             o[field] = value
         for field in ATTRS:
             if field not in (p.get("attributes") or {}) and a.get(field) != b.get(field):
-                defaults.append({"ref_id": a["id"], "field": field, "claude": a.get(field), "chatgpt": b.get(field)})
+                defaults.append({"ref_id": a["id"], "field": field, "claude": a.get(field), "chatgpt": b.get(field),
+                                 "resolution": DEFAULT_RESOLUTION})
         if p.get("canonical_name"):
             o["canonical_name"] = p["canonical_name"]
         if p.get("concept_en"):

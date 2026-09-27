@@ -43,7 +43,14 @@ de **anillos** con vértices a resolución completa:
 - **Validación:** `python3 work/validate_ae0_polygons.py <poligonos.json>` comprueba:
   - las tres personas exactas;
   - anillos válidos y máscaras no vacías;
-  - que ninguna se salga de la caja adjudicada de su persona (±40 px).
+  - **vértices crudos** de `rings` y de `uncertain_rings`: finitos y dentro de la foto,
+    `0 ≤ x ≤ 4000` y `0 ≤ y ≤ 2248`. Si no, `rasterize` recortaría en silencio lo que sale de la
+    imagen (parche de ChatGPT 013);
+  - que ni la máscara ni la **zona incierta** se salgan de la caja adjudicada de su persona
+    (±40 px). Sin esto, una zona incierta enorme neutralizaría parte del benchmark, porque DEC‑025 la
+    excluye de las métricas (ChatGPT 013).
+  - **No** exige `uncertain ⊆ mask`, porque una banda incierta legítima cruza la frontera. Tampoco
+    pone un máximo de área incierta: DEC‑025 ya reporta `uncertain_area_px` y `uncertain_fraction`.
   - Imprime el SHA‑256 que se compromete.
 
 ## 2. Custodia (el mismo orden que las llaves de inventario)
