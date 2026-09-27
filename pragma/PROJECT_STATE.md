@@ -3,11 +3,12 @@
 - **Proyecto:** PRAGMA · Motor de Transparencia / Inventario exhaustivo de escena
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
-- **Última actualización:** 27 de septiembre de 2026 (v2.6, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v2.6`
+- **Última actualización:** 27 de septiembre de 2026 (v2.7, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
+- **Versión:** `v2.7`
 - **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
 - **Fase B:** `BLOQUEADA`
-- **Último hito documentado (v2.6):** ChatGPT 013 aceptó el inventario compuesto **a la espera de Codex** (`COMPOSED_INVENTORY = ACCEPTED_PENDING_CODEX`; «65 objetos + 2 pendientes» no es todavía un inventario final), las cajas de las dos mesas, los ids y el formato, la derivación y la custodia de los polígonos. Los 18 atributos por defecto quedan como `CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED`, no como consenso. **Encontró un hueco real en el validador de polígonos:** una zona incierta enorme pasaba, y los vértices fuera de la foto se recortaban en silencio. Parche aplicado antes de que exista ningún polígono: vértices crudos finitos dentro de 4000 × 2248 y caja de la zona incierta dentro de la caja de la persona ± 40 px; las cuatro pruebas de rechazo fallan con el validador anterior. 151/151 tests. Carta 014 pide a ChatGPT `POLYGON_VALIDATOR_PATCH`. Nadie traza hasta que Codex esté incorporado
+- **Último hito documentado (v2.7):** ChatGPT 014 dio `POLYGON_VALIDATOR_PATCH = PASS` y Codex respondió `NOT_SEPARABLE` a C:022 y C:025 → excluidos por la regla fijada, sin cuarta vuelta. **Inventario A‑E0 congelado** antes de trazar (`bbf59747…b0ce`, 65 objetos, `4ca47c1`). Claude trazó su **llave de polígonos** de las tres personas (juicio visual, sin segmentadores) y la **comprometió solo por SHA‑256** (`39a071e0…04c5`, `027dec1`); su contenido queda en `local/` y fuera de git y de las cartas hasta archivar la llave de ChatGPT. Carta 015: GO para la llave de polígonos de ChatGPT, solo desde la foto
+- **Hito v2.6:** ChatGPT 013 aceptó el inventario compuesto **a la espera de Codex** (`COMPOSED_INVENTORY = ACCEPTED_PENDING_CODEX`; «65 objetos + 2 pendientes» no es todavía un inventario final), las cajas de las dos mesas, los ids y el formato, la derivación y la custodia de los polígonos. Los 18 atributos por defecto quedan como `CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED`, no como consenso. **Encontró un hueco real en el validador de polígonos:** una zona incierta enorme pasaba, y los vértices fuera de la foto se recortaban en silencio. Parche aplicado antes de que exista ningún polígono: vértices crudos finitos dentro de 4000 × 2248 y caja de la zona incierta dentro de la caja de la persona ± 40 px; las cuatro pruebas de rechazo fallan con el validador anterior. 151/151 tests. Carta 014 pide a ChatGPT `POLYGON_VALIDATOR_PATCH`. Nadie traza hasta que Codex esté incorporado
 - **Hito v2.5:** ChatGPT 012 confirmó la custodia y aceptó la propuesta de adjudicación. En Q2 y Q3 aceptó la lectura de Claude; en Q1 mantuvo **dos mesas**, y Claude, al revisar la banda inferior completa, se lo concedió (bordes frontales asimétricos; borde propio de la mesa derecha). Solo C:022 y C:025 van a Codex, en un paquete ciego y con la regla de decisión fijada antes (`4281c28`). **Inventario adjudicado compuesto** (`ae0/scene_inventory.json`): 65 objetos, `AI_DOUBLE_KEY_REVIEWED` → `AI_CONSENSUS_REFERENCE`; el validador da `A_E0_PENDING_GT`, sin errores. **Rasterizador de polígonos** `NUMPY_MINIMAL` (`pragma_ae/polygon.py`) y formato y custodia de los polígonos de las tres personas. 145/145 tests. Carta 013
 - **Hito v2.4:** **Las dos llaves de inventario A‑E0 existen.** La de ChatGPT (57 objetos, `a3ecb53f…0a45`, `valid_key`) se archivó tal cual (`424e89d`) antes de publicar la de Claude (59 objetos), cuyo hash coincide con el compromiso previo (`237be5b` = `81e26dc`). keymatch v0.1 da 16 pares (27 %) y deja ver dos fallos de la regla, declarados y **no** corregidos a posteriori: empareja sin clase (chaqueta↔persona, mesa↔suelo) y el umbral de 0,5 es estricto para cajas holgadas. La propuesta de adjudicación de Claude cubre los 59 + 57 objetos con evidencia en 8 láminas: 44 correspondencias, 7 + 9 inclusiones, 2 errores propios excluidos (vasitos duplicados), `MATCH_REJECTED` en 2 pares y 4 preguntas para Codex (una o dos mesas; silla o superficie; silla o sofá, y cojín o pared; objetos del borde oscuro). Carta 012
 - **Hito v2.3:** ChatGPT 010 aceptó el delta completo (`MIDLINE` resuelto, cotas, desafío dirigido, formato y custodia de llaves, umbrales `keymatch` v0.1): `A_E0_INFRASTRUCTURE = READY_FOR_KEYS`. **La persona usuaria ratificó la ontología v0.2 tal cual** (2026‑09‑26 20:13 UTC, `6e50c55`). Claude revisó su borrador contra la foto a resolución completa y **congeló su llave de inventario** (contenido retenido hasta archivar la de ChatGPT), comprometida solo por SHA‑256 en `81e26dc` (`84942809…9829`). Carta 011: GO para la llave de ChatGPT, solo desde la foto
@@ -488,6 +489,34 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
   - `✅ EJECUTADO GPU` + `✅` doble llave con adjudicación técnica;
   - `✅` confirmado por ChatGPT 008 (v2.1).
 
+## Hito 25 — Codex incorporado, inventario congelado y llave de polígonos de Claude (v2.7)
+
+- **ChatGPT 014** (`dialogo/014_chatgpt_a_claude.md`): reprodujo el parche (15/15; el validador
+  anterior da 4 FAIL + 1 ERROR) → `POLYGON_VALIDATOR_PATCH = PASS`, `ATTRIBUTE_PROVENANCE = ACCEPTED`.
+- **Codex** (`ae0/comparacion/tercera_revision_codex.json`, tal cual): región a (C:022) y región b
+  (C:025) `NOT_SEPARABLE` → `EXCLUDE` por la regla de `4281c28`. Declaró
+  `consulted_only_these_images = true`.
+- **Inventario congelado antes de trazar** (`4ca47c1`):
+  - `ae0/scene_inventory.json` `bbf59747…b0ce` (contenido `faedfcb8…92db`): 65 objetos, sin
+    pendientes, 6 ids retirados, 0 errores;
+  - registro `ae0/CONGELADO_INVENTARIO_A-E0.json`;
+  - el compositor guarda ahora el archivo y el hash de la respuesta de Codex.
+  - El `FROZEN` formal (`inv.freeze`) exige las máscaras; llegará con ellas y con el contrato A‑E1.
+- **Llave de polígonos de Claude** (`027dec1`):
+  - trazada por juicio visual sobre recortes con rejilla;
+  - ayudas solo para ver: zoom, contraste, gamma, desenfoque ligero y superposición del trazo propio;
+  - sin segmentadores ni ajuste automático;
+  - valida con el validador parcheado y sin cruces de segmentos.
+  - En git, **solo el hash**: `ae0/COMPROMISO_POLIGONOS_CLAUDE_A-E0.json`, `39a071e0…04c5`.
+  - El archivo queda en `local/ae0/` (con copia de solo lectura). **Nada de su contenido** se
+    escribe en git ni en cartas hasta archivar la llave de ChatGPT.
+- **Carta 015** con `PRAGMA_carta015_poligonos.zip` (`bd34c1…7658`): Codex incorporado, inventario
+  congelado, hash de Claude, método declarado y GO para ChatGPT. El paquete no lleva nada de los
+  polígonos de Claude.
+- **Certeza:**
+  - `✅` congelado y compromiso;
+  - `🟡` la llave de polígonos de ChatGPT.
+
 ## Hito 24 — Inventario aceptado a la espera de Codex y parche del validador de polígonos (v2.6)
 
 - **ChatGPT 013** (`dialogo/013_chatgpt_a_claude.md`):
@@ -660,7 +689,9 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
 
 # 4. Estado Actual del Proyecto
 
-- **Último componente trabajado (v2.6):** archivo de ChatGPT 013, parche del validador de polígonos y sus pruebas, etiqueta `CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED` en los 18 atributos por defecto.
+- **Último componente trabajado (v2.7):** archivo de ChatGPT 014 y de Codex, composición con `--codex`, congelado del inventario, trazado de la llave de polígonos de Claude (solo hash en git), carta 015.
+- **Últimos comandos (v2.7):** `python3 work/ae0_compose_reference.py --codex ae0/comparacion/tercera_revision_codex.json` (65 objetos, 0 errores), `python3 work/validate_ae0_polygons.py local/ae0/poligonos_claude_A-E0.json` (`valid`) y `python3 -m unittest discover -s tests` (151/151).
+- **Componente v2.6:** archivo de ChatGPT 013, parche del validador de polígonos y sus pruebas, etiqueta `CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED` en los 18 atributos por defecto.
 - **Últimos comandos (v2.6):** `python3 -m unittest discover -s tests` (151/151), `python3 work/ae0_compose_reference.py` (65 objetos, `A_E0_PENDING_GT`, 0 errores) y `python3 work/ae1_analysis_contract.py --check` (True).
 - **Componente v2.5:** archivo de ChatGPT 012, decisiones Q1–Q4, reglas y paquete ciego de Codex, compositor del inventario adjudicado, rasterizador y formato de polígonos, carta 013.
 - **Últimos comandos (v2.5):** `python3 work/ae0_compose_reference.py` (65 objetos, `A_E0_PENDING_GT`, 0 errores) y `python3 -m unittest discover -s tests` (145/145).
@@ -1093,7 +1124,11 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 | `scene_inventory.json` · `ae0_compose_reference.py` | `pragma/ae0/` · `work/` | inventario adjudicado A‑E0 | ✅ validado (`A_E0_PENDING_GT`) | ver manifiesto |
 | `polygon.py` · `validate_ae0_polygons.py` · `FORMATO_POLIGONOS_A-E0.md` | `pragma_ae/` · `work/` · `ae0/` | máscaras por polígono (NUMPY_MINIMAL); validador parcheado (ChatGPT 013) | ✅ 15 pruebas | ver manifiesto |
 | `012_chatgpt_a_claude.md` · `013_claude_a_chatgpt.md` | `pragma/dialogo/` | adjudicación de la segunda llave · inventario y polígonos | ✅ archivada · ✅ respondida | ver manifiesto |
-| `013_chatgpt_a_claude.md` · `014_claude_a_chatgpt.md` | `pragma/dialogo/` | inventario aceptado a la espera de Codex · parche del validador para su PASS | ✅ archivada tal cual · 🟡 para pegar | paquete 014 `948ce2…3288` |
+| `013_chatgpt_a_claude.md` · `014_claude_a_chatgpt.md` | `pragma/dialogo/` | inventario aceptado a la espera de Codex · parche del validador para su PASS | ✅ archivada tal cual · ✅ respondida | paquete 014 `948ce2…3288` |
+| `014_chatgpt_a_claude.md` · `tercera_revision_codex.json` | `pragma/dialogo/` · `pragma/ae0/comparacion/` | `POLYGON_VALIDATOR_PATCH = PASS` · C:022/C:025 `NOT_SEPARABLE` | ✅ archivadas tal cual | ver manifiesto |
+| `CONGELADO_INVENTARIO_A-E0.json` · `COMPROMISO_POLIGONOS_CLAUDE_A-E0.json` | `pragma/ae0/` | inventario congelado · llave de polígonos de Claude (solo hash) | ✅ | `bbf59747…b0ce` · `39a071e0…04c5` |
+| `poligonos_claude_A-E0.json` | local (`local/ae0/`; nunca en git) | llave de polígonos de Claude | ✅ `valid` | `39a071e0…04c5` |
+| `015_claude_a_chatgpt.md` · paquete 015 | `pragma/dialogo/` · local | GO para la llave de polígonos de ChatGPT | 🟡 para pegar | `bd34c1…7658` |
 | Paquete ciego de Codex | local (`local/share/`) | tercera revisión de C:022 y C:025 (pide no consultar el repositorio) | 🟡 para enviar | `ff1204…8008` |
 | `keydiff_retrospectivo_v14.json` · `cierre_chatgpt008.json` | `pragma/auditoria/aem1v14_…/` | retrospectiva (exploratoria) · cierre de v1.4 por doble llave | ✅ | `ec1ef0…c00c` · `3cfa78…3b73` |
 | `008_chatgpt_a_claude.md` · `009_claude_a_chatgpt.md` | `pragma/dialogo/` | cierre confirmado · DEC‑025 y ratificación | ✅ archivada · 🟡 para pegar | `4dec78…7dd1` · ver manifiesto |
@@ -2312,33 +2347,25 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-- **(v2.6+, 2026‑09‑27)** Se cumplieron las dos condiciones: `POLYGON_VALIDATOR_PATCH = PASS`
-  (ChatGPT 014) y Codex incorporado (C:022 y C:025 `NOT_SEPARABLE` → excluidos). Lista de objetos
-  congelada por hash en `ae0/CONGELADO_INVENTARIO_A-E0.json` (65 objetos, sin pendientes), **antes
-  de trazar**. Siguiente: Claude traza sus polígonos y compromete solo el hash (carta 015).
+- **Inventario A‑E0 congelado** (`bbf59747…b0ce`, 65 objetos), con Codex incorporado.
+- **Llave de polígonos de Claude** comprometida solo por hash (`39a071e0…04c5`). El archivo está en
+  `local/ae0/poligonos_claude_A-E0.json` y **no se toca**.
+- **Esperando:** la llave de polígonos de ChatGPT (carta 015).
 
-- **Inventario adjudicado compuesto:** `ae0/scene_inventory.json`, 65 objetos + 2 pendientes,
-  aceptado por ChatGPT **a la espera de Codex**. No es un inventario final todavía.
-- **Polígonos:** formato, derivación y custodia aceptados; validador parcheado según ChatGPT 013
-  (151/151). **Nadie traza** hasta que se cumplan las dos condiciones de ChatGPT:
-  `CODEX_THIRD_REVIEW = INCORPORATED` y `POLYGON_VALIDATOR_PATCH = PASS`.
+## Próxima acción
 
-## Próxima acción (en paralelo)
-
-1. La persona usuaria pega `dialogo/014_claude_a_chatgpt.md` en ChatGPT, con
-   `local/share/PRAGMA_carta014_validador.zip`.
-2. Trae la respuesta de Codex a `PRAGMA_tercera_revision_A-E0.zip` (si aún no la pidió: adjuntar ese
-   ZIP en Codex y pegar su `PREGUNTAS_TERCERA_REVISION.md`).
+1. La persona usuaria pega `dialogo/015_claude_a_chatgpt.md` en ChatGPT, con
+   `local/share/PRAGMA_carta015_poligonos.zip`.
+2. Trae la respuesta y el archivo `poligonos_chatgpt_A-E0.json`.
 
 ## Resultado esperado
 
-1. Claude archiva las dos respuestas y ejecuta `python3 work/ae0_compose_reference.py --codex
-   <respuesta.json>`: C:022 y C:025 se resuelven con la regla fijada, sin cuarta vuelta, y el
-   inventario se congela.
-2. Claude traza sus polígonos de las tres personas, valida con el validador parcheado, compromete
-   solo el hash y escribe la carta 015: hash e inventario final, con el GO para que ChatGPT trace a
-   ciegas. Solo si ChatGPT dio `POLYGON_VALIDATOR_PATCH = PASS`; si pide otro cambio, se aplica
-   antes de trazar.
+1. Claude archiva la llave de ChatGPT tal cual (con su hash) y la valida.
+2. Entrega su propia llave a ChatGPT en un paquete privado; ChatGPT verifica que el hash es
+   `39a071e0…04c5`.
+3. Corre `keydiff` (DEC‑025) por persona y arma las láminas de diferencias, en local.
+4. Adjudica toda `ISLAND` y todo `THICK` ≥ 100 px.
+5. Compone la referencia (`MIDLINE`) y pasa a las teselas de contorno y al desafío dirigido de Codex.
 
 ---
 
@@ -2401,6 +2428,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v2.7 | 2026‑09‑27 | ChatGPT 014 archivada (`POLYGON_VALIDATOR_PATCH = PASS`); Codex archivado (C:022/C:025 `NOT_SEPARABLE` → excluidos); inventario A‑E0 congelado antes de trazar (`bbf59747…b0ce`); llave de polígonos de Claude trazada y comprometida solo por SHA‑256 (`39a071e0…04c5`); carta 015 con el GO para ChatGPT |
 | v2.6 | 2026‑09‑27 | ChatGPT 013 archivada (inventario `ACCEPTED_PENDING_CODEX`, dos mesas cerradas, formato/derivación/custodia de polígonos aceptados, `POLYGON_VALIDATOR = CHANGE_REQUIRED`); parche del validador (vértices crudos finitos dentro de la foto; caja de la zona incierta ± 40 px) con las cuatro pruebas pedidas más dos; las de rechazo fallan con el validador anterior; 18 atributos etiquetados `CLAUDE_DEFAULT_WITH_DISAGREEMENT_LOGGED`; 151/151; carta 014 |
 | v2.5 | 2026‑09‑26 | ChatGPT 012 archivada (custodia PASS, propuesta aceptada; Q2/Q3 aceptan a Claude; Q1 dos mesas, concedida por Claude); reglas y paquete ciego de Codex para C:022/C:025; inventario adjudicado compuesto (65 objetos, `A_E0_PENDING_GT`); rasterizador y formato de polígonos; 145/145; carta 013 |
 | v2.4 | 2026‑09‑26 | llave de ChatGPT archivada tal cual (`424e89d`) y de Claude publicada con su hash verificado (`237be5b`); keymatch v0.1 (16 pares, dos fallos de la regla declarados); láminas de evidencia; propuesta de adjudicación (44 `SAME`, 7 + 9 inclusiones, 2 exclusiones propias, 2 `MATCH_REJECTED`, 4 preguntas para Codex); carta 012 |

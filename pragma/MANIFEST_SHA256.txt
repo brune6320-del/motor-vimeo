@@ -1,4 +1,4 @@
-# PRAGMA v2.6 · manifiesto del árbol versionado (repo brune6320-del/motor-vimeo, carpeta pragma/)
+# PRAGMA v2.7 · manifiesto del árbol versionado (repo brune6320-del/motor-vimeo, carpeta pragma/)
 # Generado: 2026-09-27. Verificar desde pragma/: sha256sum -c MANIFEST_SHA256.txt  (macOS: shasum -a 256 -c)
 # Excluye este archivo y los enlaces simbólicos de history/handoff_v1.0/. Entradas binarias: inputs/INPUTS_SHA256.txt
 777522474768f7fecb57c30a3dab9179ccd43656692034ac25d8aeb8e54325b1  .gitignore
@@ -7,8 +7,8 @@ a92f55da000d61710a19ffade0a64026370f7d2923153734def359d5bcfd7e19  CLAUDE.md
 e67c0ee6d8e4dd42b7272f58f34391b3a5a2f946111b55d24b0208d6283d7e69  GUIA_COLAB_A-E-menos-1_v1_2.md
 1e997be62282d6e62574435379495f8d580dc8354239959a336dd82a949bc48b  GUIA_COLAB_A-E-menos-1_v1_3.md
 21666f4691aa33afc6dfc09809ba0114707b0e9c2f28c9f85194c0f1eed65a00  GUIA_COLAB_A-E-menos-1_v1_4.md
-ba2aa03e9a0705a05d783c2806c0c211d7505debb4cab2cc34ca4cf4e3d38ac9  PROJECT_STATE.md
-fb309cd72c2f515b60039927a838bfa7675080acb7d5f54659a901aa6af55557  README.md
+adad4c90b888af5a7e19fa6d8d8778c28400d567dee23abe78cbc3414f22f96d  PROJECT_STATE.md
+7c83992d2f3a45a98ddc1d5f9e48f24ce1fd800df1b9dc1a200d50af82181217  README.md
 678beddd8f0adc4a29e873e2354c1af3028b2683c9d59aac90a4130bd3d5243c  ae0/COMPROMISO_LLAVE_CLAUDE_A-E0.json
 0aec4880eaaa5eef75dd7b145c4ff414d108ab785e0418a4f0e083f9eb063855  ae0/COMPROMISO_POLIGONOS_CLAUDE_A-E0.json
 4c6ab745fe59def5e836cc81a65082fdd742e4078f816505da80feb44aa23328  ae0/CONGELADO_INVENTARIO_A-E0.json
@@ -92,7 +92,8 @@ d6845113cf4b50ec94593f07d5679ada8382f6f6ba30138a5d8bfb809444687a  dialogo/012_cl
 9af1e5fb5968961dd3a1d728ec3ef701a38ff04be941346934366fe49bac2a9c  dialogo/013_claude_a_chatgpt.md
 46ab9b5ade8d6ddfd4e5096708082c9e13da660704455bea53afb18f3b3124f0  dialogo/014_chatgpt_a_claude.md
 3ea89218f52e6b51fd046086548f9aeb920bb24b65eecfd3867934b091a8c488  dialogo/014_claude_a_chatgpt.md
-5c9f4717cc13254869d5203a35fd5708b223ba809fdc2a057dd1115fd05a7777  dialogo/README.md
+17a1f95c2dfc382048c954ae2fc79259a5692ad9a221e6eb580f06cc9e0893b2  dialogo/015_claude_a_chatgpt.md
+88630f650cab44ea380b62b6747d77dbddc3953fa3f00c43b120a7bbed3d68f5  dialogo/README.md
 9a1f96718b05f8294de4a9a1da3490c98c4994abf6bfc2e04168d3885e00d714  history/handoff_v1.0/HANDOFF_MANIFEST_SHA256.txt
 f34f9c10e4d80b70616233b6e8e954433fbcbfc145e1b7c9c04403985113f339  history/handoff_v1.0/PROJECT_STATE.md
 a5a254841c7fc4d1d978056f0184092f6d7b5590baec17bde2823db2978a0076  history/handoff_v1.0/START_HERE_CHATGPT_6_SOL.md
