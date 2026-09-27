@@ -36,6 +36,10 @@
   cierra con v1.4 (regla de parada prerregistrada).
 - A‑E0 se produce por doble llave de IA (DEC‑024): su referencia es `AI_CONSENSUS_REFERENCE`, nunca
   `HUMAN_GT`, y A‑E1 declara contra qué referencia mide.
+- **A‑E0 está congelado (etapa 1, contenido `0dba6767…bb6b`)** y el contrato A‑E1 está ligado a él.
+  No se tocan ni el inventario, ni las máscaras, ni el contrato: un cambio es otra versión y se declara.
+  Con máscaras solo de las 3 personas, A‑E1 nunca da `PASS_PROPOSALS` (techo
+  `INCONCLUSIVE_GT_INCOMPLETE`).
 - A‑E(−1) está cerrado (`AEM1_CLOSED_INCONCLUSIVE`, confirmado por ChatGPT 008): no se proponen más
   corridas SAM de diagnóstico. Toda máscara de referencia de A‑E0 pasa por la comprobación geométrica
   entre llaves (DEC‑025, `pragma_ae/keydiff.py`): el código dice que la diferencia existe y cuánto

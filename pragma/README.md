@@ -71,7 +71,8 @@ python3 work/double_key_aem1.py --zip <ZIP>     # comparación de las dos llaves
 python3 work/design_aem1_v1_3.py --check       # el prerregistro v1.3 se reproduce byte a byte (necesita la foto)
 python3 work/build_pragma_aem1_v1_3.py         # genera el cuaderno v1.3 desde el prerregistro
 python3 work/verify_pragma_aem1_v1_3.py        # v1.3: estático + E2E con SAM simulado + auditoría (necesita la foto)
-python3 work/ae1_analysis_contract.py --check  # contrato de análisis A‑E1 (borrador; se congela con A‑E0)
+python3 work/ae1_analysis_contract.py --check  # contrato de análisis A‑E1 (FROZEN, ligado a A‑E0)
+python3 work/ae0_freeze_reference.py --check   # A‑E0 congelado (etapa 1): A_E0_FROZEN y hashes de lo incierto
 python3 work/unblind_aem1_v1_3.py --zip <ZIP> --mapping <mapeo sellado local>  # desciegue y doble llave v1.3
 python3 work/design_aem1_v1_4.py --check       # prerregistro v1.4 byte a byte (necesita la foto y el ZIP v1.3)
 python3 work/build_pragma_aem1_v1_4.py         # genera el cuaderno v1.4 desde el prerregistro
@@ -92,6 +93,6 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 Numeración de órdenes: termina en 0 → va a ChatGPT; termina en 1 → va a Claude.
 
-1. En ChatGPT, la carta [`dialogo/018_claude_a_chatgpt.md`](dialogo/018_claude_a_chatgpt.md)
-   (**ORDEN 180**) con `PRAGMA_carta018_codex.zip`. Su respuesta termina en `ORDEN 181`.
+1. En ChatGPT, la carta [`dialogo/019_claude_a_chatgpt.md`](dialogo/019_claude_a_chatgpt.md)
+   (**ORDEN 190**) con `PRAGMA_carta019_congelado.zip`. Su respuesta termina en `ORDEN 191`.
 2. Traer la respuesta a Claude.

@@ -6,8 +6,9 @@ Uso:
 
 El sweep (`ae1/SWEEP_PRERREGISTRO_A-E1.json`) queda PREREGISTERED tal como lo inspeccionó ChatGPT y
 no se toca. Este contrato añade lo que faltaba para el experimento completo: el SHA-256 de la
-implementación de métricas y todos los umbrales. Se queda en DRAFT hasta que A-E0 se congele. Ese
-mismo commit lo congela, y cualquier cambio posterior de las métricas exige una versión nueva.
+implementación de métricas y todos los umbrales. Estuvo en DRAFT hasta que A-E0 se congeló. Ese
+mismo commit lo congela (ORDEN 181), ligado al inventario congelado y a sus máscaras por hash.
+Cualquier cambio posterior de las métricas o de la referencia exige una versión nueva.
 """
 
 from __future__ import annotations
@@ -27,11 +28,34 @@ from pragma_ae.metrics import GateParams  # noqa: E402
 SWEEP = ROOT / "ae1" / "SWEEP_PRERREGISTRO_A-E1.json"
 SWEEP_SHA256_INSPECTED = "25a61aa98ec7db261d837ba4129474905f41bfedb28cc76e599ef920172d5a38"
 OUT = ROOT / "ae1" / "CONTRATO_ANALISIS_A-E1.json"
+INVENTORY = ROOT / "ae0" / "scene_inventory.json"
 IMPLEMENTATION = ["pragma_ae/metrics.py", "pragma_ae/masks.py", "pragma_ae/inventory.py", "pragma_ae/keydiff.py"]
 
 
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def a_e0_binding() -> dict:
+    """Liga el contrato a la referencia A-E0 congelada; sin ella no hay contrato congelado."""
+    from pragma_ae import inventory as inv
+    frozen = inv.load(INVENTORY)
+    if frozen.get("status") != "FROZEN":
+        raise SystemExit("A-E0 no está congelado: el contrato A-E1 no se puede congelar")
+    return {
+        "inventory": {"file": INVENTORY.relative_to(ROOT).as_posix(), "file_sha256": sha(INVENTORY),
+                      "content_sha256": frozen["freeze"]["content_sha256"]},
+        "reference_type": frozen["freeze"]["reference_type"],
+        "frozen_by": frozen["freeze"]["frozen_by"],
+        "stage": ("ETAPA_1: máscaras de las 3 personas y cajas del resto (ONTOLOGIA_PROPUESTA §6). Mientras falten "
+                  "máscaras Tier A, evaluate() da INCONCLUSIVE_GT_INCOMPLETE: ninguna corrida de esta etapa puede "
+                  "dar PASS_PROPOSALS"),
+        "gt_masks": {o["id"]: {k: o["gt_mask"][k] for k in ("path", "mask_sha256", "derivation", "estimate_policy",
+                                                            "uncertain_path", "uncertain_mask_sha256")}
+                     for o in frozen["objects"] if o["gt_mask"]},
+        "uncertain_masks_rule": ("las cotas de uncertainty_reporting usan como U la máscara uncertain_path de cada "
+                                 "persona, verificada por uncertain_mask_sha256; P es la propuesta y F = gt_mask ∖ U"),
+    }
 
 
 def build() -> dict:
@@ -41,7 +65,9 @@ def build() -> dict:
     payload = {
         "schema": "pragma.ae1_analysis_contract",
         "schema_version": "0.1.0",
-        "status": "DRAFT_FREEZES_WITH_A_E0",
+        "status": "FROZEN",
+        "frozen_with": "A-E0 = AI_CONSENSUS_REFERENCE FROZEN, mismo commit (GO de ChatGPT, ORDEN 181)",
+        "a_e0_reference": a_e0_binding(),
         "sweep": {"file": SWEEP.relative_to(ROOT).as_posix(), "sha256": SWEEP_SHA256_INSPECTED,
                   "status": "PREREGISTERED", "cross_audit": "ChatGPT 003: las cuatro configuraciones, aceptadas sin cambios"},
         "full_experiment": "NOT_YET_FULLY_PREREGISTERED",
@@ -53,6 +79,8 @@ def build() -> dict:
                                         "calculó: AI_CONSENSUS_REFERENCE (producida y adjudicada solo por IA) o HUMAN_GT "
                                         "(ratificada píxel a píxel por personas), y la derivation de cada máscara"),
         },
+        "gate_status": {"A_E0_FROZEN": "MET", "METRICS_CONTRACT_FROZEN": "MET",
+                        "REFERENCE_TYPE_DECLARED": "AI_CONSENSUS_REFERENCE (derivation AI_POLYGON_RASTER)"},
         "reference_types": {
             "AI_CONSENSUS_REFERENCE": "ingeniería y comparación interna; nunca se presenta como exactitud frente a verdad humana",
             "HUMAN_GT": "solo si una muestra se anota o ratifica de forma independiente por personas",

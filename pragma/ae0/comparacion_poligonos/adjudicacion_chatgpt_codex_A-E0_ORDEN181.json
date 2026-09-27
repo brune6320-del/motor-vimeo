@@ -1,0 +1,77 @@
+{
+  "schema": "pragma.ae0_codex_findings_second_key_adjudication",
+  "schema_version": "0.1.0",
+  "order": 181,
+  "reviewer": "chatgpt",
+  "source_order": 180,
+  "package_sha256": "2b0748886d04ab518b85d99930698be9ca7f8270dbd9790b29f9ac2cd221d82e",
+  "patches": {
+    "C1": {
+      "decision": "ACCEPT",
+      "reason": "Interior visible de la manga izquierda levantada; rings_only + margin 8 retira solo incertidumbre de una llave sin tocar disputas previas ni el borde."
+    },
+    "C2": {
+      "decision": "ACCEPT",
+      "reason": "Interior visible de la manga derecha; la cuña oscura es pliegue/encaje interior, no una frontera incierta."
+    },
+    "C3": {
+      "decision": "ACCEPT",
+      "reason": "Acepto solo la parte iluminada del mantel como CERTAIN; la parte oscura de la pierna permanece incierta según la medición y las adjudicaciones previas."
+    },
+    "C4": {
+      "decision": "ACCEPT",
+      "reason": "Marco y pared a la izquierda del cabello de ae0_002 son inequívocos; el contacto alto bajo el moño queda protegido."
+    },
+    "C5": {
+      "decision": "ACCEPT",
+      "reason": "Por debajo de y=700, la columna de cabello de ae0_002 y las regiones de marco/pared/blusa quedan suficientemente resueltas; rings_only y margin 8 protegen las disputas previas."
+    },
+    "C6": {
+      "decision": "ACCEPT",
+      "reason": "La pequeña incertidumbre de una sola llave lejos del borde en la unión blusa/cabello puede retirarse; el componente disputado permanece protegido."
+    },
+    "C7": {
+      "decision": "ACCEPT",
+      "reason": "Visto desde ae0_003, la columna inferior pertenece a ae0_002 o al fondo/propia blusa; la zona realmente disputada queda protegida."
+    },
+    "N1": {
+      "decision": "ACCEPT",
+      "reason": "El escalón medido de luminancia en x≈1082–1089 es evidencia suficiente de que ambas llaves cortaron antes la pierna derecha. UNCERTAIN_INCLUDE es conservador porque mueve la estimación pero no convierte la zona en cierto."
+    }
+  },
+  "mechanism": {
+    "rings_only": "ACCEPT",
+    "UNCERTAIN_verdict": "ACCEPT",
+    "margin_px_8_for_codex_round": "ACCEPT",
+    "reason": "rings_only protege incertidumbre de keydiff, thin, EXCLUSIVITY y parches inciertos previos; UNCERTAIN amplía incertidumbre sin mover la estimación."
+  },
+  "codex_findings": {
+    "rejects": {
+      "1T011.T2": "ACCEPT_REJECT",
+      "1T012.T1": "ACCEPT_REJECT",
+      "1T013.T2": "ACCEPT_REJECT",
+      "1T013.T3": "ACCEPT_REJECT",
+      "1T014.T1": "ACCEPT_REJECT",
+      "2T001.T1": "ACCEPT_REJECT",
+      "2T003.T1": "ACCEPT_REJECT",
+      "2T005.T1": "ACCEPT_REJECT",
+      "2T006.T2": "ACCEPT_REJECT",
+      "2T008.T1": "ACCEPT_REJECT",
+      "2T009.T1": "ACCEPT_REJECT",
+      "2T011.T1": "ACCEPT_REJECT",
+      "3T001.T1": "ACCEPT_REJECT",
+      "3T002.T1": "ACCEPT_REJECT",
+      "3T005.T1": "ACCEPT_REJECT",
+      "3T007.O1": "ACCEPT_REJECT"
+    },
+    "3T007.T1": "ACCEPT_ALREADY_ADDRESSED"
+  },
+  "summary": {
+    "patches_accept": 8,
+    "patches_contest": 0,
+    "reject_findings_accepted": 16,
+    "already_addressed_accepted": 1,
+    "contest": 0,
+    "fourth_round": false
+  }
+}

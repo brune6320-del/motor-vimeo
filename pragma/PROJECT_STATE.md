@@ -3,11 +3,18 @@
 - **Proyecto:** PRAGMA · Motor de Transparencia / Inventario exhaustivo de escena
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
-- **Última actualización:** 27 de septiembre de 2026 (v2.10, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v2.10`
-- **Estado general:** `INCONCLUSIVE_A_E0_REQUIRED`
+- **Última actualización:** 27 de septiembre de 2026 (v3.0, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
+- **Versión:** `v3.0`
+- **Estado general:** `A_E0_FROZEN_STAGE1` · A‑E1 etapa 1 por prerregistrar (antes: `INCONCLUSIVE_A_E0_REQUIRED`)
 - **Fase B:** `BLOQUEADA`
-- **Último hito documentado (v2.10):** ChatGPT 017 (ORDEN 171) aceptó los 6 parches y el mecanismo; su recorrido de las 36 teselas no encontró nada nuevo. **Codex** revisó a ciegas las 31 de desafío: 1 `OMISSION` y 26 regiones `TOO_BROAD`, sin `EXCESS` ni `TOO_NARROW`. Claude tradujo y midió los 27 hallazgos:
+- **Último hito documentado (v3.0):** **A‑E0 congelado** (`AI_CONSENSUS_REFERENCE`, `FROZEN`), con el GO de ChatGPT 018 (ORDEN 181): 8 `ACCEPT`, 0 contestados.
+  - **Composición final:** 6 parches, C1–C7 y N1, idéntica píxel a píxel a la vista previa aceptada, sin solape entre personas.
+  - **`gt_mask`** con `AI_POLYGON_RASTER`, `MIDLINE` y la zona incierta registrada por hash.
+  - **Inventario:** `765aaa4a…1d37` (contenido `0dba6767…bb6b`); validador `A_E0_FROZEN`, 0 errores.
+  - **Contrato A‑E1 `FROZEN`** en el mismo commit, ligado a A‑E0; código de métricas y umbrales sin cambios frente al borrador inspeccionado.
+  - Es la **etapa 1** (máscaras solo de las 3 personas), así que el techo de A‑E1 es `INCONCLUSIVE_GT_INCOMPLETE`.
+  - 159/159. Carta 019 = **ORDEN 190**: pide `FREEZE_INTEGRITY` y reglas R1–R4 de A‑E1 etapa 1
+- **Hito v2.10:** ChatGPT 017 (ORDEN 171) aceptó los 6 parches y el mecanismo; su recorrido de las 36 teselas no encontró nada nuevo. **Codex** revisó a ciegas las 31 de desafío: 1 `OMISSION` y 26 regiones `TOO_BROAD`, sin `EXCESS` ni `TOO_NARROW`. Claude tradujo y midió los 27 hallazgos:
   - 5 aceptados, 5 en parte y 1 ya resuelto; en total, 7 parches `CERTAIN`;
   - 16 mantienen lo incierto, cada uno con su medición o una disputa ya adjudicada;
   - la «mano» de 3T007 son las rayas de la manga de 002.
@@ -496,6 +503,41 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
   - `✅ EJECUTADO GPU` + `✅` doble llave con adjudicación técnica;
   - `✅` confirmado por ChatGPT 008 (v2.1).
 
+## Hito 29 — A‑E0 congelado (etapa 1) y contrato A‑E1 congelado (v3.0)
+
+- **ChatGPT 018** (`dialogo/018_chatgpt_a_claude.md`, ORDEN 181):
+  - C1–C7 y N1 `ACCEPT`; `rings_only`, `UNCERTAIN` y `margin_px = 8` aceptados;
+  - los 16 rechazos y 3T007.T1 aceptados; 0 contestados, sin cuarta vuelta;
+  - GO para componer y congelar.
+  - Su archivo es `adjudicacion_chatgpt_codex_A-E0_ORDEN181.json` (`b7ecc701…60e3`).
+- **`work/ae0_freeze_reference.py`:**
+  - comprueba por hash todo lo aplicado;
+  - compone y escribe `ae0/gt/` (no versionado);
+  - registra `gt_mask` y `gt_provenance`;
+  - `inv.freeze`, y `--check` para revalidar.
+- **Máscaras (`packed_sha256`), estimación · zona incierta:**
+  - `ae0_001`: `c90e246d…a7cb` · `de1e34ca…670a`;
+  - `ae0_002`: `ed2ec5a8…1420` · `b10d4ac6…17df`;
+  - `ae0_003`: `adb08879…7118` · `71daa0c0…fac4`.
+  - Registro: `ae0/CONGELADO_REFERENCIA_A-E0.json`; cifras en `composicion_referencia_final.json`.
+- **Inventario:**
+  - `FROZEN`, `AI_CONSENSUS_REFERENCE`, firmado por la doble llave de IA;
+  - archivo `765aaa4a…1d37` y contenido `0dba6767…bb6b`.
+- **Contrato A‑E1** (`ae1/CONTRATO_ANALISIS_A-E1.json`, contenido `96de8a31…edfe`):
+  - `FROZEN` y ligado a A‑E0: inventario, las 3 `gt_mask` y las 3 zonas inciertas;
+  - declara la etapa;
+  - `metrics.py`, `masks.py`, `inventory.py`, `keydiff.py`, umbrales y sweep, idénticos al borrador
+    `d6787c…56c9`.
+- **Etapa 1** (`ONTOLOGIA_PROPUESTA.md` §6): de 38 Tier A, 3 tienen máscara → `evaluate` da
+  `INCONCLUSIVE_GT_INCOMPLETE`. Nunca `PASS_PROPOSALS` en esta etapa.
+- **Carta 019** (ORDEN 190), con `PRAGMA_carta019_congelado.zip` (`321b377b…0cc4`):
+  - pide `FREEZE_INTEGRITY`;
+  - propone A‑E1 etapa 1: una corrida de las 4 configuraciones y reglas de lectura R1–R4
+    (cribado de cajas con revisión ciega, personas con cotas, fusión y contacto, decisión de etapa).
+- **Certeza:**
+  - `✅` congelado y contrato;
+  - `🟡` integridad por segunda llave y R1–R4.
+
 ## Hito 28 — Desafío de Codex adjudicado con medición y un hallazgo propio (v2.10)
 
 - **ChatGPT 017** (`dialogo/017_chatgpt_a_claude.md`, ORDEN 171):
@@ -845,9 +887,9 @@ A‑E(−1) v1.3                  GPU REAL · INCONCLUSIVE_SELECTED_OUTPUT_FAILE
                               CLOSED_INCONCLUSIVE · SUBPROBLEMA DE SEPARACIÓN DEMOSTRADO · SEGMENTACIÓN COMPLETA NO
 A‑E(−1) v1.4                  GPU REAL · INCONCLUSIVE · H2 REPARA LA FRANJA (H‑C3) · FALTA PELO LATERAL
 A‑E(−1)                       AEM1_CLOSED_INCONCLUSIVE · CONFIRMADO POR DOBLE LLAVE (ChatGPT 008)
-A‑E0 inventario de referencia DEC‑024: DOBLE LLAVE IA → AI_CONSENSUS_REFERENCE · ESQUEMA LISTO · MÁSCARAS SIN SAM 2
-                              ONTOLOGÍA RATIFICADA · INVENTARIO ADJUDICADO (65) · 2 OBJETOS EN CODEX · MÁSCARAS DE PERSONAS PENDIENTES
-A‑E1 SAM2 AMG                 SWEEP PREREGISTERED (ChatGPT 003) · ANÁLISIS CONDICIONADO A A‑E0 · SIN CORRIDA
+A‑E0 inventario de referencia FROZEN · AI_CONSENSUS_REFERENCE · ETAPA 1 (máscaras de las 3 personas, sin SAM 2)
+                              65 objetos · 38 Tier A (3 con máscara) · contenido 0dba6767…bb6b
+A‑E1 SAM2 AMG                 SWEEP PREREGISTERED · CONTRATO FROZEN (ligado a A‑E0) · ETAPA 1 POR PRERREGISTRAR · SIN CORRIDA
 Revisión                      AUDITOR IA + CONTRAAUDITORÍA CHATGPT · VETO DE LA PERSONA USUARIA
 Fase B                        BLOQUEADA
 SAM 2                         NO RECHAZABLE TODAVÍA
@@ -979,7 +1021,7 @@ Extensión                     ZIP v1.2.0 VERIFICADO / NO MODIFICADA
 
 ## 5.19 Contrato de análisis A‑E1
 
-**Estado:** `🟡 DRAFT_FREEZES_WITH_A_E0`.
+**Estado:** `✅ FROZEN` (v3.0, ligado a A‑E0; antes `DRAFT_FREEZES_WITH_A_E0`).
 
 - Liga el sweep inspeccionado (`25a61a…5a38`, sin tocar) al SHA‑256 de `metrics.py`, `masks.py` e
   `inventory.py` y a todos los umbrales de `GateParams`.
@@ -1248,7 +1290,11 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 | `017_claude_a_chatgpt.md` · paquete 017 | `pragma/dialogo/` · local | ORDEN 170: referencia, teselas y parches | ✅ respondida (6 ACCEPT) | `d4f6a9…d43a` |
 | `017_chatgpt_a_claude.md` · `revision_chatgpt_teselas_A-E0.json` · `revision_codex_teselas_A-E0.json` | `pragma/dialogo/` · `pragma/ae0/comparacion_poligonos/` | ORDEN 171 · desafío de Codex | ✅ archivadas tal cual | `35af1ea1…13cd` · `77cc16cd…1cd2` |
 | `adjudicacion_codex_propuesta_claude.json` · `parches_codex_propuestos_v0.json` · `vista_previa_con_parches_v1.json` | `pragma/ae0/comparacion_poligonos/` | adjudicación de Codex, parches C1–C7 y N1, vista previa | 🟡 propuesta | `fd75b135…9080` · `56e03392…3ff8` |
-| `018_claude_a_chatgpt.md` · paquete 018 | `pragma/dialogo/` · local | ORDEN 180: adjudicación de Codex y N1 | 🟡 para pegar | `2b074888…d82e` |
+| `018_claude_a_chatgpt.md` · paquete 018 | `pragma/dialogo/` · local | ORDEN 180: adjudicación de Codex y N1 | ✅ respondida (8 ACCEPT) | `2b074888…d82e` |
+| `018_chatgpt_a_claude.md` · `adjudicacion_chatgpt_codex_A-E0_ORDEN181.json` | `pragma/dialogo/` · `pragma/ae0/comparacion_poligonos/` | ORDEN 181: GO para congelar | ✅ archivadas tal cual | `b7ecc701…60e3` |
+| `ae0_freeze_reference.py` · `CONGELADO_REFERENCIA_A-E0.json` · `composicion_referencia_final.json` · `scene_inventory.json` | `work/` · `pragma/ae0/` | congelado de A‑E0 (etapa 1) | ✅ `A_E0_FROZEN` | contenido `0dba6767…bb6b` |
+| `CONTRATO_ANALISIS_A-E1.json` | `pragma/ae1/` | contrato A‑E1 ligado a A‑E0 | ✅ `FROZEN` | contenido `96de8a31…edfe` |
+| `019_claude_a_chatgpt.md` · paquete 019 | `pragma/dialogo/` · local | ORDEN 190: integridad del congelado y A‑E1 etapa 1 | 🟡 para pegar | `321b377b…0cc4` |
 | Paquete ciego de Codex | local (`local/share/`) | tercera revisión de C:022 y C:025 (pide no consultar el repositorio) | 🟡 para enviar | `ff1204…8008` |
 | `keydiff_retrospectivo_v14.json` · `cierre_chatgpt008.json` | `pragma/auditoria/aem1v14_…/` | retrospectiva (exploratoria) · cierre de v1.4 por doble llave | ✅ | `ec1ef0…c00c` · `3cfa78…3b73` |
 | `008_chatgpt_a_claude.md` · `009_claude_a_chatgpt.md` | `pragma/dialogo/` | cierre confirmado · DEC‑025 y ratificación | ✅ archivada · 🟡 para pegar | `4dec78…7dd1` · ver manifiesto |
@@ -2467,22 +2513,28 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-- **Referencia compuesta** (v0; máscaras en `ae0/gt/`).
-- **Codex respondió**; Claude adjudicó sus 27 hallazgos con medición (carta 018, ORDEN 180).
-- **Esperando a ChatGPT:** `ACCEPT` o `CONTEST` para C1–C7, N1 y los rechazos. Su respuesta debe
-  terminar en `ORDEN 181`.
+- **A‑E0 congelado** (`FROZEN`, `AI_CONSENSUS_REFERENCE`, etapa 1) y **contrato A‑E1 congelado**, en
+  el mismo commit.
+- **Esperando a ChatGPT** (carta 019, ORDEN 190):
+  - `FREEZE_INTEGRITY`;
+  - la etapa 1 aceptada, con su techo;
+  - reglas R1–R4;
+  - GO para construir el cuaderno A‑E1 etapa 1, sin GPU.
+
+  Su respuesta debe terminar en `ORDEN 191`.
 
 ## Próxima acción
 
-1. En ChatGPT: `dialogo/018_claude_a_chatgpt.md` + `local/share/PRAGMA_carta018_codex.zip`.
+1. En ChatGPT: `dialogo/019_claude_a_chatgpt.md` + `local/share/PRAGMA_carta019_congelado.zip`.
 2. Traer su respuesta completa a Claude.
 
 ## Resultado esperado
 
-1. Claude archiva la respuesta y aplica la regla conjunta (en todo desacuerdo gana lo incierto).
-2. Composición final con `--write`: los 6 parches aceptados y los de la 018 que se acepten.
-3. En un mismo commit: `gt_mask` en el inventario, `AI_CONSENSUS_REFERENCE = FROZEN` y el contrato
-   A‑E1 congelado.
+1. Claude archiva la respuesta y congela las reglas de lectura R1–R4 que queden aceptadas: es el
+   prerregistro de A‑E1 etapa 1.
+2. Cuaderno A‑E1 etapa 1, generado desde el sweep y el contrato y verificado con SAM simulado.
+3. GO de ChatGPT → corrida en L4 → análisis contra la referencia congelada.
+4. Nada de la referencia se toca: cualquier cambio sería otra versión de A‑E0 y de A‑E1.
 
 ---
 
@@ -2545,6 +2597,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v3.0 | 2026‑09‑27 | ChatGPT 018 archivada (8 ACCEPT, GO); composición final y **A‑E0 FROZEN** (`AI_CONSENSUS_REFERENCE`, etapa 1; `0dba6767…bb6b`); `gt_mask` con zona incierta por hash; contrato A‑E1 FROZEN y ligado a A‑E0 (código y umbrales sin cambios); `work/ae0_freeze_reference.py`; 159/159; carta 019 = ORDEN 190 (integridad y R1–R4 de A‑E1 etapa 1) |
 | v2.10 | 2026‑09‑27 | ChatGPT 017 archivada (6 parches ACCEPT, 36 teselas sin hallazgos nuevos); Codex archivado (1 OMISSION, 26 TOO_BROAD); adjudicación con medición: C1–C7 aceptados, 16 rechazos que mantienen lo incierto; `rings_only` y veredicto `UNCERTAIN` (158/158); hallazgo propio N1 (pierna derecha de 001); vista previa v1; regla conjunta conservadora; carta 018 = ORDEN 180 |
 | v2.9 | 2026‑09‑27 | ChatGPT 016 archivada (31 ACCEPT, EXCLUSIVITY, regla del 90 %); referencia A‑E0 compuesta (v0, hashes y cotas); 36 teselas de contorno con plan previo; revisión de Claude (S1, S2, F1–F3); mecanismo de parches por evidencia (155/155); paquete ciego de Codex; numeración de órdenes x0/x1; carta 017 = ORDEN 170 |
 | v2.8 | 2026‑09‑27 | llave de polígonos de ChatGPT recibida (`d7b93141…2fc2`) y desciegue; `keydiff` (IoU 0,827 · 0,884 · 0,553; 31 componentes); propuesta de adjudicación con evidencia por componente y 5 concesiones; hallazgo de 23 344 px compartidos entre personas en la llave de ChatGPT (47 en la de Claude); regla `EXCLUSIVITY` y `work/ae0_compose_masks.py`; 153/153; carta 016 |

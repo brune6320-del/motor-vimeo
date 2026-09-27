@@ -121,6 +121,17 @@ class FrozenContracts(unittest.TestCase):
         self.assertEqual(contract["full_experiment"], "NOT_YET_FULLY_PREREGISTERED")
         self.assertIn("REQUIRED", contract["gates"]["A_E0_FROZEN"])
 
+    def test_ae1_contract_is_frozen_with_the_a_e0_reference(self):
+        contract = json.loads((ROOT / "ae1" / "CONTRATO_ANALISIS_A-E1.json").read_text(encoding="utf-8"))
+        ref = contract["a_e0_reference"]
+        inventory = json.loads((ROOT / ref["inventory"]["file"]).read_text(encoding="utf-8"))
+        self.assertEqual(contract["status"], "FROZEN")
+        self.assertEqual(sha(ROOT / ref["inventory"]["file"]), ref["inventory"]["file_sha256"])
+        self.assertEqual(inventory["status"], "FROZEN")
+        self.assertEqual(ref["reference_type"], "AI_CONSENSUS_REFERENCE")
+        self.assertEqual(set(ref["gt_masks"]), {"ae0_001", "ae0_002", "ae0_003"})
+        self.assertTrue(all(m["derivation"] == "AI_POLYGON_RASTER" for m in ref["gt_masks"].values()))
+
 
 class BlindSheet(unittest.TestCase):
     def test_holes_are_measured_numbered_and_drawn(self):

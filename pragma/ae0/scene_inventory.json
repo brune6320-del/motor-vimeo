@@ -1,7 +1,7 @@
 {
   "schema": "pragma.scene_inventory",
   "schema_version": "0.1.0",
-  "status": "AI_DOUBLE_KEY_REVIEWED",
+  "status": "FROZEN",
   "reference_type": "AI_CONSENSUS_REFERENCE",
   "image": {
     "sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
@@ -82,7 +82,14 @@
       "parent_id": null,
       "occluded_by": [],
       "gt_required": true,
-      "gt_mask": null,
+      "gt_mask": {
+        "path": "gt/ae0_001_estimate.png",
+        "mask_sha256": "c90e246dab3f96d915712855a03cbf676f4e97ffddab48e5fd47dd41e4a5a7cb",
+        "derivation": "AI_POLYGON_RASTER",
+        "estimate_policy": "MIDLINE",
+        "uncertain_path": "gt/ae0_001_uncertain.png",
+        "uncertain_mask_sha256": "de1e34ca092c52d8079f5aa24aa284dde17993c9e0c556b6ea78a2c53ba3670a"
+      },
       "ignore_reason": null,
       "review": [],
       "notes": "Brazos levantados sobre la cabeza; codo izquierdo hasta x≈230; piernas cortadas por el borde inferior.",
@@ -110,7 +117,14 @@
       "parent_id": null,
       "occluded_by": [],
       "gt_required": true,
-      "gt_mask": null,
+      "gt_mask": {
+        "path": "gt/ae0_002_estimate.png",
+        "mask_sha256": "ed2ec5a8f573d9951fd66da161d909889ec4fa7c9193ce7069c127614af11420",
+        "derivation": "AI_POLYGON_RASTER",
+        "estimate_policy": "MIDLINE",
+        "uncertain_path": "gt/ae0_002_uncertain.png",
+        "uncertain_mask_sha256": "b10d4ac6912118ad70dbb5f1bc12891ecb8f167f2a47e0009093791bf6a217df"
+      },
       "ignore_reason": null,
       "review": [],
       "notes": "Sujeto del caso A-E(−1). Mano en V sobreexpuesta, casi del valor de la pared.",
@@ -140,7 +154,14 @@
         "ae0_002"
       ],
       "gt_required": true,
-      "gt_mask": null,
+      "gt_mask": {
+        "path": "gt/ae0_003_estimate.png",
+        "mask_sha256": "adb08879991eb132e1d07153d798c652e328610a8d760b6c996ae52d8f827118",
+        "derivation": "AI_POLYGON_RASTER",
+        "estimate_policy": "MIDLINE",
+        "uncertain_path": "gt/ae0_003_uncertain.png",
+        "uncertain_mask_sha256": "71daa0c043276061364af64f6e821b8ac5561537469bb4fce0ee571ccf5bfac4"
+      },
       "ignore_reason": null,
       "review": [],
       "notes": "Visible: moño, franja de cabello y hombro con blusa floral; el resto lo tapa 002.",
@@ -2085,5 +2106,54 @@
       }
     ],
     "notes": []
+  },
+  "gt_provenance": {
+    "derivation": "AI_POLYGON_RASTER",
+    "polygon_keys": {
+      "claude": "39a071e0bbde68efb23035a31cc67e09e0f74319bc0db2cb64a988dead7504c5",
+      "chatgpt": "d7b93141…2fc2 (ae0/RECEPCION_POLIGONOS_CHATGPT_A-E0.json)"
+    },
+    "composition": "work/ae0_compose_masks.py: keydiff + MIDLINE + unión de uncertain_rings + EXCLUSIVITY + parches",
+    "cross_person_rule": "EXCLUSIVITY",
+    "estimate_policy": "MIDLINE",
+    "inputs": {
+      "adjudications": {
+        "file": "ae0/comparacion_poligonos/adjudicacion_poligonos_final.json",
+        "sha256": "f7f8abe4cf2f49aad40845521018090fe73e8a510a1a384ecc5a993a2bcd311e"
+      },
+      "patches_017": {
+        "file": "ae0/comparacion_poligonos/parches_propuestos_v0.json",
+        "sha256": "1d1e08c06affe2f8e41bd19cd661290a86aaa1ab2c678f296bc970e0fa7ae095"
+      },
+      "patches_018": {
+        "file": "ae0/comparacion_poligonos/parches_codex_propuestos_v0.json",
+        "sha256": "56e033925ee088432bc39ad701d467083a5719800380ae1c7f77baf609ab3ff8"
+      },
+      "chatgpt_017": {
+        "file": "ae0/comparacion_poligonos/revision_chatgpt_teselas_A-E0.json",
+        "sha256": "35af1ea1a75fe02269db7739f0e0c5c7970913991b085eefee6214686dc313cd"
+      },
+      "chatgpt_018": {
+        "file": "ae0/comparacion_poligonos/adjudicacion_chatgpt_codex_A-E0_ORDEN181.json",
+        "sha256": "b7ecc701f17147197b1ba7bf5c91fd1387259e3edf2281d8682479ac539160e3"
+      },
+      "codex": {
+        "file": "ae0/comparacion_poligonos/revision_codex_teselas_A-E0.json",
+        "sha256": "77cc16cd968394c14916d6f24830bfdca1cbea64c6de8551c0970f9982c61cd2"
+      }
+    },
+    "three_state": "gt_mask es la estimación binaria; uncertain_path es la zona incierta. Toda métrica A-E1 lleva sus cotas min/max (keydiff.iou_with_uncertainty)"
+  },
+  "freeze": {
+    "frozen_by": "doble llave de IA: claude (polígonos 39a071e0…04c5) + chatgpt (polígonos d7b93141…2fc2); GO de ChatGPT en la ORDEN 181 (b7ecc701…60e3)",
+    "reviewed_as": "AI_DOUBLE_KEY_REVIEWED",
+    "reference_type": "AI_CONSENSUS_REFERENCE",
+    "frozen_utc": "2026-09-27T18:56:02.289731+00:00",
+    "gt_mask_sha256": {
+      "ae0_001": "c90e246dab3f96d915712855a03cbf676f4e97ffddab48e5fd47dd41e4a5a7cb",
+      "ae0_002": "ed2ec5a8f573d9951fd66da161d909889ec4fa7c9193ce7069c127614af11420",
+      "ae0_003": "adb08879991eb132e1d07153d798c652e328610a8d760b6c996ae52d8f827118"
+    },
+    "content_sha256": "0dba6767b0c7ca6d02a2f2498d7fb755f4eeeba65c88f7b3c798836f7136bb6b"
   }
 }
