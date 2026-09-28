@@ -97,15 +97,68 @@ class BoxScreen(unittest.TestCase):
         self.assertEqual(len(next(c for c in cands if c["packed_sha256"] == "a")["sources"]), 3)
         self.assertLessEqual(len(cands), 12)
 
-    def test_confirmation_needs_two_miss(self):
+    def test_triage_two_miss_only_escalates(self):
+        """ChatGPT 020: MISS en el triaje (3 por configuración) no es MISS sobre todas las propuestas."""
         a = {"R1": "MISS", "R2": "MISS", "R3": "MISS", "R4": "COVERS_OBJECT"}
         b = {"R1": "MISS", "R2": "CANNOT_DETERMINE", "R3": "COVERS_OBJECT"}
-        out = s1.confirm_box_screen(a, b)
-        self.assertEqual(out["R1"], "CONFIRMED_BOX_SCREEN_FAILURE")
+        out = s1.combine_r1_keys(a, b, "TRIAGE")
+        self.assertEqual(out["R1"], "ESCALATE_TO_EXHAUSTIVE")
         self.assertEqual((out["R2"], out["R3"]), ("NOT_CONFIRMED", "NOT_CONFIRMED"))
         self.assertEqual(out["R4"], "PENDING_SECOND_KEY")
         with self.assertRaises(ValueError):
-            s1.confirm_box_screen({"R1": "MAYBE"}, {"R1": "MISS"})
+            s1.combine_r1_keys({"R1": "MAYBE"}, {"R1": "MISS"}, "TRIAGE")
+
+    def test_exhaustive_miss_counts_only_after_all_pages(self):
+        full = {"answer": "MISS", "reviewed_all_pages": True}
+        self.assertEqual(s1.combine_r1_keys({"o": full}, {"o": full}, "EXHAUSTIVE")["o"], "CONFIRMED_BOX_SCREEN_FAILURE")
+        for partial in ({"answer": "MISS", "reviewed_all_pages": False}, {"answer": "MISS"}, "MISS"):
+            self.assertEqual(s1.combine_r1_keys({"o": full}, {"o": partial}, "EXHAUSTIVE")["o"], "NOT_CONFIRMED")
+        for other in ("COVERS_OBJECT", "CANNOT_DETERMINE"):
+            self.assertEqual(s1.combine_r1_keys({"o": full}, {"o": {"answer": other}}, "EXHAUSTIVE")["o"],
+                             "NOT_CONFIRMED")
+
+    def test_resolution_needs_both_phases(self):
+        miss = {"answer": "MISS", "reviewed_all_pages": True}
+        triage = ({"ae0_012": "MISS", "ae0_029": "MISS"}, {"ae0_012": "MISS", "ae0_029": "COVERS_OBJECT"})
+        r = s1.r1_resolution(["ae0_012", "ae0_029"], triage)
+        self.assertEqual(r["state"], {"ae0_012": "PENDING_EXHAUSTIVE_REVIEW", "ae0_029": "NOT_CONFIRMED"})
+        self.assertEqual(r["escalated"], ["ae0_012"])
+        self.assertEqual(s1.r1_resolution(["ae0_012", "ae0_029"])["state"]["ae0_012"], "PENDING_TRIAGE_REVIEW")
+        done = s1.r1_resolution(["ae0_012", "ae0_029"], triage, ({"ae0_012": miss}, {"ae0_012": miss}))
+        self.assertEqual(done["state"]["ae0_012"], "CONFIRMED_BOX_SCREEN_FAILURE")
+        with self.assertRaises(ValueError):          # la fase exhaustiva solo cubre objetos escalados
+            s1.r1_resolution(["ae0_012", "ae0_029"], triage, ({"ae0_029": miss}, {"ae0_029": miss}))
+
+    def test_exhaustive_set_reaches_a_mask_below_the_triage(self):
+        """El escenario de ChatGPT 020: caja de inventario holgada y la máscara buena, 5.ª por IoU de caja."""
+        obj = [100, 100, 200, 200]
+        good = (140, 130, 165, 185)                           # la máscara del objeto, más estrecha que la caja
+        decoys = [(100, 100, 160, 160), (120, 100, 190, 160), (100, 130, 170, 190), (130, 120, 190, 180)]
+        far, touching = (300, 300, 320, 320), (200, 100, 250, 150)   # esta solo toca el borde: no corta
+        boxes = {"AMG-0": decoys + [good, far, touching, None], "AMG-1": [good]}
+        hashes = {"AMG-0": ["d1", "d2", "d3", "d4", "good", "far", "touch", "empty"], "AMG-1": ["good"]}
+        ranking = s1.box_ranking(obj, boxes["AMG-0"])
+        self.assertTrue(all(iou < s1.BOX_THRESHOLD for iou, _ in ranking))
+        self.assertNotIn(4, [i for _, i in ranking[:s1.TOP_PER_CONFIG]])
+        cands = s1.exhaustive_candidates(obj, boxes, hashes)
+        self.assertEqual([c["packed_sha256"] for c in cands], ["d1", "d2", "d3", "d4", "good"])
+        self.assertEqual(next(c for c in cands if c["packed_sha256"] == "good")["sources"],
+                         [{"call_id": "AMG-0", "index": 4}, {"call_id": "AMG-1", "index": 0}])
+
+    def test_pages_have_no_cap(self):
+        self.assertEqual([len(p) for p in s1.paginate(list(range(30)))], [12, 12, 6])
+        self.assertEqual(sum(len(p) for p in s1.paginate(list(range(250)))), 250)
+        self.assertEqual(s1.paginate([]), [[]])
+
+    def test_key_from_answers_maps_labels_and_checks_covering_labels(self):
+        mapping = {"objects": {"R01": {"object_id": "ae0_012", "candidates": [{"label": "R01-X01"}]}}}
+        answers = {"objects": {"R01": {"answer": "COVERS_OBJECT", "covering_labels": ["R01-X01"],
+                                       "reviewed_all_pages": True}}}
+        self.assertEqual(s1.key_from_answers(answers, mapping),
+                         {"ae0_012": {"answer": "COVERS_OBJECT", "reviewed_all_pages": True}})
+        answers["objects"]["R01"]["covering_labels"] = ["R02-X01"]
+        with self.assertRaises(ValueError):
+            s1.key_from_answers(answers, mapping)
 
 
 class StageDecision(unittest.TestCase):
@@ -128,8 +181,62 @@ class StageDecision(unittest.TestCase):
 
     def test_confirmed_box_screen_failure_fails_and_pending_waits(self):
         self.assertEqual(s1.stage_decision({"ae0_020": "CONFIRMED_BOX_SCREEN_FAILURE"}, {})["decision"], "FAIL_COMPONENT")
-        self.assertEqual(s1.stage_decision({"ae0_020": "PENDING_SECOND_KEY"}, {})["decision"], "PENDING_R1_REVIEW")
+        for pending in ("PENDING_TRIAGE_REVIEW", "PENDING_EXHAUSTIVE_REVIEW", "PENDING_SECOND_KEY"):
+            self.assertEqual(s1.stage_decision({"ae0_020": pending}, {})["decision"], "PENDING_R1_REVIEW")
         self.assertEqual(s1.stage_decision({"ae0_020": "NOT_CONFIRMED"}, {})["decision"], "INCONCLUSIVE_GT_INCOMPLETE")
+
+    def test_triage_outcome_is_never_a_final_state(self):
+        with self.assertRaises(ValueError):
+            s1.stage_decision({"ae0_020": "ESCALATE_TO_EXHAUSTIVE"}, {})
+
+
+class PrecisionGate(unittest.TestCase):
+    """ChatGPT 020: solo cuenta una corrida CUDA en bfloat16 con capacidad ≥ 8."""
+
+    def bundle(self, **env_changes):
+        import hashlib
+        import tempfile
+        import zipfile
+        protocol = json.loads((ROOT / "ae1" / "AE1_STAGE1_READING_PROTOCOL.json").read_text(encoding="utf-8"))
+        frozen = protocol["freeze"]
+        env = {"device": "cuda", "device_name": "NVIDIA L4", "cuda_capability": [8, 9], "dtype": "bfloat16",
+               "torch": "2.8.0+cu126", "sam2_commit": frozen["SAM2_GIT_COMMIT"],
+               "checkpoint_sha256": frozen["CHECKPOINT_SHA256"], "image_sha256": frozen["IMAGE_SHA256"]}
+        env.update(env_changes)
+        env = {k: v for k, v in env.items() if v != "DROP"}
+        calls = [{"call_id": c["call_id"], "config_id": c["config_id"], "generator_kwargs": dict(c["generator_kwargs"]),
+                  "points_per_batch_attempts": [64]} for c in protocol["call_plan"]]
+        items = {s1.CONFIG_JSON: {"run_id": "T", "protocol_content_sha256": protocol["content_sha256"], "environment": env},
+                 s1.CALLS_JSON: calls, s1.REPORT_JSON: {"run_id": "T"}}
+        items.update({f"masks/{c['call_id']}.json": {"call_id": c["call_id"], "masks": []} for c in calls})
+        data = {n: json.dumps(v).encode() for n, v in items.items()}
+        manifest = {"files": {n: {"bytes": len(d), "sha256": hashlib.sha256(d).hexdigest()} for n, d in data.items()},
+                    "masks": {c["call_id"]: [] for c in calls}}
+        data[s1.MANIFEST_JSON] = json.dumps(manifest).encode()
+        path = Path(tempfile.mkdtemp()) / "bundle.zip"
+        with zipfile.ZipFile(path, "w") as z:
+            for n, d in data.items():
+                z.writestr(n, d)
+        return s1.integrity(path, protocol)
+
+    def test_bf16_with_capability_8_or_more_is_evidence(self):
+        for cap in ([8, 9], [8, 0], [9, 0]):                   # L4, A100, H100
+            out = self.bundle(cuda_capability=cap)
+            self.assertEqual(out["status"], "REAL_GPU_EVIDENCE", out["problems"])
+            self.assertEqual(out["environment"]["cuda_capability"], cap)
+
+    def test_fp16_gpu_is_not_evidence(self):
+        out = self.bundle(device_name="Tesla T4", cuda_capability=[7, 5], dtype="float16")
+        self.assertEqual(out["status"], "REAL_GPU_DIFFERENT_PRECISION_NOT_EVIDENCE")
+
+    def test_capability_is_required_and_must_match_the_dtype(self):
+        self.assertEqual(self.bundle(cuda_capability="DROP")["status"], "INVALID_BUNDLE")
+        self.assertEqual(self.bundle(dtype="float16")["status"], "INVALID_BUNDLE")
+        self.assertEqual(self.bundle(cuda_capability=[7, 5])["status"], "INVALID_BUNDLE")
+
+    def test_cpu_is_not_evidence(self):
+        out = self.bundle(device="cpu", device_name="CPU", cuda_capability=None, dtype="float32")
+        self.assertEqual(out["status"], "REAL_CPU_NOT_EVIDENCE")
 
 
 class Protocol(unittest.TestCase):

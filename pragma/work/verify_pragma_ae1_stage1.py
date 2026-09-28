@@ -4,19 +4,22 @@
 
 Qué demuestra:
 - **El cuaderno:**
+  - se detiene antes de instalar nada sin CUDA con capacidad ≥ 8 (bfloat16 nativo), como pidió ChatGPT 020;
   - embebe el protocolo byte a byte y conserva las compuertas de congelado de v1.3;
   - usa ``apply_postprocessing=False``;
   - no muestra resultados.
-- **Ejecutado con la foto real y un AMG simulado:**
-  - hace exactamente las 4 llamadas del plan, con sus kwargs;
+- **Ejecutado con la foto real, una L4 simulada y un AMG simulado:**
+  - hace exactamente las 4 llamadas del plan, con sus kwargs, en bfloat16;
   - ``points_per_batch`` solo baja por OOM y se registra.
 - **Su ZIP:**
   - pasa la integridad como ``SIMULATED_RUN_NOT_EVIDENCE``;
-  - toda manipulación (una máscara, los kwargs, la regla de ``points_per_batch``) da ``INVALID_BUNDLE``,
-    aunque el manifiesto se rehaga.
+  - toda manipulación (una máscara, los kwargs, la regla de ``points_per_batch``, la capacidad CUDA) da
+    ``INVALID_BUNDLE``, aunque el manifiesto se rehaga; un registro de GPU en float16 no es evidencia.
 - **El lector R1–R4 sobre ese ZIP:**
   - se detiene en R1 si hay disparadores y faltan llaves;
-  - el paquete ciego no revela la configuración, el score ni el ranking;
+  - dos ``MISS`` en el triaje no confirman nada: escalan a la revisión exhaustiva, que tiene todas las
+    propuestas cuya caja corta la del objeto, sin tope y en varias láminas;
+  - los paquetes ciegos no revelan la configuración, el score ni el ranking;
   - con las llaves, R2 (cotas por conjunto), R3 (diagnóstico) y R4 funcionan, y nunca dan PASS.
 
 Qué NO demuestra: la calidad de SAM 2. Eso exige la GPU.
@@ -51,8 +54,11 @@ INVENTORY = ROOT / "ae0" / "scene_inventory.json"
 GT_DIR = ROOT / "ae0" / "gt"
 OUT_JSON = ROOT / "outputs" / "PRAGMA_A-E1_etapa1_verificacion.json"
 WORKDIR = ROOT / "local" / "ae1_stage1_harness"
-CELLS = ["pragma-ae1s1-02", "pragma-ae1s1-03", "pragma-ae1s1-04", "pragma-ae1s1-05", "pragma-ae1s1-06"]
-MISSED = ("ae0_012", "ae0_029")          # el AMG simulado nunca los propone: dispara R1
+CELLS = ["pragma-ae1s1-00g", "pragma-ae1s1-02", "pragma-ae1s1-03", "pragma-ae1s1-04", "pragma-ae1s1-05",
+         "pragma-ae1s1-06"]
+MISSED = ("ae0_012", "ae0_029")          # el AMG simulado nunca los propone enteros: dispara R1
+FRAGMENTS = 4                            # … solo en trozos (FRAGMENTS × FRAGMENTS), que no los cubren
+L4, T4 = ("SIMULATED L4", (8, 9)), ("SIMULATED T4", (7, 5))
 H, W = 2248, 4000
 
 checks = []
@@ -69,6 +75,7 @@ class FakeAMG:
     """Rectángulos deterministas dentro de las cajas del inventario; nunca propone ``MISSED``."""
     calls, build_kwargs, oom = [], [], set()
     boxes = []
+    gpu = L4
 
     def __init__(self, model, **kwargs):
         self.kwargs = kwargs
@@ -84,7 +91,14 @@ class FakeAMG:
         shrink = {32: 0.15, 64: 0.08}[self.kwargs["points_per_side"]] + 0.05 * self.kwargs["crop_n_layers"]
         anns = []
         for oid, (x1, y1, x2, y2) in FakeAMG.boxes:
-            if oid in MISSED:
+            if oid in MISSED:                                # trozos iguales en las 4 configuraciones
+                xs = np.linspace(x1, x2, FRAGMENTS + 1).astype(int)
+                ys = np.linspace(y1, y2, FRAGMENTS + 1).astype(int)
+                for i in range(FRAGMENTS):
+                    for j in range(FRAGMENTS):
+                        mask = np.zeros((h, w), bool)
+                        mask[ys[j]:ys[j + 1], xs[i]:xs[i + 1]] = True
+                        anns.append(self.ann(mask, xs[i], ys[j], xs[i + 1], ys[j + 1]))
                 continue
             dx, dy = int((x2 - x1) * shrink / 2), int((y2 - y1) * shrink / 2)
             mask = np.zeros((h, w), bool)
@@ -105,6 +119,11 @@ class FakeAMG:
 
 def stub_modules_ae1(download_log):
     modules = original_stub(download_log)
+    if FakeAMG.gpu is not None:                              # GPU simulada: solo cambia lo que informa CUDA
+        name, capability = FakeAMG.gpu
+        modules["torch"].cuda.is_available = lambda: True
+        modules["torch"].cuda.get_device_capability = lambda index=0: capability
+        modules["torch"].cuda.get_device_name = lambda index=0: name
     build = types.ModuleType("sam2.build_sam")
 
     def build_sam2(cfg, checkpoint, device="cpu", apply_postprocessing=True):
@@ -120,8 +139,8 @@ def stub_modules_ae1(download_log):
 original_stub = harness.stub_modules
 
 
-def run_notebook(workdir, image_path, headless, oom=()):
-    FakeAMG.calls, FakeAMG.build_kwargs, FakeAMG.oom = [], [], set(oom)
+def run_notebook(workdir, image_path, headless, oom=(), gpu=L4):
+    FakeAMG.calls, FakeAMG.build_kwargs, FakeAMG.oom, FakeAMG.gpu = [], [], set(oom), gpu
     harness.stub_modules = stub_modules_ae1
     try:
         return harness.run(NOTEBOOK, workdir, image_path=image_path, headless=headless, cells=CELLS)
@@ -140,6 +159,10 @@ def static_checks(nb, protocol_bytes, protocol):
     check("cuaderno: protocolo embebido byte a byte con su SHA-256",
           literal in sources["pragma-ae1s1-03"] and hashlib.sha256(protocol_bytes).hexdigest() in sources["pragma-ae1s1-03"])
     check("cuaderno: modelo con apply_postprocessing=False", "apply_postprocessing=False" in sources["pragma-ae1s1-04"])
+    code_ids = [c["id"] for c in nb["cells"] if c["cell_type"] == "code"]
+    check("cuaderno: la compuerta de GPU es la primera celda de código, antes de instalar, y exige capacidad ≥ 8",
+          code_ids[:2] == ["pragma-ae1s1-00g", "pragma-ae1s1-01"] and "_capability[0] < 8" in sources["pragma-ae1s1-00g"]
+          and 'PRECISION["dtype"] != "bfloat16"' in sources["pragma-ae1s1-04"], str(code_ids[:2]))
     run_zip = sources["pragma-ae1s1-05"] + sources["pragma-ae1s1-06"]
     forbidden = ("anns", "masks", "RESULTS", "MASK_HASHES", "EXECUTED", "predicted_iou", "stability_score", "n_masks", "area")
     shown = []
@@ -184,6 +207,11 @@ def main():
     nb = json.loads(NOTEBOOK.read_text(encoding="utf-8"))
     static_checks(nb, protocol_bytes, protocol)
 
+    for label, gpu in (("sin GPU", None), ("T4 (capacidad 7.5)", T4)):
+        ns_g, _, error_g = run_notebook(WORKDIR / "gate", photo_path, headless=True, gpu=gpu)
+        check(f"E2E {label}: FAIL_ENVIRONMENT en la celda 0, antes de crear la corrida",
+              isinstance(error_g, RuntimeError) and str(error_g).startswith("FAIL_ENVIRONMENT") and "RUN_DIR" not in ns_g,
+              str(error_g)[:90])
     ns, downloads, error = run_notebook(WORKDIR / "browser", photo_path, headless=False)
     check("E2E navegador: sin errores", error is None, repr(error)[:200] if error else "")
     plan = [c["generator_kwargs"] for c in protocol["call_plan"]]
@@ -193,6 +221,10 @@ def main():
           FakeAMG.build_kwargs == [{"cfg": "configs/sam2.1/sam2.1_hiera_l.yaml", "apply_postprocessing": False}])
     zip_path = Path(ns.get("ZIP_PATH", "")) if error is None else None
     check("E2E navegador: una descarga, el ZIP", error is None and downloads == [str(zip_path)])
+    env = ns.get("ENVIRONMENT", {})
+    check("E2E: la L4 simulada corre en bfloat16 y registra cuda_capability",
+          env.get("device") == "cuda" and env.get("dtype") == "bfloat16" and list(env.get("cuda_capability") or []) == [8, 9],
+          f"{env.get('dtype')} · {env.get('cuda_capability')}")
     _, downloads_h, error_h = run_notebook(WORKDIR / "headless", photo_path, headless=True)
     check("E2E sin navegador: sin errores y sin descarga", error_h is None and not downloads_h)
     _, _, error_m = run_notebook(WORKDIR / "sin_foto", None, headless=True)
@@ -246,6 +278,26 @@ def main():
     check("cambiar un kwarg ejecutado → INVALID_BUNDLE", s1.integrity(t, protocol)["status"] == "INVALID_BUNDLE")
     t = tamper(zip_path, edit_calls("attempts", [64, 16]), "ppb")
     check("points_per_batch fuera de la regla (64 → 16) → INVALID_BUNDLE", s1.integrity(t, protocol)["status"] == "INVALID_BUNDLE")
+
+    def edit_env(**changes):
+        def mutate(n, d):
+            if n != s1.CONFIG_JSON:
+                return d
+            config = json.loads(d)
+            config["environment"].update(changes)
+            config["environment"] = {k: v for k, v in config["environment"].items() if v != "DROP"}
+            return json.dumps(config).encode()
+        return mutate
+    frozen = protocol["freeze"]
+    real = {"torch": "2.8.0+cu126", "sam2_commit": frozen["SAM2_GIT_COMMIT"], "checkpoint_sha256": frozen["CHECKPOINT_SHA256"]}
+    t = tamper(zip_path, edit_env(**real, device_name="Tesla T4", cuda_capability=[7, 5], dtype="float16"), "t4")
+    check("registro FORJADO como real en una T4 (float16) → REAL_GPU_DIFFERENT_PRECISION_NOT_EVIDENCE",
+          s1.integrity(t, protocol)["status"] == "REAL_GPU_DIFFERENT_PRECISION_NOT_EVIDENCE")
+    t = tamper(zip_path, edit_env(cuda_capability="DROP"), "sin_capacidad")
+    check("CUDA sin cuda_capability → INVALID_BUNDLE", s1.integrity(t, protocol)["status"] == "INVALID_BUNDLE")
+    t = tamper(zip_path, edit_env(dtype="float16"), "dtype")
+    check("dtype incoherente con la capacidad (8.9 en float16) → INVALID_BUNDLE",
+          s1.integrity(t, protocol)["status"] == "INVALID_BUNDLE")
     for p in zip_path.parent.glob("tamper_*.zip"):
         p.unlink()
 
@@ -265,27 +317,70 @@ def main():
         names = sorted(package.namelist())
         leeme = package.read("LEEME.md").decode("utf-8")
         template = json.loads(package.read("plantilla_respuesta.json"))
-    check("paquete ciego: una lámina por objeto disparado, LEEME y plantilla",
+    check("triaje ciego: una lámina por objeto disparado, LEEME y plantilla",
           names == sorted(["LEEME.md", "plantilla_respuesta.json"] + [f"{lab}.png" for lab in summary["labels"]]))
     leaks = [t for t in ("AMG", "BASE", "DENSE", "CROP", "SENSITIVE", "score", "ranking", "configuración", "ae0_")
              if t.lower() in leeme.lower() and t not in ("ranking", "score")] + \
             [t for t in ("AMG", "ae0_", "predicted_iou") if t in json.dumps(template)]
-    check("paquete ciego: ni el LEEME ni la plantilla nombran configuración, score ni id", not leaks, str(leaks))
+    check("triaje ciego: ni el LEEME ni la plantilla nombran configuración, score ni id", not leaks, str(leaks))
     sizes = [len(v["candidates"]) for v in mapping["objects"].values()]
-    check("paquete ciego: ≤ 12 candidatas por objeto, deduplicadas por hash, y el mapeo sellado se publica solo por hash",
+    check("triaje ciego: ≤ 12 candidatas por objeto (3 por configuración), deduplicadas por hash, y el mapeo sellado se publica solo por hash",
           all(0 < n <= 12 for n in sizes) and all(len({c["packed_sha256"] for c in v["candidates"]}) == len(v["candidates"])
                                                    for v in mapping["objects"].values())
           and hashlib.sha256((blind_dir / "sealed_mapping.json").read_bytes()).hexdigest() == summary["sealed_mapping_sha256"],
           str(sizes))
     labels = summary["labels"]
-    key_a = {labels[0]: "MISS", labels[1]: "MISS"}
-    key_b = {labels[0]: "MISS", labels[1]: "CANNOT_DETERMINE"}
     by_label = {lab: mapping["objects"][lab]["object_id"] for lab in labels}
-    keys = ({by_label[k]: v for k, v in key_a.items()}, {by_label[k]: v for k, v in key_b.items()})
-    done = s1.analyze(zip_path, protocol, inventory, GT_DIR, store, r1_keys=keys)
-    confirmed = done["r4"]["confirmed_box_screen_failures"]
-    check("lector: MISS + MISS confirma; MISS + CANNOT_DETERMINE no; R4 = FAIL_COMPONENT",
-          confirmed == [by_label[labels[0]]] and done["stage1"] == "FAIL_COMPONENT", str(confirmed))
+    first, second = by_label[labels[0]], by_label[labels[1]]
+    triage = ({first: "MISS", second: "MISS"}, {first: "MISS", second: "CANNOT_DETERMINE"})
+    waiting = s1.analyze(zip_path, protocol, inventory, GT_DIR, store, r1_keys=triage)
+    check("lector: MISS + MISS en el triaje NO confirma: escala a la revisión exhaustiva y se detiene antes de R2",
+          waiting["stage1"] == "PENDING_R1_REVIEW" and waiting["r1"]["escalated"] == [first]
+          and waiting["r1"]["state"] == {first: "PENDING_EXHAUSTIVE_REVIEW", second: "NOT_CONFIRMED"}
+          and "per_config" not in waiting, str(waiting["r1"]["state"]))
+
+    exhaustive = s1.exhaustive_package(zip_path, photo, inventory["objects"], screen, proposals, [first], blind_dir)
+    x_mapping = json.loads((blind_dir / exhaustive["sealed_mapping"]).read_text())
+    with zipfile.ZipFile(blind_dir / exhaustive["package"]) as package:
+        x_names = sorted(package.namelist())
+        x_leeme = package.read("LEEME.md").decode("utf-8")
+        x_template = json.loads(package.read("plantilla_respuesta.json"))
+        first_page = package.read(sorted(n for n in x_names if n.endswith(".png"))[0])
+    entry = x_mapping["objects"][labels[0]]
+    x1, y1, x2, y2 = next(o["bbox"] for o in inventory["objects"] if o["id"] == first)
+    brute = set()                                        # comprobación independiente: caja de cada máscara con numpy
+    for props in proposals.values():
+        for mask, h in zip(props.masks, props.hashes):
+            ys, xs = np.nonzero(np.asarray(mask))
+            if xs.size and min(xs.max() + 1, x2) > max(xs.min(), x1) and min(ys.max() + 1, y2) > max(ys.min(), y1):
+                brute.add(h)
+    got = [c["packed_sha256"] for c in entry["candidates"]]
+    triage_hashes = {c["packed_sha256"] for c in mapping["objects"][labels[0]]["candidates"]}
+    check("revisión exhaustiva: TODAS las propuestas cuya caja corta la del objeto, deduplicadas, sin tope",
+          set(got) == brute and len(got) == len(set(got)) and len(got) > s1.PAGE_SIZE
+          and (triage_hashes & brute) <= set(got), f"{len(got)} candidatas únicas")
+    pages = entry["pages"]
+    check("revisión exhaustiva: varias láminas de ≤ 12, todas en el paquete, con LEEME y plantilla",
+          len(pages) == -(-len(got) // s1.PAGE_SIZE) > 1
+          and x_names == sorted(pages + ["LEEME.md", "plantilla_respuesta.json"])
+          and all(sum(c["page"] == pg for c in entry["candidates"]) <= s1.PAGE_SIZE for pg in pages),
+          f"{len(pages)} láminas")
+    x_leaks = [t for t in ("AMG", "BASE", "DENSE", "CROP", "SENSITIVE", "ae0_") if t.lower() in x_leeme.lower()] + \
+              [t for t in ("AMG", "ae0_", "predicted_iou", "score") if t in json.dumps(x_template)]
+    check("revisión exhaustiva: ni el LEEME ni la plantilla nombran configuración, score ni id; pide reviewed_all_pages",
+          not x_leaks and "reviewed_all_pages" in json.dumps(x_template) and "reviewed_all_pages" in x_leeme, str(x_leaks))
+    (WORKDIR / "ejemplo_lamina_R1_exhaustiva_SIMULADA.png").write_bytes(first_page)   # solo para el paquete privado
+
+    full = {"answer": "MISS", "reviewed_all_pages": True}
+    done = s1.analyze(zip_path, protocol, inventory, GT_DIR, store, r1_keys=triage,
+                      r1_exhaustive_keys=({first: full}, {first: full}))
+    check("lector: MISS + MISS en la revisión exhaustiva (todas las láminas) confirma; R4 = FAIL_COMPONENT",
+          done["r4"]["confirmed_box_screen_failures"] == [first] and done["stage1"] == "FAIL_COMPONENT",
+          str(done["r4"]["confirmed_box_screen_failures"]))
+    partial = s1.analyze(zip_path, protocol, inventory, GT_DIR, store, r1_keys=triage,
+                         r1_exhaustive_keys=({first: full}, {first: {"answer": "MISS", "reviewed_all_pages": False}}))
+    check("lector: un MISS sin haber visto todas las láminas cuenta como CANNOT_DETERMINE → NOT_CONFIRMED",
+          partial["r1"]["state"][first] == "NOT_CONFIRMED" and not partial["r4"]["confirmed_box_screen_failures"])
     rows = [done["per_config"][c]["r2_persons"][p] for c in done["per_config"] for p in s1.PERSONS]
     fields = {"verdict", "best_estimate", "best_robust_min", "best_possible_max", "argmax_estimate", "argmax_min", "argmax_max",
               "proposals"}
@@ -294,7 +389,7 @@ def main():
     check("lector: R3 etiquetado FUSION_Q_ESTIMATE_BASED y veredicto del contrato INCONCLUSIVE_GT_INCOMPLETE",
           all(v["r3"]["label"] == "FUSION_Q_ESTIMATE_BASED" and v["gate"] == "INCONCLUSIVE_GT_INCOMPLETE"
               for v in done["per_config"].values()))
-    covers = ({by_label[lab]: "COVERS_OBJECT" for lab in labels}, {by_label[lab]: "COVERS_OBJECT" for lab in labels})
+    covers = ({first: "COVERS_OBJECT", second: "COVERS_OBJECT"}, {first: "COVERS_OBJECT", second: "COVERS_OBJECT"})
     other = s1.analyze(zip_path, protocol, inventory, GT_DIR, store, r1_keys=covers)
     check("lector: sin fallos confirmados, la decisión es FAIL_COMPONENT solo por R2 robusto; nunca PASS",
           other["stage1"] in ("FAIL_COMPONENT", "INCONCLUSIVE_GT_INCOMPLETE") and "PASS" not in other["stage1"]
@@ -309,7 +404,7 @@ def finish():
     payload = {"notebook": NOTEBOOK.name, "notebook_sha256": hashlib.sha256(NOTEBOOK.read_bytes()).hexdigest(),
                "protocol_sha256": hashlib.sha256(PROTOCOL.read_bytes()).hexdigest(),
                "result": f"{passed}/{len(checks)}", "status": "PASS" if passed == len(checks) else "FAIL",
-               "scope": "estático + E2E con AMG SIMULADO + lector sobre el ZIP simulado; no mide la calidad de SAM 2",
+               "scope": "estático + E2E con GPU y AMG SIMULADOS + lector sobre el ZIP simulado; no mide la calidad de SAM 2",
                "checks": checks}
     OUT_JSON.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"\n{passed}/{len(checks)} · escrito {OUT_JSON.relative_to(ROOT)}")

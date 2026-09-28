@@ -7,6 +7,8 @@ cual, dos celdas: la instalación (SAM 2 en el commit congelado y checkpoint por
 (la foto se reconoce por su hash). Solo cambia la carpeta de corridas.
 
 Las celdas nuevas son:
+- la compuerta de GPU, antes de instalar nada: sin CUDA con capacidad ≥ 8 (bfloat16 nativo) se detiene
+  (ChatGPT 020);
 - el protocolo embebido byte a byte;
 - el modelo sin postprocesado;
 - las 4 llamadas AMG del plan, con ``points_per_batch`` que solo baja por OOM;
@@ -39,6 +41,8 @@ INTRO = """
 
 Qué hace, sin intervención:
 
+0. Comprueba que la GPU sirve (L4 o mejor, con bfloat16). **Si no, se detiene al instante** y te dice
+   qué cambiar: una corrida en otra GPU no contaría.
 1. Instala SAM 2 **en el commit exacto** `2b90b9f5` y descarga SAM 2.1 Large. **Se detiene** si el
    commit o el checkpoint no son los congelados.
 2. Encuentra la foto por su huella SHA‑256.
@@ -58,7 +62,8 @@ HOWTO = """
 ## 0. Antes de pulsar «Ejecutar todas»
 
 1. **Entorno de ejecución → Cambiar tipo de entorno de ejecución → GPU → L4.** Usa **L4**, como en
-   las corridas anteriores.
+   las corridas anteriores. Si eliges otra GPU sin bfloat16 (por ejemplo, T4) o ninguna, la primera celda
+   se detiene con `FAIL_ENVIRONMENT`: cambia a L4 y vuelve a pulsar **Ejecutar todas**.
 2. Arrastra `P1070614.JPG` al panel **Archivos**. Si no lo haces, la celda 2 te pedirá la foto con
    un botón **Elegir archivos**. El nombre no importa: se reconoce por su huella.
 3. **Entorno de ejecución → Ejecutar todas.** Tarda unos minutos: instalar SAM 2, descargar 857 MiB y
@@ -66,6 +71,20 @@ HOWTO = """
 
 Si aparece un error en rojo, copia el texto y pégalo a Claude. No cambies nada del cuaderno.
 """
+
+CELL_GPU_GATE = '''
+# Celda 0 · compuerta de GPU (ChatGPT 020): solo cuenta CUDA con capacidad ≥ 8, que tiene bfloat16 nativo
+import torch
+if not torch.cuda.is_available():
+    raise RuntimeError("FAIL_ENVIRONMENT: no hay GPU. Entorno de ejecución → Cambiar tipo de entorno de "
+                       "ejecución → L4 → Guardar, y vuelve a pulsar «Ejecutar todas».")
+_capability = torch.cuda.get_device_capability(0)
+if _capability[0] < 8:
+    raise RuntimeError(f"FAIL_ENVIRONMENT: {torch.cuda.get_device_name(0)} (capacidad {_capability[0]}.{_capability[1]}) "
+                       "no tiene bfloat16 nativo y la corrida no contaría. Cambia el entorno a L4 y vuelve a "
+                       "pulsar «Ejecutar todas».")
+print(f"GPU válida: {torch.cuda.get_device_name(0)} · capacidad {_capability[0]}.{_capability[1]} · bfloat16")
+'''
 
 CELL_PROTOCOL = '''
 # Celda 3 · protocolo de lectura embebido (no editar): plan de las 4 llamadas y congelados
@@ -88,6 +107,8 @@ CELL_MODEL = '''
 from sam2.build_sam import build_sam2
 from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 
+if DEVICE != "cuda" or PRECISION["dtype"] != "bfloat16":
+    raise RuntimeError("FAIL_ENVIRONMENT: hace falta CUDA en bfloat16 (capacidad ≥ 8, p. ej. L4); ver la celda 0")
 t0 = time.perf_counter()
 try:
     sam2_model = build_sam2(MODEL_CFG, str(CHECKPOINT), device=DEVICE, apply_postprocessing=False)
@@ -162,7 +183,7 @@ def write_json(path, payload, compact=False):
 for call_id, masks in RESULTS.items():
     write_json(RUN_DIR / "masks" / f"{call_id}.json", {"call_id": call_id, "size": [2248, 4000], "masks": masks}, compact=True)
 write_json(RUN_DIR / "ae1s1_config.json", {
-    "notebook_version": "ae1s1-1.0", "run_id": RUN_ID, "protocol_file_sha256": PROTOCOL_FILE_SHA256,
+    "notebook_version": "ae1s1-1.1", "run_id": RUN_ID, "protocol_file_sha256": PROTOCOL_FILE_SHA256,
     "protocol_content_sha256": PROTOCOL["content_sha256"], "environment": ENVIRONMENT,
     "gates": {"sam2_commit": "verificado en la celda 1", "checkpoint": "verificado en la celda 1",
               "image_sha256": "verificado en la celda 2", "protocol": "verificado en la celda 3"},
@@ -217,6 +238,7 @@ def build() -> dict:
     cells = [
         v13.md("pragma-ae1s1-00", INTRO.replace("{protocol_sha}", protocol_sha).replace("{content_sha}", protocol["content_sha256"])),
         v13.md("pragma-ae1s1-00b", HOWTO),
+        v13.code("pragma-ae1s1-00g", CELL_GPU_GATE),
         v13.code("pragma-ae1s1-01", v13.CELL_INSTALL),
         v13.code("pragma-ae1s1-02", env),
         v13.code("pragma-ae1s1-03", CELL_PROTOCOL.replace("@@PROTOCOL_SHA@@", protocol_sha)

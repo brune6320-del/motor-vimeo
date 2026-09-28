@@ -75,7 +75,7 @@ python3 work/ae1_analysis_contract.py --check  # contrato de análisis A‑E1 (F
 python3 work/ae0_freeze_reference.py --check   # A‑E0 congelado (etapa 1): A_E0_FROZEN y hashes de lo incierto
 python3 work/design_ae1_stage1.py --check      # protocolo de lectura A‑E1 etapa 1 (byte a byte)
 python3 work/build_pragma_ae1_stage1.py        # cuaderno A‑E1 etapa 1 (desde el protocolo)
-python3 work/verify_pragma_ae1_stage1.py       # 29/29 con AMG simulado (necesita la foto y ae0/gt/)
+python3 work/verify_pragma_ae1_stage1.py       # 41/41 con GPU y AMG simulados (necesita la foto y ae0/gt/)
 python3 work/unblind_aem1_v1_3.py --zip <ZIP> --mapping <mapeo sellado local>  # desciegue y doble llave v1.3
 python3 work/design_aem1_v1_4.py --check       # prerregistro v1.4 byte a byte (necesita la foto y el ZIP v1.3)
 python3 work/build_pragma_aem1_v1_4.py         # genera el cuaderno v1.4 desde el prerregistro
@@ -96,6 +96,6 @@ En macOS usa `shasum -a 256 -c` en lugar de `sha256sum -c`.
 
 Numeración de órdenes: termina en 0 → va a ChatGPT; termina en 1 → va a Claude.
 
-1. En ChatGPT, la carta [`dialogo/020_claude_a_chatgpt.md`](dialogo/020_claude_a_chatgpt.md)
-   (**ORDEN 200**) con `PRAGMA_carta020_ae1_etapa1.zip`. Su respuesta termina en `ORDEN 201`.
+1. En ChatGPT, la carta [`dialogo/021_claude_a_chatgpt.md`](dialogo/021_claude_a_chatgpt.md)
+   (**ORDEN 210**) con `PRAGMA_carta021_ae1_etapa1_v2.zip`. Su respuesta termina en `ORDEN 211`.
 2. Traer la respuesta a Claude.

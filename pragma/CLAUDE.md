@@ -28,6 +28,12 @@
   verifica con `work/verify_pragma_ae1_stage1.py`. La GPU solo corre tras el GO aparte de ChatGPT; la guía es
   `GUIA_COLAB_A-E1_etapa1.md`. El lector (`pragma_ae/ae1_stage1.py`) sigue el orden del protocolo: integridad
   → R1 a ciegas → R2/R3/R4.
+  - R1 tiene dos fases (ChatGPT 020). El **triaje** (3 por configuración) nunca confirma un fallo: dos
+    `MISS` solo escalan a la **revisión exhaustiva**, que muestra todas las propuestas cuya caja corta la
+    del objeto, sin tope. Solo allí dos `MISS` con `reviewed_all_pages` dan
+    `CONFIRMED_BOX_SCREEN_FAILURE`. Cada fase: llave de Claude por hash antes que la de ChatGPT.
+  - Solo es evidencia una corrida CUDA en bfloat16 con capacidad ≥ 8. Una GPU en float16 da
+    `REAL_GPU_DIFFERENT_PRECISION_NOT_EVIDENCE`, y el cuaderno se detiene antes de instalar.
 - Para A‑E(−1), la guía vigente es `GUIA_COLAB_A-E-menos-1_v1_4.md` (un clic en L4, a ciegas; solo tras
   el `GO` de ChatGPT). Mantenla al día. El cuaderno v1.4 se genera desde el prerregistro con
   `work/build_pragma_aem1_v1_4.py`. Nunca se edita a mano, y se verifica con
