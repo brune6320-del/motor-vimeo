@@ -1,0 +1,155 @@
+{
+  "notebook": "PRAGMA_A-E1_etapa1_SAM2_AMG.ipynb",
+  "notebook_sha256": "54a3895eedb49fb3eaf9292b2a4c93e6d130e1cc7295180ec6b002eb502affc6",
+  "protocol_sha256": "810818759e402c4df870de80ea03211c1737935722c96e51d516a1cde535dc98",
+  "result": "29/29",
+  "status": "PASS",
+  "scope": "estático + E2E con AMG SIMULADO + lector sobre el ZIP simulado; no mide la calidad de SAM 2",
+  "checks": [
+    {
+      "check": "cuaderno: celda 1 = instalación de v1.3 (commit y checkpoint congelados)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: celda 2 = entorno de v1.3 con carpeta runs_ae1s1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: protocolo embebido byte a byte con su SHA-256",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: modelo con apply_postprocessing=False",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: ningún print muestra máscaras, número de máscaras ni scores",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "cuaderno: ZIP PRAGMA_AE1S1_…_PENDING_ANALYSIS y pide L4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "protocolo: 4 llamadas con los kwargs del sweep y techo INCONCLUSIVE_GT_INCOMPLETE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E navegador: sin errores",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E: las 4 llamadas con exactamente los kwargs del plan, en orden",
+      "pass": true,
+      "detail": "4 llamadas"
+    },
+    {
+      "check": "E2E: el modelo se construye una vez, sin postprocesado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E navegador: una descarga, el ZIP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E sin navegador: sin errores y sin descarga",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E sin foto: error claro, sin selector",
+      "pass": true,
+      "detail": "FileNotFoundError"
+    },
+    {
+      "check": "E2E con OOM simulado en AMG-1: baja a 32 y lo registra",
+      "pass": true,
+      "detail": "[64, 32]"
+    },
+    {
+      "check": "integridad del ZIP simulado: SIMULATED_RUN_NOT_EVIDENCE sin problemas",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "integridad: no devuelve datos de resultado",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "integridad: el ZIP con OOM registrado sigue siendo válido",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "manipular una máscara → INVALID_BUNDLE (manifiesto)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "manipular una máscara y rehacer el manifiesto → INVALID_BUNDLE (hash de máscara)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cambiar un kwarg ejecutado → INVALID_BUNDLE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "points_per_batch fuera de la regla (64 → 16) → INVALID_BUNDLE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "lector: con disparadores de R1 y sin llaves, se detiene antes de R2",
+      "pass": true,
+      "detail": "['ae0_012', 'ae0_029']"
+    },
+    {
+      "check": "paquete ciego: una lámina por objeto disparado, LEEME y plantilla",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "paquete ciego: ni el LEEME ni la plantilla nombran configuración, score ni id",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "paquete ciego: ≤ 12 candidatas por objeto, deduplicadas por hash, y el mapeo sellado se publica solo por hash",
+      "pass": true,
+      "detail": "[9, 9]"
+    },
+    {
+      "check": "lector: MISS + MISS confirma; MISS + CANNOT_DETERMINE no; R4 = FAIL_COMPONENT",
+      "pass": true,
+      "detail": "['ae0_012']"
+    },
+    {
+      "check": "lector: R2 por persona y configuración con las tres cotas y sus argmax",
+      "pass": true,
+      "detail": "valores sobre datos SIMULADOS: no se archivan"
+    },
+    {
+      "check": "lector: R3 etiquetado FUSION_Q_ESTIMATE_BASED y veredicto del contrato INCONCLUSIVE_GT_INCOMPLETE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "lector: sin fallos confirmados, la decisión es FAIL_COMPONENT solo por R2 robusto; nunca PASS",
+      "pass": true,
+      "detail": "FAIL_COMPONENT"
+    }
+  ]
+}

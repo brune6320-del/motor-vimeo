@@ -23,7 +23,12 @@
     después de archivar la segunda llave; después se desciega (`work/blind_audit_aem1.py`,
     `work/double_key_aem1.py`).
   - Toda regla métrica nueva se decide con una prueba prerregistrada antes de ver datos reales.
-- Para Colab, la guía vigente es `GUIA_COLAB_A-E-menos-1_v1_4.md` (un clic en L4, a ciegas; solo tras
+- **A‑E1 etapa 1:** el cuaderno sale de `work/build_pragma_ae1_stage1.py` desde
+  `ae1/AE1_STAGE1_READING_PROTOCOL.json` (`work/design_ae1_stage1.py --check`). Nunca se edita a mano y se
+  verifica con `work/verify_pragma_ae1_stage1.py`. La GPU solo corre tras el GO aparte de ChatGPT; la guía es
+  `GUIA_COLAB_A-E1_etapa1.md`. El lector (`pragma_ae/ae1_stage1.py`) sigue el orden del protocolo: integridad
+  → R1 a ciegas → R2/R3/R4.
+- Para A‑E(−1), la guía vigente es `GUIA_COLAB_A-E-menos-1_v1_4.md` (un clic en L4, a ciegas; solo tras
   el `GO` de ChatGPT). Mantenla al día. El cuaderno v1.4 se genera desde el prerregistro con
   `work/build_pragma_aem1_v1_4.py`. Nunca se edita a mano, y se verifica con
   `work/verify_pragma_aem1_v1_4.py`. El prerregistro sale de `work/design_aem1_v1_4.py --check`.

@@ -3,11 +3,20 @@
 - **Proyecto:** PRAGMA · Motor de Transparencia / Inventario exhaustivo de escena
 - **Archivo:** `PROJECT_STATE.md`
 - **Fecha de generación:** 22 de septiembre de 2026 (America/Lima)
-- **Última actualización:** 27 de septiembre de 2026 (v3.0, misma sesión) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
-- **Versión:** `v3.0`
-- **Estado general:** `A_E0_FROZEN_STAGE1` · A‑E1 etapa 1 por prerregistrar (antes: `INCONCLUSIVE_A_E0_REQUIRED`)
+- **Última actualización:** 27 de septiembre de 2026 (v3.1, 2026‑09‑28) · continuación en **Claude Code** (claude.ai/code, contenedor remoto **sin GPU**), actuando como GENESIS. La transferencia prevista a ChatGPT 6 Sol (§27 v1.0) no se usó para esta continuación.
+- **Versión:** `v3.1`
+- **Estado general:** `A_E0_FROZEN_STAGE1` · A‑E1 etapa 1 `PREREGISTERED`, GPU en `HOLD` (antes: `INCONCLUSIVE_A_E0_REQUIRED`)
 - **Fase B:** `BLOQUEADA`
-- **Último hito documentado (v3.0):** **A‑E0 congelado** (`AI_CONSENSUS_REFERENCE`, `FROZEN`), con el GO de ChatGPT 018 (ORDEN 181): 8 `ACCEPT`, 0 contestados.
+- **Último hito documentado (v3.1):** ChatGPT 019 (ORDEN 191) dio `FREEZE_INTEGRITY = PASS`.
+  - Aceptó la etapa 1 con su techo y R1 (con revisión ciega por configuración) y R3 (diagnóstico).
+  - Pidió corregir dos reglas, ya corregidas: R2 con cotas a nivel de conjunto, y R4, donde basta una
+    persona con `FAIL` robusto.
+  - **Protocolo de lectura** `ae1/AE1_STAGE1_READING_PROTOCOL.json` (`d40cc5c4…b57b`): ligado por hash
+    al contrato, al sweep, a A‑E0 y al lector `pragma_ae/ae1_stage1.py`.
+  - **Cuaderno A‑E1 etapa 1** (`54a3895e…ffc6`), generado y verificado 29/29 con AMG simulado; guía
+    `GUIA_COLAB_A-E1_etapa1.md`. 172/172.
+  - Carta 020 = **ORDEN 200**: pide revisión y el GO aparte a la GPU.
+- **Hito v3.0:** **A‑E0 congelado** (`AI_CONSENSUS_REFERENCE`, `FROZEN`), con el GO de ChatGPT 018 (ORDEN 181): 8 `ACCEPT`, 0 contestados.
   - **Composición final:** 6 parches, C1–C7 y N1, idéntica píxel a píxel a la vista previa aceptada, sin solape entre personas.
   - **`gt_mask`** con `AI_POLYGON_RASTER`, `MIDLINE` y la zona incierta registrada por hash.
   - **Inventario:** `765aaa4a…1d37` (contenido `0dba6767…bb6b`); validador `A_E0_FROZEN`, 0 errores.
@@ -503,6 +512,42 @@ Permitir que una persona seleccione cualquier instancia relevante de una imagen 
   - `✅ EJECUTADO GPU` + `✅` doble llave con adjudicación técnica;
   - `✅` confirmado por ChatGPT 008 (v2.1).
 
+## Hito 30 — A‑E1 etapa 1 prerregistrada: protocolo de lectura, cuaderno y verificador (v3.1)
+
+- **ChatGPT 019** (`dialogo/019_chatgpt_a_claude.md`, ORDEN 191):
+  - `FREEZE_INTEGRITY = PASS`, con 12 hashes recalculados, 0 solape y las métricas intactas;
+  - etapa 1 con techo `INCONCLUSIVE_GT_INCOMPLETE`; R1 aceptada con revisión ciega de 3 candidatas por
+    configuración; R3 como diagnóstico;
+  - **cambios pedidos**: R2 con cotas sobre el conjunto de propuestas; R4 con una persona que falle en
+    las cuatro configuraciones basta;
+  - `A_E1_STAGE1_BUILD = GO`, `GPU = HOLD`.
+- **Lector** `pragma_ae/ae1_stage1.py`:
+  - plan de llamadas desde el sweep;
+  - integridad sin resultados, que da `REAL_GPU_EVIDENCE`, `SIMULATED_RUN_NOT_EVIDENCE`,
+    `REAL_CPU_NOT_EVIDENCE` o `INVALID_BUNDLE`;
+  - R1 (disparadores, candidatas, paquete ciego, confirmación con `MISS` + `MISS`);
+  - R2 (cotas rápidas idénticas a `keydiff`);
+  - R3 y R4;
+  - orden: R2 y R3 solo tras las dos llaves de R1.
+  - 13 pruebas, entre ellas el ejemplo de ChatGPT.
+- **Protocolo** `ae1/AE1_STAGE1_READING_PROTOCOL.json` (archivo `81081875…dc98`, contenido
+  `d40cc5c4…b57b`), generado por `work/design_ae1_stage1.py --check`:
+  - `apply_postprocessing=False`, como el ejemplo oficial de AMG en `2b90b9f5`;
+  - `points_per_batch` 64 → 32 → 16 solo por OOM.
+- **Cuaderno** `outputs/PRAGMA_A-E1_etapa1_SAM2_AMG.ipynb` (`54a3895e…ffc6`), generado por
+  `work/build_pragma_ae1_stage1.py`:
+  - celdas 1–2 de v1.3 byte a byte;
+  - solo imprime el progreso.
+- **Verificador** `work/verify_pragma_ae1_stage1.py`: 29/29 (estático, E2E con AMG simulado y OOM,
+  integridad y manipulaciones, lector y paquete ciego).
+- **Guía** `GUIA_COLAB_A-E1_etapa1.md`, sin usar hasta el GO.
+- **Carta 020** (ORDEN 200), con `PRAGMA_carta020_ae1_etapa1.zip` (`6c5ddc77…8c9e`); el paquete se
+  verificó desde cero: 29/29.
+- **Certeza:**
+  - `✅` construido y verificado con datos simulados;
+  - `🟡` revisión de ChatGPT;
+  - GPU `NOT_RUN`.
+
 ## Hito 29 — A‑E0 congelado (etapa 1) y contrato A‑E1 congelado (v3.0)
 
 - **ChatGPT 018** (`dialogo/018_chatgpt_a_claude.md`, ORDEN 181):
@@ -889,7 +934,7 @@ A‑E(−1) v1.4                  GPU REAL · INCONCLUSIVE · H2 REPARA LA FRANJ
 A‑E(−1)                       AEM1_CLOSED_INCONCLUSIVE · CONFIRMADO POR DOBLE LLAVE (ChatGPT 008)
 A‑E0 inventario de referencia FROZEN · AI_CONSENSUS_REFERENCE · ETAPA 1 (máscaras de las 3 personas, sin SAM 2)
                               65 objetos · 38 Tier A (3 con máscara) · contenido 0dba6767…bb6b
-A‑E1 SAM2 AMG                 SWEEP PREREGISTERED · CONTRATO FROZEN (ligado a A‑E0) · ETAPA 1 POR PRERREGISTRAR · SIN CORRIDA
+A‑E1 SAM2 AMG                 CONTRATO FROZEN · ETAPA 1 PREREGISTERED (protocolo d40cc5c4…) · CUADERNO 29/29 SIMULADO · GPU HOLD
 Revisión                      AUDITOR IA + CONTRAAUDITORÍA CHATGPT · VETO DE LA PERSONA USUARIA
 Fase B                        BLOQUEADA
 SAM 2                         NO RECHAZABLE TODAVÍA
@@ -1294,7 +1339,11 @@ Artefactos históricos del workspace Codex no incluidos en el paquete (v3, v4 au
 | `018_chatgpt_a_claude.md` · `adjudicacion_chatgpt_codex_A-E0_ORDEN181.json` | `pragma/dialogo/` · `pragma/ae0/comparacion_poligonos/` | ORDEN 181: GO para congelar | ✅ archivadas tal cual | `b7ecc701…60e3` |
 | `ae0_freeze_reference.py` · `CONGELADO_REFERENCIA_A-E0.json` · `composicion_referencia_final.json` · `scene_inventory.json` | `work/` · `pragma/ae0/` | congelado de A‑E0 (etapa 1) | ✅ `A_E0_FROZEN` | contenido `0dba6767…bb6b` |
 | `CONTRATO_ANALISIS_A-E1.json` | `pragma/ae1/` | contrato A‑E1 ligado a A‑E0 | ✅ `FROZEN` | contenido `96de8a31…edfe` |
-| `019_claude_a_chatgpt.md` · paquete 019 | `pragma/dialogo/` · local | ORDEN 190: integridad del congelado y A‑E1 etapa 1 | 🟡 para pegar | `321b377b…0cc4` |
+| `019_claude_a_chatgpt.md` · paquete 019 | `pragma/dialogo/` · local | ORDEN 190: integridad del congelado y A‑E1 etapa 1 | ✅ respondida (FREEZE PASS) | `321b377b…0cc4` |
+| `019_chatgpt_a_claude.md` | `pragma/dialogo/` | ORDEN 191: integridad PASS, R2 y R4 corregidas, GO a construir | ✅ archivada tal cual | — |
+| `AE1_STAGE1_READING_PROTOCOL.json` · `ae1_stage1.py` · `test_ae1_stage1.py` | `pragma/ae1/` · `pragma_ae/` · `tests/` | protocolo y lector de A‑E1 etapa 1 | ✅ `PREREGISTERED` · 13 pruebas | `d40cc5c4…b57b` · `2343eb47…a101` |
+| `PRAGMA_A-E1_etapa1_SAM2_AMG.ipynb` · `PRAGMA_A-E1_etapa1_verificacion.json` · `GUIA_COLAB_A-E1_etapa1.md` | `pragma/outputs/` · raíz | cuaderno, verificación y guía | ✅ 29/29 simulado · GPU `HOLD` | `54a3895e…ffc6` |
+| `020_claude_a_chatgpt.md` · paquete 020 | `pragma/dialogo/` · local | ORDEN 200: revisión de A‑E1 etapa 1 y GO a GPU | 🟡 para pegar | `6c5ddc77…8c9e` |
 | Paquete ciego de Codex | local (`local/share/`) | tercera revisión de C:022 y C:025 (pide no consultar el repositorio) | 🟡 para enviar | `ff1204…8008` |
 | `keydiff_retrospectivo_v14.json` · `cierre_chatgpt008.json` | `pragma/auditoria/aem1v14_…/` | retrospectiva (exploratoria) · cierre de v1.4 por doble llave | ✅ | `ec1ef0…c00c` · `3cfa78…3b73` |
 | `008_chatgpt_a_claude.md` · `009_claude_a_chatgpt.md` | `pragma/dialogo/` | cierre confirmado · DEC‑025 y ratificación | ✅ archivada · 🟡 para pegar | `4dec78…7dd1` · ver manifiesto |
@@ -2513,28 +2562,26 @@ Contradicciones resueltas:
 
 ## Estamos exactamente aquí
 
-- **A‑E0 congelado** (`FROZEN`, `AI_CONSENSUS_REFERENCE`, etapa 1) y **contrato A‑E1 congelado**, en
-  el mismo commit.
-- **Esperando a ChatGPT** (carta 019, ORDEN 190):
-  - `FREEZE_INTEGRITY`;
-  - la etapa 1 aceptada, con su techo;
-  - reglas R1–R4;
-  - GO para construir el cuaderno A‑E1 etapa 1, sin GPU.
-
-  Su respuesta debe terminar en `ORDEN 191`.
+- **A‑E0 congelado**, etapa 1, con integridad confirmada por ChatGPT; el contrato A‑E1 también está
+  congelado.
+- **A‑E1 etapa 1 prerregistrada:** protocolo de lectura, cuaderno y verificador (29/29 simulado).
+- **Esperando a ChatGPT** (carta 020, ORDEN 200): la revisión y el **GO separado a la GPU**. Su
+  respuesta debe terminar en `ORDEN 201`.
 
 ## Próxima acción
 
-1. En ChatGPT: `dialogo/019_claude_a_chatgpt.md` + `local/share/PRAGMA_carta019_congelado.zip`.
+1. En ChatGPT: `dialogo/020_claude_a_chatgpt.md` + `local/share/PRAGMA_carta020_ae1_etapa1.zip`.
 2. Traer su respuesta completa a Claude.
 
 ## Resultado esperado
 
-1. Claude archiva la respuesta y congela las reglas de lectura R1–R4 que queden aceptadas: es el
-   prerregistro de A‑E1 etapa 1.
-2. Cuaderno A‑E1 etapa 1, generado desde el sweep y el contrato y verificado con SAM simulado.
-3. GO de ChatGPT → corrida en L4 → análisis contra la referencia congelada.
-4. Nada de la referencia se toca: cualquier cambio sería otra versión de A‑E0 y de A‑E1.
+1. **Con GO:** la persona usuaria corre el cuaderno en L4 (`GUIA_COLAB_A-E1_etapa1.md`) y trae el ZIP
+   a Claude.
+2. **Integridad sin resultados:** disparadores de R1 → paquete ciego (solo a ChatGPT) → llave de
+   Claude por hash → llave de ChatGPT → R2, R3 y R4.
+3. **Decisión de etapa:** `FAIL_COMPONENT`, o `INCONCLUSIVE_GT_INCOMPLETE` → etapa 2 (35 máscaras más
+   por doble llave).
+4. **Con cambios:** nueva versión del protocolo y del cuaderno antes de ninguna GPU.
 
 ---
 
@@ -2597,6 +2644,7 @@ No cambiar retroactivamente un resultado histórico. Añadir una corrección exp
 | Versión | Fecha | Cambios principales |
 |---|---|---|
 | v1.0 | 2026‑09‑22 | creación inicial consolidada para transferencia a ChatGPT 6 Sol; incorpora estado v3/v4, corrección del falso PASS, objetivo A‑E, port A‑E(−1), hashes, backlog y punto de reanudación |
+| v3.1 | 2026‑09‑28 | ChatGPT 019 archivada (FREEZE_INTEGRITY PASS; R2 y R4 corregidas; GO a construir, GPU HOLD); protocolo de lectura A‑E1 etapa 1 ligado por hash; lector `ae1_stage1.py` (13 pruebas); cuaderno generado y verificador 29/29 con AMG simulado; guía de Colab; 172/172; carta 020 = ORDEN 200 |
 | v3.0 | 2026‑09‑27 | ChatGPT 018 archivada (8 ACCEPT, GO); composición final y **A‑E0 FROZEN** (`AI_CONSENSUS_REFERENCE`, etapa 1; `0dba6767…bb6b`); `gt_mask` con zona incierta por hash; contrato A‑E1 FROZEN y ligado a A‑E0 (código y umbrales sin cambios); `work/ae0_freeze_reference.py`; 159/159; carta 019 = ORDEN 190 (integridad y R1–R4 de A‑E1 etapa 1) |
 | v2.10 | 2026‑09‑27 | ChatGPT 017 archivada (6 parches ACCEPT, 36 teselas sin hallazgos nuevos); Codex archivado (1 OMISSION, 26 TOO_BROAD); adjudicación con medición: C1–C7 aceptados, 16 rechazos que mantienen lo incierto; `rings_only` y veredicto `UNCERTAIN` (158/158); hallazgo propio N1 (pierna derecha de 001); vista previa v1; regla conjunta conservadora; carta 018 = ORDEN 180 |
 | v2.9 | 2026‑09‑27 | ChatGPT 016 archivada (31 ACCEPT, EXCLUSIVITY, regla del 90 %); referencia A‑E0 compuesta (v0, hashes y cotas); 36 teselas de contorno con plan previo; revisión de Claude (S1, S2, F1–F3); mecanismo de parches por evidencia (155/155); paquete ciego de Codex; numeración de órdenes x0/x1; carta 017 = ORDEN 170 |
