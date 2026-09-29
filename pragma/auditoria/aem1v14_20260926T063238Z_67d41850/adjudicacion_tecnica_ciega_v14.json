@@ -1,0 +1,184 @@
+{
+  "schema": "pragma.aem1v14_blind_adjudication",
+  "schema_version": "0.1.0",
+  "blind": "sí: por etiqueta; el mapeo solo se usó para leer máscaras y no se imprime ni se escribe",
+  "rules": "fijadas y versionadas ANTES de medir (commit previo a su ejecución):\n\n1. ``other_person_excluded`` (N01, N05). Regla prerregistrada en v1.4 (``adjudication_rules``):\n   FALSE si hay píxeles de máscara en el núcleo oscuro del moño o islas separadas en el núcleo\n   hombro/blusa (``pragma_ae.aem1_v14.measure_o``); si no, TRUE. Ninguna llave citó material\n   posterior fuera de los núcleos: Claude citó (≈ 2618, 401), dentro del núcleo del moño.\n\n2. ``body_and_edges_complete`` (N04). §5.2 pide evidencia objetiva primero. La evidencia usa lo\n   que las DOS llaves ya acordaron en este mismo paquete:\n   - ``acordado_D`` = unión de los agujeros cerrados ≥ 1000 px que las dos llaves marcaron ``D``\n     («falta material de la chica») en las otras cinco láminas;\n   - ``perdida`` = píxeles de ``acordado_D`` que N04 deja fuera de su máscara;\n   - se reporta también qué parte de esa pérdida está abierta al exterior (no es agujero cerrado).\n   Decisión: ``perdida`` ≥ 1000 px → FALSE (N04 deja fuera ≥ 1000 px que las dos llaves\n   reconocen como material de la chica). ``perdida`` < 1000 px → la medición no decide y el caso va\n   a la tercera revisión ciega (Codex), sin cambiar nada más.",
+  "script_sha256": "c1ef19589e58c13813143d5bcc815bca940beb8af75f8814f1e81f52e0e96e8b",
+  "mapping_sha256": "1a68b79e3df2ab7e4fe8f75daef16ebe3c933d4bdcf4eb8fb582e3e47c3f1a66",
+  "package_sha256": "8f8df2730f64f5f94deb72c8f7af8b3653bc95bf0f5a3bb81e065b331ee4a17b",
+  "other_person_excluded": {
+    "N01": {
+      "value": "FALSE",
+      "kind": "medicion_prerregistrada",
+      "keys": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE"
+      },
+      "evidence": {
+        "bun_core_px": 3,
+        "shoulder_separate_px": 0,
+        "core_px": 3,
+        "o_by_measurement": "FALSE",
+        "bun_core_islands": [
+          {
+            "area_px": 3,
+            "bbox": [
+              2616,
+              399,
+              2619,
+              400
+            ]
+          }
+        ]
+      }
+    },
+    "N05": {
+      "value": "FALSE",
+      "kind": "medicion_prerregistrada",
+      "keys": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE"
+      },
+      "evidence": {
+        "bun_core_px": 5,
+        "shoulder_separate_px": 0,
+        "core_px": 5,
+        "o_by_measurement": "FALSE",
+        "bun_core_islands": [
+          {
+            "area_px": 5,
+            "bbox": [
+              2616,
+              399,
+              2620,
+              401
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "body_and_edges_complete": {
+    "N04": {
+      "value": "FALSE",
+      "kind": "medicion_consenso_D",
+      "keys": {
+        "claude": "FALSE",
+        "chatgpt": "TRUE"
+      },
+      "evidence": {
+        "agreed_D_px": 27621,
+        "agreed_D_sources": [
+          {
+            "label": "N01",
+            "hole": 2,
+            "area_px": 2177,
+            "bbox": [
+              2682,
+              842,
+              2723,
+              930
+            ]
+          },
+          {
+            "label": "N02",
+            "hole": 2,
+            "area_px": 10374,
+            "bbox": [
+              2590,
+              834,
+              2751,
+              1057
+            ]
+          },
+          {
+            "label": "N03",
+            "hole": 2,
+            "area_px": 10793,
+            "bbox": [
+              2651,
+              830,
+              2822,
+              1021
+            ]
+          },
+          {
+            "label": "N03",
+            "hole": 3,
+            "area_px": 8120,
+            "bbox": [
+              2964,
+              785,
+              3026,
+              999
+            ]
+          },
+          {
+            "label": "N03",
+            "hole": 4,
+            "area_px": 5027,
+            "bbox": [
+              2949,
+              636,
+              2999,
+              781
+            ]
+          },
+          {
+            "label": "N05",
+            "hole": 2,
+            "area_px": 7575,
+            "bbox": [
+              2969,
+              789,
+              3027,
+              1000
+            ]
+          },
+          {
+            "label": "N05",
+            "hole": 3,
+            "area_px": 4176,
+            "bbox": [
+              2950,
+              636,
+              2999,
+              779
+            ]
+          },
+          {
+            "label": "N05",
+            "hole": 4,
+            "area_px": 2985,
+            "bbox": [
+              2683,
+              832,
+              2730,
+              930
+            ]
+          },
+          {
+            "label": "N06",
+            "hole": 2,
+            "area_px": 3011,
+            "bbox": [
+              2984,
+              842,
+              3025,
+              997
+            ]
+          }
+        ],
+        "lost_px": 10043,
+        "lost_open_px": 9704,
+        "lost_bbox": [
+          2590,
+          833,
+          3024,
+          1056
+        ],
+        "threshold_px": 1000
+      }
+    }
+  }
+}

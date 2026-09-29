@@ -1,0 +1,16 @@
+{
+  "a": {
+    "answer": "NOT_SEPARABLE",
+    "description": null,
+    "bbox_if_distinct": null,
+    "reason": "Solo hay brillos discontinuos y una traza estrecha, sin un contorno estable que permita separarlos de reflejos o del fondo. La parte claramente visible tampoco alcanza con seguridad los 32 px de lado corto."
+  },
+  "b": {
+    "answer": "NOT_SEPARABLE",
+    "description": null,
+    "bbox_if_distinct": null,
+    "reason": "La región mantiene la textura oscura del fondo y no presenta límites propios. Las débiles líneas visibles no delimitan una instancia independiente."
+  },
+  "sha256sums_checked": true,
+  "consulted_only_these_images": true
+}

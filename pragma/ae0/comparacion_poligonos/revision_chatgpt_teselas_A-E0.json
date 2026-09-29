@@ -1,0 +1,103 @@
+{
+  "schema": "pragma.ae0_contour_tiles_second_review",
+  "schema_version": "0.1.0",
+  "order": 171,
+  "reviewer": "chatgpt",
+  "source_order": 170,
+  "package_sha256": "d4f6a97b9ec4561d8714317a32b97c16b95e69986cc954cb84305c55a63ad43a",
+  "tiles_reviewed": 36,
+  "patch_decisions": {
+    "F1a": {
+      "decision": "ACCEPT",
+      "reason": "La zona marcada como incierta incluye una región cuyo estado ya queda resuelto por la estimación: faldón/persona frente a sombra/fondo. CERTAIN elimina incertidumbre sin mover el borde, y margin_px=4 protege el contorno."
+    },
+    "F1c": {
+      "decision": "ACCEPT",
+      "reason": "La zona es mantel claro/fondo respecto de ae0_001; la estimación ya la excluye y CERTAIN solo retira incertidumbre, con margen de 4 px."
+    },
+    "F2": {
+      "decision": "ACCEPT",
+      "reason": "La incertidumbre se extiende sobre marco, pared y blusa de ae0_003, que no pertenecen a ae0_002. El polígono evita la columna de cabello realmente disputada."
+    },
+    "F3a": {
+      "decision": "ACCEPT",
+      "reason": "Marco y pared entre moño y blusa no pertenecen a ae0_003; CERTAIN retira incertidumbre espuria y mantiene la estimación."
+    },
+    "F3b": {
+      "decision": "ACCEPT",
+      "reason": "La región cae en el interior visible de la propia blusa de ae0_003; la estimación ya es foreground y puede pasar a cierto sin alterar el borde."
+    },
+    "S1": {
+      "decision": "ACCEPT",
+      "reason": "En 2T006/3T006 se aprecia una franja oscura estrecha del hombro de ae0_002 que queda fuera del contorno compuesto. UNCERTAIN_INCLUDE es conservador: no la convierte en foreground cierto."
+    }
+  },
+  "patch_mechanism": {
+    "decision": "ACCEPT",
+    "verdicts": [
+      "CERTAIN",
+      "INCLUDE",
+      "EXCLUDE",
+      "UNCERTAIN_INCLUDE"
+    ],
+    "margin_px_policy": "ACCEPT",
+    "note": "CERTAIN conserva la estimación y solo retira uncertain; INCLUDE/EXCLUDE fijan la estimación; UNCERTAIN_INCLUDE añade estimación e incertidumbre. margin_px=4 evita que los parches CERTAIN alteren la banda inmediata del contorno. EXCLUSIVITY se vuelve a aplicar después."
+  },
+  "tile_findings": {
+    "shared_omission": [
+      {
+        "id": "S1",
+        "tiles": [
+          "2T006",
+          "3T006"
+        ],
+        "decision": "CONFIRMED",
+        "action": "UNCERTAIN_INCLUDE"
+      },
+      {
+        "id": "S2",
+        "tiles": [
+          "2T011"
+        ],
+        "decision": "CONFIRMED_ALREADY_COVERED",
+        "action": "NO_CHANGE",
+        "reason": "Los mechones sueltos quedan ya dentro de uncertain."
+      }
+    ],
+    "shared_excess": [],
+    "excess_uncertainty": [
+      {
+        "id": "F1",
+        "tiles": [
+          "1T010",
+          "1T011",
+          "1T013"
+        ],
+        "decision": "CONFIRMED"
+      },
+      {
+        "id": "F2",
+        "tiles": [
+          "2T002",
+          "2T006"
+        ],
+        "decision": "CONFIRMED"
+      },
+      {
+        "id": "F3",
+        "tiles": [
+          "3T004"
+        ],
+        "decision": "CONFIRMED"
+      }
+    ],
+    "additional_findings_by_chatgpt": []
+  },
+  "summary": {
+    "patches_accept": 6,
+    "patches_contest": 0,
+    "additional_shared_omissions": 0,
+    "additional_shared_excesses": 0,
+    "codex_challenge_still_required": true
+  }
+}

@@ -1,0 +1,67 @@
+{
+ "schema": "pragma.ae0_contour_tiles_review",
+ "schema_version": "0.1.0",
+ "reviewer": "claude",
+ "tiles_reviewed": 36,
+ "reference": "composicion_referencia_v0.json",
+ "findings": {
+  "shared_omission": [
+   {
+    "id": "S1",
+    "person": "ae0_002",
+    "tiles": [
+     "2T006",
+     "3T006"
+    ],
+    "px_approx": 2759,
+    "what": "borde oscuro del hombro 7–15 px por fuera de la referencia (y ≈ 1040–1120)",
+    "proposal": "parche UNCERTAIN_INCLUDE"
+   },
+   {
+    "id": "S2",
+    "person": "ae0_002",
+    "tiles": [
+     "2T011"
+    ],
+    "what": "mechones sueltos bajo el codo, fuera de las dos llaves",
+    "proposal": "sin cambio: ya están dentro de la zona incierta"
+   }
+  ],
+  "shared_excess": [],
+  "excess_uncertainty": [
+   {
+    "id": "F1",
+    "person": "ae0_001",
+    "tiles": [
+     "1T010",
+     "1T011",
+     "1T013"
+    ],
+    "what": "zona incierta sobre el mantel de la tabla de planchar y sobre el faldón izquierdo",
+    "proposal": "parches CERTAIN F1a y F1c"
+   },
+   {
+    "id": "F2",
+    "person": "ae0_002",
+    "tiles": [
+     "2T002",
+     "2T006"
+    ],
+    "what": "zona incierta sobre el marco del cuadro, la pared y la blusa de 003",
+    "proposal": "parche CERTAIN F2"
+   },
+   {
+    "id": "F3",
+    "person": "ae0_003",
+    "tiles": [
+     "3T004"
+    ],
+    "what": "zona incierta sobre el marco, la pared y el interior de su propia blusa",
+    "proposal": "parches CERTAIN F3a y F3b"
+   }
+  ]
+ },
+ "no_finding_tiles": "el resto: el contorno sigue el borde visible",
+ "patches_file": "ae0/comparacion_poligonos/parches_propuestos_v0.json",
+ "preview_with_patches": "ae0/comparacion_poligonos/vista_previa_con_parches_v0.json"
+}

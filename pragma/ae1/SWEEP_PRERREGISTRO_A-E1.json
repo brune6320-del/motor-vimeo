@@ -1,0 +1,99 @@
+{
+  "schema": "pragma.ae1_sweep_preregistration",
+  "schema_version": "0.1.0",
+  "status": "PREREGISTERED_PENDING_CROSS_AUDIT",
+  "designed_by": "ChatGPT (carta 001, R3)",
+  "verified_by": "Claude (carta 002)",
+  "registered_utc": "2026-09-25",
+  "rule": "Cuatro configuraciones fijas; no se añade una quinta después de mirar resultados. points_per_batch solo puede bajar por OOM, y ese cambio operativo se registra.",
+  "freeze": {
+    "SAM2_GIT_COMMIT": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+    "MODEL_CONFIG": "configs/sam2.1/sam2.1_hiera_l.yaml",
+    "CHECKPOINT_FILENAME": "sam2.1_hiera_large.pt",
+    "CHECKPOINT_SHA256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+    "IMAGE_SHA256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+    "IMAGE_H_x_W": [
+      2248,
+      4000
+    ],
+    "PYTORCH_VERSION": "se registra al ejecutar (última corrida: 2.11.0+cu128)",
+    "CUDA_VERSION": "se registra al ejecutar (última corrida: build cu128)",
+    "gate": "la corrida se bloquea si el clon no está en SAM2_GIT_COMMIT o si el checkpoint no tiene CHECKPOINT_SHA256"
+  },
+  "parameter_names_verified": {
+    "against": "facebookresearch/sam2 @ 2b90b9f5 · sam2/automatic_mask_generator.py (SHA-256 66df266d…c3d7)",
+    "status": "VERIFICADO ESTÁTICO",
+    "defaults_at_commit": {
+      "points_per_side": 32,
+      "points_per_batch": 64,
+      "pred_iou_thresh": 0.8,
+      "stability_score_thresh": 0.95,
+      "stability_score_offset": 1.0,
+      "mask_threshold": 0.0,
+      "box_nms_thresh": 0.7,
+      "crop_n_layers": 0,
+      "crop_nms_thresh": 0.7,
+      "crop_overlap_ratio": "512 / 1500",
+      "crop_n_points_downscale_factor": 1,
+      "point_grids": null,
+      "min_mask_region_area": 0,
+      "output_mode": "binary_mask",
+      "use_m2m": false,
+      "multimask_output": true
+    },
+    "uncompressed_rle": "existe; orden por columnas (permute(0,2,1)), empieza en ceros; compatible con pragma_ae.masks.rle_decode"
+  },
+  "constants": {
+    "points_per_batch": 64,
+    "box_nms_thresh": 0.7,
+    "crop_nms_thresh": 0.7,
+    "stability_score_offset": 1.0,
+    "mask_threshold": 0.0,
+    "crop_overlap_ratio": "512 / 1500",
+    "min_mask_region_area": 0,
+    "use_m2m": false,
+    "multimask_output": true,
+    "output_mode": "uncompressed_rle",
+    "point_grids": null
+  },
+  "configs": [
+    {
+      "id": "AMG-0 BASE",
+      "points_per_side": 32,
+      "pred_iou_thresh": 0.8,
+      "stability_score_thresh": 0.95,
+      "crop_n_layers": 0,
+      "crop_n_points_downscale_factor": 1,
+      "hypothesis": "referencia oficial y conservadora; no necesariamente la ganadora"
+    },
+    {
+      "id": "AMG-1 DENSE",
+      "points_per_side": 64,
+      "pred_iou_thresh": 0.8,
+      "stability_score_thresh": 0.95,
+      "crop_n_layers": 0,
+      "crop_n_points_downscale_factor": 1,
+      "hypothesis": "4× densidad de puntos; más recuperación de objetos pequeños o estrechos, más coste y redundancia"
+    },
+    {
+      "id": "AMG-2 CROP",
+      "points_per_side": 32,
+      "pred_iou_thresh": 0.8,
+      "stability_score_thresh": 0.95,
+      "crop_n_layers": 1,
+      "crop_n_points_downscale_factor": 2,
+      "hypothesis": "mejor sensibilidad local a objetos pequeños; riesgo de fragmentación, duplicados y tiempo"
+    },
+    {
+      "id": "AMG-3 SENSITIVE",
+      "points_per_side": 32,
+      "pred_iou_thresh": 0.7,
+      "stability_score_thresh": 0.9,
+      "crop_n_layers": 0,
+      "crop_n_points_downscale_factor": 1,
+      "hypothesis": "stress test de recall: más máscaras, más fondo y más fugas; no es candidata favorita"
+    }
+  ],
+  "metrics": "pragma_ae.metrics.evaluate con GateParams(fusion_rule='Q', fusion_erosion_px=5); contact_leak solo se reporta",
+  "requires": "inventario A-E0 congelado (validate → A_E0_FROZEN); si no, INCONCLUSIVE_GT_INCOMPLETE"
+}

@@ -1,0 +1,677 @@
+{
+ "schema": "pragma.ae0_polygon_keydiff_report",
+ "schema_version": "0.1.0",
+ "A": "claude 39a071e0…04c5",
+ "B": "chatgpt d7b93141…2fc2",
+ "tolerance_px": 2,
+ "min_adjudicate_px": 100,
+ "persons": {
+  "ae0_001": {
+   "summary": {
+    "shape": [
+     2248,
+     4000
+    ],
+    "tolerance_px": 2,
+    "min_adjudicate_px": 100,
+    "area_a": 1135225,
+    "area_b": 1225665,
+    "iou": 0.82688,
+    "consensus_px": 1068583,
+    "xor_px": 223724,
+    "a_only_px": 66642,
+    "b_only_px": 157082,
+    "adjudicable_px": 222932,
+    "thin_px": 792,
+    "n_thick": 9,
+    "n_island": 0,
+    "n_open": 9,
+    "n_requires_adjudication": 9,
+    "auto_uncertain_px": 0
+   },
+   "components": [
+    {
+     "id": "A1",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 36806,
+     "bbox": [
+      955,
+      819,
+      1120,
+      1491
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A2",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 21861,
+     "bbox": [
+      970,
+      1708,
+      1046,
+      2248
+     ],
+     "touches_image_border": true,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A3",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 4509,
+     "bbox": [
+      963,
+      618,
+      1166,
+      792
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A4",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 1826,
+     "bbox": [
+      800,
+      300,
+      884,
+      392
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A5",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 1259,
+     "bbox": [
+      255,
+      606,
+      290,
+      727
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B1",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 110320,
+     "bbox": [
+      301,
+      770,
+      560,
+      2248
+     ],
+     "touches_image_border": true,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B2",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 30310,
+     "bbox": [
+      236,
+      270,
+      755,
+      587
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B3",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 10554,
+     "bbox": [
+      875,
+      401,
+      1148,
+      493
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B4",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 5487,
+     "bbox": [
+      1047,
+      1493,
+      1090,
+      1693
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    }
+   ]
+  },
+  "ae0_002": {
+   "summary": {
+    "shape": [
+     2248,
+     4000
+    ],
+    "tolerance_px": 2,
+    "min_adjudicate_px": 100,
+    "area_a": 1599096,
+    "area_b": 1592006,
+    "iou": 0.884371,
+    "consensus_px": 1497645,
+    "xor_px": 195812,
+    "a_only_px": 101451,
+    "b_only_px": 94361,
+    "adjudicable_px": 194145,
+    "thin_px": 1667,
+    "n_thick": 18,
+    "n_island": 0,
+    "n_open": 17,
+    "n_requires_adjudication": 18,
+    "auto_uncertain_px": 0
+   },
+   "components": [
+    {
+     "id": "A1",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 63250,
+     "bbox": [
+      2142,
+      1453,
+      2350,
+      2248
+     ],
+     "touches_image_border": true,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A2",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 17754,
+     "bbox": [
+      2255,
+      985,
+      2511,
+      1177
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A3",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 6008,
+     "bbox": [
+      2550,
+      545,
+      2613,
+      904
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A4",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 5140,
+     "bbox": [
+      3258,
+      1347,
+      3425,
+      1559
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A5",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 3310,
+     "bbox": [
+      3198,
+      1558,
+      3257,
+      1722
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A6",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 3142,
+     "bbox": [
+      2125,
+      1553,
+      2190,
+      1779
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A7",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 928,
+     "bbox": [
+      2914,
+      437,
+      3022,
+      498
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A8",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 920,
+     "bbox": [
+      3214,
+      888,
+      3252,
+      947
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B1",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 29319,
+     "bbox": [
+      3092,
+      1745,
+      3195,
+      2248
+     ],
+     "touches_image_border": true,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B2",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 19744,
+     "bbox": [
+      3331,
+      985,
+      3440,
+      1330
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B3",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 13512,
+     "bbox": [
+      3073,
+      553,
+      3210,
+      894
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B4",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 12475,
+     "bbox": [
+      2618,
+      422,
+      2789,
+      545
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B5",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 6776,
+     "bbox": [
+      2212,
+      1957,
+      2260,
+      2145
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": false,
+     "open_or_enclosed": "ENCLOSED",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B6",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 6623,
+     "bbox": [
+      2227,
+      1199,
+      2294,
+      1394
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B7",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 3244,
+     "bbox": [
+      2098,
+      1819,
+      2126,
+      2026
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B8",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 1394,
+     "bbox": [
+      2520,
+      925,
+      2560,
+      990
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B9",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 446,
+     "bbox": [
+      3254,
+      953,
+      3285,
+      977
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B10",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 160,
+     "bbox": [
+      2798,
+      420,
+      2827,
+      427
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    }
+   ]
+  },
+  "ae0_003": {
+   "summary": {
+    "shape": [
+     2248,
+     4000
+    ],
+    "tolerance_px": 2,
+    "min_adjudicate_px": 100,
+    "area_a": 102222,
+    "area_b": 168713,
+    "iou": 0.552778,
+    "consensus_px": 96451,
+    "xor_px": 78033,
+    "a_only_px": 5771,
+    "b_only_px": 72262,
+    "adjudicable_px": 77687,
+    "thin_px": 346,
+    "n_thick": 4,
+    "n_island": 0,
+    "n_open": 4,
+    "n_requires_adjudication": 4,
+    "auto_uncertain_px": 0
+   },
+   "components": [
+    {
+     "id": "A1",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 5364,
+     "bbox": [
+      2468,
+      862,
+      2560,
+      990
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "A2",
+     "side": "A_ONLY",
+     "missing_from": "B",
+     "kind": "THICK",
+     "area_px": 189,
+     "bbox": [
+      2742,
+      317,
+      2764,
+      335
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B1",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 65951,
+     "bbox": [
+      2208,
+      300,
+      2800,
+      1003
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    },
+    {
+     "id": "B2",
+     "side": "B_ONLY",
+     "missing_from": "A",
+     "kind": "THICK",
+     "area_px": 6183,
+     "bbox": [
+      2262,
+      988,
+      2457,
+      1059
+     ],
+     "touches_image_border": false,
+     "touches_mask_exterior": true,
+     "open_or_enclosed": "OPEN",
+     "touches_consensus": true,
+     "requires_adjudication": true,
+     "semantic_adjudication": null
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "pragma.ae0_second_key_decisions",
+  "schema_version": "0.1.0",
+  "source": {
+    "letter": "dialogo/012_chatgpt_a_claude.md",
+    "sha256": "15531bb43a45c2e52f917665f056b02924dc932132bdf036ccfbafac89eace67"
+  },
+  "proposal": {
+    "file": "ae0/comparacion/propuesta_adjudicacion_claude.json",
+    "sha256": "9b3365822abbf02a7ded7a69fce2e826689a4def889384cd4e3d2a1fbec9617a"
+  },
+  "custody": {
+    "CHATGPT_KEY_HASH": "CONFIRMED (a3ecb53f…0a45)",
+    "CLAUDE_COMMITMENT": "VERIFIED (84942809…9829 = 81e26dc)"
+  },
+  "general": "ACCEPTED_BY_SECOND_KEY salvo Q1–Q4",
+  "MATCH_REJECTED": "ACCEPTED_FOR_ADJUDICATION; KEYMATCH_V0_1_RESULT = PRESERVED",
+  "questions": {
+    "Q1": {
+      "chatgpt": "TWO_TABLES",
+      "claude_after_evidence": "CONCEDE_TWO_TABLES",
+      "why_claude_concedes": "en la banda inferior completa, los bordes frontales de los dos tableros no son simétricos como en una sola mesa redonda (izquierdo en y≈1725, derecho en y≈2000: la mesa derecha está más cerca de la cámara) y el tablero derecho termina en su propio borde curvo en x≈3720",
+      "result": "TWO_TABLES",
+      "codex": "NOT_NEEDED"
+    },
+    "Q2": {
+      "chatgpt": "ACCEPT_CLAUDE_READING",
+      "result": "AUXILIARY_SURFACE_OR_FURNITURE + SEPARATE_FRAME (C:027); G:008 corregida por su autora",
+      "codex": "NOT_NEEDED"
+    },
+    "Q3": {
+      "chatgpt": "ACCEPT_CLAUDE_READING",
+      "result": "CHAIR_OR_ARMCHAIR_WITH_OPEN_BACK; la zona clara es pared a través del respaldo (G:024 EXCLUDE)",
+      "codex": "NOT_NEEDED",
+      "note_claude": "la superficie gris redondeada detrás de los vasitos es el tablero de la mesa derecha (Q1), no el asiento de la silla"
+    },
+    "Q4": {
+      "C:021": "INCLUDE (las dos llaves)",
+      "C:022": "THIRD_REVIEW (Codex, a ciegas)",
+      "C:025": "THIRD_REVIEW (Codex, a ciegas)"
+    }
+  },
+  "keymatch_v0_2_note": {
+    "MATCH_WITHIN_COMPATIBLE_KIND": "REQUIRED en inventarios futuros",
+    "iou_threshold": "sin fijar: 0,5 fue estricto para estos anotadores; calibrar con más de un caso"
+  }
+}

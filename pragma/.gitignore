@@ -1,0 +1,13 @@
+# Entradas binarias: se localizan por SHA-256 y NO se publican en este repo público
+# (la foto muestra personas reales con etiquetas de nombre; la extensión se conserva intacta fuera de git).
+inputs/*
+!inputs/README.md
+!inputs/INPUTS_SHA256.txt
+
+# Todo lo derivado de la foto (overlays, recortes, láminas, corridas) queda local.
+local/
+runs/
+
+__pycache__/
+*.pyc
+ae0/gt/

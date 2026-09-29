@@ -1,0 +1,20 @@
+{
+  "schema": "pragma.ontology_ratification",
+  "schema_version": "0.1.0",
+  "ontology": "v0.2",
+  "document": "ae0/RATIFICACION_ONTOLOGIA_v0_2.md",
+  "document_sha256": "51f9411710132b9ccabe34ce69ad9de4eff184ae188c8c82cf66dde78845a273",
+  "detail": "ae0/ONTOLOGIA_PROPUESTA.md (§2 y §5), con DEC-013-Q, DEC-024 y DEC-025",
+  "decision": "ACEPTADA TAL CUAL (R1–R11, sin cambios)",
+  "ratified_by": "persona usuaria",
+  "words": "Acepto la ontología v0.2",
+  "channel": "respuesta explícita a una pregunta de Claude en la sesión de Claude Code (opción «Acepto la ontología v0.2»)",
+  "ratified_at_utc": "2026-09-26T20:13:15Z",
+  "second_key_recommendation": "ChatGPT 009 y 010: ACCEPT_V0_2_AS_WRITTEN (recomendación, no ratificación)",
+  "effect": [
+    "desbloquea A-E0: Claude congela su llave (compromiso por SHA-256) y ChatGPT hace la suya desde la foto",
+    "DEC-013-Q (fusión) y el reporte sin bloquear de DEC-014-P quedan ratificados por la persona usuaria (R9)",
+    "la referencia A-E0 es AI_CONSENSUS_REFERENCE, nunca HUMAN_GT (R10)"
+  ],
+  "veto": "la persona usuaria conserva el veto sobre todo"
+}

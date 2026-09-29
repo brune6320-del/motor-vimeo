@@ -1,0 +1,215 @@
+{
+  "notebook": "PRAGMA_A-E1_etapa1_SAM2_AMG.ipynb",
+  "notebook_sha256": "1c9694a5933238ef8b19a2f08087b942071528d8fcec9d147b12d23d239f4675",
+  "protocol_sha256": "9c459ee3aac4b1efc94509c58ab81856bb9d49561b2b91ca7100785e2934aead",
+  "result": "41/41",
+  "status": "PASS",
+  "scope": "estático + E2E con GPU y AMG SIMULADOS + lector sobre el ZIP simulado; no mide la calidad de SAM 2",
+  "checks": [
+    {
+      "check": "cuaderno: celda 1 = instalación de v1.3 (commit y checkpoint congelados)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: celda 2 = entorno de v1.3 con carpeta runs_ae1s1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: protocolo embebido byte a byte con su SHA-256",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: modelo con apply_postprocessing=False",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: la compuerta de GPU es la primera celda de código, antes de instalar, y exige capacidad ≥ 8",
+      "pass": true,
+      "detail": "['pragma-ae1s1-00g', 'pragma-ae1s1-01']"
+    },
+    {
+      "check": "cuaderno: ningún print muestra máscaras, número de máscaras ni scores",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "cuaderno: ZIP PRAGMA_AE1S1_…_PENDING_ANALYSIS y pide L4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "protocolo: 4 llamadas con los kwargs del sweep y techo INCONCLUSIVE_GT_INCOMPLETE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E sin GPU: FAIL_ENVIRONMENT en la celda 0, antes de crear la corrida",
+      "pass": true,
+      "detail": "FAIL_ENVIRONMENT: no hay GPU. Entorno de ejecución → Cambiar tipo de entorno de ejecución "
+    },
+    {
+      "check": "E2E T4 (capacidad 7.5): FAIL_ENVIRONMENT en la celda 0, antes de crear la corrida",
+      "pass": true,
+      "detail": "FAIL_ENVIRONMENT: SIMULATED T4 (capacidad 7.5) no tiene bfloat16 nativo y la corrida no co"
+    },
+    {
+      "check": "E2E navegador: sin errores",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E: las 4 llamadas con exactamente los kwargs del plan, en orden",
+      "pass": true,
+      "detail": "4 llamadas"
+    },
+    {
+      "check": "E2E: el modelo se construye una vez, sin postprocesado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E navegador: una descarga, el ZIP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E: la L4 simulada corre en bfloat16 y registra cuda_capability",
+      "pass": true,
+      "detail": "bfloat16 · (8, 9)"
+    },
+    {
+      "check": "E2E sin navegador: sin errores y sin descarga",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E sin foto: error claro, sin selector",
+      "pass": true,
+      "detail": "FileNotFoundError"
+    },
+    {
+      "check": "E2E con OOM simulado en AMG-1: baja a 32 y lo registra",
+      "pass": true,
+      "detail": "[64, 32]"
+    },
+    {
+      "check": "integridad del ZIP simulado: SIMULATED_RUN_NOT_EVIDENCE sin problemas",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "integridad: no devuelve datos de resultado",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "integridad: el ZIP con OOM registrado sigue siendo válido",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "manipular una máscara → INVALID_BUNDLE (manifiesto)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "manipular una máscara y rehacer el manifiesto → INVALID_BUNDLE (hash de máscara)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cambiar un kwarg ejecutado → INVALID_BUNDLE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "points_per_batch fuera de la regla (64 → 16) → INVALID_BUNDLE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "registro FORJADO como real en una T4 (float16) → REAL_GPU_DIFFERENT_PRECISION_NOT_EVIDENCE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "CUDA sin cuda_capability → INVALID_BUNDLE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "dtype incoherente con la capacidad (8.9 en float16) → INVALID_BUNDLE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "lector: con disparadores de R1 y sin llaves, se detiene antes de R2",
+      "pass": true,
+      "detail": "['ae0_012', 'ae0_029']"
+    },
+    {
+      "check": "triaje ciego: una lámina por objeto disparado, LEEME y plantilla",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "triaje ciego: ni el LEEME ni la plantilla nombran configuración, score ni id",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "triaje ciego: ≤ 12 candidatas por objeto (3 por configuración), deduplicadas por hash, y el mapeo sellado se publica solo por hash",
+      "pass": true,
+      "detail": "[3, 3]"
+    },
+    {
+      "check": "lector: MISS + MISS en el triaje NO confirma: escala a la revisión exhaustiva y se detiene antes de R2",
+      "pass": true,
+      "detail": "{'ae0_012': 'PENDING_EXHAUSTIVE_REVIEW', 'ae0_029': 'NOT_CONFIRMED'}"
+    },
+    {
+      "check": "revisión exhaustiva: TODAS las propuestas cuya caja corta la del objeto, deduplicadas, sin tope",
+      "pass": true,
+      "detail": "16 candidatas únicas"
+    },
+    {
+      "check": "revisión exhaustiva: varias láminas de ≤ 12, todas en el paquete, con LEEME y plantilla",
+      "pass": true,
+      "detail": "2 láminas"
+    },
+    {
+      "check": "revisión exhaustiva: ni el LEEME ni la plantilla nombran configuración, score ni id; pide reviewed_all_pages",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "lector: MISS + MISS en la revisión exhaustiva (todas las láminas) confirma; R4 = FAIL_COMPONENT",
+      "pass": true,
+      "detail": "['ae0_012']"
+    },
+    {
+      "check": "lector: un MISS sin haber visto todas las láminas cuenta como CANNOT_DETERMINE → NOT_CONFIRMED",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "lector: R2 por persona y configuración con las tres cotas y sus argmax",
+      "pass": true,
+      "detail": "valores sobre datos SIMULADOS: no se archivan"
+    },
+    {
+      "check": "lector: R3 etiquetado FUSION_Q_ESTIMATE_BASED y veredicto del contrato INCONCLUSIVE_GT_INCOMPLETE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "lector: sin fallos confirmados, la decisión es FAIL_COMPONENT solo por R2 robusto; nunca PASS",
+      "pass": true,
+      "detail": "FAIL_COMPONENT"
+    }
+  ]
+}

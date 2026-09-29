@@ -1,0 +1,257 @@
+{
+  "schema": "pragma.ae1_stage1_reading_protocol",
+  "schema_version": "0.2.0",
+  "status": "PREREGISTERED",
+  "gpu_gate": "HOLD: la GPU espera el GO de ChatGPT tras revisar esta versión, el cuaderno y su verificador (ChatGPT 020)",
+  "origin": "carta 019 (ORDEN 190) con las correcciones de ChatGPT 019 (ORDEN 191: R1 ciega por configuración, R2 con cotas a nivel de conjunto, R3 diagnóstico, R4 con una persona basta) y de ChatGPT 020 (ORDEN 201: triaje → revisión exhaustiva, compuerta bfloat16)",
+  "supersedes": {
+    "schema_version": "0.1.0",
+    "file_sha256": "810818759e402c4df870de80ea03211c1737935722c96e51d516a1cde535dc98",
+    "content_sha256": "d40cc5c4a3f3256421a40b28611611b68023bf515ae5e52bb2f6d836e928b57b",
+    "reviewed_in": "dialogo/020_chatgpt_a_claude.md (ORDEN 201): R1_TOP3_AS_EARLY_STOP = REJECTED, GPU_BF16_GATE = REQUIRED"
+  },
+  "binds": {
+    "contract": {
+      "file": "ae1/CONTRATO_ANALISIS_A-E1.json",
+      "sha256": "39180407b138f0f96b4a0e29f47403e909e4e44c9cc97c79b43c718bf24c874f",
+      "content_sha256": "96de8a3171653bfb6f0a81f3855bbec392aac80f136d6180e409c2f55750edfe"
+    },
+    "sweep": {
+      "file": "ae1/SWEEP_PRERREGISTRO_A-E1.json",
+      "sha256": "25a61aa98ec7db261d837ba4129474905f41bfedb28cc76e599ef920172d5a38"
+    },
+    "a_e0": {
+      "file": "ae0/scene_inventory.json",
+      "sha256": "765aaa4ae296c27e1e0924f511f268627ec834a80497e440574be7ffd1fa1d37",
+      "content_sha256": "0dba6767b0c7ca6d02a2f2498d7fb755f4eeeba65c88f7b3c798836f7136bb6b",
+      "reference_type": "AI_CONSENSUS_REFERENCE"
+    },
+    "reader": {
+      "file": "pragma_ae/ae1_stage1.py",
+      "sha256": "f31afde2bc502a55c9e331bc392b7e7ea8c2e2c2106af38790392403bf53ead6"
+    },
+    "metrics_implementation_sha256": {
+      "pragma_ae/metrics.py": "48b3ff9af53cd320adcb89eca82e95be4acb18272c5bfa958247e0075fb95e96",
+      "pragma_ae/masks.py": "412d1ead02fb92891ca989c5c6ac7a5b2dcd5b6bcdbb57551ec1ce12db712ac9",
+      "pragma_ae/inventory.py": "6540c0dcc21c718ebc3aee4b6a94d2680af536fd2680629f009ff197f2e42035",
+      "pragma_ae/keydiff.py": "c5e15ed6f1ab81b8b0237df9b1e5bd11849a97219c5e5af321caf634546d1e7a"
+    }
+  },
+  "stage": {
+    "name": "ETAPA_1",
+    "tier_a": 38,
+    "tier_a_with_mask": [
+      "ae0_001",
+      "ae0_002",
+      "ae0_003"
+    ],
+    "ceiling": "INCONCLUSIVE_GT_INCOMPLETE",
+    "never": "PASS_PROPOSALS: ningún informe de esta etapa la convierte en PASS, aunque los resultados sean buenos",
+    "role": "cribado de falsación / parada temprana, no validación completa"
+  },
+  "freeze": {
+    "SAM2_GIT_COMMIT": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+    "MODEL_CONFIG": "configs/sam2.1/sam2.1_hiera_l.yaml",
+    "CHECKPOINT_FILENAME": "sam2.1_hiera_large.pt",
+    "CHECKPOINT_SHA256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+    "IMAGE_SHA256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+    "IMAGE_H_x_W": [
+      2248,
+      4000
+    ]
+  },
+  "model": {
+    "build": "build_sam2(MODEL_CFG, CHECKPOINT, device=DEVICE, apply_postprocessing=False)",
+    "generator": "SAM2AutomaticMaskGenerator(model, **generator_kwargs).generate(image)",
+    "why_no_postprocessing": "es lo que hace el ejemplo oficial de AMG en el commit congelado",
+    "sources_at_commit": {
+      "notebooks/automatic_mask_generator_example.ipynb": "a503375b91ea76d463af8b12955e60270abede74937a2eda613eb3330ad56501",
+      "sam2/automatic_mask_generator.py": "66df266dbe14412305ae3398f0ec1bb21b303a93216b102d767e6c4ee5d4c3d7",
+      "sam2/build_sam.py": "856d64d71e44407401297b551884fb4cd1aba8082de0ff5fc60fac3dd42f094d"
+    },
+    "precision": "torch.autocast CUDA en bfloat16; exige capacidad CUDA ≥ 8 (L4, A100, H100). La celda 0 se detiene antes de instalar si no la hay (FAIL_ENVIRONMENT) y la celda 4 lo vuelve a exigir antes de cargar el modelo",
+    "image": "RGB HWC uint8 tras exif_transpose, 2248×4000; la foto se reconoce por SHA-256",
+    "device": "GPU CUDA con bfloat16 nativo; se usa L4, como en las corridas anteriores (no se exige el nombre de la GPU)"
+  },
+  "call_plan": [
+    {
+      "call_id": "AMG-0",
+      "config_id": "AMG-0 BASE",
+      "generator_kwargs": {
+        "points_per_batch": 64,
+        "stability_score_offset": 1.0,
+        "mask_threshold": 0.0,
+        "box_nms_thresh": 0.7,
+        "crop_nms_thresh": 0.7,
+        "crop_overlap_ratio": 0.3413333333333333,
+        "point_grids": null,
+        "min_mask_region_area": 0,
+        "output_mode": "uncompressed_rle",
+        "use_m2m": false,
+        "multimask_output": true,
+        "points_per_side": 32,
+        "pred_iou_thresh": 0.8,
+        "stability_score_thresh": 0.95,
+        "crop_n_layers": 0,
+        "crop_n_points_downscale_factor": 1
+      },
+      "points_per_batch_fallback": [
+        64,
+        32,
+        16
+      ]
+    },
+    {
+      "call_id": "AMG-1",
+      "config_id": "AMG-1 DENSE",
+      "generator_kwargs": {
+        "points_per_batch": 64,
+        "stability_score_offset": 1.0,
+        "mask_threshold": 0.0,
+        "box_nms_thresh": 0.7,
+        "crop_nms_thresh": 0.7,
+        "crop_overlap_ratio": 0.3413333333333333,
+        "point_grids": null,
+        "min_mask_region_area": 0,
+        "output_mode": "uncompressed_rle",
+        "use_m2m": false,
+        "multimask_output": true,
+        "points_per_side": 64,
+        "pred_iou_thresh": 0.8,
+        "stability_score_thresh": 0.95,
+        "crop_n_layers": 0,
+        "crop_n_points_downscale_factor": 1
+      },
+      "points_per_batch_fallback": [
+        64,
+        32,
+        16
+      ]
+    },
+    {
+      "call_id": "AMG-2",
+      "config_id": "AMG-2 CROP",
+      "generator_kwargs": {
+        "points_per_batch": 64,
+        "stability_score_offset": 1.0,
+        "mask_threshold": 0.0,
+        "box_nms_thresh": 0.7,
+        "crop_nms_thresh": 0.7,
+        "crop_overlap_ratio": 0.3413333333333333,
+        "point_grids": null,
+        "min_mask_region_area": 0,
+        "output_mode": "uncompressed_rle",
+        "use_m2m": false,
+        "multimask_output": true,
+        "points_per_side": 32,
+        "pred_iou_thresh": 0.8,
+        "stability_score_thresh": 0.95,
+        "crop_n_layers": 1,
+        "crop_n_points_downscale_factor": 2
+      },
+      "points_per_batch_fallback": [
+        64,
+        32,
+        16
+      ]
+    },
+    {
+      "call_id": "AMG-3",
+      "config_id": "AMG-3 SENSITIVE",
+      "generator_kwargs": {
+        "points_per_batch": 64,
+        "stability_score_offset": 1.0,
+        "mask_threshold": 0.0,
+        "box_nms_thresh": 0.7,
+        "crop_nms_thresh": 0.7,
+        "crop_overlap_ratio": 0.3413333333333333,
+        "point_grids": null,
+        "min_mask_region_area": 0,
+        "output_mode": "uncompressed_rle",
+        "use_m2m": false,
+        "multimask_output": true,
+        "points_per_side": 32,
+        "pred_iou_thresh": 0.7,
+        "stability_score_thresh": 0.9,
+        "crop_n_layers": 0,
+        "crop_n_points_downscale_factor": 1
+      },
+      "points_per_batch_fallback": [
+        64,
+        32,
+        16
+      ]
+    }
+  ],
+  "operational": {
+    "points_per_batch": "empieza en 64; solo baja por OOM (64 → 32 → 16), y cada intento queda registrado (regla del sweep)",
+    "output": "uncompressed_rle por máscara, con su packed_sha256 (cabecera «HxW:» + np.packbits)",
+    "no_results_in_colab": "el cuaderno solo imprime el progreso; no muestra máscaras, número de máscaras ni scores"
+  },
+  "run_validity": {
+    "REAL_GPU_EVIDENCE": "integridad sin problemas, commit y checkpoint congelados, foto por hash, y device = cuda, dtype = bfloat16 y cuda_capability[0] ≥ 8",
+    "REAL_GPU_DIFFERENT_PRECISION_NOT_EVIDENCE": "CUDA sin bfloat16 (capacidad < 8, float16; p. ej. T4): no se lee",
+    "SIMULATED_RUN_NOT_EVIDENCE": "arnés con SAM simulado: prueba el cuaderno, nunca es resultado",
+    "REAL_CPU_NOT_EVIDENCE": "sin CUDA: no se lee",
+    "INVALID_BUNDLE": "manifiesto, kwargs, hashes de máscara o regla de points_per_batch rotos, o cuda_capability ausente o incoherente con el dtype (la regla del cuaderno: capacidad ≥ 8 → bfloat16, < 8 → float16): no se lee"
+  },
+  "rules": {
+    "R1": {
+      "name": "BOX_SCREEN_FAILURE",
+      "trigger": "objeto Tier A cuya mejor IoU de caja (caja declarada del inventario frente a mask_bbox de cada propuesta) es < 0.5 en las cuatro configuraciones",
+      "phases": {
+        "R1_TRIAGE": {
+          "candidates": "las 3 mejores propuestas por IoU de caja POR CONFIGURACIÓN (≤ 12), deduplicadas por packed_sha256; empates por índice menor",
+          "outcome": "si una llave dice COVERS_OBJECT o CANNOT_DETERMINE: NOT_CONFIRMED. Si las dos dicen MISS: ESCALATE_TO_EXHAUSTIVE, que todavía NO es un fallo",
+          "package": "PRAGMA_AE1S1_revision_ciega_R1.zip, una lámina Rnn.png por objeto; mapeo sellado sealed_mapping.json"
+        },
+        "R1_EXHAUSTIVE_BLIND_REVIEW": {
+          "when": "solo para los objetos que el triaje escala, y después de archivar las dos llaves del triaje",
+          "candidates": "TODAS las propuestas únicas de las cuatro configuraciones cuya mask_bbox tiene intersección de área no vacía con la caja congelada del objeto (cajas semiabiertas, la convención de box_iou); deduplicadas por packed_sha256; sin tope",
+          "pages": "láminas Rnn_pPP.png de hasta 12 candidatas, tantas como hagan falta; cada una repite el objeto",
+          "outcome": "CONFIRMED_BOX_SCREEN_FAILURE solo si las dos llaves revisan todas las láminas (reviewed_all_pages = true) y dicen MISS. Una candidata encontrada por cualquiera → NOT_CONFIRMED. CANNOT_DETERMINE, o un MISS sin reviewed_all_pages = true → NOT_CONFIRMED",
+          "package": "PRAGMA_AE1S1_revision_ciega_R1_exhaustiva.zip; mapeo sellado sealed_mapping_exhaustivo.json; mismas etiquetas de objeto Rnn que el triaje"
+        }
+      },
+      "blinding": "sin configuración, score SAM ni ranking; orden aleatorio con semilla fija (un generador nuevo para cada paquete); mapeo sellado fuera del paquete",
+      "sheet": "recorte del objeto con su caja en verde y cada candidata en magenta, con miniatura de la foto entera; etiquetas con nombre (ae0_044, ae0_045) tapadas siempre",
+      "seed": 20260928,
+      "answers": [
+        "COVERS_OBJECT",
+        "MISS",
+        "CANNOT_DETERMINE"
+      ],
+      "keys": "en cada fase, Claude compromete sus respuestas por SHA-256 antes de archivar las de ChatGPT; ChatGPT recibe solo el paquete ciego",
+      "wording": "BOX_SCREEN_FAILURE: el triaje no demuestra nada por sí solo; confirmado, significa que ninguna propuesta de este sweep contiene el objeto según las dos llaves"
+    },
+    "R2": {
+      "per_proposal": "iou_estimate, iou_min, iou_max: los de keydiff.iou_with_uncertainty (redondeo a 6 decimales), con U = uncertain_path de la persona y F = gt_mask ∖ U",
+      "per_person_config": "best_estimate = max iou_estimate (oráculo descriptivo); best_robust_min = max iou_min; best_possible_max = max iou_max; y los tres argmax (índice menor en empates)",
+      "threshold": 0.7,
+      "verdict": {
+        "PASS": "best_robust_min ≥ 0,70",
+        "FAIL": "best_possible_max < 0,70",
+        "DEPENDS_ON_UNCERTAINTY": "en otro caso"
+      }
+    },
+    "R3": {
+      "label": "FUSION_Q_ESTIMATE_BASED",
+      "params": "los del contrato: regla Q, τ = 0,10, erosión 5 px, banda de contacto 24 px, umbral 0,20",
+      "status": "diagnóstico: la fusión se mide contra la estimación binaria y no tiene cotas; nunca es early-stop por sí sola"
+    },
+    "R4": {
+      "FAIL_COMPONENT": "≥ 1 CONFIRMED_BOX_SCREEN_FAILURE, o ≥ 1 persona con R2 = FAIL en las cuatro configuraciones",
+      "otherwise": "INCONCLUSIVE_GT_INCOMPLETE → etapa 2 (máscaras de los 35 Tier A restantes, por doble llave)",
+      "never_fail": "un DEPENDS_ON_UNCERTAINTY nunca produce FAIL; un FAIL en menos de cuatro configuraciones tampoco"
+    }
+  },
+  "order": [
+    "1. integridad del ZIP sin mirar resultados (ae1_stage1.integrity)",
+    "2. disparadores de R1 (solo cajas); si los hay: triaje ciego → llave de Claude por hash → llave de ChatGPT",
+    "3. si el triaje escala algún objeto: revisión exhaustiva ciega → llave de Claude por hash → llave de ChatGPT",
+    "4. solo con R1 resuelto para todos los objetos disparados: R2, R3 y R4 (ae1_stage1.analyze)",
+    "5. informe con el techo de la etapa y la decisión de R4"
+  ],
+  "privacy": "las máscaras de SAM 2 derivan de la foto: van a local/, y a git solo hashes y cifras",
+  "content_sha256": "cee53ee86fa158dbf7398ae5c19d35cadc5ce5008920f671120502c5b45e271d"
+}

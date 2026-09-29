@@ -1,0 +1,199 @@
+{
+  "schema": "pragma.aem1_blind_judgments",
+  "schema_version": "0.1.0",
+  "protocol": "auditoria/PROTOCOLO_AUDITORIA_AEM1_v1.md",
+  "protocol_sha256": "436937d45b86d8e236eb625274a29e42653285437af644f5d3845968c0240810",
+  "zip_sha256": "e6bb7a46dacced63f2735154fc2ac6f549a4aa25e0741f28a54d5723fc7d1976",
+  "sealed_mapping_sha256": "f3e45f06bf46cc8c03dec36ba98390e3220bc569699997e19614adbd94b31325",
+  "auditor": "Claude Code (auto-cegado; el identificador de modelo no se escribe en el repositorio por política del entorno)",
+  "judged_utc": "2026-09-25T17:31:53.640118+00:00",
+  "presentation_order": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+  ],
+  "blind_sheet_sha256": {
+    "candidata_A.png": "85bef248604db63eec89bc954715277c4b60e4750bd8f4c13790464131666cb9",
+    "candidata_B.png": "148a4127366a9ce654447fd08c08bfd0f46a5cd5bea768e919a93b0c407b133a",
+    "candidata_C.png": "b2acd7493fc3e63c6965e7000caa38c8821ec3aefea7c2c694b73f9c52788e0c",
+    "candidata_D.png": "a660705c03bb0ed913078cf6d32f1fbba021a3528b591508fe4acaa40ad459e2",
+    "candidata_E.png": "864786de0b24e2a8d9a5904a4859968fcd84adcb5cd18a67350710929a5b1a49",
+    "candidata_F.png": "1d47406f9d0654f0a1b3b05b28d84a10379d929b0588fd4c4161afea183cc6aa",
+    "candidata_G.png": "54098435e5e8a05362d72510a3f412bf70695267ff1a87f0827021b356b209be",
+    "candidata_H.png": "fb1371db1e4cbe5294fddee544cd7421b51f0320957f27557cbb352743da6f01",
+    "candidata_I.png": "7eb838464e05608182afdc137bcac9db090df9fa5ab7e2bcb0a660d0e843f502",
+    "candidata_J.png": "2179727b8b50d83d1e6382ee63fd1a416ef33719c3fac8c25c133d26303b5577",
+    "candidata_K.png": "b48b704b9f14393931123bd3b0e9cf8acb3105a428f5796cdf5ce0ee75a8b178",
+    "candidata_L.png": "69163585371852033411ad7fcd9d6c051a30671bb3d64c2a67aeb860917a26e5"
+  },
+  "metrics_consulted_before_judging": false,
+  "candidates": {
+    "A": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "pelo de la chica excluido alrededor de toda la cabeza (solo entra la cara)",
+        "mangas oscuras de ambos brazos perforadas con numerosos agujeros de ≥1000 px",
+        "pequeñas faltas a lo largo del borde inferior de la foto"
+      ],
+      "notes": "Persona posterior y fondo fuera, también en la franja de contacto; la frontera sigue la línea del pelo de la cara."
+    },
+    "B": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "fragmento diminuto: solo un botón del overol junto al punto de prompt"
+      ],
+      "notes": "No representa a la chica."
+    },
+    "C": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "solo el overol, las rayas blancas y zonas claras de la mano que cuelga: una prenda, no la persona",
+        "faltan cara, pelo, mano en V y todas las zonas oscuras"
+      ],
+      "notes": ""
+    },
+    "D": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "fragmento diminuto: solo un botón del overol, idéntico en apariencia a B"
+      ],
+      "notes": ""
+    },
+    "E": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "solo el overol y las rayas blancas (prenda), como C",
+        "faltan cara, pelo, mano en V y zonas oscuras"
+      ],
+      "notes": ""
+    },
+    "F": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "UNSURE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "incluye el pelo recogido (moño) de la persona posterior: el borde lo rodea por encima de la cabeza",
+        "agujeros pequeños dispersos en overol, cara/dedos y junto a la mano que cuelga; no puedo asegurar que ninguno supere 1000 px"
+      ],
+      "notes": "Es la más completa (pelo, cara, mano en V, mangas enteras, torso) pero repite el defecto de v4 en el moño; blusa floral posterior fuera."
+    },
+    "G": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "fusión: pelo, rayas y mangas de la chica junto con blusa floral, hombro oscuro y moño de la persona posterior",
+        "excluye la mano en V y el overol; agujeros en la cara"
+      ],
+      "notes": ""
+    },
+    "H": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "solo la parte inferior del overol"
+      ],
+      "notes": ""
+    },
+    "I": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "incluye el moño de la persona posterior",
+        "overol excluido",
+        "mano en V acribillada por agujeros en cuadrícula (artefacto de baja resolución)"
+      ],
+      "notes": "Blusa floral posterior fuera."
+    },
+    "J": {
+      "criteria": {
+        "correct_subject": "FALSE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "solo el overol inferior y un tirante"
+      ],
+      "notes": ""
+    },
+    "K": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "fragmentos del moño de la persona posterior incluidos",
+        "pelo de la chica deshilachado con muchos agujeros",
+        "mangas oscuras perforadas"
+      ],
+      "notes": "Cara, mano en V, rayas, overol y mano que cuelga bien."
+    },
+    "L": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "defects": [
+        "cara perforada",
+        "mano en V perforada en cuadrícula",
+        "pelo de la chica excluido",
+        "mangas oscuras excluidas",
+        "mano que cuelga fragmentada"
+      ],
+      "notes": "Persona posterior y fondo fuera."
+    }
+  }
+}

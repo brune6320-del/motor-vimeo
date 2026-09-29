@@ -1,0 +1,430 @@
+{
+ "schema": "pragma.ae0_evidence_patches",
+ "schema_version": "0.2.0",
+ "author": "claude",
+ "status": "PROPOSAL_PENDING_SECOND_KEY",
+ "origin": "adjudicación de los hallazgos de Codex sobre las 31 teselas de desafío (revision_codex_teselas_A-E0.json) y un hallazgo propio al medirlos",
+ "applies_after": "ae0/comparacion_poligonos/parches_propuestos_v0.json (6 parches, aceptados por ChatGPT en la 017)",
+ "mechanism": {
+  "rings_only": "el parche solo retira la incertidumbre de una sola llave (uncertain_rings); nunca toca lo incierto por adjudicación de keydiff, lo marcado por las dos llaves, lo retirado por EXCLUSIVITY ni lo añadido por un parche UNCERTAIN_INCLUDE o UNCERTAIN anterior",
+  "UNCERTAIN": "marca incierto y deja la estimación como está (solo como alternativa conservadora de N1)",
+  "margin_px": "8 en todos los CERTAIN de esta tanda: el doble de F1–F3, porque aquí hay bordes de pelo y oscuro contra oscuro"
+ },
+ "patches": [
+  {
+   "verdict": "CERTAIN",
+   "margin_px": 8,
+   "rings_only": true,
+   "id": "C1",
+   "person": "ae0_001",
+   "polygon": [
+    [
+     466,
+     606
+    ],
+    [
+     524,
+     606
+    ],
+    [
+     524,
+     664
+    ],
+    [
+     466,
+     664
+    ]
+   ],
+   "codex": [
+    "1T004.T1",
+    "1T005.T1"
+   ],
+   "reason": "interior de la manga izquierda levantada; el tajo oscuro es un pliegue rodeado de tela iluminada; ningún contorno cerca"
+  },
+  {
+   "verdict": "CERTAIN",
+   "margin_px": 8,
+   "rings_only": true,
+   "id": "C2",
+   "person": "ae0_001",
+   "polygon": [
+    [
+     888,
+     568
+    ],
+    [
+     970,
+     568
+    ],
+    [
+     970,
+     630
+    ],
+    [
+     888,
+     630
+    ]
+   ],
+   "codex": [
+    "1T005.T2",
+    "1T006.T1"
+   ],
+   "reason": "interior de la manga derecha, bajo la cuña oscura entre antebrazo y cabeza; ningún contorno cerca"
+  },
+  {
+   "verdict": "CERTAIN",
+   "margin_px": 8,
+   "rings_only": true,
+   "id": "C3",
+   "person": "ae0_001",
+   "polygon": [
+    [
+     418,
+     1530
+    ],
+    [
+     439,
+     1540
+    ],
+    [
+     460,
+     1550
+    ],
+    [
+     480,
+     1560
+    ],
+    [
+     482,
+     1570
+    ],
+    [
+     481,
+     1580
+    ],
+    [
+     483,
+     1590
+    ],
+    [
+     484,
+     1600
+    ],
+    [
+     486,
+     1610
+    ],
+    [
+     487,
+     1620
+    ],
+    [
+     490,
+     1630
+    ],
+    [
+     490,
+     1640
+    ],
+    [
+     489,
+     1650
+    ],
+    [
+     491,
+     1660
+    ],
+    [
+     493,
+     1670
+    ],
+    [
+     496,
+     1680
+    ],
+    [
+     499,
+     1690
+    ],
+    [
+     502,
+     1700
+    ],
+    [
+     503,
+     1710
+    ],
+    [
+     505,
+     1720
+    ],
+    [
+     507,
+     1730
+    ],
+    [
+     504,
+     1740
+    ],
+    [
+     508,
+     1750
+    ],
+    [
+     515,
+     1760
+    ],
+    [
+     516,
+     1770
+    ],
+    [
+     516,
+     1780
+    ],
+    [
+     517,
+     1790
+    ],
+    [
+     519,
+     1800
+    ],
+    [
+     522,
+     1810
+    ],
+    [
+     522,
+     1820
+    ],
+    [
+     527,
+     1830
+    ],
+    [
+     526,
+     1840
+    ],
+    [
+     529,
+     1850
+    ],
+    [
+     532,
+     1860
+    ],
+    [
+     531,
+     1870
+    ],
+    [
+     533,
+     1880
+    ],
+    [
+     533,
+     1890
+    ],
+    [
+     532,
+     1900
+    ],
+    [
+     532,
+     1910
+    ],
+    [
+     530,
+     1925
+    ],
+    [
+     532,
+     1935
+    ],
+    [
+     533,
+     1945
+    ],
+    [
+     525,
+     1955
+    ],
+    [
+     505,
+     1965
+    ],
+    [
+     486,
+     1975
+    ],
+    [
+     468,
+     1985
+    ],
+    [
+     446,
+     1995
+    ],
+    [
+     429,
+     2005
+    ],
+    [
+     418,
+     2005
+    ]
+   ],
+   "codex": [
+    "1T010.T1",
+    "1T011.T1",
+    "1T013.T1"
+   ],
+   "reason": "solo la parte iluminada del mantel de la tabla (fondo): borde derecho = primer tramo oscuro de 5 px con luminancia < 60 (gaussiana σ = 3), menos 3 px; lo oscuro sigue incierto",
+   "derivation": "local/ae0/codex_revision: luma_s3 >= 60, filas 1530–2005 cada 10 px"
+  },
+  {
+   "verdict": "CERTAIN",
+   "margin_px": 8,
+   "rings_only": true,
+   "id": "C4",
+   "person": "ae0_002",
+   "polygon": [
+    [
+     2491,
+     448
+    ],
+    [
+     2560,
+     448
+    ],
+    [
+     2560,
+     700
+    ],
+    [
+     2491,
+     700
+    ]
+   ],
+   "codex": [
+    "2T002.T1"
+   ],
+   "reason": "marco del cuadro y pared a la izquierda de la columna de cabello; la parte disputada bajo el moño queda protegida"
+  },
+  {
+   "verdict": "CERTAIN",
+   "margin_px": 8,
+   "rings_only": true,
+   "id": "C5",
+   "person": "ae0_002",
+   "polygon": [
+    [
+     2491,
+     700
+    ],
+    [
+     2752,
+     700
+    ],
+    [
+     2752,
+     960
+    ],
+    [
+     2491,
+     960
+    ]
+   ],
+   "codex": [
+    "2T002.T1"
+   ],
+   "reason": "columna de cabello de 002 por debajo de y = 700 (continua hasta caer sobre su top de rayas), marco, pared y blusa de 003; A3 y B8 quedan protegidos"
+  },
+  {
+   "verdict": "CERTAIN",
+   "margin_px": 8,
+   "rings_only": true,
+   "id": "C6",
+   "person": "ae0_002",
+   "polygon": [
+    [
+     2468,
+     896
+    ],
+    [
+     2602,
+     896
+    ],
+    [
+     2602,
+     1082
+    ],
+    [
+     2468,
+     1082
+    ]
+   ],
+   "codex": [
+    "2T006.T1"
+   ],
+   "reason": "unión blusa de 003 / cabello de 002: solo la incertidumbre de una llave lejos del borde"
+  },
+  {
+   "verdict": "CERTAIN",
+   "margin_px": 8,
+   "rings_only": true,
+   "id": "C7",
+   "person": "ae0_003",
+   "polygon": [
+    [
+     2458,
+     700
+    ],
+    [
+     2752,
+     700
+    ],
+    [
+     2752,
+     960
+    ],
+    [
+     2458,
+     960
+    ]
+   ],
+   "codex": [
+    "3T004.T1"
+   ],
+   "reason": "columna de cabello de 002 por debajo de y = 700, la cara de 002 y el interior de la blusa de 003; A3 y B8 quedan protegidos"
+  },
+  {
+   "id": "N1",
+   "person": "ae0_001",
+   "verdict": "UNCERTAIN_INCLUDE",
+   "margin_px": 0,
+   "polygon": [
+    [
+     998,
+     2060
+    ],
+    [
+     1090,
+     2060
+    ],
+    [
+     1090,
+     2248
+    ],
+    [
+     996,
+     2248
+    ]
+   ],
+   "codex": [],
+   "reason": "hallazgo propio al medir: en las filas 2060–2248 el único escalón de luminancia del borde derecho de la pierna está en x = 1082–1089 (pierna ≈ 19, fondo ≈ 12, siete franjas de 30 filas), mientras las dos llaves lo ponen en 969–1013 y la zona incierta acaba en 1079. Se lleva la estimación hasta el escalón y se marca incierta; nada pasa a cierto",
+   "fallback_if_contested": "UNCERTAIN sobre [1075, 2030, 1094, 2248]: solo ampliar lo incierto, sin mover la estimación"
+  }
+ ]
+}

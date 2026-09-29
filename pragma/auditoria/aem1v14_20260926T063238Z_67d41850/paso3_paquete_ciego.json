@@ -1,0 +1,64 @@
+{
+  "schema": "pragma.aem1v14_blind_step3",
+  "schema_version": "0.1.0",
+  "protocol": "auditoria/PROTOCOLO_AUDITORIA_AEM1_v2.md (rev. 1)",
+  "protocol_sha256": "b5b11c6cce30b534eb83ab9117025e35837e4554eb150e411c8091fec5087a71",
+  "prereg_content_sha256": "7048b9fabf03544885d749ad3f19d0dd9d373730d8531f87db58e40ca7220b5d",
+  "go_to_gpu": {
+    "letter": "dialogo/007_chatgpt_a_claude.md",
+    "commit": "02b9d63",
+    "note": "GO archivado en git antes de ejecutar"
+  },
+  "step2_integrity": {
+    "status": "INTEGRITY_PASS",
+    "run_kind": "REAL_GPU",
+    "problems": [],
+    "zip_sha256": "5af4c6e025c6ba1b159531423f4c4ab8a6946ae15460241d4122a50fd6008b13",
+    "zip_bytes": 323036,
+    "run_id": "20260926T063238Z_67d41850",
+    "prereg_content_sha256": "7048b9fabf03544885d749ad3f19d0dd9d373730d8531f87db58e40ca7220b5d",
+    "environment": {
+      "device": "cuda",
+      "device_name": "NVIDIA L4",
+      "dtype": "bfloat16",
+      "torch": "2.11.0+cu128",
+      "python": "3.13.15",
+      "sam2_commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+      "checkpoint_sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+      "checkpoint_bytes": 898083611,
+      "image_sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d"
+    },
+    "calls": 22,
+    "candidates": 24,
+    "note": "sin datos de resultado: ni áreas, ni scores, ni sentinelas (protocolo v2 §2, paso 2)"
+  },
+  "step3_blind_package": {
+    "file": "PRAGMA_AEM1v14_paquete_ciego_20260926T063238Z_67d41850.zip",
+    "sha256": "8f8df2730f64f5f94deb72c8f7af8b3653bc95bf0f5a3bb81e065b331ee4a17b",
+    "sealed_mapping_sha256": "1a68b79e3df2ab7e4fe8f75daef16ebe3c933d4bdcf4eb8fb582e3e47c3f1a66",
+    "labels": [
+      "N01",
+      "N02",
+      "N03",
+      "N04",
+      "N05",
+      "N06"
+    ],
+    "sheets_sha256": {
+      "candidata_N01.jpg": "ca8997cc6e620353a614c52c644f28e71dce594e70291747e3d4137f16d10248",
+      "candidata_N02.jpg": "8d6c567186fe1b3231a296cf9edf15775df9903be5ab3676a36acc63a3f8a5bb",
+      "candidata_N03.jpg": "8a1e9b74822483e3504f433f1283deeca51d8c35e37940d610c5edc9f1653e56",
+      "candidata_N04.jpg": "1eaf57f1c8e67e081cccf95df37cf86c0abbbb9aa852a9a7c3376c3f4f09a579",
+      "candidata_N05.jpg": "28a670c7ac398bdd20935a0e504339a94372be4d1135e784c0ee99d0a4643066",
+      "candidata_N06.jpg": "34a7ef93acd0e31e4e6b226a134b2f1df1dbbbd2d26e9a8c675808adafc0883e"
+    },
+    "note": "6 láminas: las 3 candidatas con H2 y las 3 de referencia, en permutación aleatoria (secrets); mapeo sellado en local, que Claude no abre hasta archivar la segunda llave"
+  },
+  "not_published_until_unblinding": [
+    "mapeo",
+    "juicios de Claude (solo su SHA-256, en el paso 5)",
+    "reproducción bit a bit de la referencia",
+    "métricas",
+    "hipótesis"
+  ]
+}

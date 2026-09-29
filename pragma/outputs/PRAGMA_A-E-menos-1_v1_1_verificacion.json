@@ -1,0 +1,257 @@
+{
+  "artifact": "PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_1.ipynb",
+  "artifact_bytes": 76764,
+  "artifact_sha256": "ddf784956de6eb8555bb9eb1f30d7af1dcabba06121568a0d4bc62be60c500dc",
+  "source_artifact_sha256": "5941be56b22fccc3efd4e299cc8ee6a12cb7c473d2977d4c0876e4e2ea73b706",
+  "verification_status": "STATIC_VERIFICATION_PASS",
+  "experiment_status": "NOT_RUN",
+  "codex_checks_passed": 68,
+  "v1_1_checks_passed": 19,
+  "checks": [
+    {
+      "name": "codex_verifier_hash",
+      "pass": true,
+      "detail": "e949c5aeb45450723a0718f92ef0b54afd7294f0d79156c15ee7e5cf21f1ba05"
+    },
+    {
+      "name": "codex_68_checks_on_v1_1",
+      "pass": true,
+      "detail": "68 checks"
+    },
+    {
+      "name": "v1_0_source_hash",
+      "pass": true,
+      "detail": "5941be56b22fccc3efd4e299cc8ee6a12cb7c473d2977d4c0876e4e2ea73b706"
+    },
+    {
+      "name": "same_cell_order",
+      "pass": true
+    },
+    {
+      "name": "only_expected_cells_changed",
+      "pass": true,
+      "detail": "pragma-aem1-00, pragma-aem1-01, pragma-aem1-06, pragma-aem1-06m, pragma-aem1-11"
+    },
+    {
+      "name": "sentinel_ids_preserved",
+      "pass": true
+    },
+    {
+      "name": "corrected:P-2",
+      "pass": true,
+      "detail": "(2640, 430)"
+    },
+    {
+      "name": "corrected:P-3",
+      "pass": true,
+      "detail": "(2400, 810)"
+    },
+    {
+      "name": "corrected:O2",
+      "pass": true,
+      "detail": "(2700, 380)"
+    },
+    {
+      "name": "wall_coordinates_absent",
+      "pass": true
+    },
+    {
+      "name": "other_15_coordinates_unchanged",
+      "pass": true
+    },
+    {
+      "name": "contact_ids_flagged",
+      "pass": true
+    },
+    {
+      "name": "min_prompt_holdout_distance",
+      "pass": true,
+      "detail": "78px (P-2↔O2) ≥ 60px"
+    },
+    {
+      "name": "box_unchanged",
+      "pass": true
+    },
+    {
+      "name": "confirmation_default_false",
+      "pass": true
+    },
+    {
+      "name": "config_revision_recorded",
+      "pass": true
+    },
+    {
+      "name": "contact_sheet_function_identical_to_kit",
+      "pass": true
+    },
+    {
+      "name": "contact_sheet_in_zip_whitelist",
+      "pass": true
+    },
+    {
+      "name": "contact_stats_in_report",
+      "pass": true
+    }
+  ],
+  "grounded_checks": {
+    "status": "PASS",
+    "image_sha256": "8f6e3b6f5013265a45c7e89121e3f0a18e3386951e2e75378b28da6d02ec529d",
+    "wall_reference": {
+      "wall_2400_550": [
+        209.0,
+        19.8
+      ],
+      "wall_2550_250": [
+        215.3,
+        12.3
+      ]
+    },
+    "v1_0_points": {
+      "P-2": [
+        146.7,
+        68.7
+      ],
+      "P-3": [
+        205.1,
+        20.8
+      ],
+      "O2": [
+        219.7,
+        9.3
+      ]
+    },
+    "v1_1_points": {
+      "P-2": [
+        56.8,
+        44.9
+      ],
+      "P-3": [
+        90.9,
+        53.0
+      ],
+      "O2": [
+        78.7,
+        52.6
+      ]
+    },
+    "rows": {
+      "v1_0_P-3_wall_like": true,
+      "v1_0_O2_wall_like": true,
+      "v1_1_corrected_not_wall": true
+    },
+    "scope": "Solo descarta 'pared lisa'. No prueba a quién pertenece el píxel: eso lo confirma la persona."
+  },
+  "cpu_harness": {
+    "status": "PASS",
+    "executed_cells": [
+      "pragma-aem1-04",
+      "pragma-aem1-06",
+      "pragma-aem1-07"
+    ],
+    "not_executed": [
+      "pragma-aem1-02",
+      "pragma-aem1-03",
+      "pragma-aem1-05",
+      "pragma-aem1-08",
+      "pragma-aem1-09",
+      "pragma-aem1-10",
+      "pragma-aem1-11"
+    ],
+    "config_digest": "fab35e72bafa15a6290f47cde74db7f1a01d96e715322ebfc53024bbf3a174cc",
+    "config_ready": false,
+    "produced_local_files": {
+      "aem1_config.json": {
+        "bytes": 4306,
+        "sha256": "aed377ee2acc938a7a1edba41b01b4ad664083c9e3947e210408c4bc9396dada"
+      },
+      "aem1_config_contact_sheet.png": {
+        "bytes": 854240,
+        "sha256": "65214c7482889cb8cfffb43c9d56cac3374b4d4922dc47aaca68f34bbe23268d"
+      },
+      "aem1_config_overlay.png": {
+        "bytes": 9800290,
+        "sha256": "b60cdfdd42256bb48752c0669b40d1e9a7f6411735746d5510079ef3308c27fb"
+      }
+    },
+    "contact_sheet_luma": {
+      "P+1": [
+        249.3,
+        6.2
+      ],
+      "P-1": [
+        125.6,
+        71.0
+      ],
+      "P-2": [
+        56.8,
+        44.9
+      ],
+      "P-3": [
+        90.9,
+        53.0
+      ],
+      "K1": [
+        245.8,
+        2.9
+      ],
+      "K2": [
+        135.3,
+        51.7
+      ],
+      "K3": [
+        101.4,
+        57.1
+      ],
+      "K4": [
+        254.3,
+        0.8
+      ],
+      "K5": [
+        101.7,
+        53.1
+      ],
+      "K6": [
+        220.3,
+        23.7
+      ],
+      "K7": [
+        252.9,
+        1.7
+      ],
+      "O1": [
+        179.8,
+        57.1
+      ],
+      "O2": [
+        78.7,
+        52.6
+      ],
+      "O3": [
+        42.0,
+        34.2
+      ],
+      "O4": [
+        140.9,
+        70.5
+      ],
+      "B1": [
+        203.4,
+        28.8
+      ],
+      "B2": [
+        182.9,
+        35.6
+      ],
+      "B3": [
+        49.6,
+        39.4
+      ]
+    },
+    "note": "Evidencias derivadas de la foto: quedan en local/, no se versionan."
+  },
+  "limitations": [
+    "No ejecuta SAM 2 ni CUDA: los protocolos siguen NOT_RUN.",
+    "Las comprobaciones en píxeles solo descartan 'pared lisa'; la pertenencia de cada punto la confirma una persona.",
+    "AEM1_CONFIG_CONFIRMADA permanece False por diseño."
+  ]
+}

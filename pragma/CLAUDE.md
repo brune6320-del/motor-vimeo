@@ -1,0 +1,69 @@
+# PRAGMA · reglas para agentes
+
+- La fuente de verdad es `PROJECT_STATE.md`. Léelo antes de cambiar nada y actualízalo según su §29.
+- **Cierra siempre cada respuesta con "Tus pasos"**: una lista numerada, explicada para alguien
+  que no programa, con qué abrir, qué hacer clic, qué subir y **qué adjuntar de vuelta en el chat**
+  (archivos exactos, capturas, texto de errores). Si no hay nada que hacer, dilo explícitamente.
+- **La persona usuaria no fiscaliza (DEC‑018‑P).** Toda verificación que una IA pueda hacer la hace
+  la IA, con evidencia y hashes: coordenadas, integridad de ZIPs, revisión visual de máscaras. A la
+  persona solo se le piden pasos mecánicos y decisiones de producto; siempre puede vetar.
+- **Numeración de órdenes:** toda respuesta de Claude termina con `ORDEN N0`; con carta, N es su número
+  (carta 017 → `ORDEN 170`). Cada carta pide a ChatGPT terminar con `ORDEN N1`. Si el último mensaje termina
+  en 0 va a ChatGPT; si termina en 1, a Claude (`dialogo/README.md`).
+- **Ping‑pong con ChatGPT (DEC‑019‑P).** Tras cada avance significativo, escribe una carta
+  `dialogo/NNN_claude_a_chatgpt.md` según `dialogo/README.md` y entrégala lista para pegar. Guarda las
+  respuestas de ChatGPT tal cual como `dialogo/NNN_chatgpt_a_claude.md`, audítalas y respóndelas.
+  Traspasar no es delegar: Claude audita y guía; ChatGPT desafía y contraaudita (doble llave).
+- **Auditoría ciega con reglas previas** (protocolo vigente: `auditoria/PROTOCOLO_AUDITORIA_AEM1_v2.md`).
+  - Antes de la corrida, congelar y publicar el protocolo y el prerregistro.
+  - Juzgar con etiquetas anónimas.
+  - **El paquete ciego va a ChatGPT antes que cualquier resultado:** ninguna carta previa dice si
+    algo pasó, cuántas fallan, qué familia hizo qué ni cuál fue la mejor.
+  - Los juicios crudos de Claude se comprometen en git **solo por SHA‑256**. El JSON se publica
+    después de archivar la segunda llave; después se desciega (`work/blind_audit_aem1.py`,
+    `work/double_key_aem1.py`).
+  - Toda regla métrica nueva se decide con una prueba prerregistrada antes de ver datos reales.
+- **A‑E1 etapa 1:** el cuaderno sale de `work/build_pragma_ae1_stage1.py` desde
+  `ae1/AE1_STAGE1_READING_PROTOCOL.json` (`work/design_ae1_stage1.py --check`). Nunca se edita a mano y se
+  verifica con `work/verify_pragma_ae1_stage1.py`. La GPU solo corre tras el GO aparte de ChatGPT; la guía es
+  `GUIA_COLAB_A-E1_etapa1.md`. El lector (`pragma_ae/ae1_stage1.py`) sigue el orden del protocolo: integridad
+  → R1 a ciegas → R2/R3/R4.
+  - R1 tiene dos fases (ChatGPT 020). El **triaje** (3 por configuración) nunca confirma un fallo: dos
+    `MISS` solo escalan a la **revisión exhaustiva**, que muestra todas las propuestas cuya caja corta la
+    del objeto, sin tope. Solo allí dos `MISS` con `reviewed_all_pages` dan
+    `CONFIRMED_BOX_SCREEN_FAILURE`. Cada fase: llave de Claude por hash antes que la de ChatGPT.
+  - Solo es evidencia una corrida CUDA en bfloat16 con capacidad ≥ 8. Una GPU en float16 da
+    `REAL_GPU_DIFFERENT_PRECISION_NOT_EVIDENCE`, y el cuaderno se detiene antes de instalar.
+- Para A‑E(−1), la guía vigente es `GUIA_COLAB_A-E-menos-1_v1_4.md` (un clic en L4, a ciegas; solo tras
+  el `GO` de ChatGPT). Mantenla al día. El cuaderno v1.4 se genera desde el prerregistro con
+  `work/build_pragma_aem1_v1_4.py`. Nunca se edita a mano, y se verifica con
+  `work/verify_pragma_aem1_v1_4.py`. El prerregistro sale de `work/design_aem1_v1_4.py --check`.
+- **Discrepancias entre llaves → adjudicación técnica** (protocolo v2 rev. 1 §5.2): primero la
+  medición; si no basta, una tercera revisión ciega; si tampoco, adjudicación conjunta con regla
+  conservadora. Nunca se pide a la persona usuaria arbitrar píxeles.
+- Tras una corrida v1.4: `aem1_v14_audit.integrity` sin mirar resultados → referencia bit a bit (solo
+  hashes) → paquete ciego de 6 láminas (va **solo** a ChatGPT) → juicio ciego propio, del que a git va
+  solo el hash → desciegue y `aem1_v14_audit.analyze` cuando llegue la segunda llave. A‑E(−1) se
+  cierra con v1.4 (regla de parada prerregistrada).
+- A‑E0 se produce por doble llave de IA (DEC‑024): su referencia es `AI_CONSENSUS_REFERENCE`, nunca
+  `HUMAN_GT`, y A‑E1 declara contra qué referencia mide.
+- **A‑E0 está congelado (etapa 1, contenido `0dba6767…bb6b`)** y el contrato A‑E1 está ligado a él.
+  No se tocan ni el inventario, ni las máscaras, ni el contrato: un cambio es otra versión y se declara.
+  Con máscaras solo de las 3 personas, A‑E1 nunca da `PASS_PROPOSALS` (techo
+  `INCONCLUSIVE_GT_INCOMPLETE`).
+- A‑E(−1) está cerrado (`AEM1_CLOSED_INCONCLUSIVE`, confirmado por ChatGPT 008): no se proponen más
+  corridas SAM de diagnóstico. Toda máscara de referencia de A‑E0 pasa por la comprobación geométrica
+  entre llaves (DEC‑025, `pragma_ae/keydiff.py`): el código dice que la diferencia existe y cuánto
+  mide; la revisión adjudica qué significa. El XOR no ve la omisión compartida: para eso están las
+  teselas de contorno y el desafío dirigido de Codex. Dentro de lo incierto no se inventa verdad: la
+  binaria es `reference_estimate_mask` (política declarada) y toda métrica lleva sus cotas min/max.
+- Llaves de inventario A‑E0: formato y custodia en `ae0/FORMATO_LLAVE_A-E0.md`. La de Claude se
+  compromete por SHA‑256 **antes** de ver la de ChatGPT, y se comparan con `pragma_ae/keymatch.py`.
+  Nunca se envía a ChatGPT nada del borrador (`scene_inventory.draft.json`) antes de su llave.
+- Nomenclatura de la persona usuaria: «Crear cuaderno Colab para SAM 2» es el hilo de **Codex** de
+  PRAGMA/SAM 2. Las cartas para Claude se pegan en su sesión de Claude Code.
+- El repositorio es público: nunca versionar `inputs/*`, `local/`, `ae0/gt/` ni nada derivado de la
+  foto (DEC‑017). Lo que el usuario adjunte en el chat se audita en local; al repo solo van hashes y
+  conclusiones.
+- Invariantes: no tocar `pragma-extension.zip`; no FastAPI, localhost, YOLO‑seg ni BiRefNet; Fase B
+  bloqueada; ninguna verificación estática o simulada se presenta como corrida GPU ni como aceptación.

@@ -1,0 +1,15 @@
+{
+  "schema": "pragma.aem1v14_blind_step5",
+  "schema_version": "0.1.0",
+  "commitment": {
+    "file": "juicios_claude_CRUDOS.json (local; se publica tras archivar la segunda llave)",
+    "sha256": "6febe5d6e37198af8fc4ceceb2e98ce1e5794fb1bd52a68e5ce9ad54f30c78d0"
+  },
+  "judged_on": "2026-09-26",
+  "key": "primera (Claude)",
+  "package_sha256": "8f8df2730f64f5f94deb72c8f7af8b3653bc95bf0f5a3bb81e065b331ee4a17b",
+  "sealed_mapping_sha256": "1a68b79e3df2ab7e4fe8f75daef16ebe3c933d4bdcf4eb8fb582e3e47c3f1a66",
+  "rule": "protocolo v2 rev. 1 §2 paso 5: solo el hash; el JSON crudo, el mapeo y cualquier resultado se publican después de archivar la llave de ChatGPT",
+  "blindness_note": "Claude no abrió el mapeo sellado. Tres láminas pueden repetir máscaras ya juzgadas en v1.3 (retest prerregistrado); reconocerlas es posible y está declarado",
+  "custody": "una copia del JSON crudo queda con la persona usuaria para que el compromiso sobreviva al contenedor efímero; no se envía a ChatGPT"
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "pragma.aem1_audit_verdict",
+  "schema_version": "0.1.0",
+  "zip_sha256": "e6bb7a46dacced63f2735154fc2ac6f549a4aa25e0741f28a54d5723fc7d1976",
+  "run_id": "20260925T062504Z_256dba9f",
+  "run_kind": "REAL_GPU",
+  "config_digest": "fd29b18bbe50cf8236f41057567265e6083d13465511e4882cd8e533af58aa71",
+  "selected": "box+corrections:s1#0",
+  "packed_mask_sha256": "8ae7900637c5cde7d03b215ff3d29bf34f780b4a5a65c284877c6aecea11592d",
+  "criteria": {
+    "correct_subject": true,
+    "body_and_edges_complete": false,
+    "other_person_excluded": true,
+    "background_excluded": true
+  },
+  "notes": "pelo de la chica excluido alrededor de toda la cabeza (solo entra la cara); mangas oscuras de ambos brazos perforadas con numerosos agujeros de ≥1000 px; pequeñas faltas a lo largo del borde inferior de la foto",
+  "reasoning": [
+    "Etiqueta ciega A",
+    "0 de 12 candidatas pasan los cuatro criterios",
+    "selección por reglas del protocolo §6 (defectos y etiqueta), nunca por score"
+  ],
+  "auditor": "Claude Code · auditoría ciega según auditoria/PROTOCOLO_AUDITORIA_AEM1_v1.md",
+  "candidates_reviewed": [
+    "box#0",
+    "box#1",
+    "box#2",
+    "box+corrections:s0#0",
+    "box+corrections:s1#0",
+    "box+corrections:s2#0",
+    "point#0",
+    "point#1",
+    "point#2",
+    "point+corrections:s0#0",
+    "point+corrections:s1#0",
+    "point+corrections:s2#0"
+  ],
+  "evidence_files": {},
+  "case_status": "INCONCLUSIVE_SELECTED_OUTPUT_FAILED",
+  "project_status": "INCONCLUSIVE_A_E0_REQUIRED",
+  "phase_b_blocked": true,
+  "sam2_rejectable": false,
+  "cross_audit": {
+    "by": "ChatGPT",
+    "status": "PENDIENTE",
+    "material": "láminas ciegas A–L sin mapeo"
+  },
+  "user_veto": "la persona usuaria puede vetar este veredicto en cualquier momento",
+  "inspection_token": "6efc1850d4a6a61f456ffac341093c2b52e18d3fbf1b6639528383c4715ca935",
+  "decided_at_utc": "2026-09-25T17:32:06.681945+00:00",
+  "protocol_sha256": "436937d45b86d8e236eb625274a29e42653285437af644f5d3845968c0240810",
+  "raw_judgments_sha256": "e8286d21e54846346ea1e070cb5675ed04af28a80730b49ea6f418ea4b842673",
+  "sealed_mapping_sha256": "f3e45f06bf46cc8c03dec36ba98390e3220bc569699997e19614adbd94b31325",
+  "passing_candidates": [],
+  "contact_risk_probe": {
+    "box": [
+      2150,
+      250,
+      2900,
+      1300
+    ],
+    "pixels_in_box": {
+      "box+corrections:s1#0": 226661,
+      "point#0": 0,
+      "box+corrections:s2#0": 36065,
+      "point+corrections:s0#0": 0,
+      "box+corrections:s0#0": 30562,
+      "box#1": 351290,
+      "box#0": 344810,
+      "point+corrections:s2#0": 0,
+      "box#2": 313819,
+      "point#2": 7099,
+      "point#1": 283333,
+      "point+corrections:s1#0": 169201
+    },
+    "point_seeds": {
+      "label": "NOT_EVALUABLE",
+      "pairs": {
+        "point+corrections:s0#0 ↔ point+corrections:s1#0": 0.0,
+        "point+corrections:s0#0 ↔ point+corrections:s2#0": null,
+        "point+corrections:s1#0 ↔ point+corrections:s2#0": 0.0
+      }
+    },
+    "box_seeds": {
+      "label": "CONFLICT",
+      "min_iou": 0.1348,
+      "pairs": {
+        "box+corrections:s0#0 ↔ box+corrections:s1#0": 0.1348,
+        "box+corrections:s0#0 ↔ box+corrections:s2#0": 0.8348,
+        "box+corrections:s1#0 ↔ box+corrections:s2#0": 0.1591
+      }
+    },
+    "point_vs_box": {
+      "label": "CONFLICT",
+      "min_iou": 0.0,
+      "pairs": {
+        "box+corrections:s0#0 ↔ point+corrections:s0#0": 0.0,
+        "box+corrections:s0#0 ↔ point+corrections:s1#0": 0.1806,
+        "box+corrections:s0#0 ↔ point+corrections:s2#0": 0.0,
+        "box+corrections:s1#0 ↔ point+corrections:s0#0": 0.0,
+        "box+corrections:s1#0 ↔ point+corrections:s1#0": 0.7258,
+        "box+corrections:s1#0 ↔ point+corrections:s2#0": 0.0,
+        "box+corrections:s2#0 ↔ point+corrections:s0#0": 0.0,
+        "box+corrections:s2#0 ↔ point+corrections:s1#0": 0.2131,
+        "box+corrections:s2#0 ↔ point+corrections:s2#0": 0.0
+      }
+    },
+    "note": "CONTACT_RISK_PROBE: estabilidad, no exactitud. Nunca decide aceptación (protocolo §5)."
+  }
+}

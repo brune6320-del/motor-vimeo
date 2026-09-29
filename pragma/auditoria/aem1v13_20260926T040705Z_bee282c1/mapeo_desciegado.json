@@ -1,0 +1,671 @@
+{
+  "holes": {
+    "C01": [
+      {
+        "area_px": 10903,
+        "bbox": [
+          2209,
+          1965,
+          2287,
+          2175
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 3011,
+        "bbox": [
+          2984,
+          842,
+          3025,
+          997
+        ],
+        "number": 2
+      }
+    ],
+    "C02": [
+      {
+        "area_px": 15287,
+        "bbox": [
+          2944,
+          635,
+          3027,
+          999
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 12001,
+        "bbox": [
+          2208,
+          1962,
+          2288,
+          2178
+        ],
+        "number": 2
+      }
+    ],
+    "C03": [
+      {
+        "area_px": 11120,
+        "bbox": [
+          2208,
+          1962,
+          2284,
+          2177
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 7575,
+        "bbox": [
+          2969,
+          789,
+          3027,
+          1000
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 4176,
+        "bbox": [
+          2950,
+          636,
+          2999,
+          779
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 2985,
+        "bbox": [
+          2683,
+          832,
+          2730,
+          930
+        ],
+        "number": 4
+      }
+    ],
+    "C04": [
+      {
+        "area_px": 1697,
+        "bbox": [
+          2626,
+          1194,
+          2688,
+          1231
+        ],
+        "number": 1
+      }
+    ],
+    "C05": [
+      {
+        "area_px": 15886,
+        "bbox": [
+          2943,
+          635,
+          3027,
+          999
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 11076,
+        "bbox": [
+          2208,
+          1964,
+          2287,
+          2175
+        ],
+        "number": 2
+      }
+    ],
+    "C06": [
+      {
+        "area_px": 17066,
+        "bbox": [
+          2937,
+          631,
+          3029,
+          992
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 8986,
+        "bbox": [
+          2676,
+          825,
+          2857,
+          1019
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 4928,
+        "bbox": [
+          2571,
+          1029,
+          2686,
+          1161
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 4857,
+        "bbox": [
+          3014,
+          625,
+          3095,
+          809
+        ],
+        "number": 4
+      },
+      {
+        "area_px": 1379,
+        "bbox": [
+          2536,
+          1132,
+          2588,
+          1196
+        ],
+        "number": 5
+      }
+    ],
+    "C07": [
+      {
+        "area_px": 5050,
+        "bbox": [
+          2902,
+          1930,
+          3059,
+          2047
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 3639,
+        "bbox": [
+          2501,
+          1299,
+          2701,
+          1361
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 2959,
+        "bbox": [
+          2619,
+          1259,
+          2706,
+          1308
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 2496,
+        "bbox": [
+          2584,
+          1195,
+          2701,
+          1238
+        ],
+        "number": 4
+      },
+      {
+        "area_px": 2410,
+        "bbox": [
+          2407,
+          1360,
+          2479,
+          1431
+        ],
+        "number": 5
+      },
+      {
+        "area_px": 2324,
+        "bbox": [
+          2748,
+          1160,
+          2813,
+          1211
+        ],
+        "number": 6
+      },
+      {
+        "area_px": 1588,
+        "bbox": [
+          2941,
+          2049,
+          3001,
+          2106
+        ],
+        "number": 7
+      },
+      {
+        "area_px": 1215,
+        "bbox": [
+          2365,
+          1458,
+          2417,
+          1507
+        ],
+        "number": 8
+      },
+      {
+        "area_px": 1212,
+        "bbox": [
+          2716,
+          1352,
+          2787,
+          1384
+        ],
+        "number": 9
+      },
+      {
+        "area_px": 1146,
+        "bbox": [
+          2310,
+          1570,
+          2327,
+          1685
+        ],
+        "number": 10
+      },
+      {
+        "area_px": 1075,
+        "bbox": [
+          2930,
+          1114,
+          2954,
+          1180
+        ],
+        "number": 11
+      }
+    ],
+    "C08": [],
+    "C09": [],
+    "C10": [
+      {
+        "area_px": 11506,
+        "bbox": [
+          2209,
+          1963,
+          2285,
+          2177
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 10793,
+        "bbox": [
+          2651,
+          830,
+          2822,
+          1021
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 8120,
+        "bbox": [
+          2964,
+          785,
+          3026,
+          999
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 5027,
+        "bbox": [
+          2949,
+          636,
+          2999,
+          781
+        ],
+        "number": 4
+      }
+    ],
+    "C11": [
+      {
+        "area_px": 11645,
+        "bbox": [
+          2208,
+          1964,
+          2292,
+          2175
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 3732,
+        "bbox": [
+          2980,
+          841,
+          3025,
+          997
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 3494,
+        "bbox": [
+          2953,
+          636,
+          2995,
+          771
+        ],
+        "number": 3
+      }
+    ],
+    "C12": [
+      {
+        "area_px": 4379,
+        "bbox": [
+          2947,
+          635,
+          2994,
+          780
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 4276,
+        "bbox": [
+          2974,
+          824,
+          3026,
+          997
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 1674,
+        "bbox": [
+          3132,
+          1373,
+          3188,
+          1426
+        ],
+        "number": 3
+      }
+    ],
+    "C13": [],
+    "C14": [
+      {
+        "area_px": 11545,
+        "bbox": [
+          2209,
+          1965,
+          2287,
+          2177
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 3419,
+        "bbox": [
+          2975,
+          839,
+          3027,
+          998
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 2894,
+        "bbox": [
+          2948,
+          636,
+          2995,
+          747
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 1011,
+        "bbox": [
+          2687,
+          938,
+          2752,
+          980
+        ],
+        "number": 4
+      }
+    ],
+    "C15": [
+      {
+        "area_px": 16081,
+        "bbox": [
+          2185,
+          1958,
+          2310,
+          2181
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 1616,
+        "bbox": [
+          3059,
+          1415,
+          3133,
+          1477
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 1253,
+        "bbox": [
+          2276,
+          1845,
+          2299,
+          1932
+        ],
+        "number": 3
+      }
+    ],
+    "C16": [
+      {
+        "area_px": 11059,
+        "bbox": [
+          2208,
+          1964,
+          2286,
+          2176
+        ],
+        "number": 1
+      }
+    ],
+    "C17": [
+      {
+        "area_px": 17636,
+        "bbox": [
+          2939,
+          633,
+          3029,
+          996
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 6410,
+        "bbox": [
+          2364,
+          1372,
+          2480,
+          1520
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 3941,
+        "bbox": [
+          2801,
+          1510,
+          2922,
+          1595
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 2661,
+        "bbox": [
+          2932,
+          1237,
+          2999,
+          1307
+        ],
+        "number": 4
+      },
+      {
+        "area_px": 2453,
+        "bbox": [
+          2515,
+          2107,
+          2576,
+          2177
+        ],
+        "number": 5
+      },
+      {
+        "area_px": 1445,
+        "bbox": [
+          2937,
+          1371,
+          2966,
+          1440
+        ],
+        "number": 6
+      },
+      {
+        "area_px": 1086,
+        "bbox": [
+          2846,
+          1022,
+          2897,
+          1067
+        ],
+        "number": 7
+      }
+    ],
+    "C18": [
+      {
+        "area_px": 3643,
+        "bbox": [
+          2519,
+          1446,
+          2715,
+          1527
+        ],
+        "number": 1
+      },
+      {
+        "area_px": 2243,
+        "bbox": [
+          2657,
+          1445,
+          2809,
+          1489
+        ],
+        "number": 2
+      },
+      {
+        "area_px": 2194,
+        "bbox": [
+          3056,
+          1417,
+          3140,
+          1479
+        ],
+        "number": 3
+      },
+      {
+        "area_px": 1429,
+        "bbox": [
+          2639,
+          1211,
+          2737,
+          1263
+        ],
+        "number": 4
+      }
+    ]
+  },
+  "mapping": {
+    "C01": {
+      "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s1",
+      "packed_mask_sha256": "2815486d00ea3bc9bae00834b8dd1b04f4a350a243efd3b2f8986661a8bd070a"
+    },
+    "C02": {
+      "candidate_id": "+POS_HAIR|box+corrections|s2",
+      "packed_mask_sha256": "65f821fc953a7fa7e323cc2605c9e0e0cb31fc778018029f5ef3e6102bc3a94f"
+    },
+    "C03": {
+      "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s0",
+      "packed_mask_sha256": "179502200aa2829aed1672886434a4ad8c464304bf8ac6f9f678540d5ee09243"
+    },
+    "C04": {
+      "candidate_id": "+POS_SLEEVE|point+corrections|s0",
+      "packed_mask_sha256": "9c73a5fd842f8281f0c1da331dc0f29d4dc41ee69cfbff39e95d72b348d06e8a"
+    },
+    "C05": {
+      "candidate_id": "+POS_SLEEVE|box+corrections|s1",
+      "packed_mask_sha256": "ceb3e97d6f3386a97e36a6de4ed12fbae13b4a89b0ed79e7579ec43cde44d95d"
+    },
+    "C06": {
+      "candidate_id": "+POS_HAIR+SLEEVE|point+corrections|s0",
+      "packed_mask_sha256": "ce7e9c4a8ab8bbe3fb12f30e76accd08879d58da2b1e1fcf85b323e1e6377bdb"
+    },
+    "C07": {
+      "candidate_id": "+POS_HAIR+SLEEVE|point+corrections|s2",
+      "packed_mask_sha256": "e93dfddb9afbe0544ff49fae5dcdd70aa608bfc00cb4775fde9e7eb811d35f56"
+    },
+    "C08": {
+      "candidate_id": "+POS_HAIR|box+corrections|s0",
+      "packed_mask_sha256": "5a31922f72db220bea9a5b417986ba072e4a1fa69b6fa9b3ba7f35dce86753fd"
+    },
+    "C09": {
+      "candidate_id": "+POS_SLEEVE|point+corrections|s2",
+      "packed_mask_sha256": "783d0b63a74b6a842ca346c926a24edea201264a657d5765b1bc20cf4775ac7a"
+    },
+    "C10": {
+      "candidate_id": "+POS_HAIR+SLEEVE|box+corrections|s2",
+      "packed_mask_sha256": "0423308b83ed6043c438e13c96fb9b0bea90c0c748e15f2bb49cde969db8bbfe"
+    },
+    "C11": {
+      "candidate_id": "+POS_HAIR|box+corrections|s1",
+      "packed_mask_sha256": "825ba8aa42fff8d424f9ab430f7024966aa4c853d09d6c75caa7be2f7ca9197c"
+    },
+    "C12": {
+      "candidate_id": "+POS_HAIR|point+corrections|s1",
+      "packed_mask_sha256": "a3663deda69dd29dc43f0c94b35c89460749d0552b0d9f1b5bef10edfd22e743"
+    },
+    "C13": {
+      "candidate_id": "+POS_HAIR|point+corrections|s2",
+      "packed_mask_sha256": "6d7d8e3f9b645da947c7a539dd3b63ab2d9b6c2e24d6a7d67b579cbf58cdead9"
+    },
+    "C14": {
+      "candidate_id": "+POS_HAIR+SLEEVE|point+corrections|s1",
+      "packed_mask_sha256": "b232699ad51359366de79fcc86071a0b60d1686c994444140631b0ba395d4fdf"
+    },
+    "C15": {
+      "candidate_id": "+POS_SLEEVE|box+corrections|s2",
+      "packed_mask_sha256": "9a02d848393702110f8c4170a4efea0ffc6becda902c96143936c25330c99229"
+    },
+    "C16": {
+      "candidate_id": "+POS_SLEEVE|point+corrections|s1",
+      "packed_mask_sha256": "8421916c2990be99e935f7129b2e29a76005a4d95d1f0641f0b6714d922628e1"
+    },
+    "C17": {
+      "candidate_id": "+POS_HAIR|point+corrections|s0",
+      "packed_mask_sha256": "944c99c8c240c61b5d7cfc5c5c597a13119702abe5a2f37ce2603fb1b3539388"
+    },
+    "C18": {
+      "candidate_id": "+POS_SLEEVE|box+corrections|s0",
+      "packed_mask_sha256": "624a8b703fd93e6854c373189b985d4fb80ea767fec883b706b3a86121630a43"
+    }
+  }
+}

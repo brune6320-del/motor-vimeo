@@ -1,0 +1,331 @@
+{
+  "schema": "pragma.aem1v13_blind_judgments",
+  "schema_version": "0.1.0",
+  "package_sha256": "a77a47b5c1e93bbc896dcd7b775afc22fef6ccc54ead8748b7e08c0f34a8051e",
+  "auditor": "ChatGPT GPT-5.6 Sol",
+  "candidates": {
+    "C01": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D"
+      },
+      "notes": "Máscara mayormente sobre la chica. Falla completitud por pérdida cerrada de pelo entre los dedos levantados (agujero 2). Agujero 1 corresponde al hueco legítimo entre la mano colgante y el torso/overol. Persona posterior y fondo sin contaminación relevante."
+    },
+    "C02": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "L"
+      },
+      "notes": "La chica domina la máscara. Agujero 1 elimina pelo de la chica visible entre los dedos; agujero 2 es el hueco legítimo junto a la mano colgante. Pelo y mangas mayormente conservados, pero un D basta para incompletitud."
+    },
+    "C03": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "Varios huecos cerrados quitan pelo/material de la chica alrededor de la mano levantada; el 1 es el hueco legítimo de la mano colgante. Se observan pequeñas islas delimitadas en magenta sobre el pelo recogido de la persona posterior, por lo que no queda totalmente excluida."
+    },
+    "C04": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D"
+      },
+      "notes": "Segmentación fuertemente fragmentada: faltan grandes zonas de cara/pelo, mano levantada y prendas. Hay selección fragmentaria sobre el pelo recogido posterior. Agujero 1 cae sobre material de la chica."
+    },
+    "C05": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "L"
+      },
+      "notes": "La chica está bien cubierta en términos gruesos, pero el agujero 1 elimina pelo visible entre los dedos. El agujero 2 es el hueco legítimo junto a la mano colgante. Hay pequeñas islas de máscara en el pelo recogido de la persona posterior."
+    },
+    "C06": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D",
+        "4": "D",
+        "5": "D"
+      },
+      "notes": "La máscara incorpora claramente el pelo recogido/moño de la persona posterior. Además presenta varios huecos cerrados sobre pelo, rostro/prenda de la chica. La chica sigue siendo el sujeto principal, pero separación y completitud fallan."
+    },
+    "C07": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D",
+        "4": "D",
+        "5": "D",
+        "6": "D",
+        "7": "D",
+        "8": "D",
+        "9": "D",
+        "10": "D",
+        "11": "D"
+      },
+      "notes": "Segmentación muy perforada y fragmentaria en cara, pelo, torso y mangas; los 11 agujeros numerados corresponden a material de la chica, no a fondo legítimo. Se aprecia al menos una pequeña isla de selección sobre el pelo posterior."
+    },
+    "C08": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {},
+      "notes": "La chica domina la máscara y el pelo principal está conservado, pero la mano en V aparece ampliamente excluida/perforada, por lo que el cuerpo no está completo. Hay varias pequeñas islas de máscara sobre el pelo recogido posterior."
+    },
+    "C09": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {},
+      "notes": "La máscara es esencialmente una parte del overol/torso de la chica. Es sujeto correcto por identidad, pero faltan cabeza, pelo, manos, brazos/mangas y gran parte del torso objetivo."
+    },
+    "C10": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "Cobertura gruesa buena de la chica, pero los agujeros 2–4 eliminan pelo/material objetivo alrededor de la mano levantada; el agujero 1 es el hueco legítimo junto a la mano colgante. Posterior y fondo quedan fuera."
+    },
+    "C11": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D"
+      },
+      "notes": "Máscara centrada en la chica. Agujeros 2 y 3 quitan pelo visible cerca de los dedos; agujero 1 es el hueco legítimo de la mano colgante. Sin contaminación posterior apreciable."
+    },
+    "C12": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D"
+      },
+      "notes": "El pelo principal está mayormente incluido, pero hay huecos cerrados sobre pelo y un defecto grande en la manga oscura levantada. Por ello fallan completitud y la auxiliar de mangas; persona posterior y fondo quedan excluidos."
+    },
+    "C13": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {},
+      "notes": "Selecciona fragmentos de ropa/accesorios de la chica, pero deja fuera casi toda la cabeza/pelo, manos y brazos. La identidad es correcta por pertenencia a la chica, no la extensión."
+    },
+    "C14": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "La chica está mayormente conservada, pero los agujeros 2–4 eliminan pelo/material objetivo; el agujero 1 es el hueco legítimo junto a la mano colgante. No veo inclusión material de la persona posterior."
+    },
+    "C15": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D"
+      },
+      "notes": "Máscara parcial centrada en ropa/torso; cara, pelo y mano levantada quedan mayormente fuera. Los tres agujeros numerados recaen sobre material de la chica, incluida la zona de mano/prenda."
+    },
+    "C16": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "L"
+      },
+      "notes": "Incluye cara, mano y parte del torso, pero pierde casi todo el pelo visible y regiones extensas de las mangas, así que es incompleta. El único agujero numerado es el hueco legítimo junto a la mano colgante."
+    },
+    "C17": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D",
+        "4": "D",
+        "5": "D",
+        "6": "D",
+        "7": "D"
+      },
+      "notes": "La máscara sigue perteneciendo principalmente a la chica y conserva gran parte del pelo, pero torso y mangas están muy perforados. Los siete agujeros numerados afectan material objetivo; no observo inclusión sustancial de la persona posterior."
+    },
+    "C18": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "Máscara parcial sobre ropa/torso de la chica, con cara/pelo/mano y mangas ampliamente ausentes. Los cuatro agujeros numerados caen sobre material de la prenda/torso objetivo."
+    }
+  }
+}

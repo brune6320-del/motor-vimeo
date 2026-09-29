@@ -1,0 +1,90 @@
+{
+ "schema": "pragma.ae0_contour_tiles_plan",
+ "schema_version": "0.1.0",
+ "fixed_before": "ver ninguna tesela",
+ "tile_px": 512,
+ "overlap_px": 64,
+ "reference": "ae0/gt/<persona>_estimate.png y _uncertain.png (composicion_referencia_v0.json)",
+ "zones_from_frozen_inventory": {
+  "pelo": [
+   [
+    2400,
+    315,
+    3130,
+    1260
+   ],
+   [
+    2636,
+    305,
+    2795,
+    560
+   ],
+   [
+    571,
+    285,
+    900,
+    458
+   ]
+  ],
+  "contacto_entre_personas": [
+   [
+    2200,
+    408,
+    2815,
+    1195
+   ]
+  ],
+  "manos": [
+   [
+    2725,
+    620,
+    3350,
+    1362
+   ],
+   [
+    2120,
+    1840,
+    2305,
+    2180
+   ],
+   [
+    490,
+    260,
+    845,
+    445
+   ]
+  ],
+  "objetos_sostenidos": [
+   [
+    2215,
+    1960,
+    2305,
+    2170
+   ]
+  ]
+ },
+ "challenge": "tesela que toca la zona incierta o alguna zona de riesgo (keydiff.contour_tiles)",
+ "review": [
+  "Claude y ChatGPT recorren todas las teselas (omisión o exceso compartidos)",
+  "Codex revisa a ciegas solo las de desafío, sin atribución a ninguna llave"
+ ],
+ "codex_rule": {
+  "OK": "sin cambio",
+  "OMISSION": "la región vuelve a adjudicación antes del congelado",
+  "EXCESS": "la región vuelve a adjudicación antes del congelado",
+  "CANNOT_DETERMINE": "sin cambio; se registra"
+ },
+ "after": "lo que vuelva a adjudicación se decide con medición y evidencia entre las dos llaves; sin cuarta vuelta",
+ "addendum_v0_2": {
+  "fixed_before": "enviar el paquete a Codex (tras la revisión propia de Claude)",
+  "codex_package_sha256": "aad3fc069590cae42283fcd20e747ab5ed4b498b23d21f1b3273e5d036dbb78b",
+  "codex_sees": "solo las 31 teselas de desafío, 1:1, con las etiquetas con nombre tapadas y sin atribución a ninguna llave",
+  "orange_rule": {
+   "OK": "sin cambio",
+   "NONE": "sin cambio",
+   "TOO_BROAD": "la región vuelve a adjudicación (parche CERTAIN, INCLUDE o EXCLUDE)",
+   "TOO_NARROW": "la región vuelve a adjudicación (parche UNCERTAIN_INCLUDE o ampliación de la zona incierta)"
+  },
+  "coordinates": "Codex responde en coordenadas del panel (0–512); se traducen con box_in_photo de TESELAS.json"
+ }
+}

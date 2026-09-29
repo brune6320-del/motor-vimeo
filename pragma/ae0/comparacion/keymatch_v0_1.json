@@ -1,0 +1,2391 @@
+{
+  "schema": "pragma.ae0_keymatch",
+  "schema_version": "0.1.0",
+  "rule": "pragma_ae/keymatch.py v0.1 tal como se fijó y aceptó (ChatGPT 010), sin cambios después de ver las llaves",
+  "keymatch_sha256": "b8077af401935d0cb963b5b3f84abefabfe7d98f9142f502c7c6f6d56290cd80",
+  "key_a": {
+    "auditor": "claude",
+    "file": "ae0/llaves/llave_claude_A-E0.json",
+    "sha256": "84942809f608e08d6e0c1921a7ababa3750c0f70517ce0c12691e1e933939829"
+  },
+  "key_b": {
+    "auditor": "chatgpt",
+    "file": "ae0/llaves/llave_chatgpt_A-E0.json",
+    "sha256": "a3ecb53ff0321a39d52bc84ec701498cf9d1002885e4cda39219ba62485e0a45"
+  },
+  "summary": {
+    "rule": {
+      "match_iou": 0.5,
+      "auto_box_iou": 0.85,
+      "attributes": [
+        "kind",
+        "tier",
+        "occlusion",
+        "truncation"
+      ]
+    },
+    "n_a": 59,
+    "n_b": 57,
+    "matched": 16,
+    "a_only": 43,
+    "b_only": 41,
+    "coverage_of_a": 0.2712,
+    "coverage_of_b": 0.2807,
+    "box_auto": 2,
+    "box_adjudicate": 14,
+    "pairs_with_disagreements": 12,
+    "unmatched_persons": 1
+  },
+  "matched": [
+    {
+      "a_id": "ae0_002",
+      "b_id": "ae0_002",
+      "iou": 0.8929,
+      "box_status": "BOX_AUTO_MEAN",
+      "reference_bbox": [
+        2095,
+        408,
+        3475,
+        2248
+      ],
+      "names": [
+        "persona frente",
+        "persona del frente"
+      ],
+      "disagreements": {
+        "occlusion": [
+          "none",
+          "low"
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_003",
+      "b_id": "ae0_003",
+      "iou": 0.8134,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "persona posterior",
+        "persona posterior"
+      ],
+      "disagreements": {
+        "truncation": [
+          "none",
+          "low"
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_004",
+      "b_id": "ae0_039",
+      "iou": 0.5346,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "mesa redonda central",
+        "suelo oscuro visible"
+      ],
+      "disagreements": {
+        "kind": [
+          "instance",
+          "stuff"
+        ],
+        "tier": [
+          "A",
+          "C"
+        ],
+        "occlusion": [
+          "medium",
+          "high"
+        ],
+        "truncation": [
+          "low",
+          "high"
+        ],
+        "occluded_by": [
+          [
+            "ae0_002"
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_007",
+      "b_id": "ae0_023",
+      "iou": 0.7374,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "silla derecha",
+        "sofá oscuro de la derecha"
+      ],
+      "disagreements": {
+        "truncation": [
+          "medium",
+          "high"
+        ],
+        "occluded_by": [
+          [
+            "ae0_004",
+            "ae0_009"
+          ],
+          [
+            "ae0_002",
+            "ae0_020"
+          ]
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_012",
+      "b_id": "ae0_026",
+      "iou": 0.7175,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "reloj de pared",
+        "reloj de pared"
+      ],
+      "disagreements": {}
+    },
+    {
+      "a_id": "ae0_013",
+      "b_id": "ae0_028",
+      "iou": 0.5838,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "cuadro foto grupal superior",
+        "marco de foto superior derecho"
+      ],
+      "disagreements": {}
+    },
+    {
+      "a_id": "ae0_017",
+      "b_id": "ae0_032",
+      "iou": 0.6472,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "cuadro foto extremo derecho",
+        "marco de foto medio derecho"
+      ],
+      "disagreements": {}
+    },
+    {
+      "a_id": "ae0_040",
+      "b_id": "ae0_022",
+      "iou": 0.6453,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "vasito con palito delante derecha",
+        "recipiente pequeño derecho sobre la mesa redonda"
+      ],
+      "disagreements": {
+        "occlusion": [
+          "none",
+          "low"
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_043",
+      "b_id": "ae0_048",
+      "iou": 0.7712,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "gorra",
+        "prenda oscura en la cabeza de la persona izquierda"
+      ],
+      "disagreements": {
+        "occlusion": [
+          "low",
+          "medium"
+        ],
+        "parent_id": [
+          "ae0_001",
+          "ae0_001"
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_048",
+      "b_id": "ae0_051",
+      "iou": 0.6161,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "mano en V",
+        "mano levantada de la persona del frente"
+      ],
+      "disagreements": {}
+    },
+    {
+      "a_id": "ae0_050",
+      "b_id": "ae0_034",
+      "iou": 0.5864,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "teléfono móvil en la mano izquierda de persona frente",
+        "teléfono u objeto rectangular sostenido por la persona del frente"
+      ],
+      "disagreements": {
+        "tier": [
+          "A",
+          "B"
+        ],
+        "occlusion": [
+          "medium",
+          "high"
+        ],
+        "truncation": [
+          "none",
+          "low"
+        ],
+        "occluded_by": [
+          [
+            "ae0_059"
+          ],
+          [
+            "ae0_002"
+          ]
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_051",
+      "b_id": "ae0_038",
+      "iou": 0.8908,
+      "box_status": "BOX_AUTO_MEAN",
+      "reference_bbox": [
+        1365,
+        0,
+        4000,
+        1425
+      ],
+      "names": [
+        "pared clara",
+        "pared clara del fondo"
+      ],
+      "disagreements": {
+        "truncation": [
+          "medium",
+          "high"
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_055",
+      "b_id": "ae0_001",
+      "iou": 0.7936,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "camisa o chaqueta abierta de persona izquierda",
+        "persona adulta a la izquierda"
+      ],
+      "disagreements": {
+        "kind": [
+          "part",
+          "instance"
+        ],
+        "tier": [
+          "C",
+          "A"
+        ],
+        "occlusion": [
+          "low",
+          "medium"
+        ],
+        "truncation": [
+          "none",
+          "low"
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_056",
+      "b_id": "ae0_053",
+      "iou": 0.7847,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "camiseta de rayas de persona frente",
+        "camiseta a rayas de la persona del frente"
+      ],
+      "disagreements": {
+        "truncation": [
+          "none",
+          "medium"
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_057",
+      "b_id": "ae0_054",
+      "iou": 0.783,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "overol blanco de persona frente",
+        "overol claro de la persona del frente"
+      ],
+      "disagreements": {
+        "occlusion": [
+          "none",
+          "medium"
+        ],
+        "truncation": [
+          "low",
+          "medium"
+        ]
+      }
+    },
+    {
+      "a_id": "ae0_059",
+      "b_id": "ae0_052",
+      "iou": 0.5727,
+      "box_status": "BOX_ADJUDICATE",
+      "reference_bbox": null,
+      "names": [
+        "mano izquierda de persona frente",
+        "mano colgante de la persona del frente"
+      ],
+      "disagreements": {
+        "occlusion": [
+          "none",
+          "low"
+        ],
+        "truncation": [
+          "none",
+          "medium"
+        ]
+      }
+    }
+  ],
+  "a_only": [
+    {
+      "id": "ae0_001",
+      "side": "A_ONLY_OBJECT",
+      "name": "persona izquierda",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        230,
+        280,
+        1200,
+        2248
+      ],
+      "priority": "HIGH_PERSON",
+      "best_candidate": {
+        "id": "ae0_001",
+        "iou": 0.6976
+      },
+      "max_containment": {
+        "id": "ae0_048",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_005",
+      "side": "A_ONLY_OBJECT",
+      "name": "superficie o mesa auxiliar posterior",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1415,
+        1200,
+        2240,
+        1490
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_015",
+        "iou": 0.3109
+      },
+      "max_containment": {
+        "id": "ae0_007",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_006",
+      "side": "A_ONLY_OBJECT",
+      "name": "mesa izquierda",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        0,
+        1265,
+        540,
+        2200
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_040",
+        "iou": 0.4899
+      },
+      "max_containment": {
+        "id": "ae0_040",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_008",
+      "side": "A_ONLY_OBJECT",
+      "name": "asiento tapizado junto a la mesa central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1090,
+        1773,
+        1275,
+        2059
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_019",
+        "iou": 0.3071
+      },
+      "max_containment": {
+        "id": "ae0_039",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_009",
+      "side": "A_ONLY_OBJECT",
+      "name": "bolso negro",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3670,
+        1550,
+        4000,
+        2248
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_023",
+        "iou": 0.2774
+      },
+      "max_containment": {
+        "id": "ae0_023",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_010",
+      "side": "A_ONLY_OBJECT",
+      "name": "cuadro con texto",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2276,
+        162,
+        2482,
+        363
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_027",
+        "iou": 0.4414
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_011",
+      "side": "A_ONLY_OBJECT",
+      "name": "llave colgada",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2630,
+        100,
+        2672,
+        218
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_025",
+        "iou": 0.1959
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_014",
+      "side": "A_ONLY_OBJECT",
+      "name": "cuadro foto izquierda medio",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2062,
+        407,
+        2255,
+        598
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_029",
+        "iou": 0.4318
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_015",
+      "side": "A_ONLY_OBJECT",
+      "name": "cuadro foto centro medio",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2490,
+        415,
+        2612,
+        614
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_030",
+        "iou": 0.3054
+      },
+      "max_containment": {
+        "id": "ae0_056",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_016",
+      "side": "A_ONLY_OBJECT",
+      "name": "cuadro foto derecha de la cabeza",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3055,
+        428,
+        3276,
+        635
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_031",
+        "iou": 0.41
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_018",
+      "side": "A_ONLY_OBJECT",
+      "name": "placa de interruptor",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1680,
+        537,
+        1730,
+        630
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_033",
+        "iou": 0.25
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_019",
+      "side": "A_ONLY_OBJECT",
+      "name": "cuadro oscuro pared izquierda",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        787,
+        69,
+        1116,
+        476
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_006",
+        "iou": 0.143
+      },
+      "max_containment": {
+        "id": "ae0_006",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_020",
+      "side": "A_ONLY_OBJECT",
+      "name": "panel oscuro vertical con brillo en el borde",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        394,
+        0,
+        614,
+        433
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_044",
+        "iou": 0.1538
+      },
+      "max_containment": {
+        "id": "ae0_001",
+        "fraction": 0.3995,
+        "partition_hint": false
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_021",
+      "side": "A_ONLY_OBJECT",
+      "name": "mueble oscuro rectangular en el borde superior izquierdo",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        0,
+        0,
+        164,
+        536
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_057",
+        "iou": 0.0
+      },
+      "max_containment": {
+        "id": "ae0_057",
+        "fraction": 0.0,
+        "partition_hint": false
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_022",
+      "side": "A_ONLY_OBJECT",
+      "name": "objeto de vidrio en el borde izquierdo",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        0,
+        519,
+        60,
+        744
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_057",
+        "iou": 0.0
+      },
+      "max_containment": {
+        "id": "ae0_057",
+        "fraction": 0.0,
+        "partition_hint": false
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_023",
+      "side": "A_ONLY_OBJECT",
+      "name": "plancha",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        216,
+        1047,
+        433,
+        1280
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_005",
+        "iou": 0.3246
+      },
+      "max_containment": {
+        "id": "ae0_004",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_024",
+      "side": "A_ONLY_OBJECT",
+      "name": "caja o estuche oscuro detrás de la plancha",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        138,
+        908,
+        424,
+        1047
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_045",
+        "iou": 0.0251
+      },
+      "max_containment": {
+        "id": "ae0_001",
+        "fraction": 0.7657,
+        "partition_hint": false
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_025",
+      "side": "A_ONLY_OBJECT",
+      "name": "recipiente oscuro en el borde izquierdo",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        0,
+        1021,
+        112,
+        1349
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_004",
+        "iou": 0.033
+      },
+      "max_containment": {
+        "id": "ae0_004",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_026",
+      "side": "A_ONLY_OBJECT",
+      "name": "objeto negro sobre la superficie posterior",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1490,
+        1152,
+        1693,
+        1260
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_009",
+        "iou": 0.311
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_027",
+      "side": "A_ONLY_OBJECT",
+      "name": "marco o portarretrato de mesa",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1610,
+        1031,
+        1794,
+        1212
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_010",
+        "iou": 0.4174
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_028",
+      "side": "A_ONLY_OBJECT",
+      "name": "botella de gaseosa pequeña",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1702,
+        995,
+        1782,
+        1230
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_010",
+        "iou": 0.4396
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_029",
+      "side": "A_ONLY_OBJECT",
+      "name": "vaso o recipiente translúcido posterior",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1806,
+        1099,
+        1907,
+        1212
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_011",
+        "iou": 0.2329
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_030",
+      "side": "A_ONLY_OBJECT",
+      "name": "botella grande de plástico",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2002,
+        1093,
+        2193,
+        1396
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_012",
+        "iou": 0.331
+      },
+      "max_containment": {
+        "id": "ae0_012",
+        "fraction": 0.9319,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_031",
+      "side": "A_ONLY_OBJECT",
+      "name": "botella translúcida tras el brazo",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2228,
+        1176,
+        2300,
+        1367
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_037",
+        "iou": 0.1521
+      },
+      "max_containment": {
+        "id": "ae0_053",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_032",
+      "side": "A_ONLY_OBJECT",
+      "name": "rollo de papel toalla",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1702,
+        1293,
+        1850,
+        1617
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_014",
+        "iou": 0.3411
+      },
+      "max_containment": {
+        "id": "ae0_041",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_033",
+      "side": "A_ONLY_OBJECT",
+      "name": "bolsa de plástico con etiqueta",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1913,
+        1367,
+        2169,
+        1533
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_012",
+        "iou": 0.2673
+      },
+      "max_containment": {
+        "id": "ae0_041",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_034",
+      "side": "A_ONLY_OBJECT",
+      "name": "botella oscura con pico",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1836,
+        1289,
+        1937,
+        1760
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_014",
+        "iou": 0.3573
+      },
+      "max_containment": {
+        "id": "ae0_041",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_035",
+      "side": "A_ONLY_OBJECT",
+      "name": "flor blanca",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1452,
+        1575,
+        1569,
+        1662
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_016",
+        "iou": 0.39
+      },
+      "max_containment": {
+        "id": "ae0_041",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_036",
+      "side": "A_ONLY_OBJECT",
+      "name": "servilletas o papeles arrugados",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1883,
+        1694,
+        2098,
+        1849
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_018",
+        "iou": 0.3477
+      },
+      "max_containment": {
+        "id": "ae0_041",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_037",
+      "side": "A_ONLY_OBJECT",
+      "name": "envoltorio oscuro pequeño",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1967,
+        1626,
+        2076,
+        1690
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_017",
+        "iou": 0.0634
+      },
+      "max_containment": {
+        "id": "ae0_041",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_038",
+      "side": "A_ONLY_OBJECT",
+      "name": "tapa blanca pequeña",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2074,
+        1626,
+        2143,
+        1679
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_015",
+        "iou": 0.019
+      },
+      "max_containment": {
+        "id": "ae0_041",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_039",
+      "side": "A_ONLY_OBJECT",
+      "name": "vasito con palito delante izquierda",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3179,
+        1770,
+        3315,
+        1938
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_021",
+        "iou": 0.3395
+      },
+      "max_containment": {
+        "id": "ae0_042",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_041",
+      "side": "A_ONLY_OBJECT",
+      "name": "vasito con palito detrás izquierda",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3155,
+        1745,
+        3262,
+        1843
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_021",
+        "iou": 0.2378
+      },
+      "max_containment": {
+        "id": "ae0_053",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_042",
+      "side": "A_ONLY_OBJECT",
+      "name": "vasito con palito detrás derecha",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3286,
+        1740,
+        3393,
+        1843
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_022",
+        "iou": 0.2307
+      },
+      "max_containment": {
+        "id": "ae0_042",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_044",
+      "side": "A_ONLY_OBJECT",
+      "name": "etiqueta con nombre de persona izquierda",
+      "kind": "text",
+      "tier": "C",
+      "bbox": [
+        758,
+        782,
+        874,
+        860
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_047",
+        "iou": 0.4965
+      },
+      "max_containment": {
+        "id": "ae0_046",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_045",
+      "side": "A_ONLY_OBJECT",
+      "name": "etiqueta con nombre de persona frente",
+      "kind": "text",
+      "tier": "C",
+      "bbox": [
+        2487,
+        1387,
+        2712,
+        1450
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_055",
+        "iou": 0.2596
+      },
+      "max_containment": {
+        "id": "ae0_055",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_046",
+      "side": "A_ONLY_OBJECT",
+      "name": "collar",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2700,
+        988,
+        2900,
+        1150
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_035",
+        "iou": 0.3211
+      },
+      "max_containment": {
+        "id": "ae0_050",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_047",
+      "side": "A_ONLY_OBJECT",
+      "name": "arete",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2655,
+        875,
+        2715,
+        955
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_049",
+        "iou": 0.0225
+      },
+      "max_containment": {
+        "id": "ae0_050",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_049",
+      "side": "A_ONLY_OBJECT",
+      "name": "cabello recogido de persona posterior",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2636,
+        310,
+        2790,
+        560
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_056",
+        "iou": 0.2218
+      },
+      "max_containment": {
+        "id": "ae0_056",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_052",
+      "side": "A_ONLY_OBJECT",
+      "name": "pared en sombra izquierda",
+      "kind": "stuff",
+      "tier": "C",
+      "bbox": [
+        0,
+        0,
+        1150,
+        1300
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_001",
+        "iou": 0.5071
+      },
+      "max_containment": {
+        "id": "ae0_048",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_053",
+      "side": "A_ONLY_OBJECT",
+      "name": "puerta o panel oscuro vertical junto a la pared clara",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1145,
+        0,
+        1405,
+        1260
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_006",
+        "iou": 0.306
+      },
+      "max_containment": {
+        "id": "ae0_006",
+        "fraction": 0.9038,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_054",
+      "side": "A_ONLY_OBJECT",
+      "name": "mosquetón o llavero en el cinturón de persona izquierda",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        680,
+        1485,
+        750,
+        1550
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_045",
+        "iou": 0.0051
+      },
+      "max_containment": {
+        "id": "ae0_045",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_058",
+      "side": "A_ONLY_OBJECT",
+      "name": "blusa floral de persona posterior",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2250,
+        690,
+        2560,
+        1040
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_057",
+        "iou": 0.4221
+      },
+      "max_containment": {
+        "id": "ae0_057",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    }
+  ],
+  "b_only": [
+    {
+      "id": "ae0_004",
+      "side": "B_ONLY_OBJECT",
+      "name": "mesa o mueble rectangular cubierto de la izquierda",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        0,
+        1010,
+        900,
+        2248
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_006",
+        "iou": 0.4532
+      },
+      "max_containment": {
+        "id": "ae0_054",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_005",
+      "side": "B_ONLY_OBJECT",
+      "name": "plancha sobre el mueble izquierdo",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        245,
+        1070,
+        575,
+        1405
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_023",
+        "iou": 0.3246
+      },
+      "max_containment": {
+        "id": "ae0_055",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_006",
+      "side": "B_ONLY_OBJECT",
+      "name": "puerta o abertura oscura detrás de la persona izquierda",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        760,
+        0,
+        1380,
+        1510
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_053",
+        "iou": 0.306
+      },
+      "max_containment": {
+        "id": "ae0_019",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_007",
+      "side": "B_ONLY_OBJECT",
+      "name": "mesa rectangular central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1250,
+        1130,
+        2335,
+        2210
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_004",
+        "iou": 0.371
+      },
+      "max_containment": {
+        "id": "ae0_059",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_008",
+      "side": "B_ONLY_OBJECT",
+      "name": "silla detrás de la mesa central",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1400,
+        985,
+        1795,
+        1400
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_005",
+        "iou": 0.2323
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_009",
+      "side": "B_ONLY_OBJECT",
+      "name": "bolso oscuro sobre la silla central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1390,
+        1125,
+        1665,
+        1335
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_026",
+        "iou": 0.311
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_010",
+      "side": "B_ONLY_OBJECT",
+      "name": "botella pequeña sobre la silla central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1660,
+        970,
+        1775,
+        1295
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_028",
+        "iou": 0.4396
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_011",
+      "side": "B_ONLY_OBJECT",
+      "name": "caja o paquete rectangular detrás del rollo",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1740,
+        1090,
+        1940,
+        1335
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_029",
+        "iou": 0.2329
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_012",
+      "side": "B_ONLY_OBJECT",
+      "name": "botella grande transparente sobre la mesa central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1880,
+        1005,
+        2180,
+        1535
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_030",
+        "iou": 0.331
+      },
+      "max_containment": {
+        "id": "ae0_033",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_013",
+      "side": "B_ONLY_OBJECT",
+      "name": "rollo blanco de papel sobre la mesa central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1535,
+        1260,
+        1775,
+        1665
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_005",
+        "iou": 0.1963
+      },
+      "max_containment": {
+        "id": "ae0_004",
+        "fraction": 0.6914,
+        "partition_hint": false
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_014",
+      "side": "B_ONLY_OBJECT",
+      "name": "botella oscura estrecha sobre la mesa central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1760,
+        1265,
+        1905,
+        1725
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_034",
+        "iou": 0.3573
+      },
+      "max_containment": {
+        "id": "ae0_004",
+        "fraction": 0.7391,
+        "partition_hint": false
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_015",
+      "side": "B_ONLY_OBJECT",
+      "name": "bolsa o envoltorio transparente sobre la mesa central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1830,
+        1240,
+        2245,
+        1705
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_005",
+        "iou": 0.3109
+      },
+      "max_containment": {
+        "id": "ae0_038",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_016",
+      "side": "B_ONLY_OBJECT",
+      "name": "papel o servilleta arrugada a la izquierda de la mesa central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1395,
+        1520,
+        1575,
+        1665
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_035",
+        "iou": 0.39
+      },
+      "max_containment": {
+        "id": "ae0_035",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_017",
+      "side": "B_ONLY_OBJECT",
+      "name": "envoltorio oscuro pequeño en el centro de la mesa",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1835,
+        1650,
+        2010,
+        1775
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_036",
+        "iou": 0.229
+      },
+      "max_containment": {
+        "id": "ae0_004",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_018",
+      "side": "B_ONLY_OBJECT",
+      "name": "grupo de papeles o servilletas arrugadas en el borde frontal",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1890,
+        1710,
+        2240,
+        1935
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_036",
+        "iou": 0.3477
+      },
+      "max_containment": {
+        "id": "ae0_004",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_019",
+      "side": "B_ONLY_OBJECT",
+      "name": "silla parcialmente visible delante de la mesa central",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        1040,
+        1810,
+        1385,
+        2225
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_008",
+        "iou": 0.3071
+      },
+      "max_containment": {
+        "id": "ae0_008",
+        "fraction": 0.8706,
+        "partition_hint": false
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_020",
+      "side": "B_ONLY_OBJECT",
+      "name": "mesa redonda de la derecha",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3020,
+        1510,
+        3775,
+        2248
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_007",
+        "iou": 0.3029
+      },
+      "max_containment": {
+        "id": "ae0_042",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_021",
+      "side": "B_ONLY_OBJECT",
+      "name": "recipiente pequeño izquierdo sobre la mesa redonda",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3100,
+        1700,
+        3280,
+        1945
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_039",
+        "iou": 0.3395
+      },
+      "max_containment": {
+        "id": "ae0_041",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_024",
+      "side": "B_ONLY_OBJECT",
+      "name": "cojín claro sobre el sofá derecho",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        3330,
+        1340,
+        3820,
+        1655
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_007",
+        "iou": 0.1999
+      },
+      "max_containment": {
+        "id": "ae0_007",
+        "fraction": 0.8673,
+        "partition_hint": false
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_025",
+      "side": "B_ONLY_OBJECT",
+      "name": "llave colgada en la pared",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2605,
+        85,
+        2720,
+        305
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_011",
+        "iou": 0.1959
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_027",
+      "side": "B_ONLY_OBJECT",
+      "name": "marco de foto superior izquierdo",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2190,
+        175,
+        2460,
+        440
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_010",
+        "iou": 0.4414
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_029",
+      "side": "B_ONLY_OBJECT",
+      "name": "marco de foto medio izquierdo",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1990,
+        420,
+        2250,
+        705
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_014",
+        "iou": 0.4318
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_030",
+      "side": "B_ONLY_OBJECT",
+      "name": "marco de foto medio centro-izquierdo",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2460,
+        430,
+        2695,
+        735
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_015",
+        "iou": 0.3054
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_031",
+      "side": "B_ONLY_OBJECT",
+      "name": "marco de foto medio centro-derecho",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2965,
+        430,
+        3225,
+        715
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_016",
+        "iou": 0.41
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_033",
+      "side": "B_ONLY_OBJECT",
+      "name": "interruptor de pared",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        1615,
+        520,
+        1735,
+        675
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_018",
+        "iou": 0.25
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_035",
+      "side": "B_ONLY_OBJECT",
+      "name": "collar de la persona del frente",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2630,
+        930,
+        2995,
+        1105
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_046",
+        "iou": 0.3211
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_036",
+      "side": "B_ONLY_OBJECT",
+      "name": "arete de aro visible de la persona del frente",
+      "kind": "instance",
+      "tier": "B",
+      "bbox": [
+        2510,
+        875,
+        2600,
+        980
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_058",
+        "iou": 0.0466
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_037",
+      "side": "B_ONLY_OBJECT",
+      "name": "vaso pequeño junto a la botella grande de la mesa central",
+      "kind": "instance",
+      "tier": "A",
+      "bbox": [
+        2150,
+        1190,
+        2260,
+        1455
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_031",
+        "iou": 0.1521
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_040",
+      "side": "B_ONLY_OBJECT",
+      "name": "cubierta estampada del mueble izquierdo",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        0,
+        1090,
+        890,
+        2248
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_006",
+        "iou": 0.4899
+      },
+      "max_containment": {
+        "id": "ae0_054",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_041",
+      "side": "B_ONLY_OBJECT",
+      "name": "mantel de la mesa central",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        1245,
+        1260,
+        2325,
+        2205
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_004",
+        "iou": 0.39
+      },
+      "max_containment": {
+        "id": "ae0_059",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_042",
+      "side": "B_ONLY_OBJECT",
+      "name": "mantel de la mesa redonda derecha",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        3025,
+        1660,
+        3765,
+        2248
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_007",
+        "iou": 0.251
+      },
+      "max_containment": {
+        "id": "ae0_042",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_043",
+      "side": "B_ONLY_OBJECT",
+      "name": "rostro de la persona izquierda",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        555,
+        430,
+        875,
+        720
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_055",
+        "iou": 0.082
+      },
+      "max_containment": {
+        "id": "ae0_055",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_044",
+      "side": "B_ONLY_OBJECT",
+      "name": "mano de la persona izquierda sobre la frente",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        490,
+        260,
+        845,
+        445
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_043",
+        "iou": 0.5567
+      },
+      "max_containment": {
+        "id": "ae0_052",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_045",
+      "side": "B_ONLY_OBJECT",
+      "name": "prenda exterior de la persona izquierda",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        260,
+        590,
+        1060,
+        1705
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_055",
+        "iou": 0.7213
+      },
+      "max_containment": {
+        "id": "ae0_054",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_046",
+      "side": "B_ONLY_OBJECT",
+      "name": "camiseta oscura de la persona izquierda",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        510,
+        635,
+        930,
+        1420
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_055",
+        "iou": 0.2914
+      },
+      "max_containment": {
+        "id": "ae0_055",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_047",
+      "side": "B_ONLY_OBJECT",
+      "name": "texto de la etiqueta con nombre de la persona izquierda",
+      "kind": "text",
+      "tier": "C",
+      "bbox": [
+        760,
+        755,
+        900,
+        845
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_044",
+        "iou": 0.4965
+      },
+      "max_containment": {
+        "id": "ae0_055",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_049",
+      "side": "B_ONLY_OBJECT",
+      "name": "rostro de la persona del frente",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2610,
+        520,
+        3095,
+        960
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_048",
+        "iou": 0.2282
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_050",
+      "side": "B_ONLY_OBJECT",
+      "name": "cabello de la persona del frente",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2400,
+        315,
+        3130,
+        1260
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_003",
+        "iou": 0.4055
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_055",
+      "side": "B_ONLY_OBJECT",
+      "name": "texto de la etiqueta con nombre de la persona del frente",
+      "kind": "text",
+      "tier": "C",
+      "bbox": [
+        2385,
+        1315,
+        2775,
+        1455
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_045",
+        "iou": 0.2596
+      },
+      "max_containment": {
+        "id": "ae0_057",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_056",
+      "side": "B_ONLY_OBJECT",
+      "name": "cabello recogido de la persona posterior",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2440,
+        275,
+        2830,
+        720
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_003",
+        "iou": 0.283
+      },
+      "max_containment": {
+        "id": "ae0_051",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    },
+    {
+      "id": "ae0_057",
+      "side": "B_ONLY_OBJECT",
+      "name": "blusa floral de la persona posterior",
+      "kind": "part",
+      "tier": "C",
+      "bbox": [
+        2160,
+        680,
+        2645,
+        1210
+      ],
+      "priority": "NORMAL",
+      "best_candidate": {
+        "id": "ae0_058",
+        "iou": 0.4221
+      },
+      "max_containment": {
+        "id": "ae0_058",
+        "fraction": 1.0,
+        "partition_hint": true
+      },
+      "adjudication": null
+    }
+  ]
+}

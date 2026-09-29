@@ -1,0 +1,113 @@
+{
+  "schema": "pragma.aem1v14_blind_judgments",
+  "schema_version": "0.1.0",
+  "package_sha256": "8f8df2730f64f5f94deb72c8f7af8b3653bc95bf0f5a3bb81e065b331ee4a17b",
+  "auditor": "ChatGPT · GPT-5.6 Sol",
+  "candidates": {
+    "N01": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D"
+      },
+      "notes": "El sujeto principal es la chica. Agujero 1: hueco legítimo entre la mano que cuelga y el torso/fondo. Agujero 2 (2682–2723 × 842–930): falta pelo visible de la chica en la zona lateral; por eso body_and_edges_complete=FALSE. No observo inclusión material de la persona posterior ni del fondo."
+    },
+    "N02": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D"
+      },
+      "notes": "El sujeto principal es la chica. Agujero 1: hueco legítimo junto a la mano que cuelga. Agujero 2 (2590–2751 × 834–1057): región de pelo visible de la chica ausente; es un defecto grande, por lo que body_and_edges_complete=FALSE. La mayor parte del pelo y ambas mangas oscuras sí están incluidas."
+    },
+    "N03": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "El sujeto principal es la chica. Agujero 1 es legítimo junto a la mano que cuelga. Agujero 2 (2651–2822 × 830–1021) elimina pelo visible lateral de la chica. Agujeros 3 (2964–3026 × 785–999) y 4 (2949–2999 × 636–781) eliminan la franja de pelo entre la cara y el índice levantado. Cualquier D basta para body_and_edges_complete=FALSE. No veo inclusión clara de la persona posterior ni del fondo en la lámina."
+    },
+    "N04": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "TRUE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L"
+      },
+      "notes": "La chica está segmentada como sujeto principal y no observo faltantes de contorno >=~1000 px. El único agujero numerado corresponde al hueco legítimo junto a la mano que cuelga. Cabeza/pelo, cara, mano en V, mangas/brazos y torso se ven completos; no observo inclusión material de la persona posterior ni del fondo."
+    },
+    "N05": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "El sujeto principal es la chica. Agujero 1 es el hueco legítimo junto a la mano que cuelga. Agujeros 2 (2969–3027 × 789–1000) y 3 (2950–2999 × 636–779) eliminan pelo visible entre la cara y el índice. Agujero 4 (2683–2730 × 832–930) elimina pelo lateral visible de la chica. Por ello body_and_edges_complete=FALSE."
+    },
+    "N06": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D"
+      },
+      "notes": "El sujeto principal es la chica. Agujero 1 es legítimo junto a la mano que cuelga. Agujero 2 (2984–3025 × 842–997) corresponde a pelo visible de la chica entre la cara y el índice levantado y constituye un defecto >=1000 px; por ello body_and_edges_complete=FALSE. No observo contaminación material de otra persona ni del fondo."
+    }
+  }
+}

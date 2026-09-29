@@ -1,0 +1,189 @@
+{
+  "schema": "pragma.ae0_polygon_second_key_adjudication",
+  "schema_version": "0.1.0",
+  "auditor": "chatgpt",
+  "package_sha256": "40bdba96c4c49c0f7bdffd8f4f8b8011e2363c9186d39664f00a4ecd0bd6ca8f",
+  "keys": {
+    "claude_file_sha256": "39a071e0bbde68efb23035a31cc67e09e0f74319bc0db2cb64a988dead7504c5",
+    "chatgpt_file_sha256": "d7b931419a131e1b85512390e9c27e8abe9a0f01a6579d572d4d1f6616ed2fc2"
+  },
+  "decision_count": 31,
+  "decisions": {
+    "ae0_001": {
+      "A1": [
+        "ACCEPT",
+        "INCLUDE",
+        "La caja cian corta tejido visible del panel derecho de la camisa; la extensión propuesta llega mejor al borde visible."
+      ],
+      "A2": [
+        "ACCEPT",
+        "UNCERTAIN_INCLUDE",
+        "Borde de pierna oscuro contra fondo oscuro; corresponde mantenerlo incierto."
+      ],
+      "A3": [
+        "ACCEPT",
+        "INCLUDE",
+        "La diferencia sigue tejido visible de la parte inferior del brazo derecho."
+      ],
+      "A4": [
+        "ACCEPT",
+        "INCLUDE",
+        "La franja corresponde al borde claro de la visera/gorra."
+      ],
+      "A5": [
+        "ACCEPT",
+        "INCLUDE",
+        "La región es el borde exterior del codo; la sombra comienza fuera."
+      ],
+      "B1": [
+        "ACCEPT",
+        "EXCLUDE",
+        "La llave ChatGPT englobó pared/sombra, plancha y mantel; no pertenecen a la persona."
+      ],
+      "B2": [
+        "ACCEPT",
+        "EXCLUDE",
+        "La extensión cian sobre el antebrazo izquierdo es pared/puerta."
+      ],
+      "B3": [
+        "ACCEPT",
+        "EXCLUDE",
+        "La extensión cian sobre el antebrazo derecho es hueco oscuro de la puerta."
+      ],
+      "B4": [
+        "ACCEPT",
+        "UNCERTAIN_EXCLUDE",
+        "Cadera/pierna en transición oscuro-contra-oscuro; mantener incertidumbre es más defendible que afirmar borde cierto."
+      ]
+    },
+    "ae0_002": {
+      "A1": [
+        "ACCEPT",
+        "INCLUDE",
+        "La manga oscura continúa hasta el overol y bajo la mano sigue material de la propia persona."
+      ],
+      "A2": [
+        "ACCEPT",
+        "INCLUDE",
+        "La región es hombro/brazo de la persona frontal bajo la blusa de la posterior."
+      ],
+      "A3": [
+        "ACCEPT",
+        "UNCERTAIN_INCLUDE",
+        "Cabello bajo el moño con propiedad 002/003 disputada; correcto mantenerlo incierto."
+      ],
+      "A4": [
+        "ACCEPT",
+        "EXCLUDE",
+        "Concesión correcta: bajo el codo la diferencia es fondo gris."
+      ],
+      "A5": [
+        "ACCEPT",
+        "EXCLUDE",
+        "Las rayas visibles terminan en la línea de ChatGPT; la extensión de Claude es fondo."
+      ],
+      "A6": [
+        "ACCEPT",
+        "EXCLUDE",
+        "Franja gris junto al brazo, fuera del cuerpo."
+      ],
+      "A7": [
+        "ACCEPT",
+        "INCLUDE",
+        "La banda coincide con cabello visible en el borde superior/lateral de la cabeza."
+      ],
+      "A8": [
+        "ACCEPT",
+        "INCLUDE",
+        "La diferencia corresponde a la punta blanca del dedo."
+      ],
+      "B1": [
+        "ACCEPT",
+        "EXCLUDE",
+        "La extensión cian a la derecha del torso cae sobre mantel floral de la mesa."
+      ],
+      "B2": [
+        "ACCEPT",
+        "EXCLUDE",
+        "La diferencia a la derecha de la mano es pared."
+      ],
+      "B3": [
+        "ACCEPT",
+        "EXCLUDE",
+        "La diferencia a la derecha del cabello es pared/marco, no persona."
+      ],
+      "B4": [
+        "ACCEPT",
+        "UNCERTAIN_EXCLUDE",
+        "Cabello bajo el moño con propiedad disputada y cubierto casi por completo por zonas inciertas."
+      ],
+      "B5": [
+        "ACCEPT",
+        "EXCLUDE",
+        "Es el teléfono/objeto sostenido; la máscara modal de persona no debe absorberlo."
+      ],
+      "B6": [
+        "ACCEPT",
+        "UNCERTAIN_EXCLUDE",
+        "Zona de botella translúcida/contacto con brazo; incertidumbre preserva la ambigüedad sin convertirla en primer plano cierto."
+      ],
+      "B7": [
+        "ACCEPT",
+        "EXCLUDE",
+        "Franja oscura de fondo junto a la mano."
+      ],
+      "B8": [
+        "ACCEPT",
+        "UNCERTAIN_EXCLUDE",
+        "Contacto blusa de 003/cabello de 002; la propiedad no está justificada con certeza."
+      ],
+      "B9": [
+        "ACCEPT",
+        "INCLUDE",
+        "El valle entre dedos fue trazado demasiado profundo por Claude; la región es mano."
+      ],
+      "B10": [
+        "ACCEPT",
+        "UNCERTAIN_INCLUDE",
+        "Transición mínima cabello/pared en cima de cabeza; apropiado mantenerla incierta."
+      ]
+    },
+    "ae0_003": {
+      "A1": [
+        "ACCEPT",
+        "INCLUDE",
+        "La blusa floral visible llega aproximadamente a la línea Claude; la llave ChatGPT la corta en diagonal."
+      ],
+      "A2": [
+        "ACCEPT",
+        "EXCLUDE",
+        "Concesión correcta: la pequeña franja corresponde a transición del moño hacia pared."
+      ],
+      "B1": [
+        "ACCEPT",
+        "EXCLUDE",
+        "La mayor parte del exceso de la llave ChatGPT es pared/marco alrededor del moño y de la blusa; la porción ambigua permanece cubierta por incertidumbre."
+      ],
+      "B2": [
+        "ACCEPT",
+        "EXCLUDE",
+        "La región bajo la blusa corresponde al hombro de la persona frontal, coherente con ae0_002 A2."
+      ]
+    }
+  },
+  "rules": {
+    "EXCLUSIVITY": {
+      "decision": "ACCEPT",
+      "note": "Un píxel reclamado por más de una persona no puede ser primer plano cierto de ambas. Se retira de las estimaciones de ambas y se conserva como uncertain; las métricas con cotas mantienen explícita esa incertidumbre."
+    },
+    "UNCERTAIN_90_PERCENT_RULE": {
+      "decision": "ACCEPT_V0_1",
+      "note": "Si >=90% del componente ya está dentro de zonas inciertas, UNCERTAIN_* solo decide la máscara estimada y no crea primer plano/fondo cierto. Se congela para A-E0 v0.1 antes de A-E1."
+    }
+  },
+  "summary": {
+    "accept": 31,
+    "contest": 0,
+    "third_review_components": []
+  }
+}

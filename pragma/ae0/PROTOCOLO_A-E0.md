@@ -1,0 +1,242 @@
+# A‑E0 · Protocolo del inventario de referencia de `P1070614.JPG`
+
+> Requisito previo: la foto en `pragma/inputs/` (se verifica por hash) y Python 3 con NumPy y
+> Pillow (`pip install -r requirements.txt`). Todos los comandos, desde `pragma/`.
+> Nada de lo que se genera aquí a partir de la foto va a git: se escribe en `local/`.
+
+## Modo vigente: referencia por doble llave de IA (DEC‑024)
+
+Desde ChatGPT 005, A‑E0 lo producen **las dos IAs** con doble llave. La persona usuaria no
+fiscaliza píxeles (DEC‑018‑P).
+
+| Quién | Hace |
+|---|---|
+| Persona usuaria | Ratifica la ontología v0.2 (§0), decide qué es «objeto» para el producto, resuelve solo ambigüedades semánticas irreducibles y conserva el veto |
+| Claude y ChatGPT | Inventario exhaustivo, cajas y máscaras, partes y enteros, oclusión y truncamiento; auditoría mutua; adjudicación por evidencia objetiva; tercera revisión si hace falta |
+
+**Naturaleza de la referencia.** Lo que produzcan y adjudiquen solo las IAs se etiqueta
+`reference_type = AI_CONSENSUS_REFERENCE`, **nunca** `HUMAN_GT`. A‑E1 puede medirse contra ella para
+ingeniería y comparación interna, declarando siempre contra qué tipo de referencia se calculó cada
+métrica. Una afirmación fuerte de exactitud frente a «verdad humana» exigiría una muestra anotada o
+ratificada de forma independiente por personas.
+
+**Contra el anclaje (sustituye en parte a DEC‑015‑P).** El borrador `scene_inventory.draft.json` es
+la llave de Claude. La llave de ChatGPT se hace **solo desde la foto**, sin abrir ese borrador;
+después se comparan objeto a objeto.
+
+**Contra la circularidad** (acordado en ChatGPT 006). Una máscara de referencia obtenida con prompts
+de SAM 2 favorecería a SAM 2 cuando A‑E1 mida SAM 2 AMG. Por eso:
+
+- **Derivación principal:** `AI_POLYGON_RASTER` o `AI_POLYGON_CLASSICAL_REFINEMENT`. Cada IA traza,
+  por su cuenta y desde la foto, el polígono modal de cada persona, sin ver el de la otra.
+  - Se rasteriza a 4000×2248.
+  - Opcionalmente se refina con un método determinista que solo use píxeles (graph‑cut, GrabCut o
+    ajuste a bordes en una banda de frontera), **sin SAM 2**.
+  - Se conservan la máscara cruda y la refinada.
+- **Comparación:** las dos llaves se comparan por IoU y diferencia de frontera, y solo se adjudican las
+  regiones en discrepancia.
+- **SAM 2:** una máscara `SAM2_ASSISTED` puede existir como comparación, pero es **secundaria y no
+  bloqueante**. El validador la rechaza como referencia en el modo de doble llave.
+- **Pelo y contacto:** si el trazado no alcanza la precisión suficiente, esas zonas se marcan con
+  incertidumbre o se excluyen de cualquier afirmación de exactitud de borde. No se finge una GT
+  perfecta.
+
+**Esquema (ya implementado en `pragma_ae/inventory.py`).**
+
+- **Estado:** `AI_DOUBLE_KEY_REVIEWED`, que congela como `AI_CONSENSUS_REFERENCE`.
+- **Obligatorio en este modo:**
+  - `double_key.keys`: dos auditores distintos, cada uno con el `inventory_sha256` de su llave;
+  - `ontology.ratified_by`: la persona usuaria;
+  - `gt_mask.derivation` en cada máscara.
+- **Excepción humana:** solo una máscara con `human_ratified` (y `human_ratified_by`) cuenta como
+  `HUMAN_GT`.
+
+**Refinamiento (ChatGPT 007):**
+
+- **Versión v0: `NUMPY_MINIMAL`.** La referencia primaria es `AI_POLYGON_RASTER`, transparente y
+  reproducible.
+- **`AI_POLYGON_CLASSICAL_REFINEMENT`:** solo operaciones simples y deterministas en NumPy, dentro de
+  una banda estrecha de frontera: morfología explícita, gradiente o contraste local, ajuste de borde
+  acotado y generación de `uncertain_mask`. **No** se escribe un «GrabCut casero».
+- **OpenCV/GrabCut:** opción aplazada. Si algún día hace falta, será una derivación nueva y explícita,
+  con `opencv_version`, `parameters`, `rng_seed` (si aplica), `input_mask_sha256` y
+  `output_mask_sha256`.
+- **Pelo y contacto difíciles:** se prefiere `uncertain_mask` a forzar un borde «bonito». A‑E0 no se
+  convierte en otro proyecto de segmentación.
+
+**`uncertain_mask` (ChatGPT 007):**
+
+- Representa regiones donde las dos llaves **no pueden justificar** la precisión de la frontera.
+  Nunca sirve para borrar errores en silencio.
+- Toda métrica se reporta con **`metric_all_pixels`** y, cuando corresponda, también con
+  `metric_excluding_uncertain`, junto con `uncertain_area_px` y `uncertain_fraction`. Así ninguna
+  mejora aparente puede venir de esconder una zona difícil.
+
+**Comprobación geométrica entre llaves (DEC‑025, ChatGPT 008).** La revisión visual y la
+comprobación geométrica de completitud van **separadas**: el código dice que la diferencia existe y
+cuánto mide, y la revisión adjudica qué significa. Ninguna máscara se acepta como completa solo
+porque dos auditores digan «se ve completa». Implementación: `pragma_ae/keydiff.py`.
+
+- Para cada persona se calculan, entre la máscara de Claude (A) y la de ChatGPT (B):
+  - `A_ONLY = A & ~B` y `B_ONLY = B & ~A`, porque el XOR solo dice que difieren y no quién incluyó
+    la región;
+  - la lámina `diff_sheet`: original, contorno A, contorno B, y A_ONLY (magenta), B_ONLY (cian) y
+    trazo (gris), con un zoom por componente.
+- **Tolerancia de trazo `t` = 2 px.** Un tramo en el que no cabe un cuadrado de 5 × 5 es desacuerdo de
+  trazo (`thin`) y pasa a `uncertain`.
+- **Componentes:** `THICK` es lo que sobrevive a la apertura; `ISLAND` es un trozo suelto, sin contacto
+  con el consenso, **de cualquier tamaño**. Así el FP diminuto (3–5 px) no se pierde por fino.
+- **Registro por componente:** `area_px`, `bbox`, `touches_image_border`, `touches_mask_exterior`
+  (en la silueta exterior común), `open_or_enclosed` (en la llave a la que le falta: `ENCLOSED` si un
+  detector de agujeros lo vería, `OPEN` si no, como en N04), `touches_consensus` y
+  `semantic_adjudication`.
+- **Qué se adjudica:** toda `ISLAND` y todo `THICK` ≥ 100 px, como `INCLUDE`, `EXCLUDE`,
+  `UNCERTAIN_INCLUDE` o `UNCERTAIN_EXCLUDE`. Lo demás se lista y pasa a `uncertain`. Sin todas las
+  adjudicaciones no se compone la referencia.
+- **Tres estados (ChatGPT 009):** `foreground`, `background` y `uncertain`. Dentro de lo incierto no
+  se inventa verdad.
+  - La máscara binaria es un **estimador**, `reference_estimate_mask`, con política declarada
+    (`estimate_policy`):
+    - `MIDLINE`, por defecto: línea media real por distancia Chebyshev al consenso y al fondo
+      común; los empates se deciden con un tablero fijo, que no favorece a ninguna llave;
+    - `INTERSECTION` o `UNION`, solo si se declaran.
+  - Lo medido contra ella es `metric_all_pixels_estimate`, siempre con sus **cotas exactas** sobre
+    cualquier asignación de lo incierto:
+    - `metric_all_pixels_min = |P∩F| / (|P∪F| + |U∖P|)`;
+    - `metric_all_pixels_max = (|P∩F| + |P∩U|) / |P∪F|`.
+  - También `metric_excluding_uncertain`, `uncertain_area_px` y `uncertain_fraction`
+    (`keydiff.iou_with_uncertainty`).
+  - La primera versión, que se llamaba «línea media» pero daba la unión en bandas finas, se retiró
+    (prueba de regresión del rectángulo desplazado 1 px).
+- **Omisión compartida** (`SHARED_OMISSION_CHECK = CONTOUR_TILES + TARGETED_THIRD_CHALLENGE`). El XOR
+  solo ve lo que las llaves hacen distinto; lo que **las dos** omiten no aparece.
+  1. Se compone la referencia.
+  2. `keydiff.contour_tiles` cubre **todo** su contorno con teselas 1:1 de 512 px (64 de solape).
+     Cada tesela muestra el original sin nada al lado del contorno (`tile_pair`).
+  3. Son teselas de desafío las que tocan `uncertain` o una zona de alto riesgo: pelo,
+     contacto/oclusión entre personas, manos/dedos y objetos sostenidos (cajas tomadas del
+     inventario congelado).
+  4. Claude y ChatGPT recorren todas las teselas.
+  5. **Codex** recibe solo las de desafío, sin saber qué decidió cada llave. Es una tercera revisión
+     procedimental, no un anotador estadísticamente independiente.
+  6. Si Codex señala una posible omisión común, esa región vuelve a adjudicación.
+- **Lámina:** cada componente que exige adjudicación lleva su miniatura original, sin nada encima,
+  al lado del overlay, porque el color puede tapar justo la textura que se adjudica.
+
+**Orden (ChatGPT 006 §8, 007 §8 y 008):**
+
+1. Se cierra A‑E(−1) (v1.4). **Hecho:** `AEM1_CLOSED_INCONCLUSIVE`, confirmado por ChatGPT 008.
+2. La persona usuaria ratifica la ontología v0.2 (`RATIFICACION_ONTOLOGIA_v0_2.md`). Antes de eso
+   **no se produce ni se congela** A‑E0.
+3. Claude congela su llave de inventario, a partir de su borrador, y compromete en git solo su SHA‑256
+   (formato y custodia: `FORMATO_LLAVE_A-E0.md`).
+4. ChatGPT construye la segunda desde la foto, sin abrir la primera, y la entrega con su SHA‑256.
+5. Se comparan con la regla fijada antes de ver ninguna llave (`pragma_ae/keymatch.py`) y se adjudica.
+6. Se hacen las máscaras de las tres personas con derivación no‑SAM, una por llave, y se comparan con
+   `keydiff` (DEC‑025).
+7. Se congela como `AI_CONSENSUS_REFERENCE`.
+8. Solo entonces se congela del todo el contrato A‑E1.
+9. Se ejecuta A‑E1 (AMG).
+
+Las secciones 1–4 describen el modo humano (`HUMAN_GT`), que sigue disponible si la persona usuaria
+lo prefiere.
+
+## 0. Ratificar la ontología
+
+Lee `RATIFICACION_ONTOLOGIA_v0_2.md` (una página, R1–R11; el detalle está en
+`ONTOLOGIA_PROPUESTA.md`). Si aceptas las recomendaciones tal cual, basta con decirlo; si cambias
+alguna, se actualiza la propuesta antes de seguir. Después,
+en el inventario: `"ontology": {"ratified": true, …}`.
+
+## 1. Pasada ciega · 10 minutos · antes de mirar el borrador
+
+Abre solo la foto, sin lámina ni lista. Escribe en papel o en un archivo todo lo que
+seleccionarías para recortar como PNG. Diez minutos, sin volver atrás.
+
+*Por qué:* el borrador (`scene_inventory.draft.json`) lo hizo una IA mirando la foto. Si lo
+lees primero, lo que falta en él tiende a faltar también en tu revisión. Tu lista ciega es la
+única defensa contra ese anclaje. Ya pasó una vez: al revisar su propia lámina, el borrador
+descubrió que había omitido un objeto. (El detalle se retiró en v2.2 para no anclar la llave de
+ChatGPT; ya había salido en el paquete 009 y se declaró en la carta 010.)
+
+## 2. Revisar el borrador con la lámina
+
+```bash
+python3 -m pragma_ae sheet ae0/scene_inventory.draft.json --out local/lamina_A-E0.png
+python3 -m pragma_ae sheet ae0/scene_inventory.draft.json --out local/lamina_A-E0_AB.png --tiers A B
+```
+
+Se generan `local/lamina_A-E0.png` (cajas numeradas; amarillo = A, cian = B, rosa = C) y
+`local/lamina_A-E0.md` (leyenda). Copia el borrador a `ae0/scene_inventory.json` y, objeto por
+objeto:
+
+- corrige `bbox` (coordenadas a resolución completa, semiabierta) y pon `bbox_source: "human"`;
+- confirma o cambia `tier`, `occlusion`, `truncation`, `occluded_by`, `parent_id`;
+- resuelve cada entrada de `review` y vacía la lista;
+- añade lo que aparece en tu lista ciega y no está (`ae0_053`, `ae0_054`, …);
+- los ids no se renumeran nunca, aunque borres un objeto.
+
+Validar tantas veces como haga falta:
+
+```bash
+python3 -m pragma_ae validate ae0/scene_inventory.json
+```
+
+Cuando no haya errores, cambia `"status": "HUMAN_REVIEWED"`.
+
+```text
+BUCLE · revisión del inventario
+Tipo:              producción
+Objetivo:          que cada objeto del inventario sea el que tú seleccionarías
+Condición de paro: validate sin errores, todas las listas `review` vacías,
+                   y cada elemento de tu lista ciega está en el inventario o descartado con motivo
+Cadencia:          una pasada por zona de la foto (izquierda, mesa, persona frente, pared)
+Cada vuelta:       lámina → corregir JSON → validate
+Al cumplirse:      status HUMAN_REVIEWED
+```
+
+## 3. Máscaras GT
+
+Obligatorias para las **tres personas** (`gt_required: true`); para poder declarar
+`PASS_PROPOSALS`, también para todos los Tier A (ver el coste y el orden por etapas en
+`ONTOLOGIA_PROPUESTA.md` §6).
+
+Formato: **PNG en escala de grises, 4000×2248, 0 = fuera, 255 = objeto**, uno por objeto, en
+`ae0/gt/` (carpeta local; no se versiona porque deriva de la foto). Sirve cualquier editor que
+exporte ese PNG (GIMP, Photoshop, Photopea, Krita…). Máscara **modal**: solo lo visible; lo que
+tapa otra instancia no se pinta.
+
+Para cada máscara, calcula su hash de contenido y regístralo en el inventario:
+
+```bash
+python3 - <<'EOF'
+import numpy as np
+from PIL import Image
+from pragma_ae.masks import packed_sha256
+m = np.asarray(Image.open("ae0/gt/ae0_002.png").convert("L")) > 0
+print(packed_sha256(m))
+EOF
+```
+
+```json
+"gt_mask": {"path": "gt/ae0_002.png", "mask_sha256": "<hash>"}
+```
+
+El validador rechaza una máscara que no sea binaria, que tenga otro tamaño, cuyo hash no
+coincida o que se salga de su `bbox`.
+
+Cuidado especial en la **franja de contacto persona frente ↔ persona posterior** (cabello
+recogido, hombro, O3/O4 de A‑E(−1)): es exactamente donde se mide la fuga (DEC‑013‑P/014‑P).
+
+## 4. Congelar
+
+```bash
+python3 -m pragma_ae freeze ae0/scene_inventory.json \
+  --out ae0/scene_inventory.frozen.json --frozen-by "<tu nombre o iniciales>"
+python3 -m pragma_ae validate ae0/scene_inventory.frozen.json   # → A_E0_FROZEN
+```
+
+El inventario congelado sí puede versionarse (solo contiene cajas, nombres y hashes; no
+transcribe texto de las etiquetas). Registra su `content_sha256` en `PROJECT_STATE.md`. Desde ese
+momento es la GT de A‑E1 y **no se edita**: si hay que corregirlo, se crea una versión nueva y se
+vuelve a congelar.

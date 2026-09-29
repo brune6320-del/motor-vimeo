@@ -1,0 +1,347 @@
+{
+  "schema": "pragma.aem1v13_blind_judgments",
+  "schema_version": "0.1.0",
+  "key": "primera",
+  "auditor": "Claude Code (auto-cegado; el identificador de modelo no se escribe en el repositorio)",
+  "package_sha256": "a77a47b5c1e93bbc896dcd7b775afc22fef6ccc54ead8748b7e08c0f34a8051e",
+  "sealed_mapping_sha256": "e1986a2b4ddad61eb0b171cf474797bfea045149ee027801b8ea65b80730c63f",
+  "protocol_sha256": "b5b11c6cce30b534eb83ab9117025e35837e4554eb150e411c8091fec5087a71",
+  "judged_utc": "2026-09-26T04:17:11+00:00",
+  "consulted_before_judging": {
+    "sealed_mapping": false,
+    "metrics_or_sentinels": false,
+    "scores": false,
+    "base_reproduction": "solo lo implícito en el número de láminas (18)"
+  },
+  "material": "láminas PNG locales de las que salen los JPEG del paquete (mismo contenido)",
+  "conventions": [
+    "teléfono sostenido = objeto distinto (L), declarado como cuestión semántica",
+    "islas de la persona posterior lejos del borde = other_person_excluded FALSE aunque sean diminutas (§4 solo tolera el borde ≤ 5 px)",
+    "UNSURE no se usó"
+  ],
+  "candidates": {
+    "C01": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D"
+      },
+      "notes": "#1 L: teléfono sostenido en la mano que cuelga (objeto distinto, ae0_050); no es material de la chica ni fondo visto a través — CUESTIÓN SEMÁNTICA declarada. #2 D: pelo de la chica entre la cara y el dedo índice. Pelo del lado izquierdo fragmentado junto al hombro (lado de la chica). Moño, hombro y blusa posteriores fuera."
+    },
+    "C02": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "L"
+      },
+      "notes": "#1 D: franja de pelo entre cara e índice. #2 L: teléfono sostenido en la mano que cuelga (objeto distinto, ae0_050); no es material de la chica ni fondo visto a través — CUESTIÓN SEMÁNTICA declarada. Pelo del lado izquierdo con islas junto al hombro (franja de contacto, lado de la chica). Pequeñas perforaciones en la manga levantada, no grandes."
+    },
+    "C03": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "#1 L: teléfono sostenido en la mano que cuelga (objeto distinto, ae0_050); no es material de la chica ni fondo visto a través — CUESTIÓN SEMÁNTICA declarada. #2 y #3 D: pelo entre cara e índice. #4 D: pelo junto al mentón, a la izquierda del pulgar. Moño fuera."
+    },
+    "C04": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D"
+      },
+      "notes": "Solo torso, overol, mano que cuelga y parches de la cara. Fuera: mano en V, pelo, manga levantada y camiseta negra. #1 D: camiseta negra bajo el collar. other_person_excluded FALSE por islas diminutas (decenas de px) dentro del hombro oscuro y de la blusa floral posteriores, lejos del borde; criterio estricto §4."
+    },
+    "C05": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "L"
+      },
+      "notes": "#1 D: franja de pelo entre cara e índice. #2 L: teléfono sostenido en la mano que cuelga (objeto distinto, ae0_050); no es material de la chica ni fondo visto a través — CUESTIÓN SEMÁNTICA declarada. El arco de pelo sobre la frente y el lado derecho quedan fuera; el lado izquierdo, fragmentado. Moño fuera. Mangas dentro."
+    },
+    "C06": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D",
+        "4": "D",
+        "5": "D"
+      },
+      "notes": "INCLUYE EL MOÑO de la persona posterior entero. #1 D franja de pelo entre cara e índice; #2 D pelo/camiseta junto al mentón; #3 y #5 D camiseta y rayas junto al hombro izquierdo; #4 D pelo detrás de los dedos. Pelo de la chica y mangas dentro."
+    },
+    "C07": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D",
+        "4": "D",
+        "5": "D",
+        "6": "D",
+        "7": "D",
+        "8": "D",
+        "9": "D",
+        "10": "D",
+        "11": "D"
+      },
+      "notes": "Máscara acribillada en bandas horizontales (patrón de rejilla) sobre cara, mano en V y torso. Pelo y manga levantada fuera. Los 11 agujeros caen sobre rayas, camiseta y overol de la chica. Moño y persona posterior fuera."
+    },
+    "C08": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "FALSE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {},
+      "notes": "Mano en V casi entera fuera (solo puntos sueltos); dedos inferiores de la mano que cuelga fuera. Pelo y mangas dentro. other_person_excluded FALSE por islas diminutas (decenas de px) dentro del moño, lejos del borde; criterio estricto §4."
+    },
+    "C09": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {},
+      "notes": "Solo la parte baja del overol y la manga del brazo que cuelga: prenda, no persona. Identidad de la chica (TRUE); extensión muy incompleta."
+    },
+    "C10": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "#1 L: teléfono sostenido en la mano que cuelga (objeto distinto, ae0_050); no es material de la chica ni fondo visto a través — CUESTIÓN SEMÁNTICA declarada. #2 D pelo/camiseta junto al mentón y el pulgar; #3 y #4 D franja de pelo entre cara e índice. Moño fuera."
+    },
+    "C11": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D"
+      },
+      "notes": "#1 L: teléfono sostenido en la mano que cuelga (objeto distinto, ae0_050); no es material de la chica ni fondo visto a través — CUESTIÓN SEMÁNTICA declarada. #2 y #3 D franja de pelo entre cara e índice. Parte del pelo izquierdo junto al hombro fuera. Moño fuera."
+    },
+    "C12": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D"
+      },
+      "notes": "#1 y #2 D franja de pelo entre cara e índice; #3 D perforación en la manga levantada. La manga levantada sale acribillada de perforaciones cerca del codo. El teléfono queda fuera por el borde (no es agujero). Moño fuera."
+    },
+    "C13": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {},
+      "notes": "Solo superficies claras: overol, tirantes, dedo índice, parches de frente y mano que cuelga, muy fragmentado. Pelo, mangas y mano en V fuera. Los puntos del borde derecho caen sobre el overol, no sobre la mesa."
+    },
+    "C14": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "L",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "#1 L: teléfono sostenido en la mano que cuelga (objeto distinto, ae0_050); no es material de la chica ni fondo visto a través — CUESTIÓN SEMÁNTICA declarada. #2 y #3 D franja de pelo entre cara e índice; #4 D pelo junto al mentón. Moño fuera."
+    },
+    "C15": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "TRUE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D"
+      },
+      "notes": "Cabeza, pelo y mano en V fuera; torso y las dos mangas dentro. #1 D: incluye el teléfono PERO también parte de los dedos (16081 px, mayor que el teléfono); #2 D rayas/manga junto al codo; #3 D dedos de la mano que cuelga."
+    },
+    "C16": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "L"
+      },
+      "notes": "Cara, mano en V y torso dentro; todo el pelo fuera; manga levantada fuera; parte baja de la cara fragmentada. #1 L: teléfono sostenido en la mano que cuelga (objeto distinto, ae0_050); no es material de la chica ni fondo visto a través — CUESTIÓN SEMÁNTICA declarada."
+    },
+    "C17": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "TRUE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D",
+        "4": "D",
+        "5": "D",
+        "6": "D",
+        "7": "D"
+      },
+      "notes": "#1 D franja de pelo entre cara e índice; #2–#6 D rayas y overol; #7 D camiseta junto al collar. Manga levantada en gran parte fuera cerca del codo. Pelo de la chica dentro; en la franja de contacto la máscara llega al borde ambiguo con el hombro posterior (≈ x 2570), sin entrar en él."
+    },
+    "C18": {
+      "criteria": {
+        "correct_subject": "TRUE",
+        "body_and_edges_complete": "FALSE",
+        "other_person_excluded": "TRUE",
+        "background_excluded": "TRUE"
+      },
+      "aux": {
+        "target_hair_included": "FALSE",
+        "target_dark_sleeves_included": "FALSE"
+      },
+      "holes": {
+        "1": "D",
+        "2": "D",
+        "3": "D",
+        "4": "D"
+      },
+      "notes": "Cabeza, pelo y mano en V fuera; mano que cuelga casi entera fuera. Torso y manga levantada dentro con perforaciones. #1 y #2 D rayas del pecho; #3 D junto al codo; #4 D camiseta negra."
+    }
+  }
+}

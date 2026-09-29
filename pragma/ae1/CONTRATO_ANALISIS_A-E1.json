@@ -1,0 +1,118 @@
+{
+  "schema": "pragma.ae1_analysis_contract",
+  "schema_version": "0.1.0",
+  "status": "FROZEN",
+  "frozen_with": "A-E0 = AI_CONSENSUS_REFERENCE FROZEN, mismo commit (GO de ChatGPT, ORDEN 181)",
+  "a_e0_reference": {
+    "inventory": {
+      "file": "ae0/scene_inventory.json",
+      "file_sha256": "765aaa4ae296c27e1e0924f511f268627ec834a80497e440574be7ffd1fa1d37",
+      "content_sha256": "0dba6767b0c7ca6d02a2f2498d7fb755f4eeeba65c88f7b3c798836f7136bb6b"
+    },
+    "reference_type": "AI_CONSENSUS_REFERENCE",
+    "frozen_by": "doble llave de IA: claude (polígonos 39a071e0…04c5) + chatgpt (polígonos d7b93141…2fc2); GO de ChatGPT en la ORDEN 181 (b7ecc701…60e3)",
+    "stage": "ETAPA_1: máscaras de las 3 personas y cajas del resto (ONTOLOGIA_PROPUESTA §6). Mientras falten máscaras Tier A, evaluate() da INCONCLUSIVE_GT_INCOMPLETE: ninguna corrida de esta etapa puede dar PASS_PROPOSALS",
+    "gt_masks": {
+      "ae0_001": {
+        "path": "gt/ae0_001_estimate.png",
+        "mask_sha256": "c90e246dab3f96d915712855a03cbf676f4e97ffddab48e5fd47dd41e4a5a7cb",
+        "derivation": "AI_POLYGON_RASTER",
+        "estimate_policy": "MIDLINE",
+        "uncertain_path": "gt/ae0_001_uncertain.png",
+        "uncertain_mask_sha256": "de1e34ca092c52d8079f5aa24aa284dde17993c9e0c556b6ea78a2c53ba3670a"
+      },
+      "ae0_002": {
+        "path": "gt/ae0_002_estimate.png",
+        "mask_sha256": "ed2ec5a8f573d9951fd66da161d909889ec4fa7c9193ce7069c127614af11420",
+        "derivation": "AI_POLYGON_RASTER",
+        "estimate_policy": "MIDLINE",
+        "uncertain_path": "gt/ae0_002_uncertain.png",
+        "uncertain_mask_sha256": "b10d4ac6912118ad70dbb5f1bc12891ecb8f167f2a47e0009093791bf6a217df"
+      },
+      "ae0_003": {
+        "path": "gt/ae0_003_estimate.png",
+        "mask_sha256": "adb08879991eb132e1d07153d798c652e328610a8d760b6c996ae52d8f827118",
+        "derivation": "AI_POLYGON_RASTER",
+        "estimate_policy": "MIDLINE",
+        "uncertain_path": "gt/ae0_003_uncertain.png",
+        "uncertain_mask_sha256": "71daa0c043276061364af64f6e821b8ac5561537469bb4fce0ee571ccf5bfac4"
+      }
+    },
+    "uncertain_masks_rule": "las cotas de uncertainty_reporting usan como U la máscara uncertain_path de cada persona, verificada por uncertain_mask_sha256; P es la propuesta y F = gt_mask ∖ U"
+  },
+  "sweep": {
+    "file": "ae1/SWEEP_PRERREGISTRO_A-E1.json",
+    "sha256": "25a61aa98ec7db261d837ba4129474905f41bfedb28cc76e599ef920172d5a38",
+    "status": "PREREGISTERED",
+    "cross_audit": "ChatGPT 003: las cuatro configuraciones, aceptadas sin cambios"
+  },
+  "full_experiment": "NOT_YET_FULLY_PREREGISTERED",
+  "gates": {
+    "A_E0_FROZEN": "REQUIRED: el inventario se congela por hash antes de mirar ninguna salida A-E1",
+    "METRICS_CONTRACT_FROZEN": "REQUIRED: este archivo pasa a FROZEN en el mismo commit que A-E0",
+    "SAM2_FREEZE": "el del sweep (commit, checkpoint, imagen)",
+    "REFERENCE_TYPE_DECLARED": "REQUIRED (DEC-024, ChatGPT 005): cada métrica registra contra qué referencia se calculó: AI_CONSENSUS_REFERENCE (producida y adjudicada solo por IA) o HUMAN_GT (ratificada píxel a píxel por personas), y la derivation de cada máscara"
+  },
+  "gate_status": {
+    "A_E0_FROZEN": "MET",
+    "METRICS_CONTRACT_FROZEN": "MET",
+    "REFERENCE_TYPE_DECLARED": "AI_CONSENSUS_REFERENCE (derivation AI_POLYGON_RASTER)"
+  },
+  "reference_types": {
+    "AI_CONSENSUS_REFERENCE": "ingeniería y comparación interna; nunca se presenta como exactitud frente a verdad humana",
+    "HUMAN_GT": "solo si una muestra se anota o ratifica de forma independiente por personas",
+    "report_by_derivation": "las métricas contra máscaras derivadas de prompts de SAM 2 se reportan aparte (circularidad)"
+  },
+  "uncertainty_reporting": {
+    "rule": "REQUIRED (DEC-025, ChatGPT 009): la referencia tiene tres estados (foreground, background, uncertain). La máscara binaria es reference_estimate_mask, con su estimate_policy declarada, y nunca se presenta como verdad",
+    "report_always": [
+      "metric_all_pixels_estimate",
+      "metric_all_pixels_min",
+      "metric_all_pixels_max",
+      "metric_excluding_uncertain",
+      "uncertain_area_px",
+      "uncertain_fraction",
+      "estimate_policy"
+    ],
+    "bounds": "min = |P∩F| / (|P∪F| + |U∖P|); max = (|P∩F| + |P∩U|) / |P∪F|; F = primer plano cierto, U = incierto (pragma_ae.keydiff.iou_with_uncertainty)",
+    "reading": "una conclusión que cambia dentro del intervalo [min, max] depende de la incertidumbre y se declara así"
+  },
+  "metrics_implementation_sha256": {
+    "pragma_ae/metrics.py": "48b3ff9af53cd320adcb89eca82e95be4acb18272c5bfa958247e0075fb95e96",
+    "pragma_ae/masks.py": "412d1ead02fb92891ca989c5c6ac7a5b2dcd5b6bcdbb57551ec1ce12db712ac9",
+    "pragma_ae/inventory.py": "6540c0dcc21c718ebc3aee4b6a94d2680af536fd2680629f009ff197f2e42035",
+    "pragma_ae/keydiff.py": "c5e15ed6f1ab81b8b0237df9b1e5bd11849a97219c5e5af321caf634546d1e7a"
+  },
+  "entrypoint": "pragma_ae.metrics.evaluate(objects, gt_masks, proposals, GateParams())",
+  "gate_params": {
+    "tier_a_mask_iou": 0.7,
+    "tier_b_box_iou": 0.5,
+    "tier_b_recall": 0.9,
+    "report_iou_levels": [
+      0.5,
+      0.75
+    ],
+    "fusion_leak_max": 0.1,
+    "fusion_rule": "Q",
+    "fusion_erosion_px": 5,
+    "contact_band_px": 24,
+    "contact_leak_max": 0.2,
+    "duplicate_iou": 0.7,
+    "fragment_purity": 0.8
+  },
+  "verdict_order": [
+    "INCONCLUSIVE_GT_INCOMPLETE",
+    "GATE_NOT_MET:…",
+    "INCONCLUSIVE_FUSION_NOT_EVALUABLE",
+    "GATE_MET"
+  ],
+  "reported_not_gating": [
+    "contact_leak (DEC-014-P)",
+    "fusión según P (DEC-013-P, junto a Q)",
+    "tier_a_box_screen_failures",
+    "duplicados",
+    "fragmentación"
+  ],
+  "rule": "si cambia un SHA-256 o un umbral de este contrato después de congelarlo, el análisis A-E1 es otra versión y se declara",
+  "content_sha256": "96de8a3171653bfb6f0a81f3855bbec392aac80f136d6180e409c2f55750edfe"
+}

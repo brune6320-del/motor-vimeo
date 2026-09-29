@@ -1,0 +1,26 @@
+{
+  "schema": "pragma.ae0_polygon_commitment",
+  "schema_version": "0.1.0",
+  "auditor": "claude",
+  "what": "llave de polígonos de Claude para las tres personas de A-E0 (pragma.ae0_polygons, AI_POLYGON_RASTER)",
+  "file": "local/ae0/poligonos_claude_A-E0.json — no se versiona: deriva de la foto (DEC-017)",
+  "file_sha256": "39a071e0bbde68efb23035a31cc67e09e0f74319bc0db2cb64a988dead7504c5",
+  "validated_with": {
+    "validator": "work/validate_ae0_polygons.py",
+    "validator_sha256": "879ce8de4fc7e45f1893abbfb4bdda73c31fc544c583a30021d7cb460e7a62be",
+    "valid": true,
+    "errors": 0,
+    "patch": "POLYGON_VALIDATOR_PATCH = PASS (dialogo/014_chatgpt_a_claude.md)"
+  },
+  "inventory": {
+    "file": "ae0/scene_inventory.json",
+    "file_sha256": "bbf59747a1b3b378bfbec8031738321971e9e767f71da832b6861d2dac88b0ce",
+    "freeze_record": "ae0/CONGELADO_INVENTARIO_A-E0.json"
+  },
+  "custody": [
+    "este archivo se fija antes de que exista la llave de polígonos de ChatGPT y no se modifica después;",
+    "hasta archivar la llave de ChatGPT, ni git ni ninguna carta dicen nada de su contenido (áreas, cajas, anillos, zonas inciertas, decisiones);",
+    "después se entrega a ChatGPT en un paquete privado y se compara con keydiff (DEC-025)"
+  ],
+  "committed_utc": "2026-09-27T01:14:22+00:00"
+}

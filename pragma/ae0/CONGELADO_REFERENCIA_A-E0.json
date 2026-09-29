@@ -1,0 +1,70 @@
+{
+ "schema": "pragma.ae0_reference_freeze_record",
+ "schema_version": "0.1.0",
+ "what": "referencia A-E0 de las tres personas: inventario con gt_mask congelado (FROZEN)",
+ "reference_type": "AI_CONSENSUS_REFERENCE",
+ "stage": "ETAPA_1 (ae0/ONTOLOGIA_PROPUESTA.md §6): máscaras de las 3 personas y cajas de todos los objetos. Techo de A-E1: INCONCLUSIVE_GT_INCOMPLETE (35 Tier A sin máscara). Lo que sí mide: tier_a_box_screen_failures, IoU de cada persona con sus cotas, fusión y contacto entre personas",
+ "inventory": {
+  "file": "ae0/scene_inventory.json",
+  "file_sha256": "765aaa4ae296c27e1e0924f511f268627ec834a80497e440574be7ffd1fa1d37",
+  "content_sha256": "0dba6767b0c7ca6d02a2f2498d7fb755f4eeeba65c88f7b3c798836f7136bb6b",
+  "validator_state": "A_E0_FROZEN",
+  "errors": [],
+  "warnings": 0
+ },
+ "freeze": {
+  "frozen_by": "doble llave de IA: claude (polígonos 39a071e0…04c5) + chatgpt (polígonos d7b93141…2fc2); GO de ChatGPT en la ORDEN 181 (b7ecc701…60e3)",
+  "reviewed_as": "AI_DOUBLE_KEY_REVIEWED",
+  "reference_type": "AI_CONSENSUS_REFERENCE",
+  "frozen_utc": "2026-09-27T18:56:02.289731+00:00",
+  "gt_mask_sha256": {
+   "ae0_001": "c90e246dab3f96d915712855a03cbf676f4e97ffddab48e5fd47dd41e4a5a7cb",
+   "ae0_002": "ed2ec5a8f573d9951fd66da161d909889ec4fa7c9193ce7069c127614af11420",
+   "ae0_003": "adb08879991eb132e1d07153d798c652e328610a8d760b6c996ae52d8f827118"
+  },
+  "content_sha256": "0dba6767b0c7ca6d02a2f2498d7fb755f4eeeba65c88f7b3c798836f7136bb6b"
+ },
+ "masks": {
+  "ae0_001": {
+   "estimate": {
+    "path": "gt/ae0_001_estimate.png",
+    "mask_sha256": "c90e246dab3f96d915712855a03cbf676f4e97ffddab48e5fd47dd41e4a5a7cb",
+    "png_sha256": "5df9814d880c3f034f5c4298b1429c3d23d9996a4de8dddf619b7bb816067959"
+   },
+   "uncertain": {
+    "path": "gt/ae0_001_uncertain.png",
+    "mask_sha256": "de1e34ca092c52d8079f5aa24aa284dde17993c9e0c556b6ea78a2c53ba3670a",
+    "png_sha256": "4b0f45b70707eba80990321d84b2955222ea41b5034c460e1fb33e9587597741"
+   }
+  },
+  "ae0_002": {
+   "estimate": {
+    "path": "gt/ae0_002_estimate.png",
+    "mask_sha256": "ed2ec5a8f573d9951fd66da161d909889ec4fa7c9193ce7069c127614af11420",
+    "png_sha256": "f4868cd61ecd2d6a83e311a8fec40c379966b72c7f41c6e177609429c36a3a10"
+   },
+   "uncertain": {
+    "path": "gt/ae0_002_uncertain.png",
+    "mask_sha256": "b10d4ac6912118ad70dbb5f1bc12891ecb8f167f2a47e0009093791bf6a217df",
+    "png_sha256": "1008d673d727f92fe108017ba1b5f714ca43848e837226253c470f75953532b6"
+   }
+  },
+  "ae0_003": {
+   "estimate": {
+    "path": "gt/ae0_003_estimate.png",
+    "mask_sha256": "adb08879991eb132e1d07153d798c652e328610a8d760b6c996ae52d8f827118",
+    "png_sha256": "412542ced1405a2e867d813b5da4cb4e408cbc2158e90bd3be8afe69cd60cede"
+   },
+   "uncertain": {
+    "path": "gt/ae0_003_uncertain.png",
+    "mask_sha256": "71daa0c043276061364af64f6e821b8ac5561537469bb4fce0ee571ccf5bfac4",
+    "png_sha256": "345bc5d85462af44b1df5d6eb7a40a7c78ac52610e0558db75fdc01a76fc26aa"
+   }
+  }
+ },
+ "final_composition": {
+  "file": "ae0/comparacion_poligonos/composicion_referencia_final.json",
+  "sha256": "650ace3b78528fcb8bba67dfec855cad47cea22303e0e9f1d5427fd56b860228"
+ },
+ "not_versioned": "ae0/gt/*.png (DEC-017): en git solo van los hashes"
+}

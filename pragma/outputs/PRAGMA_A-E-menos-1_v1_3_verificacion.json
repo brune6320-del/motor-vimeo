@@ -1,0 +1,144 @@
+{
+  "notebook": "PRAGMA_A-E-menos-1_diagnostico_caso_chica_v1_3.ipynb",
+  "notebook_sha256": "b477f3bfb4879c29f1cecd38ffc4f46fae671809c2751f68eaa16bb7e074e62e",
+  "prereg_sha256": "9953ed9cb22e1b54a2a7116450158f8d68d48269ec679b3e53309d839ff29fb8",
+  "result": "26/26",
+  "status": "PASS",
+  "scope": "estático + E2E con SAM SIMULADO + auditoría sobre el ZIP simulado; no mide la calidad de SAM 2",
+  "checks": [
+    {
+      "check": "cuaderno: todas las celdas de código compilan",
+      "pass": true,
+      "detail": "6 celdas"
+    },
+    {
+      "check": "cuaderno: sin salidas ni contadores de ejecución",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "prerregistro embebido idéntico byte a byte al versionado",
+      "pass": true,
+      "detail": "9953ed9cb22e1b54"
+    },
+    {
+      "check": "celda 1: commit fijado y checkout exacto (no main)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "celda 1: se detiene si el commit o el checkpoint difieren",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: no muestra máscaras ni usa lo prohibido",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "cuaderno: el score nunca se usa (una sola lectura, para archivarlo)",
+      "pass": true,
+      "detail": "lecturas: 1"
+    },
+    {
+      "check": "cuaderno: compuerta de luma sobre todos los prompts y holdouts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E navegador: sin errores",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E: número de llamadas = plan",
+      "pass": true,
+      "detail": "178 / 178"
+    },
+    {
+      "check": "E2E: cada llamada = la del plan (puntos, etiquetas, caja, multimask, semilla)",
+      "pass": true,
+      "detail": "178 llamadas idénticas"
+    },
+    {
+      "check": "E2E navegador: una descarga, el ZIP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E sin navegador: sin errores y sin descarga",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "E2E sin foto: error claro, sin selector",
+      "pass": true,
+      "detail": "FileNotFoundError"
+    },
+    {
+      "check": "integridad del ZIP simulado: SIMULATED_RUN_NOT_EVIDENCE sin problemas",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "integridad: no devuelve datos de resultado (solo campos de integridad)",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "manipular una máscara → INVALID_BUNDLE",
+      "pass": true,
+      "detail": [
+        "bytes o SHA-256 distintos: masks/+POS_HAIR+SLEEVE__box+corrections__s0.png"
+      ]
+    },
+    {
+      "check": "desviarse del plan → INVALID_BUNDLE",
+      "pass": true,
+      "detail": [
+        "bytes o SHA-256 distintos: aem1v13_calls.json"
+      ]
+    },
+    {
+      "check": "paquete ciego: 18 +POS + BASE no idénticas; LEEME y plantilla",
+      "pass": true,
+      "detail": "30 láminas (BASE no idénticas: 12)"
+    },
+    {
+      "check": "paquete ciego: el LEEME no nombra ramas, protocolos ni scores",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "paquete ciego: la plantilla pide agujeros D/L y preguntas auxiliares",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "paquete ciego: mapeo sellado con hash publicado",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "análisis: una discrepancia sin adjudicar deja el caso pendiente",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "análisis: con la adjudicación, veredicto y 6 hipótesis evaluadas",
+      "pass": true,
+      "detail": "6 hipótesis evaluadas sobre datos SIMULADOS (sus valores no se archivan: no son resultados)"
+    },
+    {
+      "check": "análisis: estabilidad por familia (P+1, H1, S1, caja) y recíproco",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "análisis: propiedad con las tres razones",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

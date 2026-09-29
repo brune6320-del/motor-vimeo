@@ -1,0 +1,68 @@
+{
+  "schema": "pragma.ae0_inventory_freeze_record",
+  "schema_version": "0.1.0",
+  "what": "lista de objetos adjudicada de A-E0 (ids, conceptos, cajas, tiers, atributos y relaciones), todavía sin máscaras",
+  "why_now": "ChatGPT 013/014: el inventario se congela después de incorporar Codex y antes de que exista ningún polígono",
+  "inventory": {
+    "file": "ae0/scene_inventory.json",
+    "file_sha256": "bbf59747a1b3b378bfbec8031738321971e9e767f71da832b6861d2dac88b0ce",
+    "content_sha256": "faedfcb87f7667cc5e5aea0ad0b3c55a4adc5d50d175c51f79dc8021d35892db",
+    "objects": 65,
+    "tier_counts": {
+      "A": 38,
+      "B": 3,
+      "C": 24,
+      "IGNORE": 0
+    },
+    "validator_state": "A_E0_PENDING_GT",
+    "errors": [],
+    "pending_third_review": []
+  },
+  "persons": {
+    "ae0_001": [
+      220,
+      265,
+      1200,
+      2248
+    ],
+    "ae0_002": [
+      2095,
+      408,
+      3475,
+      2248
+    ],
+    "ae0_003": [
+      2200,
+      305,
+      2815,
+      1195
+    ]
+  },
+  "conditions": {
+    "CODEX_THIRD_REVIEW": {
+      "value": "INCORPORATED",
+      "answer": "ae0/comparacion/tercera_revision_codex.json",
+      "answer_sha256": "dbda0477b74ad6dbaaca6a0ca48539e290cc2c80dbc0221f16141127f44c3e5e",
+      "rule": "ae0/comparacion/tercera_revision_reglas.json",
+      "rule_sha256": "2e0f21c407b0e2a81bf258c28d9c20b6e6c285e5fb3808190500a23a7a92357c",
+      "outcome": {
+        "C:022": "NOT_SEPARABLE → EXCLUDE",
+        "C:025": "NOT_SEPARABLE → EXCLUDE"
+      }
+    },
+    "POLYGON_VALIDATOR_PATCH": {
+      "value": "PASS",
+      "by": "chatgpt",
+      "record": "dialogo/014_chatgpt_a_claude.md",
+      "validator": "work/validate_ae0_polygons.py",
+      "validator_sha256": "879ce8de4fc7e45f1893abbfb4bdda73c31fc544c583a30021d7cb460e7a62be"
+    }
+  },
+  "after_this": [
+    "ningún objeto, id, caja ni relación cambia desde aquí;",
+    "las dos llaves de polígonos se validan contra estas cajas de persona;",
+    "solo se añadirán las entradas gt_mask de las tres personas (DEC-025); entonces el inventario pasa a status FROZEN con inv.freeze, junto al contrato A-E1"
+  ],
+  "status_note": "status sigue en AI_DOUBLE_KEY_REVIEWED: el congelado formal (FROZEN) exige las máscaras (A_E0_READY_TO_FREEZE)",
+  "frozen_utc": "2026-09-27T00:54:08+00:00"
+}
